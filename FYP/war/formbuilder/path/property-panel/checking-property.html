@@ -1,0 +1,36 @@
+<div id="property-container">
+	<div><h3>Properties</h1></div>
+	<table id="property-table">
+	<tr class="property">
+		<td class="property-key">Check from</td>
+		<td class="property-value">
+			<select id="check-from">
+				<option value=""></option>
+				<option value="db">Database</option>
+				<option value="form">Form Data</option>
+			</select>
+		</td>
+	</tr>
+
+	</table>
+</div>
+<script>
+	$(document).ready(function(){
+		$("#check-from").change(function(e){
+			switch($(this).val()){
+				case "db":
+					console.log("db");
+					
+					break;
+				case "form":
+					
+					console.log("form");
+					break;
+			}
+
+		});
+		
+		
+	});
+	
+</script>

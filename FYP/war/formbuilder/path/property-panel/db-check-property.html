@@ -1,0 +1,113 @@
+<div id="property-container">
+	<div><h3>Properties</h1></div>
+	<table id="property-table">
+	<tr class="property">
+		<td class="property-key">Database</td>
+		<td class="property-value">
+			<select>
+				<option>db-12r</option>
+				<option>db-13r</option>
+				<option>db-14r</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr class="property">
+		<td class="property-key">SQL query</td>
+		<td class="property-value">
+			<input type="text"/>
+		</td>
+	</tr>
+	<tr class="property">
+		<td class="property-key">Condition</td>
+		<td class="property-value">
+			<select id="check-type">
+				<option value=""></option>
+				<option value="">&#60;</option>
+				<option value="">&#62;</option>
+				<option value="">&#60;&#61;</option>
+				<option value="">&#62;&#61;</option>
+				<option value="">&#61;</option>
+				<option value="">in</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="property">
+		<td class="property-key">Check with</td>
+		<td class="property-value">
+			<select id="value-type">
+				<option value=""></option>
+				<option value="db">Database value</option>
+				<option value="static">static value</option>
+			</select>
+		</td> 
+		
+	</tr>
+	</table>
+</div>
+<script>
+	$("#value-type").change(function(e){
+		$("#property-table .template-instance").remove();
+		switch($("#value-type").val()){
+			case "db":
+				$("#db-template .property").clone().css("display","").appendTo($("#property-table"));
+			break;
+			case "static":
+				$("#static-template .property").clone().css("display","").appendTo($("#property-table"));
+			break;
+			
+		}
+	});
+	
+</script>
+<table id="static-template" style="display:none">
+	<tr class="property template-instance">
+		<td class="property-key">Value</td>
+		<td class="property-value">
+			<input type="text"/>
+		</td>
+	</tr>
+	
+</table>
+<table id="db-template" style="display:none">
+	<tr class="property template-instance">
+		<td class="property-key">Database</td>
+		<td class="property-value">
+			<select>
+				<option>db-12r</option>
+				<option>db-13r</option>
+				<option>db-14r</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr class="property template-instance">
+		<td class="property-key">SQL query</td>
+		<td class="property-value">
+			<input type="text"/>
+		</td>
+	</tr>
+	<!--
+	<tr class="property template-instance">
+		<td class="property-key">Table</td>
+		<td class="property-value">
+			<select>
+				<option></option>
+				<option>Department</option>
+				<option>Employeer</option>
+				<option>Configuration</option>
+			</select>
+		</td>
+	</tr>
+	<tr class="property template-instance">
+		<td class="property-key">Attribute</td>
+		<td class="property-value">
+			<select>
+				<option></option>
+				<option>empid</option>
+				<option>salery</option>
+				<option>superlevel</option>
+			</select>
+		</td>
+	</tr>-->
+</table>
