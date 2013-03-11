@@ -1,4 +1,4 @@
-package edy.fyp.manager;
+package edu.fyp.manager;
 
 public class FormManager {
     public void showForm(String empID){

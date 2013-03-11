@@ -1,4 +1,4 @@
-package edy.fyp.manager;
+package edu.fyp.manager;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
