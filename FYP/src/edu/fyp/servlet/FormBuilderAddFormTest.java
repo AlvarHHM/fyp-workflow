@@ -37,4 +37,22 @@ public class FormBuilderAddFormTest extends HttpServlet {
 		System.out.println(form.getForm());
 		pm.close();
 	}
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		String constraint=req.getParameter("a");
+		String createdBy=req.getParameter("a");
+		String createdDate=req.getParameter("a");
+		String formHtml=req.getParameter("a");
+		String formID=req.getParameter("a");
+		String version=req.getParameter("a");
+		String constraint=req.getParameter("a");
+		Form form = new Form();
+		form.setConstraint(constraint);
+		form.setCreatedBy(createdBy);
+		form.setCreatedDate(createdDate);
+		form.setForm(formHtml);
+		form.setFormID(formID);
+		form.setKey(key);
+		form.setVersion(version);
+	}
 }
