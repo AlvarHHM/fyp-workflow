@@ -1,0 +1,112 @@
+body{
+    overflow: auto;
+}
+#page{
+    height:100%;
+    position: relative;
+}
+#header{
+    height: 200px;
+    width: 100%;
+}
+#content {
+    top: 204px;
+    width: 100%;
+    overflow: hidden;
+}
+#formBuilder-container{
+    height: 290mm;
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #F5F5F5;
+    position:relative;
+}
+#form-header{
+    height: 24px;
+    width: 100%;
+    background-color: white;
+}
+#form-title{
+    margin-left: 10px;
+}
+
+#form-save-container{
+	float:right;
+	margin-right:10px;
+}
+
+#formBuilder-leftPanel{
+    width: 280px;
+    min-height: 250px;
+    float: left;
+    font-size: xx-small;
+}
+
+#formBuilder-leftPanel .ui-tabs-anchor{
+    padding: .05em .6em;
+}
+#formBuilder-leftPanel #tab-hint{
+    width:100%;
+    background-color: #FFFFCC;
+}
+
+.formBuilder-component-container{
+    width:200px;
+    font-size: large;
+    margin-bottom: 3px;
+}
+.formBuilder-component-container:hover{
+    width:200px;
+    box-shadow: 2px 2px 3px #999999;
+    margin-bottom: 3px;
+    cursor: move;
+}
+.formBuilder-component-container img{
+    width:18px;
+    height:18px;
+}
+
+#formBuilder-stage{
+    float:left;
+    position:absolute;
+    top:24px;
+    left:285px;
+    border-style:ridge;
+    background-color: #FFFFFF;
+    width: 185mm;
+    height: 277mm;
+}
+
+.form-item{
+    float:left;
+    position: relative;
+    white-space:nowrap;
+}
+.form-item.selected{
+    border: dashed;
+    border-width: 1px;
+}
+
+.remove-button{
+    position:absolute;
+    right:-13px;
+    top:-20px;
+}
+
+.overlay{
+    width:100%;
+    height:100%;
+    float:left;
+
+    z-index: 1000;
+    left:0px;
+    top:0px;
+    background-color: transparent;
+    position: absolute;
+}
+.ui-draggable-dragging{
+    z-index: 900;
+}
+.formItem-properties-group{
+    margin-bottom: 20px;
+}

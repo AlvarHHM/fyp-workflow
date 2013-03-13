@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>Form Builder</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
+        <script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/master.css">
+        <link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
+        <link rel="stylesheet" type="text/css" href="css/formBuilder.css">
+        <link rel="stylesheet" type="text/css" href="css/common.css">
+        <script type="text/javascript" src="js/formBuilder/drag-and-drop.js"></script>
+        <script type="text/javascript" src="js/formBuilder/select-and-property.js"></script>
+        <script type="text/javascript" src="js/formBuilder/element-validation.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/maintainForm.css">
+    </head>
+    <body>
+        <div id="bodyContainer">
+            <div id="topContainer">
+                <div id="banner">
+                    <img src="logo40.png">
+                </div>
+                <div id="userMenu">
+                    <div id="userAction">
+                        <a href="#">Setting</a>
+                        <a href="login.html">log out</a>
+                    </div>
+                    <div id="userHi">
+                        Welcome, Peter Lam.
+                    </div>
+                </div>
+            </div>
+            <div id="mainContainer">
+                <div id="menu">
+                    <ul>
+                        <li><a href="maintainForm.html">Maintain Forms</a></li>
+                        <li><a href="formBuilder.html">Create Form</a></li>
+                    </ul>
+                </div>
+                <div id="mainBody">
+                    <fieldset><legend  align='center'>Maintain Form</legend>
+
+                        <table class="viewFormTable">
+                            <thead>
+                                <tr class="rowHeader">
+                                    <th class="formIDField">
+                                        <span>Form ID</span>
+                                    </th>
+                                    <th class="formNameField">
+                                        <span>Form Name</span>
+                                    </th>
+                                    <th class="formVersionField">
+                                        <span>Version</span>
+                                    </th>
+                                    <th class="formDescField">
+                                        <span>Description</span>
+                                    </th>
+                                    <th class="formPathField">
+                                        <span>Form Path</span>
+                                    </th>
+                                    <th class="formLastUpdateField">
+                                        <span>Last Update</span>
+                                    </th>
+                                    <th class="formStatusField">
+                                        <span>Status</span>
+                                    </th>
+                                    <th class="formEditField">
+                                        <span></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td class="formIDField">
+                                        <span>15049</span>
+                                    </td>
+                                    <td class="formNameField">
+                                        <span><a href="form.html" target="_blank">Sick leave Form</a></span>
+                                    </td>
+                                    <td class="formVersionField">
+                                        <span>1</span>
+                                    </td>
+                                    <td class="formDescField">
+                                        <span>Sick leave</span>
+                                    </td>
+                                    <td class="formPathField">
+                                        <span><a href="pathBuilder/form_path.html" target="_blank">Path</a></span>
+                                    </td>
+                                    <td class="formLastUpdateField">
+                                        <span>23-1-2013</span>
+                                    </td>
+                                    <td class="formStatusField">
+                                        <span>Disable</span>
+                                    </td>
+                                    <td class="formEditField">
+                                        <span><input type="button" value="Edit" disabled/></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="formIDField">
+                                        <span>15049</span>
+                                    </td>
+                                    <td class="formNameField">
+                                        <span><a href="form.html"  target="_blank">Sick leave Form</a></span>
+                                    </td>
+                                    <td class="formVersionField">
+                                        <span>2</span>
+                                    </td>
+                                    <td class="formDescField">
+                                        <span>Sick leave</span>
+                                    </td>
+                                    <td class="formPathField">
+                                        <span><a href="pathBuilder/form_path.html" target="_blank">Path</a></span>
+                                    </td>
+                                    <td class="formLastUpdateField">
+                                        <span>23-1-2013</span>
+                                    </td>
+                                    <td class="formStatusField">
+                                        <span>Released</span>
+                                    </td>
+                                    <td class="formEditField">
+                                        <span><input type="button" value="Edit" disabled/></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="formIDField">
+                                        <span>15049</span>
+                                    </td>
+                                    <td class="formNameField">
+                                        <span><a href="form.html" target="_blank">Sick leave Form</a></span>
+                                    </td>
+                                    <td class="formVersionField">
+                                        <span>3</span>
+                                    </td>
+                                    <td class="formDescField">
+                                        <span>Sick leave</span>
+                                    </td>
+                                    <td class="formPathField">
+                                        <span><a href="pathBuilder/form_path.html" target="_blank">Path</a></span>
+                                    </td>
+                                    <td class="formLastUpdateField">
+                                        <span>23-1-2013</span>
+                                    </td>
+                                    <td class="formStatusField">
+                                        <span>Editing</span>
+                                    </td>
+                                    <td class="formEditField">
+                                        <span><input type="button" value="Edit"/></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
