@@ -35,10 +35,8 @@ $(document).ready(function(){
 });
 
 function post_to_url(path, params, method) {
-    method = method || "post"; // Set method to post by default, if not specified.
+    method = method || "post"; 
 
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
     var form = document.createElement("form");
     form.setAttribute("method", method);
     form.setAttribute("action", path);
@@ -57,7 +55,7 @@ function post_to_url(path, params, method) {
     document.body.appendChild(form);
     form.submit();
 }
-//Code for reading the saved form
+//Code for reading a saved form
     /*
      $(".form-item").append(
      "<div class='overlay' ></div>");
