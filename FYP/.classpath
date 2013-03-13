@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="edu/fyp/bean/Form.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/english/Desktop/eclipse-fyp/eclipse-fyp/plugins/com.google.appengine.eclipse.sdkbundle_1.7.5/appengine-java-sdk-1.7.5/lib/shared/appengine-local-runtime-shared.jar">
 		<attributes>
