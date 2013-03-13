@@ -3,14 +3,18 @@ package edu.fyp.bean;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 
+@PersistenceCapable
 public class Form {
 
+	@Persistent
     private String formID;
     private String form;
     private String version;
     private Date createDate;
-    private ArrayList<UserGroup> userGroup;
+    //private ArrayList<UserGroup> userGroup;
     private String path;
     private String constraint;
     private String createdBy;
