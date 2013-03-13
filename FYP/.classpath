@@ -3,10 +3,13 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-beans-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-context-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-core-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-web-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-webmvc-3.2.1.RELEASE.jar"/>
+=======
+>>>>>>> dc55d5cefc194931d9293df2a6a07cc328e93d0e
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
