@@ -1,13 +1,16 @@
 package edu.fyp.bean;
 
-import edu.fyp.bean.pathNode.PathNode;
+import javax.jdo.annotations.PersistenceCapable;
 
+import edu.fyp.bean.node.PathNode;
+@PersistenceCapable
 public class ApplicationPath {
 
     private PathNode startNode;
     private PathNode currentNode;
 
     public ApplicationPath() {
+    	
     }
 
     public PathNode getStartNode() {
