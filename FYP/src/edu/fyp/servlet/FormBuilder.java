@@ -2,6 +2,7 @@ package edu.fyp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,11 @@ public class FormBuilder extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.println(req.getParameter("formHtml"));
+        Enumeration names = req.getParameterNames();
+        while (names.hasMoreElements()) {
+            String name = (String) names.nextElement();
+            out.println(name + ": " + req.getHeader(name) + "<br>");
+        }
 		out.println("</body>");
 		out.println("</html>");
 		out.close();
