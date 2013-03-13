@@ -1,4 +1,4 @@
-package edu.fyp.bean.PathNode;
+package edu.fyp.bean.pathNode;
 import java.util.ArrayList;
 
 public class CompositeNode extends RelayNode{

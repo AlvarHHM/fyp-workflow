@@ -1,4 +1,4 @@
-package edu.fyp.bean.PathNode;
+package edu.fyp.bean.pathNode;
 
 public class ApproveNode extends RelayNode{
     private PathNode nextTrueNode;

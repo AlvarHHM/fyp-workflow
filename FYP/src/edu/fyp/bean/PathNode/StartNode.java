@@ -1,4 +1,4 @@
-package edu.fyp.bean.PathNode;
+package edu.fyp.bean.pathNode;
 
 public class StartNode  extends RelayNode{
     public StartNode(PathNode nextNode){
