@@ -90,4 +90,9 @@ public class Form {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	public Key getKey(){
+		return key;
+	}public void setKey(Key key){
+		this.key=key;
+	}
 }
