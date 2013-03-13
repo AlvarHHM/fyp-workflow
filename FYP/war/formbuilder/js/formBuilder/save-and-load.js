@@ -21,8 +21,14 @@ $(document).ready(function(){
 		});
 		
 		//sending request
-		var params = {"formHtml" : form};
-		post_to_url("http://localhost:8888/formBuilder", params, "post");
+		var params = {
+					"formHtml" : form , 
+					"formTitle" : $("#form-title").html(),
+					"formScript" : ""};
+		post_to_url(
+			"http://localhost:8888/formBuilder",
+			//"http://www.hashemian.com/tools/form-post-tester.php",
+			params, "post");
 	})
 	$("#form-load").click(function(){
 		
