@@ -2,9 +2,9 @@ package edu.fyp.manager;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
-import edu.fyp.bean.PathNode.EndNode;
-import edu.fyp.bean.PathNode.PathNode;
-import edu.fyp.bean.PathNode.RelayNode;
+import edu.fyp.bean.pathNode.EndNode;
+import edu.fyp.bean.pathNode.PathNode;
+import edu.fyp.bean.pathNode.RelayNode;
 
 
 

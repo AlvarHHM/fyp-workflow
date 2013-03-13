@@ -6,10 +6,13 @@ import edu.fyp.bean.Form;
 
 
 public class FormRepository {
-    public Form getFormByID(){
+	public static void addForm(Form form){
+	
+	}
+    public static Form getFormByID(String empID){
         return null;
     }
-    public ArrayList<Form> getAllFormByEmpID(String empID){
+    public static ArrayList<Form> getAllFormByEmpID(String empID){
         return null;
     }
 }

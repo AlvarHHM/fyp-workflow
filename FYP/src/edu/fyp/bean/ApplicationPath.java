@@ -1,6 +1,6 @@
 package edu.fyp.bean;
 
-import edu.fyp.bean.PathNode.PathNode;
+import edu.fyp.bean.pathNode.PathNode;
 
 public class ApplicationPath {
 
