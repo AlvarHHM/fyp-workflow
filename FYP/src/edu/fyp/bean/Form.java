@@ -163,5 +163,13 @@ public class Form {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+<<<<<<< HEAD
 >>>>>>> dc55d5cefc194931d9293df2a6a07cc328e93d0e
+=======
+	public Key getKey(){
+		return key;
+	}public void setKey(Key key){
+		this.key=key;
+	}
+>>>>>>> 818f201bbdd9305b48dced4868de3d9476837ba7
 }

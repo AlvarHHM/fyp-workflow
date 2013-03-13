@@ -37,4 +37,16 @@
 		<servlet-name>formBuilder</servlet-name>
 		<url-pattern>/formBuilder</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>formBuilders</servlet-name>
+		<servlet-class>edu.fyp.servlet.FormBuilderAddFormTest</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>formBuilders</servlet-name>
+		<url-pattern>/formBuilders</url-pattern>
+	</servlet-mapping>
 </web-app>
