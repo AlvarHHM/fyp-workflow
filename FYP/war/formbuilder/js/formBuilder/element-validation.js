@@ -1,10 +1,12 @@
 //after select database, insert table into combobox
 
 $(function(){
+	hideDBValidation(0);
+	
 	$.getJSON(
 		"databaseConnection.json", 
 		function(json){
-			var outStr = "<option></option>";
+			var outStr = "<option value=''>Database</option>";
 			$.each(
 				json.databases,function(index, values){
 					outStr += "<option value='"+values.id+"'>"+values.name+"</option>";
@@ -12,26 +14,23 @@ $(function(){
 			$("#db-db").html(outStr);
 		}
 	);
-	hideDBValidation(0);
-	
 	$("#db-db").change(function(){
 		//hide validation field
 		hideDBValidation(0);
 		
 		//init table
 		var dbID=$(this).val();
-		
 		//table[0]="vacation";
 		//for demo
 		
 		//get db table list
 		//table=getDBTableList(dbID);
-		if(dbID){
+		if(dbID!=null&dbID!=""){
 		//insert table list into db-table
 			$.getJSON(
 				"databaseTable.json", 
 				function(json){
-					var outStr = "<option></option>";
+					var outStr = "<option value=''>Table</option>";
 					$.each(
 						json.tables,function(index, values){
 							outStr += "<option class='option-removeable'"
@@ -46,9 +45,8 @@ $(function(){
 			$("#li-table").css("display","");
 		}
 	});
-});
+	
 //after select table, insert field into combox
-$(function(){
 	$("#db-table").change(function(){
 		//hide validation field
 		hideDBValidation(1);
@@ -56,7 +54,7 @@ $(function(){
 		//var dbID=$("#db-db").val();
 		var tableID=$(this).val();
 		
-		if(tableID){
+		if(tableID!=null&tableID!=""){
 			//get db table list
 			//table getDBTableList(dbID);
 			
@@ -78,19 +76,19 @@ $(function(){
 			$("#li-field").css("display","");
 		}
 	});
-});
-$(function(){
+	
 	$("#db-field").change(function(){
 		//hide validation field
 		hideDBValidation(2);
 		
 		$("#li-operator").css("display","");
 	}) ;
-});
-$(function(){
+	
 	$("#db-operator").change(function(){
 		$("#li-value").css("display","");
 	}) ;
+	
+	
 });
 //get table list
 function getDBTableList(dbID){
@@ -104,8 +102,8 @@ function getTableField(dbID,table){
 function hideDBValidation(level){  
 	switch(level){
 		case 0:$("#li-table").css("display","none");
-		case 1:$("#li-operator").css("display","none");
-		case 2:$("#li-field").css("display","none");
+		case 1:$("#li-field").css("display","none");
+		case 2:$("#li-operator").css("display","none");
 		case 3:$("#li-value").css("display","none");
 	}
 }
