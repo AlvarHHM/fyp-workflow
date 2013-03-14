@@ -19,6 +19,10 @@ public class Form {
 	@Persistent
 	private String formHtml;
 	@Persistent
+	private String description;
+	@Persistent
+	private String title;
+	@Persistent
 	private String version;
 	@Persistent
 	private Date createDate;
@@ -88,6 +92,23 @@ public class Form {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public void setDescription(String description){
+		this.description = description;
+	}
+	
+	public String getTitle(){
+		return title;
+	}
+	
+	public void setTitle(String title){
+		this.title=title;
+	}
+	
 	public Key getKey(){
 		return key;
 	}public void setKey(Key key){
