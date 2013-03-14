@@ -17,7 +17,7 @@ public class Form {
 	@Persistent
 	private String formID;
 	@Persistent
-	private String form;
+	private String formHtml;
 	@Persistent
 	private String version;
 	@Persistent
@@ -41,12 +41,12 @@ public class Form {
 		this.formID = formID;
 	}
 
-	public String getForm() {
-		return form;
+	public String getFormHtml() {
+		return formHtml;
 	}
 
-	public void setForm(String form) {
-		this.form = form;
+	public void setFormHtml(String formHtml) {
+		this.formHtml = formHtml;
 	}
 
 	public String getVersion() {

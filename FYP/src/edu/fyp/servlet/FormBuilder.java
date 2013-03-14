@@ -2,12 +2,16 @@ package edu.fyp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edu.fyp.bean.Form;
+import edu.fyp.repository.FormRepository;
 
 public class FormBuilder extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -22,7 +26,14 @@ public class FormBuilder extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		processRequest(req, resp);
+		Form form = new Form();
+		form.setFormHtml(req.getParameter("FormHtml"));
+		form.setConstraint(req.getParameter("Constraint"));
+		form.setCreatedDate(new Date());
+		form.setCreatedBy("hardCodeOne");
+		form.setFormID("hardCodeFormID");
+		form.setVersion("hardCodeVersion");
+		FormRepository.addForm(form);
 	}
 
 	protected void processRequest(HttpServletRequest req,

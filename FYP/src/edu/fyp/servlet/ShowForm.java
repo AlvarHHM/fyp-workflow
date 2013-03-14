@@ -20,6 +20,6 @@ public class ShowForm extends HttpServlet{
 		String version=req.getParameter("version");
 		form = FormRepository.getFormByIDVersion(formID, version);
 		PrintWriter out = resp.getWriter();
-		out.print(form.getForm());
+		out.print(form.getFormHtml());
 	}
 }

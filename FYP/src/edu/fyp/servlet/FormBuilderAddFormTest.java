@@ -22,13 +22,13 @@ public class FormBuilderAddFormTest extends HttpServlet {
 		Form form = new Form();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		if (req.getParameter("action").equalsIgnoreCase("0")) {
-			form.setForm("Hello2");
+			form.setFormHtml("Hello2");
 			form.setFormID("A1");
 			form.setVersion("2");
 			FormRepository.addForm(form);
 		} else {
 			form = FormRepository.getFormByIDVersion("A1", "2");
-			System.out.println(form.getForm());
+			System.out.println(form.getFormHtml());
 		}
 		pm.close();
 	}
