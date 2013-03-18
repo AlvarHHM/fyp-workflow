@@ -87,7 +87,7 @@ function selectFormItem(itemId) {
         }
     });
 
-    $("#formBuilder-leftPanel ul li:nth-child(2)").show();
+    $("#formBuilder-leftPanel>ul>li:nth-child(2)").show();
     $("#formBuilder-leftPanel").tabs("option", "active", 1);
     //change the choice type of the property
     setChoiceType(item.attr("type"));
