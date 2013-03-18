@@ -1,6 +1,7 @@
 //after select database, insert table into combobox
 
 $(function(){
+
 	hideDBValidation(0);
 	
 	$.getJSON(
