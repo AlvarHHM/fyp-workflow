@@ -8,6 +8,8 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-core-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-web-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-webmvc-3.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-expression-3.2.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.jdbc-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/v2"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
