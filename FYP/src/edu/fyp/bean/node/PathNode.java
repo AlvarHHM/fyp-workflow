@@ -1,21 +1,13 @@
 package edu.fyp.bean.node;
 
 
-public class PathNode {
+public abstract class PathNode {
     private String state;
     private String nodeID;
 
-    public PathNode() {
-    }
+    public abstract void process();
 
-    public void process() {
-    }
+    public abstract String getState();
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
+    public abstract void setState(String state);
 }
