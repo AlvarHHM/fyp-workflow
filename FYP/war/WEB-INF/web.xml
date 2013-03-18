@@ -61,4 +61,16 @@
 		<servlet-name>showForm</servlet-name>
 		<url-pattern>/showForm</url-pattern>
 	</servlet-mapping>
+			<servlet>
+		<servlet-name>showFormList</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowFormList</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showFormList</servlet-name>
+		<url-pattern>/showFormList</url-pattern>
+	</servlet-mapping>
 </web-app>

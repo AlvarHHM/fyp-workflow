@@ -32,7 +32,11 @@ public class FormRepository {
 	}
 
 	public static List<Form> getAllFormByEmpID(String empID) {
-		return null;
+		List<Form> formList = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		formList = (List<Form>) q.execute();
+		return formList;
 	}
 	public static Key generateKey(String formID,String version){
 		Key k =KeyFactory.createKey(Form.class.getSimpleName(),
