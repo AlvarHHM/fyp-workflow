@@ -6,7 +6,8 @@ $(document).ready(function() {
             var itemType = ui.draggable.attr("id").split('-')[1];
             addFormItem(itemType, pos.left, pos.top);
 
-            $(ui.draggable).css({
+            //$(".formBuilder-component-container").css({
+			$(ui.draggable).css({
                 "left": "0px",
                 "top": "0px"
             });
@@ -14,7 +15,13 @@ $(document).ready(function() {
     });
     $(".formBuilder-component-container").draggable({
         revert: true,
-        revertDuration: 0
+        revertDuration: 0,
+		stop : function(event, ui) {
+            $(".formBuilder-component-container").css({
+                "left": "0px",
+                "top": "0px"
+            });
+        }
     });
 });
 
