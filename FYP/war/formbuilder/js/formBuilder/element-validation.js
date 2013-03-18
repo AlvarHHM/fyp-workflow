@@ -2,25 +2,53 @@
 
 $(function(){
 	hideDBValidation(0);
+	
+	$.getJSON(
+		"databaseConnection.json", 
+		function(json){
+			var outStr = "<option></option>";
+			$.each(
+				json.databases,function(index, values){
+					outStr += "<option value='"+values.id+"'>"+values.name+"</option>";
+			});
+			$("#db-db").html(outStr);
+		}
+	);
+	
 	$("#db-db").change(function(){
 		//hide validation field
 		hideDBValidation(0);
 		
 		//init table
 		var dbID=$(this).val();
-		var table=new Array();
-		table[0]="vacation";//for demo
+		
+		//table[0]="vacation";
+		//for demo
+		
 		//get db table list
 		//table=getDBTableList(dbID);
-   
+		if(dbID){
 		//insert table list into db-table
-		for(var i=0;i<table.length;i++){
-			$("#db-table").append("<option class='option-removeable' value='"+table[i]+"'"
-				+">"+table[i]+"</option>");
-		}
+			$.getJSON(
+				"databaseTable.json", 
+				function(json){
+					var outStr = "<option></option>";
+					$.each(
+						json.databases,function(index, values){
+							outStr += "<option class='option-removeable' value='"+table[i]+"'"
+											+">"+table[i]+"</option>";
+					});
+					$("#db-table").html(outStr);
+				}
+			);
+			for(var i=0;i<table.length;i++){
+				$("#db-table").append("<option class='option-removeable' value='"+table[i]+"'"
+					+">"+table[i]+"</option>");
+			}
 	
 		//show table combobox
-		$("#li-table").css("display","");
+			$("#li-table").css("display","");
+		}
 	});
 });
 //after select table, insert field into combox

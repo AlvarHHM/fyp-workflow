@@ -1,7 +1,7 @@
 {
     "databases": [
-		{"name":"Database3" , "connection":"127.0.0.1"},
-		{"name":"Database32" , "connection":"localhost"},
-		{"name":"Database1" , "connection":"127.0.0.1:3306"}
+		{"name":"Database3" , "id":"1"},
+		{"name":"Database32" , "id":"2"},
+		{"name":"Database1" , "id":"3"}
 		]
 }

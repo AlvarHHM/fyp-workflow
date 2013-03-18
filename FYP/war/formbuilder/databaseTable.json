@@ -1,0 +1,6 @@
+{
+    "tables": [
+		{"name":"employees"},
+		{"name":"departments"}
+		]
+}
