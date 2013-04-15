@@ -1,6 +1,9 @@
 package edu.fyp.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -20,33 +23,43 @@ public class FormBuilderAddFormTest extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Form form = new Form();
+		PrintWriter out = resp.getWriter();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		if (req.getParameter("action").equalsIgnoreCase("0")) {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 12; i++) {
 				form.setFormHtml("html"+i);
 				form.setFormID("formID"+i);
 				form.setVersion("version"+i);
 				FormRepository.addForm(form);
 			}
 		} else {
-			form = FormRepository.getFormByIDVersion("A1", "2");
-			System.out.println(form.getFormHtml());
+			for (int i = 0; i < 12; i++) {
+				form = FormRepository.getFormByIDVersion("formID"+i, "version"+i);
+				out.println(form.getFormHtml());
+			}
 		}
 		pm.close();
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		/*
-		 * String constraint = req.getParameter("a"); String createdBy =
-		 * req.getParameter("a"); String createdDate = req.getParameter("a");
-		 * String formHtml = req.getParameter("a"); String formID =
-		 * req.getParameter("a"); String version = req.getParameter("a"); String
-		 * constraint = req.getParameter("a"); Form form = new Form();
-		 * form.setConstraint(constraint); form.setCreatedBy(createdBy);
-		 * 
-		 * form.setCreatedDate(createdDate); form.setForm(formHtml);
-		 * form.setFormID(formID); form.setKey(key); form.setVersion(version);
-		 */
+		Date createdDate = Calendar.getInstance().getTime();
+
+		String formID=req.getParameter("formID");
+		String formHtml=req.getParameter("formHtml");
+		String description=req.getParameter("description");
+		String title=req.getParameter("title");
+		String version=req.getParameter("version");
+		String constraint=req.getParameter("constraint");
+		//String createdBy= Session
+		
+		Form form = new Form();
+		form.setFormID(formID);
+		form.setFormHtml(formHtml);
+		form.setDescription(description);
+		form.setTitle(title);
+		form.setVersion(version);
+		form.setConstraint(constraint);
+		FormRepository.addForm(form);
 	}
 }
