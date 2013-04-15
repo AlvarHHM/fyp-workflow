@@ -6,7 +6,6 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
@@ -18,7 +17,11 @@ public class Form {
 	@Persistent
 	private String formID;
 	@Persistent
-	private String form;
+	private String formHtml;
+	@Persistent
+	private String description;
+	@Persistent
+	private String title;
 	@Persistent
 	private String version;
 	@Persistent
@@ -42,12 +45,12 @@ public class Form {
 		this.formID = formID;
 	}
 
-	public String getForm() {
-		return form;
+	public String getFormHtml() {
+		return formHtml;
 	}
 
-	public void setForm(String form) {
-		this.form = form;
+	public void setFormHtml(String formHtml) {
+		this.formHtml = formHtml;
 	}
 
 	public String getVersion() {
@@ -88,7 +91,25 @@ public class Form {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+
 	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public void setDescription(String description){
+		this.description = description;
+	}
+	
+	public String getTitle(){
+		return title;
+	}
+	
+	public void setTitle(String title){
+		this.title=title;
+	}
+
 	public Key getKey(){
 		return key;
 	}public void setKey(Key key){

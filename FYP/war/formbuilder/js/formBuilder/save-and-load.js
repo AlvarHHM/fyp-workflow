@@ -22,9 +22,9 @@ $(document).ready(function(){
 		
 		//sending request
 		var params = {
-					"formHtml" : form , 
-					"formTitle" : $("#form-title").html(),
-					"formScript" : ""};
+					"FormHtml" : form , 
+					"Title" : $("#form-title").html(),
+					"Constraint" : ""};
 		post_to_url(
 			"http://localhost:8888/formBuilder",
 			//"http://www.hashemian.com/tools/form-post-tester.php",

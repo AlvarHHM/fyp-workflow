@@ -1,8 +1,15 @@
 package edu.fyp.bean.node;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+
+@PersistenceCapable
 public class NoticeNode extends RelayNode{
+	@Persistent
     private String empID;
+	@Persistent
     private String deptID;
+	@Persistent
     private int superLevel;
     @Override
     public void process(){
