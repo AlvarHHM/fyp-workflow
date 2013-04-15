@@ -1,6 +1,8 @@
 package edu.fyp.servlet;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -39,13 +41,12 @@ public class FormBuilderAddFormTest extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		Date createdDate = Calendar.getInstance().getTime();
 		String constraint=req.getParameter("a");
 		String createdBy=req.getParameter("a");
-		String createdDate=req.getParameter("a");
 		String formHtml=req.getParameter("a");
 		String formID=req.getParameter("a");
-		String version=req.getParameter("a");
-		String constraint=req.getParameter("a");
+		String version=req.getParameter("a");;
 		Form form = new Form();
 		form.setConstraint(constraint);
 		form.setCreatedBy(createdBy);
