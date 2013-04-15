@@ -40,6 +40,16 @@ $(document).ready(
 				var data = selectedNode.data("props");
 				data.setType("approval");
 			});
+			$(".notice-node.node-prototype").click(function() {
+				var data = selectedNode.data("props");
+				data.setType("notice");
+			});
+			$(".check-node.node-prototype").click(function() {
+				var data = selectedNode.data("props");
+				data.setType("check");
+			});
+			
+			
 			$(".start-node.node-prototype").click(function() {
 				var data = selectedNode.data("props");
 				data.setType("start");
@@ -69,8 +79,11 @@ $(document).ready(
 						selectedNode.css("position", "absolute");
 						selectedNode.css("top", yp);
 						selectedNode.css("left", xp);
-					//	props.updatePosition(xp,yp);
+						//props.updatePosition(xp,yp);
 						$(this).append(selectedNode);
+						selectedNode.click(function(){
+							showPropertyPanel(props);
+						});
 						selectedNode.mouseup(function(e){
 							var data = $(this).data("props");
 							data.updatePosition($(this).offset().left,$(this).offset().top);
@@ -165,3 +178,19 @@ $(document).ready(
 		    });
 
 		});
+function showPropertyPanel(data){
+	$(".property").hide();
+	switch(data.type){
+		case "approval":
+			$("#approval-property").show()
+			break;
+		case "notice":
+			$("#notice-property").show()
+			break;
+		case "check":
+			$("#check-property").show();
+			break;
+			
+			
+	}
+}

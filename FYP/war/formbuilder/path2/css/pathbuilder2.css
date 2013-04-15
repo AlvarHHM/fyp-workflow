@@ -59,6 +59,10 @@ em {
 	border-width: 1px;
 }
 
+.property{
+	display:none;
+}
+
 #path-canvas-wrapper {
 	position: relative;
 	height: 100%;
