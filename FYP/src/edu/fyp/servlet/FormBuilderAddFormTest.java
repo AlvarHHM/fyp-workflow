@@ -1,6 +1,7 @@
 package edu.fyp.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,17 +23,20 @@ public class FormBuilderAddFormTest extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Form form = new Form();
+		PrintWriter out = resp.getWriter();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		if (req.getParameter("action").equalsIgnoreCase("0")) {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 12; i++) {
 				form.setFormHtml("html"+i);
 				form.setFormID("formID"+i);
 				form.setVersion("version"+i);
 				FormRepository.addForm(form);
 			}
 		} else {
-			form = FormRepository.getFormByIDVersion("A1", "2");
-			System.out.println(form.getFormHtml());
+			for (int i = 0; i < 12; i++) {
+				form = FormRepository.getFormByIDVersion("formID"+i, "version"+i);
+				out.println(form.getFormHtml());
+			}
 		}
 		pm.close();
 	}
