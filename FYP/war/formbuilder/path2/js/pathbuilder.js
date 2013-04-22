@@ -81,9 +81,9 @@ $(document).ready(
 						selectedNode.css("left", xp);
 						//props.updatePosition(xp,yp);
 						$(this).append(selectedNode);
-						selectedNode.click(function(){
-							showPropertyPanel(props);
-						});
+//						selectedNode.click(function(){
+//							showPropertyPanel(props);
+//						});
 						selectedNode.mouseup(function(e){
 							var data = $(this).data("props");
 							data.updatePosition($(this).offset().left,$(this).offset().top);
@@ -170,10 +170,19 @@ $(document).ready(
 		            case "delete":
 		            	$(this).remove();
 		            	break;
+		            	
+		            case "setting":
+		            	console.log($(this).data());
+		            	$(this).data("props").loadMenu();
+		            	break;
 		            }
+		            
+		            
 		        },
 		        items: {
 		            "delete": {name: "Delete", icon: "delete"},
+		            "setting": {name:"Setting", icon: "setting"},
+		            
 		        }
 		    });
 
