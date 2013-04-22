@@ -1,6 +1,6 @@
             <div id="topContainer">
                 <div id="banner">
-                    <img src="logo40.png">
+                    <img src="/Client/img/logo40.png">
                 </div>
                 <div id="userMenu">
                     <div id="userAction">

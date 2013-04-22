@@ -1,3 +1,6 @@
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 <head>
 <%@ include file="header.jsp"%>

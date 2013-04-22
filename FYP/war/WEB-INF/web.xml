@@ -49,4 +49,12 @@
 		<servlet-name>formBuilders</servlet-name>
 		<url-pattern>/formBuilders</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>home</servlet-name>
+		<jsp-file>/Client/home.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>home</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>	
 </web-app>

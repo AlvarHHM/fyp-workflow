@@ -1,2 +1,2 @@
-        <link rel="stylesheet" type="text/css" href="css/common.css">
-        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" href="/Client/css/common.css">
+        <link rel="stylesheet" type="text/css" href="/Client/css/home.css">
