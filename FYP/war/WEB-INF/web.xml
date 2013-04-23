@@ -49,12 +49,20 @@
 		<servlet-name>formBuilders</servlet-name>
 		<url-pattern>/formBuilders</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>home</servlet-name>
 		<jsp-file>/Client/home.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>home</servlet-name>
 		<url-pattern>/Client/home</url-pattern>
+	</servlet-mapping>	
+		<servlet>
+		<servlet-name>showFormList</servlet-name>
+		<jsp-file>/Client/showFormList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showFormList</servlet-name>
+		<url-pattern>/Client/showFormList</url-pattern>
 	</servlet-mapping>	
 </web-app>
