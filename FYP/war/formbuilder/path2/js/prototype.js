@@ -36,6 +36,9 @@ Node.prototype.updatePosition = function(x,y){
 Node.prototype.loadMenu = function(){
 	console.log("load menu");
 	$("#approval-property").lightbox_me({
-        centered: true
+        centered: true,
+        closeClick : false,
+        closeEsc : false,
+        closeSelector :".property-cancel-btn"
         });
 }

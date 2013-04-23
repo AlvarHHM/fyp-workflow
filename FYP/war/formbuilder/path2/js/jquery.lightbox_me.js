@@ -102,7 +102,7 @@
             $self.delegate(opts.closeSelector, "click", function(e) {
                 closeLightbox(); e.preventDefault();
             });
-            $self.bind('close', closeLightbox);
+           // $self.bind('close', closeLightbox);
             $self.bind('reposition', setSelfPosition);
 
             

@@ -169,6 +169,7 @@ em {
     -moz-box-shadow:1px 1px 7px #ccc;
     -webkit-box-shadow:1px 1px 7px #ccc;
     box-shadow:1px 1px 7px #ccc;
+    padding : 10px;
 }
 
 .property .title{
@@ -177,4 +178,8 @@ em {
     font-size:25px;
     border-bottom:1px solid #ddd;
     text-decoration:none;
+}
+
+.property-item{
+	margin : 10px 0px;
 }

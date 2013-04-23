@@ -162,7 +162,9 @@ $(document).ready(
 //				delete connectionInfo.source[0].data("props").fail;
 				
 			});
-			
+			$("select").select2({
+				
+			});
 			$.contextMenu({
 		        selector: '.node-instance', 
 		        callback: function(key, options) {
@@ -174,6 +176,7 @@ $(document).ready(
 		            case "setting":
 		            	console.log($(this).data());
 		            	$(this).data("props").loadMenu();
+		            	$("#property-panel").data("props",$(this).data("props"));
 		            	break;
 		            }
 		            
