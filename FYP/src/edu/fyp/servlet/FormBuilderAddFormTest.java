@@ -35,7 +35,7 @@ public class FormBuilderAddFormTest extends HttpServlet {
 			}
 		} else {
 			List<Form> formList = FormRepository.getAllFormByEmpID("AA");
-			
+			out.println(formList.size());
 		}
 		pm.close();
 	}

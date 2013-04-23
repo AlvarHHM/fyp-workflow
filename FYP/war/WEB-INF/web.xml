@@ -49,6 +49,18 @@
 		<servlet-name>formBuilders</servlet-name>
 		<url-pattern>/formBuilders</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>showFormListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowFormList</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showFormListServlet</servlet-name>
+		<url-pattern>/Client/showFormListServlet</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>home</servlet-name>
 		<jsp-file>/Client/home.jsp</jsp-file>

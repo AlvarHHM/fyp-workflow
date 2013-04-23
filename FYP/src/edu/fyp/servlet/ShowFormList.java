@@ -1,4 +1,5 @@
 package edu.fyp.servlet;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,15 +14,11 @@ import edu.fyp.bean.Form;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 
-public class ShowFormList extends HttpServlet{
+public class ShowFormList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		List<Form> formList = FormRepository.getAllFormByEmpID("A");
-		PrintWriter out = resp.getWriter();
-		out.println(formList.size());
-		for(int i=0;i<formList.size();i++){
-			out.println(formList.get(i).getFormHtml());
-			out.println(formList.get(i).getFormID());
-		}
+		String testStr = "Power powerful";
+		req.getSession().setAttribute("testStr", testStr);
+		req.getRequestDispatcher("/Client/showFormList").forward(req, resp);
 	}
 }
