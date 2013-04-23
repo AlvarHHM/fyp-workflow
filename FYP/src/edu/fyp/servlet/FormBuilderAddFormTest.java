@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -33,10 +34,8 @@ public class FormBuilderAddFormTest extends HttpServlet {
 				FormRepository.addForm(form);
 			}
 		} else {
-			for (int i = 0; i < 12; i++) {
-				form = FormRepository.getFormByIDVersion("formID"+i, "version"+i);
-				out.println(form.getFormHtml());
-			}
+			List<Form> formList = FormRepository.getAllFormByEmpID("AA");
+			
 		}
 		pm.close();
 	}
