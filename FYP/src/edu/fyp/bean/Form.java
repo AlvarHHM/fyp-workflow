@@ -1,5 +1,6 @@
 package edu.fyp.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -9,7 +10,7 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-public class Form {
+public class Form implements Serializable{
 
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)

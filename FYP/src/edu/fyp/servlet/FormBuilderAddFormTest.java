@@ -26,6 +26,7 @@ public class FormBuilderAddFormTest extends HttpServlet {
 		Form form = new Form();
 		PrintWriter out = resp.getWriter();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		//insert test data
 		if (req.getParameter("action").equalsIgnoreCase("0")) {
 			for (int i = 0; i < 12; i++) {
 				form.setFormHtml("html"+i);
