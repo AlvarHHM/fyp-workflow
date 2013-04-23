@@ -18,13 +18,13 @@ public class Form implements Serializable{
 	@Persistent
 	private String formID;
 	@Persistent
-	private String formHtml;
-	@Persistent
-	private String description;
+	private String version;
 	@Persistent
 	private String title;
 	@Persistent
-	private String version;
+	private String formHtml;
+	@Persistent
+	private String description;
 	@Persistent
 	private Date createDate;
 	//	@Persistent
@@ -33,6 +33,8 @@ public class Form implements Serializable{
 	private String path;
 	@Persistent
 	private String constraint;
+	@Persistent
+	private String status;
 	@Persistent
 	private String createdBy;
 	@Persistent

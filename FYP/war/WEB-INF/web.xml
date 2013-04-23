@@ -77,4 +77,24 @@
 		<servlet-name>showFormList</servlet-name>
 		<url-pattern>/Client/showFormList</url-pattern>
 	</servlet-mapping>	
+			<servlet>
+		<servlet-name>showFormServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowForm</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showFormServlet</servlet-name>
+		<url-pattern>/Client/showFormServlet</url-pattern>
+	</servlet-mapping>
+			<servlet>
+		<servlet-name>showForm</servlet-name>
+		<jsp-file>/Client/showForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showForm</servlet-name>
+		<url-pattern>/Client/showForm</url-pattern>
+	</servlet-mapping>	
 </web-app>

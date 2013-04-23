@@ -35,7 +35,18 @@ public class FormRepository {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
+		q.setOrdering("formID desc");
 		formList = (List<Form>) q.execute();
+		return listToArrayListForm(formList);
+	}
+	public static ArrayList<Form> searchFormFromEmp(String empID,String search,String keyword) {
+		List<Form> formList = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		q.setFilter(search + " == keyword");
+		q.setOrdering("formID desc");
+		q.declareParameters("String keyword");
+		formList = (List<Form>) q.execute(keyword);
 		return listToArrayListForm(formList);
 	}
 	public static ArrayList<Form> getAllFormForMaintain() {

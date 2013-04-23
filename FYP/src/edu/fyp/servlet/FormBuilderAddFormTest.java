@@ -27,11 +27,13 @@ public class FormBuilderAddFormTest extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		//insert test data
-		if (req.getParameter("action").equalsIgnoreCase("0")) {
+		if (req.getParameter("action").equalsIgnoreCase("1")) {
 			for (int i = 0; i < 12; i++) {
-				form.setFormHtml("html"+i);
 				form.setFormID("formID"+i);
 				form.setVersion("version"+i);
+				form.setTitle("title"+i);
+				form.setFormHtml("html"+i);
+				form.setDescription("description"+i);
 				FormRepository.addForm(form);
 			}
 		} else {

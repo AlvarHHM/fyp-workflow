@@ -20,12 +20,11 @@ public class ShowFormList extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		String empID = "A";//hard code
-		String search = req.getParameter("seacrh");
+		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		ArrayList<Form> formList = null;
-		if(search !=null && keyword!=null){
-			//formList = searchForm(search,keyword);
-			out.println("not impl");
+		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
+			formList = FormRepository.searchFormFromEmp(empID, search, keyword);
 		}else{
 			formList = FormRepository.getAllFormByEmpID(empID);
 		}
