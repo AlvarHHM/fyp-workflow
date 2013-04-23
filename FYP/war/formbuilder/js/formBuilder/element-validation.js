@@ -12,47 +12,31 @@ $(function(){
 				json.databases,function(index, values){
 					outStr += "<option value='"+values.id+"'>"+values.name+"</option>";
 			});
-			$("#db-db").html(outStr);
+			$("#validation-db").html(outStr);
 		}
 	);
-	$("#db-db").change(function(){
+	$("#validation-db").change(function(){
 		//hide validation field
 		hideDBValidation(0);
 		
-		//init table
+		//Get table ID
 		var dbID=$(this).val();
-		//table[0]="vacation";
-		//for demo
 		
-		//get db table list
-		//table=getDBTableList(dbID);
 		if(dbID!=null&dbID!=""){
-		//insert table list into db-table
-			$.getJSON(
-				"databaseTable.json", 
-				function(json){
-					var outStr = "<option value=''>Table</option>";
-					$.each(
-						json.tables,function(index, values){
-							outStr += "<option class='option-removeable'"
-											+" value='"+values.name+"'>"
-											+values.name+"</option>";
-					});
-					$("#db-table").html(outStr);
-				}
-			);
-	
-		//show table combobox
-			$("#li-table").css("display","");
+			//get db table list
+			getDBTableList(dbID);
+			
+			//show table combobox
+			$("#li-validation-table").css("display","");
 		}
 	});
 	
 //after select table, insert field into combox
-	$("#db-table").change(function(){
+	$("#validation-table").change(function(){
 		//hide validation field
 		hideDBValidation(1);
 		//init table
-		//var dbID=$("#db-db").val();
+		//var dbID=$("#validation-db").val();
 		var tableID=$(this).val();
 		
 		if(tableID!=null&tableID!=""){
@@ -62,38 +46,51 @@ $(function(){
 			$.getJSON(
 				"databaseTableCol.json", 
 				function(json){
-					var outStr = "<option></option>";
+					var outStr = "<option value=''>Column</option>";
 					$.each(
 						json.columns,function(index, values){
 							outStr += "<option class='option-removeable'"
 											+" value='"+values.name+"'>"
 											+values.name+"</option>";
 					});
-					$("#db-field").html(outStr);
+					$("#validation-field").html(outStr);
 				}
 			);
 	
 			//show field combobox
-			$("#li-field").css("display","");
+			$("#li-validation-field").css("display","");
 		}
 	});
 	
-	$("#db-field").change(function(){
+	$("#validation-field").change(function(){
 		//hide validation field
 		hideDBValidation(2);
 		
-		$("#li-operator").css("display","");
+		$("#li-validation-operator").css("display","");
 	}) ;
 	
-	$("#db-operator").change(function(){
-		$("#li-value").css("display","");
+	$("#validation-operator").change(function(){
+		$("#li-validation-value").css("display","");
 	}) ;
 	
 	
 });
 //get table list
 function getDBTableList(dbID){
-	//unimplement error
+	//insert table list into validation-table
+	$.getJSON(
+		"databaseTable.json", 
+		function(json){
+			var outStr = "<option value=''>Table</option>";
+			$.each(
+				json.tables,function(index, values){
+					outStr += "<option class='option-removeable'"
+									+" value='"+values.name+"'>"
+									+values.name+"</option>";
+				});
+				$("#validation-table").html(outStr);
+			}
+		);
 }
 //get table field
 function getTableField(dbID,table){
@@ -102,9 +99,9 @@ function getTableField(dbID,table){
 //hide table, operator, value
 function hideDBValidation(level){  
 	switch(level){
-		case 0:$("#li-table").css("display","none");
-		case 1:$("#li-field").css("display","none");
-		case 2:$("#li-operator").css("display","none");
-		case 3:$("#li-value").css("display","none");
+		case 0:$("#li-validation-database").css("display","none");
+		case 1:$("#li-validation-field").css("display","none");
+		case 2:$("#li-validation-operator").css("display","none");
+		case 3:$("#li-validation-value").css("display","none");
 	}
 }
