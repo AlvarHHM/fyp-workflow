@@ -188,6 +188,16 @@ $(document).ready(
 		            
 		        }
 		    });
+			
+			$("#save-btn").click(function(){
+				var result = [];
+				$("#path-canvas").children().each(function(i,e){
+					if($(this).hasClass("node")){
+						result.push(JSON.stringify($(this).data("props")));
+					}
+				});
+				alert(result);
+			});
 
 		});
 function showPropertyPanel(data){

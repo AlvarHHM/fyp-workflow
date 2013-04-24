@@ -34,8 +34,7 @@ Node.prototype.updatePosition = function(x,y){
 	this.y = y;
 }
 Node.prototype.loadMenu = function(){
-	console.log("load menu");
-	$("#approval-property").lightbox_me({
+	$("#"+this.type+"-property").lightbox_me({
         centered: true,
         closeClick : false,
         closeEsc : false,

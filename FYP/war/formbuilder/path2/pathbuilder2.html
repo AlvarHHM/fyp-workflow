@@ -10,7 +10,8 @@
 <script type="text/javascript" src="./js/prototype.js"></script>
 <script type="text/javascript" src="./js/property.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="./css/jquery.contextMenu.css">
+<link rel="stylesheet" type="text/css"
+	href="./css/jquery.contextMenu.css">
 <link rel="stylesheet" type="text/css" href="./css/select2.css">
 <link rel="stylesheet" type="text/css" href="./css/pathbuilder2.css">
 
@@ -20,14 +21,14 @@
 
 <body>
 	<div id="main-container">
-
+		<button id="save-btn">Save</button>
 		<div id="content-wrapper">
 			<div id="path-canvas-wrapper">
 				<div id="path-canvas"></div>
 			</div>
 		</div>
 		<div id="right-wrapper">
-			
+
 			<div id="select-node">
 				<span class="title">Add Node</span>
 				<div class="start-node node-prototype node">
@@ -54,38 +55,83 @@
 					<div class="tcp"></div>
 					<div class="fcp"></div>
 				</div>
-				
-				
-			</div>
-			<div id="property-panel">
-				<div class="property" id="approval-property">
-				<span class="title">Approval Setting</span>
-					<div class="property-item">
-						<select id="approval-type" style="width:200px" class="property-value">
-							<option value="super">Supervisor</option>
-							<option value="lu">Level in User Department</option>
-							<option value="ld">Level in a Department</option>
-							<option value="spec">Specific user</option>
-						</select>
-					</div>
-					<div class="property-item">
-					<div id="approval-userId-warpper" style="display:none">
-						<label>User Id</label><br>
-						<input type="text" id="approval-userId">
-					</div>
-					</div>
-					<div>
-						<button class="property-submit-btn css_btn_class">Submit</button>
-						<button class="property-cancel-btn css_btn_class">Cancel</button>
-					</div>
 
+
+			</div>
+			<div id="property-panel" style="display:none">
+				<div class="property" id="approval-property">
+					<div class="property-inner">
+						<span class="title">Approval Setting</span>
+						<div class="property-item">
+							<select id="approval-type" style="width: 200px"
+								class="property-value">
+								<option></option>
+								<option value="super">Supervisor</option>
+								<option value="lud">Level in User Department</option>
+								<option value="ld">Level in a Department</option>
+								<option value="spec">Specific user</option>
+							</select>
+						</div>
+						<div class="property-item">
+							<div id="approval-deptId-wrapper" style="display: none">
+								<label>Dept Id</label><br> <input id="approval-deptId"
+									type="text" class="property-item" disabled>
+								<input type="submit" class="search-btn" value="submit">
+
+							</div>
+						</div>
+						<div class="property-item">
+							<div id="approval-superLv-wrapper" style="display: none">
+								<label>Super Level</label><br> <input id="approval-superLv"
+									type="text" class="property-item">
+
+							</div>
+						</div>
+						<div class="property-item">
+							<div id="approval-userId-warpper" style="display: none">
+								<label>User Id</label><br> <input type="text"
+									id="approval-userId" class="property-value" disabled>
+									<input type="submit" class="search-btn" value="submit">
+							</div>
+						</div>
+						<div class="property-submit-wrapper">
+							<button class="property-submit-btn css_btn_class">Submit</button>
+							<button class="property-cancel-btn css_btn_class">Cancel</button>
+						</div>
+					</div>
 				</div>
 				<div class="property" id="notice-property">
-				notice
+					<div class="property-inner">
+						<span class="title">Notice Setting</span>
+						<div class="property-item">
+							<select id="notice-type" class="property-value" style="width:200px">
+								<option></option>
+								<option value="email">Notify by Email</option>
+								<option value="system">Notify by System</option>
+							</select>
+						</div>
+						<div class="property-item">
+							<div id="notice-userId-warpper" style="display: none">
+								<label>User Id</label><br> <input type="text"
+									id="notice-userId" class="property-value" disabled>
+									<input type="submit" class="search-btn" value="submit">
+							</div>
+						</div>
+
+						<div class="property-item">
+							<div id="notice-email-warpper" style="display: none">
+								<label>User Id</label><br> <input type="text"
+									id="notice-email" class="property-value" disabled>
+							</div>
+						</div>
+
+						<div class="property-submit-wrapper">
+							<button class="property-submit-btn css_btn_class">Submit</button>
+							<button class="property-cancel-btn css_btn_class">Cancel</button>
+						</div>
+					</div>
 				</div>
-				<div class="property" id="check-property">
-				check
-				</div>
+				<div class="property" id="check-property">check</div>
 			</div>
 		</div>
 
