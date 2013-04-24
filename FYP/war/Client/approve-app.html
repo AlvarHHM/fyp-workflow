@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script src="js/JQ/jquery-1.9.0.js"></script>
+        <LINK href="css/viewForm.css" rel="stylesheet" type="text/css">
+        <style>
+            table{
+                border-style:solid;
+                border-width:1px;
+                border-collapse: 
+            }
+            td{
+                border-left: 1px solid graytext;
+                border-right: 1px solid graytext;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="formContainer">
+            <table>
+                <tr class="odd">
+                    <td>Leave Type</td>
+                    <td colspan="11">
+                        <select disabled="disabled">
+                            <option  selected="selected">Sick</option>
+                            <option>Event</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td colspan="11"> IT</td>
+                </tr>
+                <tr class="odd">
+                    <td>Name</td>
+                    <td> Tom C</td>
+                    <td>Title</td>
+                    <td colspan="6"> Clerk</td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td colspan="121">
+                        <div>
+                            <input name="dayType" type="radio"/><label>Morning</label>
+                            <input name="dayType" type="radio"/><label>Afternoon</label>
+                            <input name="dayType" checked type="radio"/><label>Day</label>
+                        </div>
+                        <div>
+                            <select id="day" disabled="disabled">
+                                <option>Day</option>
+                                <option selected="selected">12</option>
+                            </select>
+                            <select id="month" disabled="disabled">
+                                <option>Month</option>
+                                <option selected="selected">03</option>
+                            </select>
+                            <select id="year" disabled="disabled">
+                                <option>Year</option>
+                                <option selected="selected">2012</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="odd">
+                    <td>Remark 1</td>
+                    <td colspan="121"><textarea rows="3" readonly cols="80">I feel sick.</textarea></td>
+                </tr>
+                <tr>
+                    <td>Remark 2</td>
+                    <td colspan="121"><textarea rows="3"  readonly="true" cols="80">I need doctor.</textarea></td>
+                </tr>
+                <tr class="odd">
+                    <td>Attachment 1 </td>
+                    <td colspan="11"><a target="_blank" href="logo40.jpg">logo40.jpg</a></td>
+                </tr>
+                <tr>
+                    <td>Attachment 2 </td>
+                    <td colspan="11">none</td>
+                </tr>
+                <tr class="odd">
+                    <td></td>
+                    <td colspan="60">
+                        <input name="Approve" type="submit" class="buttom" value="Approve" />
+                        <input name="Reject" type="submit" class="buttom" value="Reject" />
+                        <input name="Reassign" type="submit" class="buttom" value="Reassign" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

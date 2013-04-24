@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -25,18 +26,19 @@ public class FormBuilderAddFormTest extends HttpServlet {
 		Form form = new Form();
 		PrintWriter out = resp.getWriter();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		if (req.getParameter("action").equalsIgnoreCase("0")) {
+		//insert test data
+		if (req.getParameter("action").equalsIgnoreCase("1")) {
 			for (int i = 0; i < 12; i++) {
-				form.setFormHtml("html"+i);
 				form.setFormID("formID"+i);
 				form.setVersion("version"+i);
+				form.setTitle("title"+i);
+				form.setFormHtml("html"+i);
+				form.setDescription("description"+i);
 				FormRepository.addForm(form);
 			}
 		} else {
-			for (int i = 0; i < 12; i++) {
-				form = FormRepository.getFormByIDVersion("formID"+i, "version"+i);
-				out.println(form.getFormHtml());
-			}
+			List<Form> formList = FormRepository.getAllFormByEmpID("AA");
+			out.println(formList.size());
 		}
 		pm.close();
 	}

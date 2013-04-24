@@ -19,7 +19,7 @@ public class ShowForm extends HttpServlet{
 		String formID = req.getParameter("formID");
 		String version=req.getParameter("version");
 		form = FormRepository.getFormByIDVersion(formID, version);
-		PrintWriter out = resp.getWriter();
-		out.print(form.getFormHtml());
+		req.getSession().setAttribute("form", form);
+		req.getRequestDispatcher("/Client/showForm").forward(req, resp);
 	}
 }

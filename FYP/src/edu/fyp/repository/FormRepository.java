@@ -31,19 +31,37 @@ public class FormRepository {
 		return form;
 	}
 
-	public static List<Form> getAllFormByEmpID(String empID) {
+	public static ArrayList<Form> getAllFormByEmpID(String empID) {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
+		q.setOrdering("formID desc");
 		formList = (List<Form>) q.execute();
-		return formList;
+		return listToArrayListForm(formList);
 	}
-	public static List<Form> getAllFormForMaintain() {
+	public static ArrayList<Form> searchFormFromEmp(String empID,String search,String keyword) {
+		List<Form> formList = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		q.setFilter(search + " == keyword");
+		q.setOrdering("formID desc");
+		q.declareParameters("String keyword");
+		formList = (List<Form>) q.execute(keyword);
+		return listToArrayListForm(formList);
+	}
+	public static ArrayList<Form> getAllFormForMaintain() {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		formList = (List<Form>) q.execute();
-		return formList;
+		return listToArrayListForm(formList);
+	}
+	protected static ArrayList<Form> listToArrayListForm(List<Form> formList){
+		ArrayList<Form> formArrayList = new ArrayList<Form>();
+		for(int i=0;i<formList.size();i++){
+			formArrayList.add((Form)formList.get(i));
+		}
+		return formArrayList;
 	}
 	public static Key generateKey(String formID,String version){
 		Key k =KeyFactory.createKey(Form.class.getSimpleName(),
