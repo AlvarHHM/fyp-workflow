@@ -28,12 +28,15 @@ $(document).ready(function(){
 		overlaying();
 		
 		//sending request
-		$.post("http://localhost:8888/formBuilder"
+		$.post("http://localhost:8888/formBuilders"
 			,{
-				FormHtml : form, 
-				Title : $("#form-title").html(),
-				Constraint : ""}
-			, function(data) {
+				formID : "1",
+				version : "1",
+				description : $("#formDesc").val(),
+				formHtml : form, 
+				title : $("#form-title").html(),
+				constraint : constraint})
+			.always(function(data) {
 				alert(data);
 			});
 	})

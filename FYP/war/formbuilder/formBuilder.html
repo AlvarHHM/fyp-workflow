@@ -15,6 +15,8 @@
         <script type="text/javascript" src="js/formBuilder/save-and-load.js"></script>
         <script type="text/javascript">
             $(function() {
+				$("#formDesc").val("");
+			
                 $("#formBuilder-leftPanel").tabs({
                     activate: function(event, ui) {
                         if (ui.newPanel.attr("id")==="tab-components")
@@ -22,10 +24,6 @@
                         else
                             $("#tab-hint").html("");
                     }
-                });
-                $("#formName").val($("#form-title").html());
-                $("#formName").bind("keyup input paste", function() {
-                    $("#form-title").html($("#formName").val());
                 });
             });//
             

@@ -1,5 +1,5 @@
 //after select database, insert table into combobox
-
+var constraint = "";
 $(function(){
 
 	hideDBValidation(0);

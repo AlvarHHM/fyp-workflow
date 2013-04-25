@@ -11,7 +11,10 @@ $(document).ready(function() {
     $(".sample-choice").hide();
     $("#formBuilder-leftPanel ul li:nth-child(2)").hide();
 
-    
+	$("#formName").val($("#form-title").html());
+	$("#formName").bind("keyup input paste", function() {
+		$("#form-title").html($("#formName").val());
+	});
 });
 
 function selectFormItem(itemId) {
