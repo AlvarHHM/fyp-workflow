@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.Text;
+
 import edu.fyp.bean.Form;
 import edu.fyp.repository.FormRepository;
 
@@ -27,7 +29,7 @@ public class FormBuilder extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Form form = new Form();
-		form.setFormHtml(req.getParameter("FormHtml"));
+		form.setFormHtml(new Text(req.getParameter("FormHtml")));
 		form.setConstraint(req.getParameter("Constraint"));
 		form.setCreatedDate(new Date());
 		form.setCreatedBy("hardCodeOne");

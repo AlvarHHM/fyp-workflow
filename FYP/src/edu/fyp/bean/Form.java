@@ -8,6 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
 
 @PersistenceCapable
 public class Form implements Serializable{
@@ -22,7 +23,7 @@ public class Form implements Serializable{
 	@Persistent
 	private String title;
 	@Persistent
-	private String formHtml;
+	private Text formHtml;
 	@Persistent
 	private String description;
 	@Persistent
@@ -30,7 +31,7 @@ public class Form implements Serializable{
 	//	@Persistent
 	// private ArrayList<UserGroup> userGroup;
 	@Persistent
-	private String path;
+	private Text path;
 	@Persistent
 	private String constraint;
 	@Persistent
@@ -48,11 +49,11 @@ public class Form implements Serializable{
 		this.formID = formID;
 	}
 
-	public String getFormHtml() {
+	public Text getFormHtml() {
 		return formHtml;
 	}
 
-	public void setFormHtml(String formHtml) {
+	public void setFormHtml(Text formHtml) {
 		this.formHtml = formHtml;
 	}
 
@@ -64,11 +65,11 @@ public class Form implements Serializable{
 		this.version = version;
 	}
 
-	public String getPath() {
+	public Text getPath() {
 		return path;
 	}
 
-	public void setPath(String path) {
+	public void setPath(Text path) {
 		this.path = path;
 	}
 

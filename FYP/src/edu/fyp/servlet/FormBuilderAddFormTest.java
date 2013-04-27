@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
 import edu.fyp.repository.FormRepository;
@@ -32,7 +33,8 @@ public class FormBuilderAddFormTest extends HttpServlet {
 				form.setFormID("formID"+i);
 				form.setVersion("version"+i);
 				form.setTitle("title"+i);
-				form.setFormHtml("html"+i);
+				Text formHtml = new Text("html"+i);
+				form.setFormHtml(formHtml);
 				form.setDescription("description"+i);
 				FormRepository.addForm(form);
 			}
@@ -48,7 +50,7 @@ public class FormBuilderAddFormTest extends HttpServlet {
 		Date createdDate = Calendar.getInstance().getTime();
 
 		String formID=req.getParameter("formID");
-		String formHtml=req.getParameter("formHtml");
+		Text formHtml=new Text(req.getParameter("formHtml"));
 		String description=req.getParameter("description");
 		String title=req.getParameter("title");
 		String version=req.getParameter("version");
