@@ -40,4 +40,5 @@ Node.prototype.loadMenu = function(){
         closeEsc : false,
         closeSelector :".property-cancel-btn"
         });
+	
 }

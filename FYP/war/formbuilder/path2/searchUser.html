@@ -6,9 +6,15 @@
 <script
 	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 <script>
-$("#search-input").keyup(function(){
-	
-});
+	$("#search-input").keyup(function() {
+
+	});
+
+	function returnValue(value) {
+		userId.value = value;
+		top.close();
+		return false;
+	}
 </script>
 </head>
 <body>
@@ -20,13 +26,13 @@ $("#search-input").keyup(function(){
 			</div>
 			<ul data-role="listview" data-divider-theme="c" data-inset="true">
 				<li data-role="list-divider" role="heading">Divider</li>
-				<li data-theme="f"><a href="#page1" data-transition="slide">
+				<li data-theme="f"><a href="#page1" data-transition="slide" onClick="return returnValue('123')">
 						Button </a></li>
 				<li data-theme="f"><a href="#page1" data-transition="slide">
 						Button </a></li>
 				<li data-theme="f"><a href="#page1" data-transition="slide">
 						Button </a></li>
-						
+
 			</ul>
 		</div>
 	</div>

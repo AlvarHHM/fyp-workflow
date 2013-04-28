@@ -36,6 +36,7 @@
 }
 
 .context-menu-item {
+	display: list-item !important;
     padding: 2px 2px 2px 24px;
     background-color: #EEE;
     position: relative;
@@ -61,6 +62,7 @@
 .context-menu-item.hover {
     cursor: pointer;
     background-color: #39F;
+    width:95px !important;
 }
 
 .context-menu-item.disabled {

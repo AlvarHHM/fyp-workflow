@@ -188,7 +188,6 @@ $(document).ready(
 		            
 		        }
 		    });
-			
 			$("#save-btn").click(function(){
 				var result = [];
 				$("#path-canvas").children().each(function(i,e){
@@ -196,7 +195,7 @@ $(document).ready(
 						result.push(JSON.stringify($(this).data("props")));
 					}
 				});
-				alert(result);
+				console.log(JSON.stringify(result));
 			});
 
 		});
