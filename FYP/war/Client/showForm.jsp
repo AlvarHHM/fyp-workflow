@@ -20,7 +20,7 @@ if(form==null){
 	<%
 }else{
 	%>
-	<%= form.getFormHtml() %>
+	<%= form.getFormHtml().getValue() %>
 	<%
 }
 %>

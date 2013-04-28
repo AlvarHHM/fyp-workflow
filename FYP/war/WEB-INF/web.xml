@@ -97,4 +97,17 @@
 		<servlet-name>showForm</servlet-name>
 		<url-pattern>/Client/showForm</url-pattern>
 	</servlet-mapping>	
+	
+		<servlet>
+		<servlet-name>addFormPath</servlet-name>
+		<servlet-class>edu.fyp.servlet.AddFormPath</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addFormPath</servlet-name>
+		<url-pattern>/FormBuilder/addFormPath</url-pattern>
+	</servlet-mapping>
 </web-app>
