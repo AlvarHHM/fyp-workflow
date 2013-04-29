@@ -12,7 +12,7 @@ import edu.fyp.repository.PMF;
 @Controller
 public class UserController {
 	PersistenceManager pm = PMF.get().getPersistenceManager();
-	@RequestMapping("/test")
+	@RequestMapping("/user")
 	public @ResponseBody String test(){
 		
 		ApproveNode an1 = new ApproveNode();
