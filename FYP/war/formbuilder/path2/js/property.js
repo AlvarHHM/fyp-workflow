@@ -32,7 +32,7 @@ $(document).ready(function() {
 	});
 
 	$("#approval-property .property-submit-btn").click(function() {
-		var props = $("#property-panel").data("props");
+		var props = $("#property-panel").data("props").props;
 
 		switch ($("#approval-type").val()) {
 		case "spec":
@@ -48,12 +48,12 @@ $(document).ready(function() {
 		case "lud":
 			props.user = "";
 			props.dept = "user"
-			prop.level = $("#approval-superLv").val();
+			props.level = $("#approval-superLv").val();
 			break;
 		case "ld":
 			props.user = "";
-			prop.dept = $("#approval-deptId").val();
-			prop.level = $("#approval-superLv").val();
+			props.dept = $("#approval-deptId").val();
+			props.level = $("#approval-superLv").val();
 			break;
 
 		}
@@ -77,13 +77,15 @@ $(document).ready(function() {
 	});
 	
 	$("#notice-property .property-submit-btn").click(function() {
-		var props = $("#property-panel").data("props");
+		var props = $("#property-panel").data("props").props;
 		switch ($("#notice-type").val()) {
 		case "email":
-			props.email = $("#notice-type").val();
+			props.email = $("#notice-email").val();
+			props.user = "";
 			break;
 		case "system":
-			props.user = $("#notice-type").val();
+			props.email = "";
+			props.user = $("#notice-userId").val();
 			break;
 
 		}

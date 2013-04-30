@@ -8,6 +8,7 @@ function Node(id){
 	this.tcp = new Set();
 	this.fcp = new Set();
 	this.id = id;
+	this.props = {};
 	
 }
 Node.prototype.setType = function(type){
@@ -38,7 +39,7 @@ Node.prototype.loadMenu = function(){
         centered: true,
         closeClick : false,
         closeEsc : false,
-        closeSelector :".property-cancel-btn"
+        closeSelector :".property-cancel-btn,.property-submit-btn"
         });
 	
 }

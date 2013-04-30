@@ -94,7 +94,8 @@
 									<div class="input-append">
 										<input type="text" id="approval-userId"
 											class="property-value appendedInputButtons" disabled>
-										<a class="btn" onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
+										<a class="btn"
+											onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
 									</div>
 								</label>
 
@@ -127,8 +128,8 @@
 
 						<div class="property-item">
 							<div id="notice-email-warpper" style="display: none">
-								<label>User Id</label><br> <input type="text"
-									id="notice-email" class="property-value" disabled>
+								<label>Email Address</label><br> <input type="text"
+									id="notice-email" class="property-value">
 							</div>
 						</div>
 
@@ -141,16 +142,13 @@
 				<div class="property" id="check-property">
 					<span class="title">Check Setting</span>
 					<div class="property-item">
-						<div id="notice-email-warpper" style="display: none">
-							<label>User Id</label><br> <input type="text"
-								id="notice-email" class="property-value" disabled>
-						</div>
-
-						<div class="property-submit-wrapper">
-							<button class="property-submit-btn css_btn_class">Submit</button>
-							<button class="property-cancel-btn css_btn_class">Cancel</button>
-						</div>
+						
 					</div>
+					<div class="property-submit-wrapper">
+						<button class="property-submit-btn css_btn_class">Submit</button>
+						<button class="property-cancel-btn css_btn_class">Cancel</button>
+					</div>
+
 				</div>
 			</div>
 
