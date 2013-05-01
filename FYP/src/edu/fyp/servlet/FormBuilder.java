@@ -33,11 +33,18 @@ public class FormBuilder extends HttpServlet {
 		form.setConstraint(req.getParameter("Constraint"));
 		form.setCreatedDate(new Date());
 		form.setCreatedBy("hardCodeOne");
-		form.setFormID("hardCodeFormID");
-		form.setVersion("hardCodeVersion");
-		form.setFormID("AAA");
-		form.setVersion("AAA");
-		FormRepository.addForm(form);
+		form.setFormID(req.getParameter("FormID"));
+		form.setVersion(req.getParameter("Version"));
+		try{
+			FormRepository.addForm(form);
+		}catch(Exception ex){
+			PrintWriter out = resp.getWriter();
+			out.println("Error! Form design NOT saved!");
+			out.close();
+		}
+		PrintWriter out = resp.getWriter();
+		out.println("Sucess");
+		out.close();
 	}
 
 	protected void processRequest(HttpServletRequest req,

@@ -7,24 +7,26 @@ Form form = (Form)request.getSession().getAttribute("form");
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="css/showForm.css">
-<title>Form</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/showForm.css">
+	<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
+	<title>Form</title>
 </head>
 <body>
-<div class="form_container">
-<%
-if(form==null){
-	%>
-	Error. Form not found.
+	<div class="form_container">
 	<%
-}else{
+	if(form==null){
+		%>
+		Error. Form not found.
+		<%
+	}else{
+		%>
+		<%= form.getFormHtml().getValue() %>
+		<%
+	}
 	%>
-	<%= form.getFormHtml().getValue() %>
-	<%
-}
-%>
-</div>
+	</div>
 <%
 if(form!=null){
 	%>
