@@ -108,6 +108,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>addFormPath</servlet-name>
-		<url-pattern>/FormBuilder/addFormPath</url-pattern>
+		<url-pattern>/formbuilder/addFormPath</url-pattern>
 	</servlet-mapping>
 </web-app>
