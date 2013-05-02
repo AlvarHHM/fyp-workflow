@@ -11,7 +11,7 @@ public class NotificationManager {
 	
 	public void testNotify() throws IOException{
 		MailNotice mn = new MailNotice();
-		MailBody mb = new MailBody("/mail-template/NotifyOFComingAproval.html");
+		MailBody mb = new MailBody("/mail-template/NotifyOfComingAproval.html");
 		mb.setProperty("userId", "User ID");
 		mn.setTitle("test");
 		mn.setTo("mahoihei@gmial.com");
