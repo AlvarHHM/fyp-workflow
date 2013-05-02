@@ -39,7 +39,7 @@ public class NoticeMailService {
 		batch.add(c);
 	}
 
-	public void processBath() {
+	public void processBatch() {
 		for (MailNotice mail : batch) {
 			processMail(mail);
 		}
