@@ -1,0 +1,127 @@
+html,body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.5em;
+}
+
+b {
+	font-size: 110%;
+}
+
+em {
+	color: red;
+}
+
+#main-container {
+	position: relative;
+	height: 100%;
+}
+
+#header-container {
+	background: #EAEAEA;
+	height: 90px; /*Height of top section*/
+	display: none;
+}
+
+#header-container h1 {
+	margin: 0;
+	padding-top: 15px;
+}
+
+#content-wrapper {
+	float: left;
+	width: 100%;
+	min-height: 100%;
+}
+
+#contentcolumn {
+	margin: 0 200px 0 230px;
+	/*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
+}
+
+#left-wrapper {
+	float: left;
+	width: 230px; /*Width of left column*/
+	margin-left: -100%;
+	background: #C8FC98;
+	height: 50%
+}
+
+#right-wrapper {
+	float: left;
+	width: 200px; /*Width of right column*/
+	margin-left: -200px; /*Set left marginto -(RightColumnWidth)*/
+	background: #FDE95E;
+	height: 100%
+}
+
+#footer {
+	clear: left;
+	width: 100%;
+	background: black;
+	color: #FFF;
+	text-align: center;
+	padding: 4px 0;
+}
+
+#footer a {
+	color: #FFFF80;
+}
+
+.innertube {
+	margin: 10px;
+	/*Margins for inner DIV inside each column (to provide padding)*/
+	margin-top: 0;
+}
+
+#path-canvas-wrapper {
+	position: fixed;
+	height: 100%;
+	overflow: scroll;
+}
+
+#path-canvas {
+	position:relative;
+	background:
+		url(data:image/gif;base64,R0lGODlhFAAUAIAAAMDAwP///yH5BAEAAAEALAAAAAAUABQAAAImhI+pwe3vAJxQ0hssnnq/7jVgmJGfGaGiyoyh68GbjNGXTeEcGxQAOw==);
+	height: 1500px;
+	width:800px;
+	/* 	height:100% */
+}
+
+.node {
+	height: 100px;
+	width: 150px;
+	border-style: solid;
+	border-width: 2px;
+	background-color: white;
+ 	position: relative; 
+	
+}
+
+.node-title {
+	font-weight: bold;
+}
+
+.tcp,.fcp {
+	width: 5px;
+	height: 50%;
+	cursor: pointer;
+	position: absolute;
+	right: -5px;
+}
+
+.tcp {
+	top: 0%;
+	background-color: #0fff00;
+}
+
+.fcp {
+	top: 50%;
+	background-color: #ff0000;
+	color: white;
+}
