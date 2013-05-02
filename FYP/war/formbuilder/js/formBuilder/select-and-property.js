@@ -186,6 +186,12 @@ function setChoiceType() {
             $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
+        case (/DATE/).test(itemType):
+			$("#validation").show();
+		
+            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#radio-list,#checkbox-list,#combobox-list").hide();
+            break;
         default:
             break;
 
