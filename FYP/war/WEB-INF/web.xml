@@ -110,4 +110,17 @@
 		<servlet-name>addFormPath</servlet-name>
 		<url-pattern>/formbuilder/addFormPath</url-pattern>
 	</servlet-mapping>
+	
+				<servlet>
+		<servlet-name>applyApplication</servlet-name>
+		<servlet-class>edu.fyp.servlet.ApplyApplication</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>applyApplication</servlet-name>
+		<url-pattern>/Client/applyApplication</url-pattern>
+	</servlet-mapping>
 </web-app>

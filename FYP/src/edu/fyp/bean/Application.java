@@ -5,14 +5,13 @@ import java.util.Date;
 
 
 public class Application {
-/*hahahssssaddd*/
     private String appID;
-    private String formData;
     private Date applyDate;
     private String empID;
     private String formID;
-    private String status;
     private String version;
+    private String status;
+    private String formData;
     private ApplicationPath appPath;
 
     public Application() {
