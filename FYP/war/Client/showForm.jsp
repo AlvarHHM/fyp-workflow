@@ -12,6 +12,74 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
 	<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
 	<title>Form</title>
+	<script type="text/javascript">
+		var version = "<%= form.getVersion() %>";
+		var formId = "<%= form.getFormID() %>";
+		var data = new array();
+		 $(function() {
+				$(".date-picker").datepicker();
+        });
+		function SubmitApplication(){
+			
+			<%
+			if(form==null){
+				%>
+					alert("Error. Form not found.");
+				<%
+			}else{
+				%>
+					$('.form-item').each(function(index) {
+						var id = $(this).attr(id);
+						var temp = new Array()
+						var itemType = id.split('-')[1];
+						
+						temp["Label"] = "";
+						temp["Value"] = "";
+						switch (true) {
+							case (/TEXTFIELD/) .test(itemType):
+							case (/DATE/) .test(itemType):
+								temp["Label"] = $(this).find("label.label").html();
+								temp["Value"] = $(this).find("input[type=text]").val();
+								break;
+							case (/RADIOBUTTON/) .test(itemType):
+								temp["Label"] = $(this).find("legend.label").html();
+								temp["Value"] = 
+										$(this).find("input[type=radio]:checked")
+															.next("label").html();
+								break;
+							case (/CHECKBOX/) .test(itemType):
+								temp["Label"] = $(this).find("legend.label").html();
+								$(this).find("input[type=checkbox]:checked").each(function(){
+									temp["Value"] += $(this).next("label").html();
+								});
+								break;
+							case (/COMBOBOX/) .test(itemType):
+								temp["Label"] = $(this).find("label.label").html();
+								temp["Value"] = 
+										$(this).find("option:selected").html();
+								break;
+							case (/TEXTAREA/) .test(itemType):
+								temp["Label"] = $(this).find("label.label").html();
+								temp["Value"] = $(this).find("textarea").val();
+								break;
+							default:
+								break;
+						}
+						data[id] = temp;
+					});
+					$.post("http://localhost:8888/Client/applyApplication"
+					,{
+						FormID : formId,
+						Version : version,
+						Data : data
+					.always(function(data) {
+						alert(data);
+					});
+				<%
+			}
+			%>
+		}
+	</script>
 </head>
 <body>
 	<div class="form_container">
@@ -52,7 +120,7 @@ if(form!=null){
 				<td><%= form.getDescription() %>
 			</tr>
 			<tr>
-						<td><button>Submit</button></td>
+				<td><button onclick="SubmitApplication()">Submit</button></td>
 			<td></td>
 			</tr>
 		</tbody>
