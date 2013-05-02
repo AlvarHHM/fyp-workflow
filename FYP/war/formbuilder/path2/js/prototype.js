@@ -45,7 +45,6 @@ Node.prototype.loadMenu = function() {
 		closeClick : false,
 		closeEsc : false,
 		closeSelector : ".property-cancel-btn,.property-submit-btn",
-		destroyOnClose : true,
 		onLoad : function() {
 
 		}
