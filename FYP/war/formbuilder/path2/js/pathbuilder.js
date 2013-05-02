@@ -192,15 +192,8 @@ $(document).ready(
 						result.push(JSON.stringify($(this).data("props")));
 					}
 				});
-
-				result=JSON.stringify(result);
-				$.post("../addFormPath"
-						,{
-							path : result
-						})
-						.always(function(data) {
-							alert(data);
-						});
+				console.log(result);
+				console.log(JSON.stringify(result));
 			});
 
 		});
