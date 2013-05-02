@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.appengine.api.mail.MailService;
 import com.google.appengine.api.mail.MailServiceFactory;
 
+import edu.fyp.bean.*;
 import edu.fyp.bean.node.*;
 import edu.fyp.repository.PMF;
 
@@ -51,19 +52,27 @@ public class TestController {
 		// text += line;
 		// }
 
-		Properties props = new Properties();
-		Session session = Session.getDefaultInstance(props, null);
-			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("mahoihei@gmail.com",
-					"mahoihei@gmail.com"));
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
-					"mahoihei@gmail.com", "Mr. User"));
-			msg.setSubject("Your Example.com account has been activated");
-			msg.setText("<html><body><input type='text'></body></body>");
-			Transport.send(msg);
+//		Properties props = new Properties();
+//		Session session = Session.getDefaultInstance(props, null);
+//			Message msg = new MimeMessage(session);
+//			msg.setFrom(new InternetAddress("mahoihei@gmail.com",
+//					"mahoihei@gmail.com"));
+//			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+//					"mahoihei@gmail.com", "Mr. User"));
+//			msg.setSubject("Your Example.com account has been activated");
+//			msg.setText("<html><body><input type='text'></body></body>");
+//			Transport.send(msg);
 
 		
+		TestBoy boy = new TestBoy();
+		TestGirl girl = new TestGirl();
+		
+		pm.makePersistent(boy);
+		pm.makePersistent(girl);
+		boolean test = pm.getObjectById(TestPeople.class, boy.getKey()) instanceof TestPeople;
+		return String.valueOf(test)  ;
+		
 		// return text;
-		return "Hello World";
+		//return "Hello World";
 	}
 }
