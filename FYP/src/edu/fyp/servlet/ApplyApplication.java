@@ -23,7 +23,7 @@ public class ApplyApplication extends HttpServlet{
 		 out.println("Attribute Name - "+paramName+", Value - "+req.getParameter(paramName));
 		}
 		}
-	protected void doGost(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		out.println("Do post :");
