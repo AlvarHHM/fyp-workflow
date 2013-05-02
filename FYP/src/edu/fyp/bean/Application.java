@@ -3,15 +3,31 @@ package edu.fyp.bean;
 
 import java.util.Date;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 public class Application {
-    private String appID;
-    private Date applyDate;
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+    @Persistent
     private String empID;
+    @Persistent
     private String formID;
+    @Persistent
     private String version;
+    @Persistent
     private String status;
+    @Persistent
     private String formData;
+    @Persistent
+    private Date applyDate;
+    @Persistent
     private ApplicationPath appPath;
 
     public Application() {
@@ -25,12 +41,12 @@ public class Application {
         this.status = status;
     }
 
-    public String getAppID() {
-        return appID;
+    public Key getKey() {
+        return key;
     }
 
-    public void setAppID(String appID) {
-        this.appID = appID;
+    public void setKey(Key key) {
+        this.key = key;
     }
 
     public String getEmpID() {
@@ -40,6 +56,22 @@ public class Application {
     public void setEmpID(String empID) {
         this.empID = empID;
     }
+    
+    public String getFormID() {
+        return formID;
+    }
+
+    public void setFormID(String formID) {
+        this.formID = formID;
+    }
+    
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     public Date getApplyDate() {
         return applyDate;
@@ -47,6 +79,9 @@ public class Application {
 
     public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
+    }
+    public void setApplicationPath(ApplicationPath appPath){
+    	this.appPath = appPath;
     }
     public ApplicationPath getApplicationPath(){
         return appPath;

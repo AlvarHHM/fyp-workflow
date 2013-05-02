@@ -62,15 +62,6 @@ public class TestController {
 //			msg.setSubject("Your Example.com account has been activated");
 //			msg.setText("<html><body><input type='text'></body></body>");
 //			Transport.send(msg);
-
-		
-		TestBoy boy = new TestBoy();
-		TestGirl girl = new TestGirl();
-		
-		pm.makePersistent(boy);
-		pm.makePersistent(girl);
-		boolean test = pm.getObjectById(TestPeople.class, boy.getKey()) instanceof TestPeople;
-		return String.valueOf(test)  ;
 		
 		// return text;
 		//return "Hello World";
