@@ -30,4 +30,8 @@ public class MailBody {
 		template.replaceAll("\\{"+name+"\\}", value); 
 	}
 	
+	public String getBody(){
+		return template;
+	}
+	
 }

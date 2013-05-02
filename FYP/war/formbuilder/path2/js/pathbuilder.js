@@ -79,11 +79,8 @@ $(document).ready(
 						selectedNode.css("position", "absolute");
 						selectedNode.css("top", yp);
 						selectedNode.css("left", xp);
-						//props.updatePosition(xp,yp);
+						props.updatePosition(xp,yp);
 						$(this).append(selectedNode);
-//						selectedNode.click(function(){
-//							showPropertyPanel(props);
-//						});
 						selectedNode.mouseup(function(e){
 							var data = $(this).data("props");
 							data.updatePosition($(this).offset().left,$(this).offset().top);
@@ -195,15 +192,8 @@ $(document).ready(
 						result.push(JSON.stringify($(this).data("props")));
 					}
 				});
-
-				result=JSON.stringify(result);
-				$.post("../addFormPath"
-						,{
-							path : result
-						})
-						.always(function(data) {
-							alert(data);
-						});
+				console.log(result);
+				console.log(JSON.stringify(result));
 			});
 
 		});

@@ -19,7 +19,7 @@ public class PathNodeRepository {
 	public static void addPathNode(PathNode pathNode){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
-			System.out.println(pathNode.getNodeID().toString());
+			pm.makePersistent(pathNode);
 		} finally {
 			pm.close();
 		}

@@ -1,29 +1,47 @@
 package edu.fyp.factory;
 
+import com.google.appengine.labs.repackaged.org.json.JSONException;
+import com.google.appengine.labs.repackaged.org.json.JSONObject;
+
 import edu.fyp.bean.node.*;
 
 public class PathNodeFactory {
-	public PathNode createStartNode(String json) {
+	public PathNode createNode(JSONObject json) throws JSONException{
+		PathNode pathNode=null;
+		if(json.getString("type").equalsIgnoreCase("start")){
+			pathNode= createStartNode(json);
+		}else if(json.getString("type").equalsIgnoreCase("approval")){
+			pathNode= createApproveNode(json);
+		}else if(json.getString("type").equalsIgnoreCase("notice")){
+			pathNode= createNoticeNode(json);
+		}else if(json.getString("type").equalsIgnoreCase("success")){
+			pathNode= createSuccessNode(json);
+		}else if(json.getString("type").equalsIgnoreCase("fail")){
+			pathNode= createFailNode(json);
+		}
+		return pathNode;
+	}
+	private PathNode createStartNode(JSONObject json) {
 		PathNode pathNode = new StartNode();
 		return pathNode;
 	}
 
-	public PathNode createApproveNode(String json) {
+	private PathNode createApproveNode(JSONObject json) {
 		PathNode pathNode = new ApproveNode();
 		return pathNode;
 	}
 
-	public PathNode createNoticeNode(String json) {
+	private PathNode createNoticeNode(JSONObject json) {
 		PathNode pathNode = new NoticeNode();
 		return pathNode;
 	}
 
-	public PathNode createSuccessNode(String json) {
+	private PathNode createSuccessNode(JSONObject json) {
 		PathNode pathNode = new SuccessNode();
 		return pathNode;
 	}
 
-	public PathNode createFailNode(String json) {
+	private PathNode createFailNode(JSONObject json) {
 		PathNode pathNode = new FailNode();
 		return pathNode;
 	}
