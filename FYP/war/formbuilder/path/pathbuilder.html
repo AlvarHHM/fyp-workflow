@@ -76,7 +76,7 @@
 						<div class="property-item">
 							<div id="approval-deptId-wrapper" style="display: none">
 								<label>Dept Id</label><br> <input id="approval-deptId"
-									type="text" class="property-item" disabled> <input
+									type="text" class="property-value"> <input
 									type="submit" class="search-btn" value="submit">
 
 							</div>
@@ -120,9 +120,13 @@
 						</div>
 						<div class="property-item">
 							<div id="notice-userId-warpper" style="display: none">
-								<label>User Id</label><br> <input type="text"
-									id="notice-userId" class="property-value" disabled> <input
-									type="submit" class="search-btn" value="submit">
+								<label>User Id</label><br>
+								<div class="input-append">
+									<input type="text" id="notice-userId" class="property-value"
+										disabled> <input type="submit" class="search-btn"
+										value="submit"> <a class="btn"
+										onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
+								</div>
 							</div>
 						</div>
 
@@ -141,9 +145,7 @@
 				</div>
 				<div class="property" id="check-property">
 					<span class="title">Check Setting</span>
-					<div class="property-item">
-						
-					</div>
+					<div class="property-item"></div>
 					<div class="property-submit-wrapper">
 						<button class="property-submit-btn css_btn_class">Submit</button>
 						<button class="property-cancel-btn css_btn_class">Cancel</button>

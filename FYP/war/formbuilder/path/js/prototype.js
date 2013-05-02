@@ -40,13 +40,26 @@ Node.prototype.updatePosition = function(x, y) {
 	this.y = y;
 }
 Node.prototype.loadMenu = function() {
+	var props= this.props;
+	
 	$("#" + this.type + "-property").lightbox_me({
 		centered : true,
 		closeClick : false,
 		closeEsc : false,
 		closeSelector : ".property-cancel-btn,.property-submit-btn",
 		onLoad : function() {
+			if($.isEmptyObject(props)){
+				$(".property-value").val("");
+			}
 			
+			$.each(props,function(i,v){
+				$("#" + i).val(v);
+				console.log("#" + i+"|"+v);
+				if($("#" + i)[0].tagName == "SELECT"){
+					$("#" + i).change();
+				}
+					
+			});
 		}
 	});
 
