@@ -15,7 +15,7 @@ public class PathNodeRepository {
 		PathNode pn = new ApproveNode();
 		try {
 			System.out.println(pm.makePersistent(pn).getNodeID().toString());
-			System.out.println(pn.getNodeID().toString());
+			System.out.println(pn.getNodeID().toString()+ "tt");
 		} finally {
 			pm.close();
 		}
@@ -27,6 +27,16 @@ public class PathNodeRepository {
 		} finally {
 			pm.close();
 		}
+	}
+	public static PathNode getStartNode(Key key){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		StartNode sn=null;
+	    try {
+	    	sn = pm.getObjectById(StartNode.class, key);
+	    } finally {
+	        pm.close();
+	    } 
+	    return sn;
 	}
 	public static void updateStartNextNode(StartNode startNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();

@@ -26,15 +26,10 @@ import edu.fyp.factory.PathNodeFactory;
 import edu.fyp.repository.PathNodeRepository;
 
 public class AddFormPath extends HttpServlet{
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		PathNodeRepository.test();
-	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-/*		PathNodeRepository.test();
+/*	
 		String formID = req.getParameter("formID");
 		String version = req.getParameter("version");
 		
@@ -140,5 +135,4 @@ public class AddFormPath extends HttpServlet{
 			
 		}
 	}
-	
 }
