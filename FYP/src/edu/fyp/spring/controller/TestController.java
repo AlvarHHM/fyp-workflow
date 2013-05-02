@@ -38,6 +38,7 @@ public class TestController {
 	@RequestMapping("/test")
 	public @ResponseBody
 	String test() throws Exception {
+<<<<<<< HEAD
 		// File f = new File("mail-template/NotifyOFComingApproval.html");
 		// BufferedReader in = null;
 		// try {
@@ -63,6 +64,18 @@ public class TestController {
 //			msg.setText("<html><body><input type='text'></body></body>");
 //			Transport.send(msg);
 		
+=======
+		
+		
+		TestBoy boy = new TestBoy();
+		TestGirl girl = new TestGirl();
+		
+		pm.makePersistent(boy);
+		pm.makePersistent(girl);
+		boolean test = pm.getObjectById(TestPeople.class,boy.getKey()) instanceof TestPeople;
+		return String.valueOf(test)  ;
+		//return boy.getKey().getNamespace()+" "+boy.getKey().getName()+" "+boy.getKey().getKind();
+>>>>>>> aab59828bab493b9aa0403bcb4d8c40ad11ca358
 		// return text;
 		//return "Hello World";
 	}

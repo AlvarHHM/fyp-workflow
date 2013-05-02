@@ -38,10 +38,10 @@ public class ApplicationManager {
 			}
 			currentNode.process();
 			if(currentNode.getState().equalsIgnoreCase("finish")){
-				if(currentNodeKind.equalsIgnoreCase("ApproveNode"||currentNodeKind.equalsIgnoreCase("NoticeNode"||currentNodeKind.equalsIgnoreCase("StartNode"){
+				if(currentNodeKind.equalsIgnoreCase("ApproveNode")||currentNodeKind.equalsIgnoreCase("NoticeNode")||currentNodeKind.equalsIgnoreCase("StartNode")){
 					appPath.setCurrentNode(((RelayNode)currentNode).getNextNode());
 				}
 			}
-		}while(!(currentNode.getNodeID().compareTo(appPath.getCurrentNode())==0));
+		}while(currentNode.getNodeID().compareTo(appPath.getCurrentNode())!=0);
 	}
 }

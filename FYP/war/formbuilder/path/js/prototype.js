@@ -46,7 +46,7 @@ Node.prototype.loadMenu = function() {
 		closeEsc : false,
 		closeSelector : ".property-cancel-btn,.property-submit-btn",
 		onLoad : function() {
-
+			
 		}
 	});
 

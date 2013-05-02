@@ -8,7 +8,7 @@
                         <a href="#">log out</a>
                     </div>
                     <div id="userHi">
-                        Welcome, Peter Lam.
+                        Welcome, <User Name>.
                     </div>
                 </div>
             </div>
