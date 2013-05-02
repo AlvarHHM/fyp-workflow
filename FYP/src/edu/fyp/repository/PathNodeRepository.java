@@ -10,16 +10,6 @@ import edu.fyp.bean.node.PathNode;
 import edu.fyp.bean.node.StartNode;
 
 public class PathNodeRepository {
-	public static void test(){
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		PathNode pn = new ApproveNode();
-		try {
-			System.out.println(pm.makePersistent(pn).getNodeID().toString());
-			System.out.println(pn.getNodeID().toString()+ "tt");
-		} finally {
-			pm.close();
-		}
-	}
 	public static void addPathNode(PathNode pathNode){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
@@ -28,15 +18,18 @@ public class PathNodeRepository {
 			pm.close();
 		}
 	}
-	public static PathNode getStartNode(Key key){
+	public static PathNode getNode(Key key){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		StartNode sn=null;
+		PathNode pathNode=null;
 	    try {
-	    	sn = pm.getObjectById(StartNode.class, key);
+	    	String classKind = key.getKind();
+	    	pathNode = (PathNode) pm.getObjectById(Class.forName("edu.fyp.bean.node."+classKind), key);
+	    }catch(Exception e){
+	    	
 	    } finally {
 	        pm.close();
 	    } 
-	    return sn;
+	    return pathNode;
 	}
 	public static void updateStartNextNode(StartNode startNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();

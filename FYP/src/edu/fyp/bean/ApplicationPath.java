@@ -1,31 +1,53 @@
 package edu.fyp.bean;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
 
 import edu.fyp.bean.node.PathNode;
 @PersistenceCapable
 public class ApplicationPath {
-
-    private PathNode startNode;
-    private PathNode currentNode;
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+	@Persistent
+    private Key startNode;
+	@Persistent
+    private Key currentNode;
 
     public ApplicationPath() {
     	
     }
 
-    public PathNode getStartNode() {
+    public ApplicationPath(Key startNode, Key currentNode) {
+    	this.startNode = startNode;
+    	this.currentNode = currentNode;
+    }
+
+    public Key getStartNode() {
         return startNode;
     }
 
-    public void setStartNode(PathNode startNode) {
+    public void setStartNode(Key startNode) {
         this.startNode = startNode;
     }
 
-    public PathNode getCurrentNode() {
+    public Key getCurrentNode() {
         return currentNode;
     }
 
-    public void setCurrentNode(PathNode currentNode) {
+    public void setCurrentNode(Key currentNode) {
         this.currentNode = currentNode;
+    }
+    
+    public Key getKey() {
+        return currentNode;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
     }
 }

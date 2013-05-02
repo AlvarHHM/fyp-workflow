@@ -38,6 +38,33 @@ public class TestController {
 	@RequestMapping("/test")
 	public @ResponseBody
 	String test() throws Exception {
+<<<<<<< HEAD
+		// File f = new File("mail-template/NotifyOFComingApproval.html");
+		// BufferedReader in = null;
+		// try {
+		// in = new BufferedReader(new FileReader(f));
+		// } catch (FileNotFoundException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		// String text = null;
+		// String line;
+		// while ((line = in.readLine()) != null) {
+		// text += line;
+		// }
+
+//		Properties props = new Properties();
+//		Session session = Session.getDefaultInstance(props, null);
+//			Message msg = new MimeMessage(session);
+//			msg.setFrom(new InternetAddress("mahoihei@gmail.com",
+//					"mahoihei@gmail.com"));
+//			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+//					"mahoihei@gmail.com", "Mr. User"));
+//			msg.setSubject("Your Example.com account has been activated");
+//			msg.setText("<html><body><input type='text'></body></body>");
+//			Transport.send(msg);
+		
+=======
 		
 		
 		TestBoy boy = new TestBoy();
@@ -48,6 +75,7 @@ public class TestController {
 		boolean test = pm.getObjectById(TestPeople.class,boy.getKey()) instanceof TestPeople;
 		return String.valueOf(test)  ;
 		//return boy.getKey().getNamespace()+" "+boy.getKey().getName()+" "+boy.getKey().getKind();
+>>>>>>> aab59828bab493b9aa0403bcb4d8c40ad11ca358
 		// return text;
 		//return "Hello World";
 	}
