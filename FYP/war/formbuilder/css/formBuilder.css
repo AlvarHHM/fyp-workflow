@@ -50,6 +50,11 @@ body{
     background-color: #FFFFCC;
 }
 
+#itemCSS{
+	width:220px;
+	height:60px;
+}
+
 .formBuilder-component-container{
     width:200px;
     font-size: large;

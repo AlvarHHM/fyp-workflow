@@ -19,6 +19,9 @@ public class ApproveNode extends RelayNode{
     private String deptID;
 	@Persistent
     private int superLevel;
+	public ApproveNode(){
+		
+	}
 	public Key getNextTrueNode() {
 		return nextTrueNode;
 	}

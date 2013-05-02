@@ -30,12 +30,12 @@ $(document).ready(function(){
 		//sending request
 		$.post("http://localhost:8888/formBuilders"
 			,{
-				formID : "1",
-				version : "1",
-				description : $("#formDesc").val(),
-				formHtml : form, 
-				title : $("#form-title").html(),
-				constraint : constraint})
+				FormID : $("#formId").val(),
+				Version : $("#formVersion").val(),
+				Description : $("#formDesc").val(),
+				FormHtml : form, 
+				Title : $("#form-title").html(),
+				Constraint : constraint})
 			.always(function(data) {
 				alert(data);
 			});
