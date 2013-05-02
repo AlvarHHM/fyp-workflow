@@ -39,28 +39,28 @@ Form form = (Form)request.getSession().getAttribute("form");
 							case (/TEXTFIELD/) .test(itemType):
 							case (/DATE/) .test(itemType):
 								temp["Label"] = $(this).find("label.label").html();
-								temp["value"] = $(this).find("input[type=text]").val();
+								temp["Value"] = $(this).find("input[type=text]").val();
 								break;
 							case (/RADIOBUTTON/) .test(itemType):
 								temp["Label"] = $(this).find("legend.label").html();
-								temp["value"] = 
+								temp["Value"] = 
 										$(this).find("input[type=radio]:checked")
 															.next("label").html();
 								break;
 							case (/CHECKBOX/) .test(itemType):
 								temp["Label"] = $(this).find("legend.label").html();
 								$(this).find("input[type=checkbox]:checked").each(function(){
-									temp["value"] += $(this).next("label").html();
+									temp["Value"] += $(this).next("label").html();
 								});
 								break;
 							case (/COMBOBOX/) .test(itemType):
 								temp["Label"] = $(this).find("label.label").html();
-								temp["value"] = 
+								temp["Value"] = 
 										$(this).find("option:selected").html();
 								break;
 							case (/TEXTAREA/) .test(itemType):
 								temp["Label"] = $(this).find("label.label").html();
-								temp["value"] = $(this).find("textarea").val();
+								temp["Value"] = $(this).find("textarea").val();
 								break;
 							default:
 								break;
