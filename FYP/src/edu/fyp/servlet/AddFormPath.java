@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -44,7 +45,6 @@ public class AddFormPath extends HttpServlet{
 		
 		//for application generate path node test // not for this class - only test
 		Text path =new Text(req.getParameter("path"));
-		out.println(path.getValue());
 		Gson gson = new Gson();
 		String[] str = gson.fromJson(path.getValue(), String[].class);
 		HashMap<String,PathNode> pathNodeMap = new HashMap<String, PathNode>();
@@ -53,24 +53,15 @@ public class AddFormPath extends HttpServlet{
 			JSONObject jo=null;
 			try {
 				jo = new JSONObject(str[i]);
-				out.println(jo.toString()+" JSONObject");
+				out.println(jo.toString());
 				String nodeID="";
 				nodeID = jo.getString("id");
 				pathNodeMap.put(nodeID,createNode(jo));
-				out.println(nodeID+" "+pathNodeMap.get(nodeID))
+				out.println(nodeID+" "+pathNodeMap.get(nodeID));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-
-			try {
-
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
+			}			
 		}
 	}
 	
@@ -84,6 +75,8 @@ public class AddFormPath extends HttpServlet{
 			}else if(json.getString("type").equalsIgnoreCase("success")){
 				pathNode= new SuccessNode();
 			}else if(json.getString("type").equalsIgnoreCase("fail")){
+				pathNode= new FailNode();
+			}else if(json.getString("type").equalsIgnoreCase("notice")){
 				pathNode= new FailNode();
 			}
 		} catch (JSONException e) {
