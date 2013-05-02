@@ -21,7 +21,7 @@ public class NoticeNode extends RelayNode{
     public String getEmail(){
         return email;
     }
-    public void setEmail(String empID){
-        this.empID=email;
+    public void setEmail(String email){
+        this.email=email;
     }
 }

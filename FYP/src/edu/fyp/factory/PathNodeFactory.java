@@ -1,5 +1,6 @@
 package edu.fyp.factory;
 
+import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
@@ -32,7 +33,17 @@ public class PathNodeFactory {
 	}
 
 	private PathNode createNoticeNode(JSONObject json) {
-		PathNode pathNode = new NoticeNode();
+		PathNode pathNode = (NoticeNode)new NoticeNode();
+		try {
+			JSONObject nodeProps = json.getJSONObject("props");
+			if(nodeProps.getString("email")!=null){
+				((NoticeNode) pathNode).setEmail(nodeProps.getString("email"));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			System.out.println("error");
+			e.printStackTrace();
+		}
 		return pathNode;
 	}
 
