@@ -25,6 +25,8 @@
                             $("#tab-hint").html("");
                     }
                 });
+				
+				$(".date-picker").datepicker();
             });//
             
 			function addAR(btn){
@@ -137,6 +139,11 @@
                                             <img class="formBuilder-component-icon" src="img/textarea.jpg"/>
                                             <span class="formBuilder-component-name">Textarea</span>
                                         </div>
+                                        <div class="formBuilder-component-container" id="component-DATE">
+                                            <div class="overlay"></div>
+                                            <img class="formBuilder-component-icon" src="img/DatePicker.jpg"/>
+                                            <span class="formBuilder-component-name">Date Picker</span>
+                                        </div>
                                     </div>
                                     <div id="tab-properties">
                                         <div class="formItem-properties-group" id="item-general">
@@ -230,6 +237,17 @@
                                                 </div>
                                             </fieldset>
                                         </div>
+                                        <div class="formItem-properties-group" id="css">
+                                            <hr/>
+                                            <div>
+                                                <label>CSS Rule</label>
+                                                <div>
+                                                    <textarea id="itemCSS"></textarea>
+													<button onclick="setStyle()">Set CSS</button>
+                                                </div>
+                                            </div>
+                                        </div>
+										<!--
                                         <div class="formItem-properties-group" id="validation">
                                             <hr/>
                                             <span>Validation</span>
@@ -273,9 +291,22 @@
                                                 </li>
                                             </ul>
                                         </div>
+										-->
                                     </div>
                                     <div id="tab-formOptions">
                                         <ul>
+                                            <li>
+                                                <label>Form ID</label>
+                                                <div>
+                                                    <input id="formId" type="text"/>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label>Version</label>
+                                                <div>
+                                                    <input id="formVersion" type="text"/>
+                                                </div>
+                                            </li>
                                             <li>
                                                 <label>Form Name</label>
                                                 <div>

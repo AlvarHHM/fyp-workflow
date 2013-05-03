@@ -39,6 +39,9 @@ function addFormItem(itemType, x, y) {
     }).bind("drag dragstop", function() {
         selectFormItem($(this).attr("id"));
     });
+	//For Date Picker
+	if((/DATE/).test(itemType.toUpperCase()))
+		$("#" + id + " .date-picker").datepicker();
     var container = $("#formBuilder-stage");
     var left = x - container.position().left - 1;
     var top = y - container.position().top + 14;
@@ -75,6 +78,9 @@ function getItemHtml(itemType) {
             break;
         case (/TEXTAREA/) .test(itemType):
             html += "<label class='label'>Textarea</label><textarea></textarea>";
+            break;
+        case (/DATE/) .test(itemType):
+            html += "<label class='label'>Date Picker</label><input class='date-picker' type='text'/>";
             break;
         default:
             break;

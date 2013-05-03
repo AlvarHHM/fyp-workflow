@@ -8,6 +8,7 @@ import javax.jdo.Query;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
 
@@ -28,18 +29,28 @@ public class FormRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Key k = generateKey(formID,version);
 		form = pm.getObjectById(Form.class, k);
+		pm.close();
 		return form;
 	}
-
+	public static void updateFormPath(String formID,String version, Text path) {
+		Form form = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Key k = generateKey(formID,version);
+		form = pm.getObjectById(Form.class, k);
+		form.setPath(path);
+		pm.close();
+	}
 	public static ArrayList<Form> getAllFormByEmpID(String empID) {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		q.setOrdering("formID desc");
 		formList = (List<Form>) q.execute();
+		System.out.println(formList.size());
+		pm.close();
 		return listToArrayListForm(formList);
 	}
-	public static ArrayList<Form> searchFormFromEmp(String empID,String search,String keyword) {
+	public static ArrayList<Form> searchFormFromEmp(String search,String keyword) {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
@@ -47,6 +58,7 @@ public class FormRepository {
 		q.setOrdering("formID desc");
 		q.declareParameters("String keyword");
 		formList = (List<Form>) q.execute(keyword);
+		pm.close();
 		return listToArrayListForm(formList);
 	}
 	public static ArrayList<Form> getAllFormForMaintain() {
@@ -54,6 +66,7 @@ public class FormRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		formList = (List<Form>) q.execute();
+		pm.close();
 		return listToArrayListForm(formList);
 	}
 	protected static ArrayList<Form> listToArrayListForm(List<Form> formList){

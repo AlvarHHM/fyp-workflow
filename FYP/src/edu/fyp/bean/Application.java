@@ -3,18 +3,53 @@ package edu.fyp.bean;
 
 import java.util.Date;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Text;
+
+@PersistenceCapable
 public class Application {
-/*hahahssssaddd*/
-    private String appID;
-    private String formData;
-    private Date applyDate;
+    @PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+    private Key key;
+    @Persistent
     private String empID;
+    @Persistent
     private String formID;
-    private String status;
+	@Persistent
     private String version;
+    @Persistent
+    private String status;
+    @Persistent
+    private Text formData;
+    @Persistent
+    private Date applyDate;
+    @Persistent
     private ApplicationPath appPath;
 
+    public Text getFormData() {
+		return formData;
+	}
+
+	public void setFormData(Text formData) {
+		this.formData = formData;
+	}
+
+	public ApplicationPath getAppPath() {
+		return appPath;
+	}
+
+	public void setAppPath(ApplicationPath appPath) {
+		this.appPath = appPath;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
     public Application() {
     }
 
@@ -26,12 +61,12 @@ public class Application {
         this.status = status;
     }
 
-    public String getAppID() {
-        return appID;
+    public Key getKey() {
+        return key;
     }
 
-    public void setAppID(String appID) {
-        this.appID = appID;
+    public void setKey(Key key) {
+        this.key = key;
     }
 
     public String getEmpID() {
@@ -41,6 +76,22 @@ public class Application {
     public void setEmpID(String empID) {
         this.empID = empID;
     }
+    
+    public String getFormID() {
+        return formID;
+    }
+
+    public void setFormID(String formID) {
+        this.formID = formID;
+    }
+    
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
     public Date getApplyDate() {
         return applyDate;
@@ -48,6 +99,9 @@ public class Application {
 
     public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
+    }
+    public void setApplicationPath(ApplicationPath appPath){
+    	this.appPath = appPath;
     }
     public ApplicationPath getApplicationPath(){
         return appPath;

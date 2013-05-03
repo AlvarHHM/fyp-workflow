@@ -24,42 +24,45 @@ function selectFormItem(itemId) {
     var y = $(".form-item-property#Y [type='text']");
     var label = $(".form-item-property#item-label [type='text']");
     var labelShow = $(".form-item-property#item-label [type='checkbox']");
-
+	
     $(".form-item.selected .remove-button").remove();
     $(".form-item.selected").removeClass('selected');
     item.addClass('selected');
     item.children(".overlay").append("<div class='remove-button'><button>X</button></div>");
 
+	//Remove Button
     $(".form-item.selected .remove-button button").bind(
-            "click", {i: item},
-    function(e) {
-        e.data.i.remove();
-        $("#formBuilder-leftPanel ul li:nth-child(2)").hide();
-        $("#formBuilder-leftPanel").tabs("option", "active", 0);
-    });
+		"click", {i: item},
+			function(e) {
+				e.data.i.remove();
+				$("#formBuilder-leftPanel ul li:nth-child(2)").hide();
+				$("#formBuilder-leftPanel").tabs("option", "active", 0);
+		});
 
+	//X text
     x
-//		.attr("enable",true)
             .val(item.css("left").replace("px",""))
             .unbind("keyup input paste").bind("keyup input paste", {
 				i: item,
 				t: x
 			}, function(e) {
 				e.data.i.css("left", e.data.t.val()+"px");
+				getStyle();
 			});
 
+	//Y text
     y
-//		.attr("enable",true)
             .val(item.css("top").replace("px",""))
             .unbind("keyup input paste").bind("keyup input paste", {
 				i: item,
 				t: y
 			}, function(e) {
 				e.data.i.css("top", e.data.t.val()+"px");
+				getStyle();
 			});
 
+	//Label text
     label
-//		.attr("enable",true)
             .val(item.find(".label").html())
             .unbind("keyup input paste").bind("keyup input paste", {
         i: item,
@@ -68,14 +71,14 @@ function selectFormItem(itemId) {
         e.data.i.find(".label").html(e.data.t.val());
     });
 
+	//Label Checkbox
     if (item.find(".label:visible").length===0) {
         label.attr("disabled", true);
         labelShow.attr("checked", false);
     } else {
         label.attr("disabled", false);
         labelShow.attr("checked", true);
-    }
-
+		}
     labelShow.unbind("change").bind("change", {
         i: item,
         l: label,
@@ -87,9 +90,12 @@ function selectFormItem(itemId) {
         } else {
             label.attr("disabled", true);
             e.data.i.find(".label").css("display", "none");
-        }
-    });
+        }});
 
+	//Css Text
+	getStyle();
+		
+	//Show property Panel
     $("#formBuilder-leftPanel>ul>li:nth-child(2)").show();
     $("#formBuilder-leftPanel").tabs("option", "active", 1);
     //change the choice type of the property
@@ -175,6 +181,12 @@ function setChoiceType() {
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
         case (/TEXTAREA/).test(itemType):
+			$("#validation").show();
+		
+            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#radio-list,#checkbox-list,#combobox-list").hide();
+            break;
+        case (/DATE/).test(itemType):
 			$("#validation").show();
 		
             $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
@@ -276,4 +288,16 @@ function getChoiceHtml(itemType) {
             break;
     }
     return html;
+}
+
+function getStyle(){
+	var style = $(".selected").attr("style");
+	if (typeof style !== 'undefined' && style !== false) {
+		$("#itemCSS").val(style);
+	}else{
+		$("#itemCSS").val("position:absolute;");
+	}
+}
+function setStyle(){
+	$(".selected").attr("style",$("#itemCSS").val());
 }

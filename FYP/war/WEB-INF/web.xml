@@ -35,7 +35,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>formBuilder</servlet-name>
-		<url-pattern>/formBuilder</url-pattern>
+		<url-pattern>/formbuilder/formBuilder</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>formBuilders</servlet-name>
@@ -97,4 +97,30 @@
 		<servlet-name>showForm</servlet-name>
 		<url-pattern>/Client/showForm</url-pattern>
 	</servlet-mapping>	
+	
+		<servlet>
+		<servlet-name>addFormPath</servlet-name>
+		<servlet-class>edu.fyp.servlet.AddFormPath</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addFormPath</servlet-name>
+		<url-pattern>/formbuilder/addFormPath</url-pattern>
+	</servlet-mapping>
+	
+				<servlet>
+		<servlet-name>applyApplication</servlet-name>
+		<servlet-class>edu.fyp.servlet.ApplyApplication</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>applyApplication</servlet-name>
+		<url-pattern>/Client/applyApplication</url-pattern>
+	</servlet-mapping>
 </web-app>

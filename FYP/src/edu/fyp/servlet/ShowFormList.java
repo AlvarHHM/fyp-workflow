@@ -24,7 +24,7 @@ public class ShowFormList extends HttpServlet {
 		String keyword = req.getParameter("keyword");
 		ArrayList<Form> formList = null;
 		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			formList = FormRepository.searchFormFromEmp(empID, search, keyword);
+			formList = FormRepository.searchFormFromEmp( search, keyword);
 		}else{
 			formList = FormRepository.getAllFormByEmpID(empID);
 		}
