@@ -61,8 +61,9 @@ ArrayList<Form> formList = (ArrayList)request.getSession().getAttribute("formLis
 					<td><%= tempForm.getTitle() %></td>
 					<td><%= tempForm.getDescription() %></td>
 					<td><a href="showFormServlet?formID=<%= tempForm.getFormID() %>&version=<%= tempForm.getVersion() %>" target="_blank">
-					<img src="img/dc.png" width="30px" height="30px"/></a></td>
-					<a style="float:right" href=""></a>
+					<img src="img/dc.png" width="30px" height="30px"/></a>
+					<a style="float:right" href="/formbuilder/path/pathbuilder.jsp?formID=<%= tempForm.getFormID() %>&version=<%= tempForm.getVersion() %>">Path</a>
+					</td>
 					</tr>
 					<%
 				}

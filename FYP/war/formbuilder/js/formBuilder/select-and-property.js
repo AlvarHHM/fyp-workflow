@@ -4,12 +4,12 @@ $(document).ready(function() {
         if (e.target===this) {
             $(".form-item.selected .remove-button").remove();
             $(".form-item.selected").removeClass('selected');
-            $("#formBuilder-leftPanel ul li:nth-child(2)").hide();
+            $("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
             $("#formBuilder-leftPanel").tabs("option", "active", 0);
         }
     });
     $(".sample-choice").hide();
-    $("#formBuilder-leftPanel ul li:nth-child(2)").hide();
+    $("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
 
 	$("#formName").val($("#form-title").html());
 	$("#formName").bind("keyup input paste", function() {
@@ -35,7 +35,7 @@ function selectFormItem(itemId) {
 		"click", {i: item},
 			function(e) {
 				e.data.i.remove();
-				$("#formBuilder-leftPanel ul li:nth-child(2)").hide();
+				$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
 				$("#formBuilder-leftPanel").tabs("option", "active", 0);
 		});
 

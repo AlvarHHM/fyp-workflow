@@ -204,7 +204,7 @@ $(document).ready(
 					}
 				});
 				result=JSON.stringify(result);
-				$.post("http://localhost:8888/formbuilder/addFormPath"
+				$.post("/formbuilder/addFormPath"
 						,{
 							path:result,
 							formID:reqFormID,

@@ -17,18 +17,9 @@ import edu.fyp.manager.ApplicationManager;
 import edu.fyp.repository.FormRepository;
 
 public class ApplyApplication extends HttpServlet{
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		out.println("Do get :");
-		Enumeration enParams = req.getParameterNames(); 
-		while(enParams.hasMoreElements()){
-		 String paramName = (String)enParams.nextElement();
-		 out.println("Attribute Name - "+paramName+", Value - "+req.getParameter(paramName));
-		}
-		}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		PrintWriter out = resp.getWriter();
 		String formID = req.getParameter("formID");
 		String version=req.getParameter("version");
 		Text data=new Text(req.getParameter("data"));
@@ -36,6 +27,11 @@ public class ApplyApplication extends HttpServlet{
 		app.setFormID(formID);
 		app.setVersion(version);
 		app.setFormData(data);
+		try{
 		ApplicationManager.applyApplication(app);
-	}
+		out.println("Application applied.");
+		}catch(Exception e){
+			out.println("Error. Please contact IT support.");
+		}
+		}
 }

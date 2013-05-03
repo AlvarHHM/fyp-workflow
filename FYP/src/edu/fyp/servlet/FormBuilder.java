@@ -31,6 +31,7 @@ public class FormBuilder extends HttpServlet {
 		Form form = new Form();
 		form.setFormHtml(new Text(req.getParameter("FormHtml")));
 		form.setConstraint(req.getParameter("Constraint"));
+		form.setTitle(req.getParameter("Title"));
 		form.setCreatedDate(new Date());
 		form.setCreatedBy("hardCodeOne");
 		form.setFormID(req.getParameter("FormID"));
@@ -44,21 +45,6 @@ public class FormBuilder extends HttpServlet {
 		}
 		PrintWriter out = resp.getWriter();
 		out.println("Sucess");
-		out.close();
-	}
-
-	protected void processRequest(HttpServletRequest req,
-			HttpServletResponse resp) throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-        Enumeration names = req.getParameterNames();
-        while (names.hasMoreElements()) {
-            String name = (String) names.nextElement();
-            out.println(name + ": " + req.getHeader(name) + "<br>");
-        }
-		out.println("</body>");
-		out.println("</html>");
 		out.close();
 	}
 }

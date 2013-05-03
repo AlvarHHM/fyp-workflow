@@ -10,12 +10,14 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
+    <link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
 	<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
+	<script type="text/javascript" src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
 	<title>Form</title>
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
-		var data = new array();
+		var data = new Array();
 		 $(function() {
 				$(".date-picker").datepicker();
         });
@@ -28,50 +30,52 @@ Form form = (Form)request.getSession().getAttribute("form");
 				<%
 			}else{
 				%>
-					$('.form-item').each(function(index) {
-						var id = $(this).attr(id);
-						var temp = new Array()
+					$('.form-item').each(function() {
+						var id = this.id;
 						var itemType = id.split('-')[1];
 						
-						temp["Label"] = "";
-						temp["Value"] = "";
-						switch (true) {
-							case (/TEXTFIELD/) .test(itemType):
-							case (/DATE/) .test(itemType):
-								temp["Label"] = $(this).find("label.label").html();
-								temp["Value"] = $(this).find("input[type=text]").val();
+						if(!(/HEADING/).test(itemType)){
+							var temp = new Array();
+							temp["Label"] = "";
+							temp["Value"] = "";
+							switch (true) {
+								case (/TEXTFIELD/) .test(itemType):
+								case (/DATE/) .test(itemType):
+									temp["Label"] = $(this).find("label.label").html();
+									temp["Value"] = $(this).find("input[type=text]").val();
+									break;
+								case (/RADIOBUTTON/) .test(itemType):
+									temp["Label"] = $(this).find("legend.label").html();
+									temp["Value"] = 
+											$(this).find("input[type=radio]:checked")
+																.next("label").html();
 								break;
-							case (/RADIOBUTTON/) .test(itemType):
-								temp["Label"] = $(this).find("legend.label").html();
-								temp["Value"] = 
-										$(this).find("input[type=radio]:checked")
-															.next("label").html();
-								break;
-							case (/CHECKBOX/) .test(itemType):
-								temp["Label"] = $(this).find("legend.label").html();
-								$(this).find("input[type=checkbox]:checked").each(function(){
-									temp["Value"] += $(this).next("label").html();
-								});
-								break;
-							case (/COMBOBOX/) .test(itemType):
-								temp["Label"] = $(this).find("label.label").html();
-								temp["Value"] = 
-										$(this).find("option:selected").html();
-								break;
-							case (/TEXTAREA/) .test(itemType):
-								temp["Label"] = $(this).find("label.label").html();
-								temp["Value"] = $(this).find("textarea").val();
-								break;
-							default:
-								break;
+								case (/CHECKBOX/) .test(itemType):
+									temp["Label"] = $(this).find("legend.label").html();
+									$(this).find("input[type=checkbox]:checked").each(function(){
+										temp["Value"] += $(this).next("label").html();
+									});
+									break;
+								case (/COMBOBOX/) .test(itemType):
+									temp["Label"] = $(this).find("label.label").html();
+									temp["Value"] = 
+											$(this).find("option:selected").html();
+									break;
+								case (/TEXTAREA/) .test(itemType):
+									temp["Label"] = $(this).find("label.label").html();
+									temp["Value"] = $(this).find("textarea").val();
+									break;
+								default:
+									break;
+							}
+							data[id] = temp;
 						}
-						data[id] = temp;
 					});
 					$.post("http://localhost:8888/Client/applyApplication"
 					,{
 						FormID : formId,
 						Version : version,
-						Data : data
+						Data : data})
 					.always(function(data) {
 						alert(data);
 					});

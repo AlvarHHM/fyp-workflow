@@ -37,6 +37,10 @@ background-color: #fbfbf8;
 .form_container{
 	float:left;
 	border: 1px solid #2C5463;
+	position: relative;
+    width: 185mm;
+    height: 277mm;
+    background-color:white;
 }
 
 .form_detail_left{

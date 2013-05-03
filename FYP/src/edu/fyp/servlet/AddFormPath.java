@@ -33,7 +33,11 @@ public class AddFormPath extends HttpServlet{
 		String formID = req.getParameter("formID");
 		String version = req.getParameter("version");
 		Text path = new Text(req.getParameter("path"));
-/*		FormManager.updateFormPath(formID, version, path);*/
-		FormManager.updateFormPath(formID, version, path);//Test
+		try{
+		FormManager.updateFormPath(formID, version, path);
+		out.println("Path maintained success.");
+		}catch(Exception e){
+			out.println("Error. Please contact IT support.");
+		}
 	}
 }
