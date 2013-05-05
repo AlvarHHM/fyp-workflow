@@ -83,6 +83,7 @@ em {
 #main-container {
 	position: relative;
 	height: 100%;
+	background: -webkit-linear-gradient(top,#009AB2,#FFF);
 }
 
 #content-wrapper {
@@ -106,8 +107,8 @@ em {
 	height: 70%;
 	overflow-y: scroll;
 	padding-left: 10px;
-	border-style: solid;
-	border-width: 1px;
+/* 	border-style: solid; */
+/* 	border-width: 1px; */
 }
 
 #property-panel {
@@ -125,6 +126,7 @@ em {
 	position: relative;
 	height: 100%;
 	overflow: scroll;
+	background-color: white;
 }
 
 #path-canvas {
