@@ -40,32 +40,23 @@ public class FormRepository {
 		form.setPath(path);
 		pm.close();
 	}
-	public static ArrayList<Form> getAllFormByEmpID(String empID) {
+	public static ArrayList<Form> getAllForm() {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
-		q.setOrdering("formID desc");
+		q.setOrdering("formID asc");
 		formList = (List<Form>) q.execute();
-		System.out.println(formList.size());
 		pm.close();
 		return listToArrayListForm(formList);
 	}
-	public static ArrayList<Form> searchFormFromEmp(String search,String keyword) {
+	public static ArrayList<Form> searchForm(String search,String keyword) {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		q.setFilter(search + " == keyword");
-		q.setOrdering("formID desc");
+		q.setOrdering("formID asc");
 		q.declareParameters("String keyword");
 		formList = (List<Form>) q.execute(keyword);
-		pm.close();
-		return listToArrayListForm(formList);
-	}
-	public static ArrayList<Form> getAllFormForMaintain() {
-		List<Form> formList = null;
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query q = pm.newQuery(Form.class);
-		formList = (List<Form>) q.execute();
 		pm.close();
 		return listToArrayListForm(formList);
 	}
