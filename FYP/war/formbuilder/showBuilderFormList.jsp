@@ -16,7 +16,7 @@ ArrayList<Form> formList = (ArrayList)request.getSession().getAttribute("formLis
 			<%@ include file="menu.jsp"%>
 			<div id="mainBody">
 				<fieldset>
-					<legend align='center'>You can apply these Application</legend>
+					<legend align='center'>You can Maintain these Application</legend>
 					<div class="searchField">
 					<form method="get" action="showFormListServlet">
 						<select name="search">
@@ -60,8 +60,8 @@ ArrayList<Form> formList = (ArrayList)request.getSession().getAttribute("formLis
 					<td><%= tempForm.getVersion() %></td>
 					<td><%= tempForm.getTitle() %></td>
 					<td><%= tempForm.getDescription() %></td>
-					<td><a href="showClientFormServlet?formID=<%= tempForm.getFormID() %>&version=<%= tempForm.getVersion() %>" target="_blank">
-					<img src="img/dc.png" width="30px" height="30px"/></a>
+					<td>
+					<a style="float:right" href="/formbuilder/path/pathbuilder.jsp?formID=<%= tempForm.getFormID() %>&version=<%= tempForm.getVersion() %>">Path</a>
 					</td>
 					</tr>
 					<%
