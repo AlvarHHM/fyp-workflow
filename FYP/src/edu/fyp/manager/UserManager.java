@@ -1,5 +1,10 @@
 package edu.fyp.manager;
 
-public class UserManager {
+import org.springframework.stereotype.Service;
 
+@Service
+public class UserManager {
+	public String test(){
+		return "mahoihei";
+	}
 }

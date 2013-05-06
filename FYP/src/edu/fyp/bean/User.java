@@ -1,5 +1,7 @@
 package edu.fyp.bean;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -8,9 +10,9 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-class User {
+public class User implements Serializable{
 	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key userId;
 	@Persistent
 	private String userName;
@@ -50,7 +52,5 @@ class User {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
-
 
 }
