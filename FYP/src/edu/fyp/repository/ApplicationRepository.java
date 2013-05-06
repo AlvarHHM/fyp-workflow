@@ -2,8 +2,10 @@ package edu.fyp.repository;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -39,5 +41,19 @@ public class ApplicationRepository{
 		}
 		return app;
 	}
-	
+	public static ArrayList<Application> getAllApplication() {
+		List<Application> appList = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Application.class);
+		appList = (List<Application>) q.execute();
+		pm.close();
+		return listToArrayListForm(appList);
+	}
+	protected static ArrayList<Application> listToArrayListForm(List<Application> appList){
+		ArrayList<Application> appArrayList = new ArrayList<Application>();
+		for(int i=0;i<appList.size();i++){
+			appArrayList.add((Application)appList.get(i));
+		}
+		return appArrayList;
+	}
 }

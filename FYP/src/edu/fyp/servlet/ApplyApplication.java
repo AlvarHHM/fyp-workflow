@@ -16,22 +16,27 @@ import edu.fyp.bean.Form;
 import edu.fyp.manager.ApplicationManager;
 import edu.fyp.repository.FormRepository;
 
-public class ApplyApplication extends HttpServlet{
+public class ApplyApplication extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String formID = req.getParameter("formID");
-		String version=req.getParameter("version");
-		Text data=new Text(req.getParameter("data"));
+		String formID = req.getParameter("FormID");
+		String version = req.getParameter("Version");
+		Text data = new Text(req.getParameter("Data"));
+		System.out.println(formID);
+		System.out.println(version);
+		System.out.println(data.getValue());
 		Application app = new Application();
 		app.setFormID(formID);
-		app.setVersion(version);
-		app.setFormData(data);
-		try{
-		ApplicationManager.applyApplication(app);
-		out.println("Application applied.");
-		}catch(Exception e){
+		System.out.println(app.getFormID());
+		System.out.println(app.getVersion());
+/*		System.out.println(app.getFormData().getValue());*/
+		/*try {*/
+			ApplicationManager.applyApplication(app);
+			out.println("Application applied.");
+/*		} catch (Exception e) {
+			System.out.println(e.toString());
 			out.println("Error. Please contact IT support.");
-		}
-		}
+		}*/
+	}
 }

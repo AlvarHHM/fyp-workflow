@@ -30,35 +30,9 @@ public class Application {
     private Date applyDate;
     @Persistent
     private ApplicationPath appPath;
-
-    public Text getFormData() {
-		return formData;
-	}
-
-	public void setFormData(Text formData) {
-		this.formData = formData;
-	}
-
-	public ApplicationPath getAppPath() {
-		return appPath;
-	}
-
-	public void setAppPath(ApplicationPath appPath) {
-		this.appPath = appPath;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    
     public Application() {
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void updateStatus(String status) {
-        this.status = status;
+    	this.status="Processing";
     }
 
     public Key getKey() {
@@ -68,6 +42,7 @@ public class Application {
     public void setKey(Key key) {
         this.key = key;
     }
+    
 
     public String getEmpID() {
         return empID;
@@ -93,6 +68,21 @@ public class Application {
         this.version = version;
     }
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+    public String getStatus() {
+        return status;
+    }
+    public Text getFormData() {
+		return formData;
+	}
+
+	public void setFormData(Text formData) {
+		this.formData = formData;
+	}
+
     public Date getApplyDate() {
         return applyDate;
     }
@@ -100,10 +90,12 @@ public class Application {
     public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
     }
-    public void setApplicationPath(ApplicationPath appPath){
-    	this.appPath = appPath;
-    }
-    public ApplicationPath getApplicationPath(){
-        return appPath;
-    }
+	public ApplicationPath getAppPath() {
+		return appPath;
+	}
+
+	public void setAppPath(ApplicationPath appPath) {
+		this.appPath = appPath;
+	}
+
 }
