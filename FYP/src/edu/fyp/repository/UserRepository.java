@@ -15,8 +15,8 @@ public class UserRepository {
 	public User queryUserByUserName(String userName){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(User.class);
-		q.setFilter("userName == userName");
-		q.declareParameters("String userName");
+		q.setFilter("userName == inputUserName");
+		q.declareParameters("java.lang.String inputUserName");
 		List result = ((List)q.execute(userName));
 		return (User) (result.size()!=0?result.get(0):null);
 		

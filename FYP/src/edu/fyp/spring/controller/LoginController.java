@@ -17,6 +17,7 @@ import com.sun.org.apache.xerces.internal.util.URI;
 
 import edu.fyp.bean.User;
 import edu.fyp.manager.UserManager;
+import edu.fyp.repository.PMF;
 
 @SessionAttributes({ "USER" })
 @Controller
@@ -29,7 +30,7 @@ public class LoginController {
 		this.userManager = userManager;
 	}
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST,params = {"userName","password","redirect"})
 	public String loginWithRedirect(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password,
@@ -39,7 +40,7 @@ public class LoginController {
 		return "redirect:"+URLDecoder.decode(url, "UTF-8");
 	}
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {"userName","password"})
 	public String login(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password){
@@ -52,6 +53,11 @@ public class LoginController {
 	
 	@RequestMapping(value = "/testLogin.do", method = RequestMethod.GET)
 	public @ResponseBody String test() {
+		User test = new User();
+		test.setUserName("subject01");
+		test.setPassword("subject01");
+		PMF.get().getPersistenceManager().makePersistent(test);
+		
 		return userManager.test();
 	}
 	
