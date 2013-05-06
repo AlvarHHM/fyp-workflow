@@ -122,3 +122,7 @@ body{
 .formItem-properties-group{
     margin-bottom: 20px;
 }
+
+.choice label{
+	display:inline;
+}

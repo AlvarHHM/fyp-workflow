@@ -36,6 +36,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 						
 						if(!(/HEADING/).test(itemType)){
 							var temp = new Array();
+							temp["Id"] = id;
 							temp["Label"] = "";
 							temp["Value"] = "";
 							switch (true) {
