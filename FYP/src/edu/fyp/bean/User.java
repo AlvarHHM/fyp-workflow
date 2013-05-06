@@ -1,9 +1,23 @@
 package edu.fyp.bean;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable
 class User {
-	protected String userName;
-	protected String password;
-	protected String empid;
+	@PrimaryKey
+    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key userId;
+	@Persistent
+	private String userName;
+	@Persistent
+	private String password;
+	@Persistent(defaultFetchGroup = "true")
+	private Employee employee;
 
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -21,12 +35,22 @@ class User {
 		return password;
 	}
 
-	public void setEmpid(String empid) {
-		this.empid = empid;
+	public Key getUserId() {
+		return userId;
 	}
 
-	public String getEmpid() {
-		return empid;
+	public void setUserId(Key userId) {
+		this.userId = userId;
 	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+
 
 }
