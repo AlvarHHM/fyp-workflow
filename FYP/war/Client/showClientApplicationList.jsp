@@ -4,6 +4,8 @@
 <%
 //Get form list
 ArrayList<Application> appList = (ArrayList)request.getSession().getAttribute("appList");
+
+
 %>
 <html>
 <head>
