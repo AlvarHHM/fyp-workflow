@@ -2,6 +2,8 @@ package edu.fyp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -20,17 +22,14 @@ public class ApplyApplication extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
+		SimpleDateFormat dateformat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String formID = req.getParameter("FormID");
 		String version = req.getParameter("Version");
 		Text data = new Text(req.getParameter("Data"));
-		System.out.println(formID);
-		System.out.println(version);
-		System.out.println(data.getValue());
 		Application app = new Application();
 		app.setFormID(formID);
-		System.out.println(app.getFormID());
-		System.out.println(app.getVersion());
-/*		System.out.println(app.getFormData().getValue());*/
+		app.setVersion(version);
+		app.setApplyDate(dateformat.format(new Date()));
 		/*try {*/
 			ApplicationManager.applyApplication(app);
 			out.println("Application applied.");

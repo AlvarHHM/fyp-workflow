@@ -181,18 +181,7 @@
 		<servlet-name>showClientFormList</servlet-name>
 		<url-pattern>/Client/showClientFormList</url-pattern>
 	</servlet-mapping>	
-			<servlet>
-		<servlet-name>showClientFormServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowClientForm</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientFormServlet</servlet-name>
-		<url-pattern>/Client/showClientFormServlet</url-pattern>
-	</servlet-mapping>
+			<!-- cut -->
 			<servlet>
 		<servlet-name>showClientForm</servlet-name>
 		<jsp-file>/Client/showClientForm.jsp</jsp-file>

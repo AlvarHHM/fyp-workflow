@@ -26,7 +26,7 @@ public class ApplicationRepository{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			Application app = pm.getObjectById(Application.class, key);
-			app.setApplicationPath(appPath);
+			app.setAppPath(appPath);
 		} finally {
 			pm.close();
 		}

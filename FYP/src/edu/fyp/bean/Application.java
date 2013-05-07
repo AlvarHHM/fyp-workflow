@@ -27,7 +27,7 @@ public class Application {
     @Persistent
     private Text formData;
     @Persistent
-    private Date applyDate;
+    private String applyDate;
     @Persistent
     private ApplicationPath appPath;
     
@@ -83,11 +83,11 @@ public class Application {
 		this.formData = formData;
 	}
 
-    public Date getApplyDate() {
+    public String getApplyDate() {
         return applyDate;
     }
 
-    public void setApplyDate(Date applyDate) {
+    public void setApplyDate(String applyDate) {
         this.applyDate = applyDate;
     }
 	public ApplicationPath getAppPath() {

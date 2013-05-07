@@ -26,18 +26,26 @@ import edu.fyp.factory.PathNodeFactory;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.PathNodeRepository;
 
-public class AddFormPath extends HttpServlet{
+public class AddFormPath extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+
 		PrintWriter out = resp.getWriter();
 		String formID = req.getParameter("formID");
 		String version = req.getParameter("version");
 		Text path = new Text(req.getParameter("path"));
-		try{
-		FormManager.updateFormPath(formID, version, path);
-		out.println("Path maintained success.");
-		}catch(Exception e){
+		if (formID.equalsIgnoreCase("") || version.equalsIgnoreCase("")
+				|| path.getValue().equalsIgnoreCase("")) {
+			out.println("Form ID, Version, Path can not be empty.");
+			out.close();
+			return ;
+		}
+		try {
+			FormManager.updateFormPath(formID, version, path);
+			out.println("Path maintained success.");
+		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");
 		}
+		out.close();
 	}
 }
