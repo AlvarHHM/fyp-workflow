@@ -20,6 +20,6 @@ public class ShowBuilderForm extends HttpServlet{
 		String version=req.getParameter("version");
 		form = FormRepository.getFormByIDVersion(formID, version);
 		req.getSession().setAttribute("form", form);
-		req.getRequestDispatcher("/Client/showClientForm").forward(req, resp);
+		req.getRequestDispatcher("/formbuilder/showBuilderForm").forward(req, resp);
 	}
 }

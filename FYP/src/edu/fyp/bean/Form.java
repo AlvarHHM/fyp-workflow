@@ -27,7 +27,7 @@ public class Form implements Serializable{
 	@Persistent
 	private String description;
 	@Persistent
-	private Date createDate;
+	private String createDate;
 	//	@Persistent
 	// private ArrayList<UserGroup> userGroup;
 	@Persistent
@@ -39,7 +39,7 @@ public class Form implements Serializable{
 	@Persistent
 	private String createdBy;
 	@Persistent
-	private Date createdDate;
+	private String createdDate;
 
 	public String getFormID() {
 		return formID;
@@ -89,11 +89,11 @@ public class Form implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	public Date getCreatedDate() {
+	public String getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Date createdDate) {
+	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
 
 	}

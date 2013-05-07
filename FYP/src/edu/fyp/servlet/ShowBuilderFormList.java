@@ -30,6 +30,6 @@ public class ShowBuilderFormList extends HttpServlet {
 			formList = FormManager.getAllForm();
 		}
 		req.getSession().setAttribute("formList", formList);
-		req.getRequestDispatcher("/Client/showClientFormList").forward(req, resp);
+		req.getRequestDispatcher("/formbuilder/showBuilderFormList").forward(req, resp);
 	}
 }
