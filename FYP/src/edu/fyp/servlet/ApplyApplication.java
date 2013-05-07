@@ -24,14 +24,13 @@ public class ApplyApplication extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		SimpleDateFormat dateformat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String formID = req.getParameter("FormID");
 		String version = req.getParameter("Version");
 		Text data = new Text(req.getParameter("Data"));
 		Application app = new Application();
 		app.setFormID(formID);
 		app.setVersion(version);
-		app.setApplyDate(dateformat.format(new Date()));
+		app.setApplyDate(new Date());
 		/*try {*/
 			ApplicationManager.applyApplication(app);
 			out.println("Application applied.");

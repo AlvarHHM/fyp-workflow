@@ -39,7 +39,7 @@ public class Form implements Serializable{
 	@Persistent
 	private String createdBy;
 	@Persistent
-	private String createdDate;
+	private Date createdDate;
 
 	public String getFormID() {
 		return formID;
@@ -89,11 +89,11 @@ public class Form implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	public String getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 
 	}

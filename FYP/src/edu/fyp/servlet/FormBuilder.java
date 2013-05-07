@@ -36,13 +36,12 @@ public class FormBuilder extends HttpServlet {
 			out.close();
 			return ;
 		}
-		SimpleDateFormat dateformat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Form form = new Form();
 		form.setFormHtml(new Text(req.getParameter("FormHtml")));
 		form.setConstraint(req.getParameter("Constraint"));
 		form.setDescription(req.getParameter("Description"));
 		form.setTitle(req.getParameter("Title"));
-		form.setCreatedDate(dateformat.format(new Date()));
+		form.setCreatedDate(new Date());
 		form.setCreatedBy("hardCodeOne");
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
