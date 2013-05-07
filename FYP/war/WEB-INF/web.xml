@@ -202,5 +202,23 @@
 		<url-pattern>/test</url-pattern>
 	</servlet-mapping>	
 	
+	<!-- Show client application -->
+		<servlet>
+		<servlet-name>showClientApplicationListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.showClientApplicationList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplicationListServlet</servlet-name>
+		<url-pattern>/Client/showClientApplicationListServlet</url-pattern>
+	</servlet-mapping>	
 	
+	<servlet>
+		<servlet-name>showClientApplicationList</servlet-name>
+		<jsp-file>/Client/showClientApplicationList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplicationList</servlet-name>
+		<url-pattern>/Client/showClientApplicationList</url-pattern>
+	</servlet-mapping>	
+	<!-- End of Show client application -->
 </web-app>
