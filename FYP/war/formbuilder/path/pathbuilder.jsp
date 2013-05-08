@@ -93,10 +93,10 @@
 							</div>
 						</div>
 						<div class="property-item">
-							<div id="approval-userId-warpper" style="display: none">
+							<div id="approval-employeeId-warpper" style="display: none">
 								<label>Employee Id<br>
 									<div class="input-append">
-										<input type="text" id="approval-userId"
+										<input type="text" id="approval-employeeId"
 											class="property-value appendedInputButtons" disabled>
 										<a class="btn"
 											onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
@@ -123,10 +123,10 @@
 							</select>
 						</div>
 						<div class="property-item">
-							<div id="notice-userId-warpper" style="display: none">
-								<label>User Id</label><br>
+							<div id="notice-employeeId-warpper" style="display: none">
+								<label>Employee Id</label><br>
 								<div class="input-append">
-									<input type="text" id="notice-userId" class="property-value"
+									<input type="text" id="notice-employeeId" class="property-value"
 										disabled> <input type="submit" class="search-btn"
 										value="submit"> <a class="btn"
 										onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>

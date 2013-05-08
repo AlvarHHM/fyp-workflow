@@ -3,27 +3,27 @@ $(document).ready(function() {
 	$("#approval-type").change(function() {
 		switch ($("#approval-type").val()) {
 		case "spec":
-			$("#approval-userId-warpper").show();
+			$("#approval-employeeId-warpper").show();
 			$("#approval-deptId-wrapper").hide();
 			$("#approval-superLv-wrapper").hide();
 			break;
 		case "super":
-			$("#approval-userId-warpper").hide();
+			$("#approval-employeeId-warpper").hide();
 			$("#approval-deptId-wrapper").hide();
 			$("#approval-superLv-wrapper").hide();
 			break;
 		case "lud":
-			$("#approval-userId-warpper").hide();
+			$("#approval-employeeId-warpper").hide();
 			$("#approval-deptId-wrapper").hide();
 			$("#approval-superLv-wrapper").show();
 			break
 		case "ld":
-			$("#approval-userId-warpper").hide();
+			$("#approval-employeeId-warpper").hide();
 			$("#approval-deptId-wrapper").show();
 			$("#approval-superLv-wrapper").show();
 			break;
 		default:
-			$("#approval-userId-warpper").hide();
+			$("#approval-employeeId-warpper").hide();
 			$("#approval-deptId-wrapper").hide();
 			$("#approval-superLv-wrapper").hide();
 			break;
@@ -70,15 +70,15 @@ $(document).ready(function() {
 	$("#notice-type").change(function() {
 		switch ($("#notice-type").val()) {
 		case "email":
-			$("#notice-userId-warpper").hide();
+			$("#notice-employeeId-warpper").hide();
 			$("#notice-email-warpper").show();
 			break;
 		case "system":
-			$("#notice-userId-warpper").show();
+			$("#notice-employeeId-warpper").show();
 			$("#notice-email-warpper").hide();
 			break;
 		default:
-			$("#notice-userId-warpper").hide();
+			$("#notice-employeeId-warpper").hide();
 			$("#notice-email-warpper").hide();
 			break;
 		}
