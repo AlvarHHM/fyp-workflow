@@ -6,12 +6,15 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
 
+@Repository
 public class FormRepository {
 	public void addForm(Form form) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
