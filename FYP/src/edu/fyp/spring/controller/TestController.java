@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController {
 
 
-	@RequestMapping("/test")
+	@RequestMapping("/test.do")
 	public @ResponseBody
 	String test() throws Exception {
-
+		
 		return "Hello World";
 	}
+	
+
 }

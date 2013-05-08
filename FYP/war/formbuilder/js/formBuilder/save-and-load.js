@@ -15,7 +15,7 @@ $(document).ready(function(){
 		//deselect the item
 		$(".form-item.selected .remove-button").remove();
 		$(".form-item.selected").removeClass('selected');
-		$("#formBuilder-leftPanel ul li:nth-child(2)").hide();
+		$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
 		$("#formBuilder-leftPanel").tabs("option", "active", 0);
 		
 		//remove overlay

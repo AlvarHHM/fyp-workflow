@@ -17,7 +17,6 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
-		var data = new Array();
 		 $(function() {
 				$(".date-picker").datepicker();
         });
@@ -30,52 +29,56 @@ Form form = (Form)request.getSession().getAttribute("form");
 				<%
 			}else{
 				%>
+					var data = new Array();
+					
 					$('.form-item').each(function() {
-						var id = this.id;
-						var itemType = id.split('-')[1];
+						var itemType = this.id.split('-')[0];
 						
 						if(!(/HEADING/).test(itemType)){
-							var temp = new Array();
-							temp["Label"] = "";
-							temp["Value"] = "";
+							var temp = new Object();
+							temp.Id = this.id;
+							temp.Label = "";
+							temp.Value = "";
+							
 							switch (true) {
 								case (/TEXTFIELD/) .test(itemType):
 								case (/DATE/) .test(itemType):
-									temp["Label"] = $(this).find("label.label").html();
-									temp["Value"] = $(this).find("input[type=text]").val();
+									temp.Label = $(this).find("label.label").html();
+									temp.Value = $(this).find("input[type=text]").val();
 									break;
 								case (/RADIOBUTTON/) .test(itemType):
-									temp["Label"] = $(this).find("legend.label").html();
-									temp["Value"] = 
+									temp.Label = $(this).find("legend.label").html();
+									temp.Value = 
 											$(this).find("input[type=radio]:checked")
 																.next("label").html();
 								break;
 								case (/CHECKBOX/) .test(itemType):
-									temp["Label"] = $(this).find("legend.label").html();
+									temp.Label = $(this).find("legend.label").html();
 									$(this).find("input[type=checkbox]:checked").each(function(){
-										temp["Value"] += $(this).next("label").html();
+										temp.Value += $(this).next("label").html();
 									});
 									break;
 								case (/COMBOBOX/) .test(itemType):
-									temp["Label"] = $(this).find("label.label").html();
-									temp["Value"] = 
+									temp.Label = $(this).find("label.label").html();
+									temp.Value = 
 											$(this).find("option:selected").html();
 									break;
 								case (/TEXTAREA/) .test(itemType):
-									temp["Label"] = $(this).find("label.label").html();
-									temp["Value"] = $(this).find("textarea").val();
+									temp.Label = $(this).find("label.label").html();
+									temp.Value = $(this).find("textarea").val();
 									break;
 								default:
 									break;
 							}
-							data[id] = temp;
+							data[i] = temp;
+							i++;
 						}
 					});
 					$.post("http://localhost:8888/Client/applyApplication"
 					,{
 						FormID : formId,
 						Version : version,
-						Data : data})
+						Data : JSON.stringify(data)})
 					.always(function(data) {
 						alert(data);
 					});
@@ -109,19 +112,19 @@ if(form!=null){
 		<tbody>
 			<tr>
 				<td class="form_detail_left">Form ID:</td>
-				<td><%= form.getFormID() %>
+				<td><%= form.getFormID() %></td>
 			</tr>
 			<tr>
 				<td class="form_detail_left">Version:</td>
-				<td><%= form.getVersion() %>
+				<td><%= form.getVersion() %></td>
 			</tr>
 			<tr>
 				<td class="form_detail_left">Title:</td>
-				<td><%= form.getTitle() %>
+				<td><%= form.getTitle() %></td>
 			</tr>
 			<tr>
 				<td class="form_detail_left">Description:</td>
-				<td><%= form.getDescription() %>
+				<td><%= form.getDescription() %></td>
 			</tr>
 			<tr>
 				<td><button onclick="SubmitApplication()">Submit</button></td>

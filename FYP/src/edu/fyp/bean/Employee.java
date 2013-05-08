@@ -1,6 +1,8 @@
 package edu.fyp.bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.jdo.annotations.EmbeddedOnly;
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -9,6 +11,8 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
+
+import edu.fyp.search.SearchJanitor;
 
 @PersistenceCapable
 public class Employee implements Serializable {
@@ -20,7 +24,7 @@ public class Employee implements Serializable {
 	@Persistent
 	private Department department;
 	@Persistent
-	private String super_id;
+	private String superId;
 	@Persistent(mappedBy = "employee")
 	private User user;
 	@Persistent
@@ -37,6 +41,13 @@ public class Employee implements Serializable {
 	private String nickName;
 	@Persistent
 	private Title title;
+	@Persistent
+	private Set<String> fts;
+	
+	public Employee(){
+		fts = new HashSet<String>();
+//		SearchJanitor.updateFTSStuffForEmployee(this);
+	}
 
 	public Key getEmpKey() {
 		return empKey;
@@ -44,6 +55,7 @@ public class Employee implements Serializable {
 
 	public void setEmpKey(Key empKey) {
 		this.empKey = empKey;
+		
 	}
 
 	public int getSuperLevel() {
@@ -62,12 +74,12 @@ public class Employee implements Serializable {
 		this.department = department;
 	}
 
-	public String getSuper_id() {
-		return super_id;
+	public String getSuperId() {
+		return superId;
 	}
 
-	public void setSuper_id(String super_id) {
-		this.super_id = super_id;
+	public void setSuperId(String superId) {
+		this.superId = superId;
 	}
 
 	public User getUser() {
@@ -132,6 +144,17 @@ public class Employee implements Serializable {
 
 	public void setTitle(Title title) {
 		this.title = title;
+	}
+
+	public Set<String> getFts() {
+		return fts;
+	}
+
+	public void setFts(Set<String> fts) {
+		this.fts = fts;
+	}
+	
+	public void updateFullTextSearchIndex(){
 	}
 
 	public enum Title {
