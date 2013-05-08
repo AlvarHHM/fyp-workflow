@@ -32,9 +32,9 @@ import edu.fyp.repository.PathNodeRepository;
 
 public class AddFormPath extends HttpServlet {
 	
+	@Autowired
 	private FormManager formManager;
 	
-
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,

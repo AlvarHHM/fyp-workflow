@@ -2,7 +2,12 @@ package edu.fyp.manager;
 
 import java.util.HashMap;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
@@ -21,6 +26,7 @@ import edu.fyp.repository.ApplicationPathRepository;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.PathNodeRepository;
 
+@Service
 public class ApplicationPathGenerator {
 	
 	private FormManager formManager;
@@ -29,7 +35,7 @@ public class ApplicationPathGenerator {
 	public ApplicationPathGenerator(FormManager formManager){
 		this.formManager = formManager;
 	}
-		
+	
 	public ApplicationPath generatePath(String formID, String version) {
 		Form form = formManager.getFormByIDVersion(formID, version);
 		Text path =form.getPath();

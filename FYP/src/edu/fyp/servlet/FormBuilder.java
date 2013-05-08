@@ -23,9 +23,9 @@ import edu.fyp.repository.FormRepository;
 
 public class FormBuilder extends HttpServlet {
 	
+	@Autowired
 	private FormManager formManager;
 	
-
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
@@ -49,12 +49,12 @@ public class FormBuilder extends HttpServlet {
 		form.setCreatedBy("hardCodeOne");
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
-		try{
+/*		try{*/
 			formManager.addForm(form);		
-			out.println("Sucess.");
+/*			out.println("Sucess.");
 		}catch(Exception ex){
 			out.println("Error! Form design NOT saved!");
 		}
-		out.close();
+		out.close();*/
 	}
 }

@@ -19,14 +19,15 @@ import edu.fyp.repository.PMF;
 
 public class ShowBuilderForm extends HttpServlet{
 	
+	@Autowired
 	private FormManager formManager;
 	
-
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
 				config.getServletContext());
 	}
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Form form = null;

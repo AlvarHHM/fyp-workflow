@@ -19,12 +19,8 @@ import edu.fyp.repository.PMF;
 
 public class ShowClientForm extends HttpServlet{
 	
-	private FormManager formManager;
-	
 	@Autowired
-	public ShowClientForm(FormManager formManager){
-		this.formManager = formManager;
-	}
+	private FormManager formManager;
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);

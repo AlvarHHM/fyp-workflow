@@ -1,5 +1,8 @@
 package edu.fyp.manager;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.google.appengine.api.datastore.Key;
 
 import edu.fyp.bean.Application;
@@ -9,16 +12,25 @@ import edu.fyp.repository.ApplicationPathRepository;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.PathNodeRepository;
 
+@Service
 public class ApplicationManager {
-	public static void applyApplication(Application app) {
+	
+	private ApplicationPathGenerator apg;
+	
+	@Autowired
+	public ApplicationManager(ApplicationPathGenerator apg){
+		this.apg = apg;
+	}
+	
+	public void applyApplication(Application app) {
 		ApplicationRepository.addApplication(app);
-		ApplicationPath appPath = ApplicationPathGenerator.generatePath(
+		ApplicationPath appPath = apg.generatePath(
 				app.getFormID(), app.getVersion());
 		ApplicationRepository.updateApplicationPath(app.getKey(), appPath.getKey());
 		processApplication(app.getKey());
 	}
 
-	public static void processApplication(Key key) {
+	public void processApplication(Key key) {
 		Application app = ApplicationRepository.getApplication(key);
 		ApplicationPath appPath = ApplicationPathRepository.getApplication(app.getAppPath());
 		PathNode currentNode=null;

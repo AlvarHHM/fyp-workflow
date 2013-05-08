@@ -7,20 +7,34 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.Form;
 import edu.fyp.manager.ApplicationManager;
+import edu.fyp.manager.FormManager;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
 
 public class ApplyApplication extends HttpServlet {
+	
+	@Autowired
+	private ApplicationManager appManager;
+	
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+				config.getServletContext());
+	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
@@ -32,7 +46,7 @@ public class ApplyApplication extends HttpServlet {
 		app.setVersion(version);
 		app.setApplyDate(new Date());
 		/*try {*/
-			ApplicationManager.applyApplication(app);
+			appManager.applyApplication(app);
 			out.println("Application applied.");
 /*		} catch (Exception e) {
 			System.out.println(e.toString());
