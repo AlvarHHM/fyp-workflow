@@ -88,7 +88,7 @@
 						<div class="property-item">
 							<div id="approval-superLv-wrapper" style="display: none">
 								<label>Super Level</label><br> <input id="approval-superLv"
-									type="text" class="property-item">
+									type="text" class="property-value">
 
 							</div>
 						</div>

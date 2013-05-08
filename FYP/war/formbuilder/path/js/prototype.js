@@ -50,6 +50,7 @@ Node.prototype.loadMenu = function() {
 		onLoad : function() {
 			if($.isEmptyObject(props)){
 				$(".property-value").val("");
+				
 			}
 			
 			$.each(props,function(i,v){
