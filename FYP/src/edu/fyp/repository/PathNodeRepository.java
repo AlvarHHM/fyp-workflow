@@ -2,6 +2,8 @@ package edu.fyp.repository;
 
 import javax.jdo.PersistenceManager;
 
+import org.springframework.stereotype.Repository;
+
 import com.google.appengine.api.datastore.Key;
 
 import edu.fyp.bean.node.ApproveNode;
@@ -9,6 +11,7 @@ import edu.fyp.bean.node.NoticeNode;
 import edu.fyp.bean.node.PathNode;
 import edu.fyp.bean.node.StartNode;
 
+@Repository
 public class PathNodeRepository {
 	public static void addPathNode(PathNode pathNode){
 		PersistenceManager pm = PMF.get().getPersistenceManager();

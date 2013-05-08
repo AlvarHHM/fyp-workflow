@@ -2,11 +2,14 @@ package edu.fyp.repository;
 
 import javax.jdo.PersistenceManager;
 
+import org.springframework.stereotype.Repository;
+
 import com.google.appengine.api.datastore.Key;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
 
+@Repository
 public class ApplicationPathRepository {
 	public static void addApplicationPath(ApplicationPath appPath){
 		PersistenceManager pm = PMF.get().getPersistenceManager();

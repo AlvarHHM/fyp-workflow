@@ -7,12 +7,15 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.google.appengine.api.datastore.Key;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
 import edu.fyp.bean.Form;
 
+@Repository
 public class ApplicationRepository{
 	public static void addApplication(Application app){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
