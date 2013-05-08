@@ -26,8 +26,7 @@ Application app = (Application)request.getSession().getAttribute("app");
 				for(var i = 0; i < appData.length; i++) {
 					var item = $("#"+appData.id);
 					var itemType = appData.id.split('-')[0];
-					//003a3d2
-					//003532c
+					
 					switch (true) {
 						case (/TEXTFIELD/) .test(itemType):
 						case (/DATE/) .test(itemType):

@@ -30,7 +30,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 			}else{
 				%>
 					var data = new Array();
-					
+					var i = 0;
 					$('.form-item').each(function() {
 						var itemType = this.id.split('-')[0];
 						
