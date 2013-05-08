@@ -1,0 +1,32 @@
+.control_panel{
+	float: left;
+	border: 1px solid #2C5463;
+	background-color: #fbfbf8;
+	margin-left:20px;
+	box-shadow: 5px 5px 10px 1px #2C5463;
+}
+
+.application-container{
+	float:left;
+	border: 1px solid #2C5463;
+	position: relative;
+    	width: 185mm;
+    	height: 277mm;
+    	background-color:white;
+}
+
+.app_detail_left{
+	font-weight:bold;
+	text-align:right;
+}
+.app_detail_table{
+	border-collapse: collapse;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+.app_detail_table tr{
+	border: 1px solid #2C5463;
+	background-color:white;
+}
