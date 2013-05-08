@@ -46,11 +46,11 @@ public class FormBuilder extends HttpServlet {
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
 		try{
-			FormRepository.addForm(form);
+			FormRepository.addForm(form);		
+			out.println("Sucess.");
 		}catch(Exception ex){
 			out.println("Error! Form design NOT saved!");
 		}
-		out.println("Sucess");
 		out.close();
 	}
 }

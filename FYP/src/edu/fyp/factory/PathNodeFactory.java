@@ -34,7 +34,7 @@ public class PathNodeFactory {
 
 	private PathNode createNoticeNode(JSONObject json) {
 		PathNode pathNode = (NoticeNode)new NoticeNode();
-		try {
+/*		try {
 			JSONObject nodeProps = json.getJSONObject("props");
 			if(nodeProps.getString("email")!=null){
 				((NoticeNode) pathNode).setEmail(nodeProps.getString("email"));
@@ -43,7 +43,7 @@ public class PathNodeFactory {
 			// TODO Auto-generated catch block
 			System.out.println("error");
 			e.printStackTrace();
-		}
+		}*/
 		return pathNode;
 	}
 

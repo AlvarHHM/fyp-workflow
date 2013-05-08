@@ -9,7 +9,7 @@ public class ApplicationMonitorManager{
             return app;
 	}
 	public ApplicationPath getApplicationPath(String appID){
-            return getApplication(appID).getApplicationPath();
+            return getApplication(appID).getAppPath();
 	}
 	public String getApplicationDetail(String appID){
             return null;

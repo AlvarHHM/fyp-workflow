@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
 import edu.fyp.bean.Application;
 import edu.fyp.bean.Form;
 import edu.fyp.manager.FormManager;
@@ -18,21 +21,20 @@ import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 
-public class ShowClientApplicationList extends HttpServlet {
+public class ShowClientApplication extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String empID = "A";//hard code
-		String search = req.getParameter("search");
-		String keyword = req.getParameter("keyword");
-		ArrayList<Application> appList = null;
-/*		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			formList = FormManager.searchForm( search, keyword);
-		}else{
-			formList = FormManager.getAllForm();
-		}*/
-		appList = ApplicationRepository.getAllApplication();
-		req.getSession().setAttribute("appList", appList);
-		req.getRequestDispatcher("/Client/showClientApplicationList").forward(req, resp);
+		Form form = null;
+		Application app = null;
+		String formID = req.getParameter("formID");
+		String version=req.getParameter("version");
+		String appKeyStr= req.getParameter("appKey");
+		Key appKey = KeyFactory.stringToKey(appKeyStr);
+		form = FormRepository.getFormByIDVersion(formID, version);
+		app = ApplicationRepository.getApplication(appKey);
+		req.getSession().setAttribute("form", form);
+		req.getSession().setAttribute("app", app);
+		req.getRequestDispatcher("/Client/showClientApplication").forward(req, resp);
 	}
 }

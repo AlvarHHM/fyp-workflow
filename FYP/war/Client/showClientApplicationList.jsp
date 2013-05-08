@@ -2,6 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="com.google.appengine.api.datastore.KeyFactory"%>
+
 <%
 //Get form list
 ArrayList<Application> appList = (ArrayList)request.getSession().getAttribute("appList");
@@ -37,6 +39,7 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd");
 								<th>Process flow</th>
 								<th>Apply Date</th>
 								<th>Status</th>
+								<th>action</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -55,12 +58,15 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd");
 			} else{
 				for(int i=0;i<appList.size();i++){
 					Application app = appList.get(i);
+					String appKeyStr = KeyFactory.keyToString(app.getKey());
 					%>
 							<tr>
 								<td><%= app.getFormID() %></td>
 								<td><%= "Path" %></td>
 								<td><%= dateformat.format(app.getApplyDate()) %></td>
 								<td><%= app.getStatus() %></td>
+													<td><a href="showClientApplicationServlet?formID=<%= app.getFormID() %>&version=<%= app.getVersion() %>&appKey=<%= appKeyStr %>" target="_blank">
+					<img src="img/dc.png" width="30px" height="30px"/></a>
 							</tr>
 							<%
 				}

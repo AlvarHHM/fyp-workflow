@@ -205,7 +205,7 @@
 	<!-- Show client application -->
 		<servlet>
 		<servlet-name>showClientApplicationListServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.showClientApplicationList</servlet-class>
+		<servlet-class>edu.fyp.servlet.ShowClientApplicationList</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>showClientApplicationListServlet</servlet-name>
@@ -219,6 +219,24 @@
 	<servlet-mapping>
 		<servlet-name>showClientApplicationList</servlet-name>
 		<url-pattern>/Client/showClientApplicationList</url-pattern>
+	</servlet-mapping>	
+	
+			<servlet>
+		<servlet-name>showClientApplicationServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowClientApplication</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplicationServlet</servlet-name>
+		<url-pattern>/Client/showClientApplicationServlet</url-pattern>
+	</servlet-mapping>	
+	
+		<servlet>
+		<servlet-name>showClientApplication</servlet-name>
+		<jsp-file>/Client/showClientApplication.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplication</servlet-name>
+		<url-pattern>/Client/showClientApplication</url-pattern>
 	</servlet-mapping>	
 	<!-- End of Show client application -->
 </web-app>

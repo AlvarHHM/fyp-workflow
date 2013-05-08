@@ -10,7 +10,8 @@ public class NoticeNode extends RelayNode{
 	@Persistent
     private String email;
     public void process(){
-        
+        System.out.println("Test NoticeNode process");
+        this.setState("finish");
     }
     public String getEmpID(){
         return empID;

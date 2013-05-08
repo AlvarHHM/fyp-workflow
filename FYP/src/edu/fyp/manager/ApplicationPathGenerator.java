@@ -64,7 +64,6 @@ public class ApplicationPathGenerator {
 				e.printStackTrace();
 			}
 		}
-		ApplicationPathRepository.addApplicationPath(appPath);
 		return appPath;
 	}
 	private static void storePathNode(HashMap<String, PathNode> pathNodeMap) {

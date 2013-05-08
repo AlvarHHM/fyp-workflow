@@ -15,12 +15,14 @@ public class ApplicationManager {
 /*		ApplicationPath appPath = ApplicationPathGenerator.generatePath(
 				app.getFormID(), app.getVersion());
 		ApplicationRepository.updateApplicationPath(app.getKey(), appPath);
+		System.out.println("app path"+app.getAppPath().getKey().toString());
+		System.out.println("app key"+app.getKey().toString());
 		processApplication(app.getKey());*/
 	}
 
 	public static void processApplication(Key key) {
 		Application app = ApplicationRepository.getApplication(key);
-		ApplicationPath appPath = app.getApplicationPath();
+		ApplicationPath appPath = app.getAppPath();
 		PathNode currentNode=null;
 		do{
 			currentNode= PathNodeRepository.getNode(appPath.getCurrentNode());

@@ -12,6 +12,7 @@ public class StartNode extends RelayNode {
 		super.setNextNode(nextNode);
 	}
 	public void process(){
+        System.out.println("Test Start process");
 		super.setState("finish");
 	}
 }

@@ -22,14 +22,16 @@ public class ApplicationRepository{
 			pm.close();
 		}
 	}
-	public static void updateApplicationPath(Key key, ApplicationPath appPath){
+	public static Application updateApplicationPath(Key key, ApplicationPath appPath){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Application app;
 		try {
-			Application app = pm.getObjectById(Application.class, key);
+			app = pm.getObjectById(Application.class, key);
 			app.setAppPath(appPath);
 		} finally {
 			pm.close();
 		}
+		return app;
 	}
 	public static Application getApplication(Key key) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
