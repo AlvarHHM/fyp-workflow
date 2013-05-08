@@ -155,7 +155,6 @@ public class Employee implements Serializable {
 	}
 	
 	public void updateFullTextSearchIndex(){
-		SearchJanitor.updateFTSStuffForEmployee(this);
 	}
 
 	public enum Title {
