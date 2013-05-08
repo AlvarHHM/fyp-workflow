@@ -32,7 +32,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 				%>
 					$('.form-item').each(function() {
 						var id = this.id;
-						var itemType = id.split('-')[1];
+						var itemType = id.split('-')[0];
 						
 						if(!(/HEADING/).test(itemType)){
 							var temp = new Array();
@@ -75,7 +75,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 					,{
 						FormID : formId,
 						Version : version,
-						Data : data})
+						Data : JSON.stringify(data)})
 					.always(function(data) {
 						alert(data);
 					});
@@ -109,19 +109,19 @@ if(form!=null){
 		<tbody>
 			<tr>
 				<td class="form_detail_left">Form ID:</td>
-				<td><%= form.getFormID() %>
+				<td><%= form.getFormID() %></td>
 			</tr>
 			<tr>
 				<td class="form_detail_left">Version:</td>
-				<td><%= form.getVersion() %>
+				<td><%= form.getVersion() %></td>
 			</tr>
 			<tr>
 				<td class="form_detail_left">Title:</td>
-				<td><%= form.getTitle() %>
+				<td><%= form.getTitle() %></td>
 			</tr>
 			<tr>
 				<td class="form_detail_left">Description:</td>
-				<td><%= form.getDescription() %>
+				<td><%= form.getDescription() %></td>
 			</tr>
 			<tr>
 				<td><button onclick="SubmitApplication()">Submit</button></td>
