@@ -48,20 +48,23 @@ Form form = (Form)request.getSession().getAttribute("form");
 									break;
 								case (/RADIOBUTTON/) .test(itemType):
 									temp.Label = $(this).find("legend.label").html();
-									temp.Value = 
-											$(this).find("input[type=radio]:checked")
-																.next("label").html();
+											
+									var choice = $(this).find("input[type=radio]:checked").parents(".choice");
+									temp.Value = $(this).find(".choice").index(choice);
 								break;
 								case (/CHECKBOX/) .test(itemType):
 									temp.Label = $(this).find("legend.label").html();
+									
 									$(this).find("input[type=checkbox]:checked").each(function(){
-										temp.Value += $(this).next("label").html();
+										var choice = $(this).find("input[type=checkbox]:checked").parents(".choice");
+										temp.Value += $(this).find(".choice").index(choice)+",";
 									});
 									break;
 								case (/COMBOBOX/) .test(itemType):
 									temp.Label = $(this).find("label.label").html();
-									temp.Value = 
-											$(this).find("option:selected").html();
+									
+									var choice = $(this).find("option:selected");
+									temp.Value = $(this).find("select").index(choice);
 									break;
 								case (/TEXTAREA/) .test(itemType):
 									temp.Label = $(this).find("label.label").html();
