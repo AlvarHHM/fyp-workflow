@@ -30,10 +30,12 @@ import edu.fyp.repository.PathNodeRepository;
 public class ApplicationPathGenerator {
 	
 	private FormManager formManager;
+	private ApplicationPathRepository appPathRepo;
 	
 	@Autowired
-	public ApplicationPathGenerator(FormManager formManager){
+	public ApplicationPathGenerator(FormManager formManager,ApplicationPathRepository appPathRepo){
 		this.formManager = formManager;
+		this.appPathRepo = appPathRepo;
 	}
 	
 	public ApplicationPath generatePath(String formID, String version) {
@@ -80,7 +82,7 @@ public class ApplicationPathGenerator {
 				e.printStackTrace();
 			}
 		}
-		ApplicationPathRepository.addApplicationPath(appPath);
+		appPathRepo.addApplicationPath(appPath);
 		return appPath;
 	}
 	private void storePathNode(HashMap<String, PathNode> pathNodeMap) {

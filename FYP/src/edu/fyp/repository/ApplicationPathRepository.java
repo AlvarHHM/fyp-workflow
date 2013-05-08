@@ -11,7 +11,7 @@ import edu.fyp.bean.ApplicationPath;
 
 @Repository
 public class ApplicationPathRepository {
-	public static void addApplicationPath(ApplicationPath appPath){
+	public void addApplicationPath(ApplicationPath appPath){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(appPath);
@@ -21,7 +21,7 @@ public class ApplicationPathRepository {
 		}
 	}
 	
-	public static void updateStartNode(Key pathKey,Key nodeKey){
+	public void updateStartNode(Key pathKey,Key nodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		ApplicationPath appPath;
 		try {
@@ -32,7 +32,7 @@ public class ApplicationPathRepository {
 		}
 	}
 	
-	public static void updateCurrentNode(Key pathKey,Key nodeKey){
+	public void updateCurrentNode(Key pathKey,Key nodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		ApplicationPath appPath;
 		try {
@@ -43,7 +43,7 @@ public class ApplicationPathRepository {
 		}
 	}
 	
-	public static ApplicationPath getApplication(Key key) {
+	public ApplicationPath getApplication(Key key) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		ApplicationPath appPath=null;
 		try {

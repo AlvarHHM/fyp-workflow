@@ -16,23 +16,27 @@ import edu.fyp.repository.PathNodeRepository;
 public class ApplicationManager {
 	
 	private ApplicationPathGenerator apg;
+	private ApplicationRepository appRepo;
+	private ApplicationPathRepository appPathRepo;
 	
 	@Autowired
-	public ApplicationManager(ApplicationPathGenerator apg){
+	public ApplicationManager(ApplicationPathGenerator apg,ApplicationRepository appRepo,ApplicationPathRepository appPathRepo){
 		this.apg = apg;
+		this.appRepo=appRepo;
+		this.appPathRepo=appPathRepo;
 	}
 	
 	public void applyApplication(Application app) {
-		ApplicationRepository.addApplication(app);
+		appRepo.addApplication(app);
 		ApplicationPath appPath = apg.generatePath(
 				app.getFormID(), app.getVersion());
-		ApplicationRepository.updateApplicationPath(app.getKey(), appPath.getKey());
+		appRepo.updateApplicationPath(app.getKey(), appPath.getKey());
 		processApplication(app.getKey());
 	}
 
 	public void processApplication(Key key) {
-		Application app = ApplicationRepository.getApplication(key);
-		ApplicationPath appPath = ApplicationPathRepository.getApplication(app.getAppPath());
+		Application app = appRepo.getApplication(key);
+		ApplicationPath appPath = appPathRepo.getApplication(app.getAppPath());
 		PathNode currentNode=null;
 		do{
 			currentNode= PathNodeRepository.getNode(appPath.getCurrentNode());
@@ -54,6 +58,10 @@ public class ApplicationManager {
 			if(currentNode.getState().equalsIgnoreCase("finish")){
 				if(currentNodeKind.equalsIgnoreCase("ApproveNode")||currentNodeKind.equalsIgnoreCase("NoticeNode")||currentNodeKind.equalsIgnoreCase("StartNode")){
 					appPath.setCurrentNode(((RelayNode)currentNode).getNextNode());
+				}else if(currentNodeKind.equalsIgnoreCase("FailNode")){
+					appRepo.updateApplicationStatus(key,"Rejected");
+				}else if(currentNodeKind.equalsIgnoreCase("SuccessNode")){
+					appRepo.updateApplicationStatus(key,"Accepted");
 				}
 			}
 		}while(currentNode.getNodeID().compareTo(appPath.getCurrentNode())!=0);

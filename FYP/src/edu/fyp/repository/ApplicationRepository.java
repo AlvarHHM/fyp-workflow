@@ -17,7 +17,7 @@ import edu.fyp.bean.Form;
 
 @Repository
 public class ApplicationRepository{
-	public static void addApplication(Application app){
+	public void addApplication(Application app){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(app);
@@ -25,7 +25,7 @@ public class ApplicationRepository{
 			pm.close();
 		}
 	}
-	public static Application updateApplicationPath(Key key, Key appPath){
+	public Application updateApplicationPath(Key key, Key appPath){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Application app;
 		try {
@@ -36,7 +36,20 @@ public class ApplicationRepository{
 		}
 		return app;
 	}
-	public static Application getApplication(Key key) {
+	
+	public Application updateApplicationStatus(Key key, String status){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Application app;
+		try {
+			app = pm.getObjectById(Application.class, key);
+			app.setStatus(status);
+		} finally {
+			pm.close();
+		}
+		return app;
+	}
+	
+	public Application getApplication(Key key) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Application app=null;
 		try {
@@ -46,7 +59,7 @@ public class ApplicationRepository{
 		}
 		return app;
 	}
-	public static ArrayList<Application> getAllApplication() {
+	public ArrayList<Application> getAllApplication() {
 		List<Application> appList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Application.class);
@@ -54,7 +67,7 @@ public class ApplicationRepository{
 		pm.close();
 		return listToArrayListForm(appList);
 	}
-	protected static ArrayList<Application> listToArrayListForm(List<Application> appList){
+	protected ArrayList<Application> listToArrayListForm(List<Application> appList){
 		ArrayList<Application> appArrayList = new ArrayList<Application>();
 		for(int i=0;i<appList.size();i++){
 			appArrayList.add((Application)appList.get(i));

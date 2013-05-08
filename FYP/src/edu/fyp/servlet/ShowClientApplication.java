@@ -31,6 +31,7 @@ public class ShowClientApplication extends HttpServlet {
 	
 	@Autowired
 	private FormManager formManager;
+	private ApplicationRepository appRepo;
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -47,7 +48,7 @@ public class ShowClientApplication extends HttpServlet {
 		String appKeyStr= req.getParameter("appKey");
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
 		form = formManager.getFormByIDVersion(formID, version);
-		app = ApplicationRepository.getApplication(appKey);
+		app = appRepo.getApplication(appKey);
 		req.getSession().setAttribute("form", form);
 		req.getSession().setAttribute("app", app);
 		req.getRequestDispatcher("/Client/showClientApplication").forward(req, resp);
