@@ -15,6 +15,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 import edu.fyp.bean.Application;
+import edu.fyp.bean.ApplicationPath;
 import edu.fyp.bean.Form;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.ApplicationRepository;
@@ -25,7 +26,8 @@ public class ShowClientApplication extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		Form form = null;
+		//Main
+/*		Form form = null;
 		Application app = null;
 		String formID = req.getParameter("formID");
 		String version=req.getParameter("version");
@@ -35,6 +37,15 @@ public class ShowClientApplication extends HttpServlet {
 		app = ApplicationRepository.getApplication(appKey);
 		req.getSession().setAttribute("form", form);
 		req.getSession().setAttribute("app", app);
-		req.getRequestDispatcher("/Client/showClientApplication").forward(req, resp);
+		req.getRequestDispatcher("/Client/showClientApplication").forward(req, resp);*/
+		
+		
+		//only for test
+		String appKeyStr= req.getParameter("appKey");
+		Key appKey = KeyFactory.stringToKey(appKeyStr);
+		Application app = ApplicationRepository.getApplication(appKey);
+		ApplicationPath appPath = app.getAppPath();
+		System.out.println(KeyFactory.keyToString(appPath.getKey()));
+		System.out.println(KeyFactory.keyToString(appPath.getCurrentNode()));
 	}
 }

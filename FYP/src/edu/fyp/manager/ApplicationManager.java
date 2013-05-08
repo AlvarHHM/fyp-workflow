@@ -12,12 +12,12 @@ import edu.fyp.repository.PathNodeRepository;
 public class ApplicationManager {
 	public static void applyApplication(Application app) {
 		ApplicationRepository.addApplication(app);
-/*		ApplicationPath appPath = ApplicationPathGenerator.generatePath(
+		ApplicationPath appPath = ApplicationPathGenerator.generatePath(
 				app.getFormID(), app.getVersion());
 		ApplicationRepository.updateApplicationPath(app.getKey(), appPath);
 		System.out.println("app path"+app.getAppPath().getKey().toString());
 		System.out.println("app key"+app.getKey().toString());
-		processApplication(app.getKey());*/
+		processApplication(app.getKey());
 	}
 
 	public static void processApplication(Key key) {
