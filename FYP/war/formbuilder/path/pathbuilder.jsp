@@ -94,7 +94,7 @@
 						</div>
 						<div class="property-item">
 							<div id="approval-userId-warpper" style="display: none">
-								<label>User Id<br>
+								<label>Employee Id<br>
 									<div class="input-append">
 										<input type="text" id="approval-userId"
 											class="property-value appendedInputButtons" disabled>
