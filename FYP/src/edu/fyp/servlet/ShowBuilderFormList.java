@@ -11,12 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import edu.fyp.bean.Form;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 
 public class ShowBuilderFormList extends HttpServlet {
+	
+	private FormManager formManager;
+	
+	@Autowired
+	public ShowBuilderFormList(FormManager formManager){
+		this.formManager = formManager;
+	}
+		
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
@@ -25,9 +35,9 @@ public class ShowBuilderFormList extends HttpServlet {
 		String keyword = req.getParameter("keyword");
 		ArrayList<Form> formList = null;
 		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			formList = FormManager.searchForm( search, keyword);
+			formList = formManager.searchForm( search, keyword);
 		}else{
-			formList = FormManager.getAllForm();
+			formList = formManager.getAllForm();
 		}
 		req.getSession().setAttribute("formList", formList);
 		req.getRequestDispatcher("/formbuilder/showBuilderFormList").forward(req, resp);

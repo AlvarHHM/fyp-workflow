@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
@@ -27,6 +29,14 @@ import edu.fyp.manager.FormManager;
 import edu.fyp.repository.PathNodeRepository;
 
 public class AddFormPath extends HttpServlet {
+	
+	private FormManager formManager;
+	
+	@Autowired
+	public AddFormPath(FormManager formManager){
+		this.formManager = formManager;
+	}
+		
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
@@ -41,7 +51,7 @@ public class AddFormPath extends HttpServlet {
 			return ;
 		}
 		try {
-			FormManager.updateFormPath(formID, version, path);
+			formManager.updateFormPath(formID, version, path);
 			out.println("Path maintained success.");
 		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");

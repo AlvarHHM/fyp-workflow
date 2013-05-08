@@ -2,25 +2,40 @@ package edu.fyp.manager;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
 import edu.fyp.repository.FormRepository;
+import edu.fyp.repository.UserRepository;
 
 public class FormManager {
-	public static Form getFormByIDVersion(String formID, String version){
-		return FormRepository.getFormByIDVersion(formID, version);
+	
+	private FormRepository formRepo;
+	
+	@Autowired
+	public FormManager(FormRepository formRepo){
+		this.formRepo = formRepo;
 	}
 	
-	public static ArrayList<Form> getAllForm(){
-		return FormRepository.getAllForm();
+	public void addForm(Form form) {
+		formRepo.addForm(form);
 	}
 	
-	public static void updateFormPath(String formID, String version, Text path){
-		FormRepository.updateFormPath(formID,version,path);
+	public Form getFormByIDVersion(String formID, String version){
+		return formRepo.getFormByIDVersion(formID, version);
+	}
+	
+	public ArrayList<Form> getAllForm(){
+		return formRepo.getAllForm();
+	}
+	
+	public void updateFormPath(String formID, String version, Text path){
+		formRepo.updateFormPath(formID,version,path);
 	}
 
-	public static ArrayList<Form> searchForm(String search, String keyword) {
-		return FormRepository.searchForm(search, keyword);
+	public ArrayList<Form> searchForm(String search, String keyword) {
+		return formRepo.searchForm(search, keyword);
 	}
 }

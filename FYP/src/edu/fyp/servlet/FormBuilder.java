@@ -11,22 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
+import edu.fyp.manager.FormManager;
 import edu.fyp.repository.FormRepository;
 
 public class FormBuilder extends HttpServlet {
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		PrintWriter out = resp.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<form>This is form.</form>");
-		out.println("</body>");
-		out.println("</html>");
-		out.close();
+	
+	private FormManager formManager;
+	
+	@Autowired
+	public FormBuilder(FormManager formManager){
+		this.formManager = formManager;
 	}
+		
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
@@ -46,7 +47,7 @@ public class FormBuilder extends HttpServlet {
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
 		try{
-			FormRepository.addForm(form);		
+			formManager.addForm(form);		
 			out.println("Sucess.");
 		}catch(Exception ex){
 			out.println("Error! Form design NOT saved!");

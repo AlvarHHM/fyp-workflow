@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
@@ -24,6 +26,14 @@ import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 
 public class ShowClientApplication extends HttpServlet {
+	
+	private FormManager formManager;
+	
+	@Autowired
+	public ShowClientApplication(FormManager formManager){
+		this.formManager = formManager;
+	}
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Form form = null;
@@ -32,7 +42,7 @@ public class ShowClientApplication extends HttpServlet {
 		String version=req.getParameter("version");
 		String appKeyStr= req.getParameter("appKey");
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
-		form = FormRepository.getFormByIDVersion(formID, version);
+		form = formManager.getFormByIDVersion(formID, version);
 		app = ApplicationRepository.getApplication(appKey);
 		req.getSession().setAttribute("form", form);
 		req.getSession().setAttribute("app", app);

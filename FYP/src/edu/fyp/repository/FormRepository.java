@@ -13,7 +13,7 @@ import com.google.appengine.api.datastore.Text;
 import edu.fyp.bean.Form;
 
 public class FormRepository {
-	public static void addForm(Form form) {
+	public void addForm(Form form) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Key k =	generateKey(form.getFormID(), form.getVersion());
 		form.setKey(k);
@@ -24,7 +24,7 @@ public class FormRepository {
 		}
 	}
 	//get the form by ID and version
-	public static Form getFormByIDVersion(String formID,String version) {
+	public Form getFormByIDVersion(String formID,String version) {
 		Form form = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Key k = generateKey(formID,version);
@@ -32,7 +32,7 @@ public class FormRepository {
 		pm.close();
 		return form;
 	}
-	public static void updateFormPath(String formID,String version, Text path) {
+	public void updateFormPath(String formID,String version, Text path) {
 		Form form = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Key k = generateKey(formID,version);
@@ -40,7 +40,7 @@ public class FormRepository {
 		form.setPath(path);
 		pm.close();
 	}
-	public static ArrayList<Form> getAllForm() {
+	public ArrayList<Form> getAllForm() {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
@@ -49,7 +49,7 @@ public class FormRepository {
 		pm.close();
 		return listToArrayListForm(formList);
 	}
-	public static ArrayList<Form> searchForm(String search,String keyword) {
+	public ArrayList<Form> searchForm(String search,String keyword) {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
@@ -60,14 +60,14 @@ public class FormRepository {
 		pm.close();
 		return listToArrayListForm(formList);
 	}
-	protected static ArrayList<Form> listToArrayListForm(List<Form> formList){
+	protected ArrayList<Form> listToArrayListForm(List<Form> formList){
 		ArrayList<Form> formArrayList = new ArrayList<Form>();
 		for(int i=0;i<formList.size();i++){
 			formArrayList.add((Form)formList.get(i));
 		}
 		return formArrayList;
 	}
-	public static Key generateKey(String formID,String version){
+	public Key generateKey(String formID,String version){
 		Key k =KeyFactory.createKey(Form.class.getSimpleName(),
 				"FormID:"+formID+"+Version:"+version);
 		return k;

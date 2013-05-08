@@ -2,6 +2,8 @@ package edu.fyp.manager;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
@@ -20,9 +22,16 @@ import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.PathNodeRepository;
 
 public class ApplicationPathGenerator {
-
-	public static ApplicationPath generatePath(String formID, String version) {
-		Form form = FormManager.getFormByIDVersion(formID, version);
+	
+	private FormManager formManager;
+	
+	@Autowired
+	public ApplicationPathGenerator(FormManager formManager){
+		this.formManager = formManager;
+	}
+		
+	public ApplicationPath generatePath(String formID, String version) {
+		Form form = formManager.getFormByIDVersion(formID, version);
 		Text path =form.getPath();
 		Gson gson = new Gson();
 		ApplicationPath appPath= new ApplicationPath();
@@ -68,13 +77,13 @@ public class ApplicationPathGenerator {
 		ApplicationPathRepository.addApplicationPath(appPath);
 		return appPath;
 	}
-	private static void storePathNode(HashMap<String, PathNode> pathNodeMap) {
+	private void storePathNode(HashMap<String, PathNode> pathNodeMap) {
 		for(Object key:pathNodeMap.keySet()){
 			PathNodeRepository.addPathNode(pathNodeMap.get(key));
 			System.out.println(pathNodeMap.get(key).getNodeID().toString());
 		}
 	}
-	private static JSONArray strToJSONArray(String[] str) throws JSONException{
+	private JSONArray strToJSONArray(String[] str) throws JSONException{
 		JSONArray jsonAry= new JSONArray();
 		for(int i=0;i<str.length;i++){
 			JSONObject jo = new JSONObject(str[i]);
@@ -82,7 +91,7 @@ public class ApplicationPathGenerator {
 		}
 		return jsonAry;
 	}
-	private static void connectPathNode(JSONArray jsonAry, HashMap<String,PathNode> pathNodeMap){
+	private void connectPathNode(JSONArray jsonAry, HashMap<String,PathNode> pathNodeMap){
 		for(int i=0;i<jsonAry.length();i++){
 			try {
 				JSONObject jo = jsonAry.getJSONObject(i);

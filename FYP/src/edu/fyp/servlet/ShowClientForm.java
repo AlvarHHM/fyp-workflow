@@ -8,17 +8,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import edu.fyp.bean.Form;
+import edu.fyp.manager.FormManager;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 
 public class ShowClientForm extends HttpServlet{
+	
+	private FormManager formManager;
+	
+	@Autowired
+	public ShowClientForm(FormManager formManager){
+		this.formManager = formManager;
+	}
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Form form = null;
 		String formID = req.getParameter("formID");
 		String version=req.getParameter("version");
-		form = FormRepository.getFormByIDVersion(formID, version);
+		form = formManager.getFormByIDVersion(formID, version);
 		req.getSession().setAttribute("form", form);
 		req.getRequestDispatcher("/Client/showClientForm").forward(req, resp);
 	}
