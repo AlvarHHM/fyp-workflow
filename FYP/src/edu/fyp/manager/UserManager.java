@@ -1,5 +1,7 @@
 package edu.fyp.manager;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,9 @@ public class UserManager {
 	public User login(String userName,String password){
 		User result = userRepo.queryUserByUserName(userName);
 		return result!=null&&result.getPassword().equals(password)?result:null;
+	}
+	
+	public List<User> searchUserByFullText(){
+		return null;
 	}
 }

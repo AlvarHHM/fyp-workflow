@@ -20,6 +20,7 @@ public class User implements Serializable{
 	private String password;
 	@Persistent(defaultFetchGroup = "true")
 	private Employee employee;
+	
 
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -52,5 +53,7 @@ public class User implements Serializable{
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+	
 
 }

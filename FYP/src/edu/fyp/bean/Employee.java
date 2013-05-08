@@ -2,6 +2,7 @@ package edu.fyp.bean;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.EmbeddedOnly;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -10,31 +11,47 @@ import javax.jdo.annotations.PrimaryKey;
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-public class Employee implements Serializable{
+public class Employee implements Serializable {
 	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	protected Key empId;
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key empKey;
 	@Persistent
-	protected int superLevel;
+	private int superLevel;
 	@Persistent
-	protected Department department;
+	private Department department;
+	@Persistent
+	private String super_id;
 	@Persistent(mappedBy = "employee")
 	private User user;
+	@Persistent
+	private String empId;
+	@Persistent
+	private String engSurname;
+	@Persistent
+	private String engOtherName;
+	@Persistent
+	private String chiSurname;
+	@Persistent
+	private String chiOthername;
+	@Persistent
+	private String nickName;
+	@Persistent
+	private Title title;
 
-	public void setEmpId(Key empId) {
-		this.empId = empId;
+	public Key getEmpKey() {
+		return empKey;
 	}
 
-	public Key getEmpId() {
-		return empId;
-	}
-
-	public void setSuperLevel(int superLevel) {
-		this.superLevel = superLevel;
+	public void setEmpKey(Key empKey) {
+		this.empKey = empKey;
 	}
 
 	public int getSuperLevel() {
 		return superLevel;
+	}
+
+	public void setSuperLevel(int superLevel) {
+		this.superLevel = superLevel;
 	}
 
 	public Department getDepartment() {
@@ -45,6 +62,14 @@ public class Employee implements Serializable{
 		this.department = department;
 	}
 
+	public String getSuper_id() {
+		return super_id;
+	}
+
+	public void setSuper_id(String super_id) {
+		this.super_id = super_id;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -53,5 +78,89 @@ public class Employee implements Serializable{
 		this.user = user;
 	}
 
-	
+	public String getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(String empId) {
+		this.empId = empId;
+	}
+
+	public String getEngSurname() {
+		return engSurname;
+	}
+
+	public void setEngSurname(String engSurname) {
+		this.engSurname = engSurname;
+	}
+
+	public String getEngOtherName() {
+		return engOtherName;
+	}
+
+	public void setEngOtherName(String engOtherName) {
+		this.engOtherName = engOtherName;
+	}
+
+	public String getChiSurname() {
+		return chiSurname;
+	}
+
+	public void setChiSurname(String chiSurname) {
+		this.chiSurname = chiSurname;
+	}
+
+	public String getChiOthername() {
+		return chiOthername;
+	}
+
+	public void setChiOthername(String chiOthername) {
+		this.chiOthername = chiOthername;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public Title getTitle() {
+		return title;
+	}
+
+	public void setTitle(Title title) {
+		this.title = title;
+	}
+
+	public enum Title {
+		COOFF("CHIEF OPERATIONS OFFICER", "營運總監", 100), SD("SALES DIRECTOR",
+				"營業董事", 80), DM("DISTRICT MANAGER", "區域經理", 60), SM(
+				"SALES MANAGER", "營業經理", 40), ACMGR("ACCOUNT MANAGER", "客戶經理",
+				20), PC("PROPERTY CONSULTANT", "物業顧問", 10);
+		private String engTitle;
+		private String chiTitle;
+		private int titilePoint;
+
+		private Title(String engTitle, String chiTitle, int titilePoint) {
+			this.engTitle = engTitle;
+			this.chiTitle = chiTitle;
+			this.titilePoint = titilePoint;
+		}
+
+		public String getEngTitle() {
+			return engTitle;
+		}
+
+		public String getChiTitle() {
+			return chiTitle;
+		}
+
+		public int getTitilePoint() {
+			return titilePoint;
+		}
+
+	}
+
 }

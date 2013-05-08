@@ -13,25 +13,30 @@ import com.google.appengine.api.datastore.Key;
 public class Department implements Serializable{
 	@PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	protected Key deptId;
+	protected Key empKey;
 	@Persistent
 	protected String deptName;
-
-	
-	public Key getDeptId() {
-		return deptId;
+	@Persistent
+	private String deptId;
+	public Key getEmpKey() {
+		return empKey;
 	}
-
-	public void setDeptId(Key deptId) {
-		this.deptId = deptId;
+	public void setEmpKey(Key empKey) {
+		this.empKey = empKey;
 	}
-
+	public String getDeptName() {
+		return deptName;
+	}
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
-
-	public String getDeptName() {
-		return deptName;
-
+	public String getDeptId() {
+		return deptId;
 	}
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
+	}
+
+	
+	
 }
