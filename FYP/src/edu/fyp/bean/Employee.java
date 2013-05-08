@@ -174,6 +174,10 @@ public class Employee implements Serializable {
 			sb.append(this.getTitle().getEngTitle());
 			sb.append(" ");
 		}
+		this.setFts(new HashSet<String>());
+		for(String token:sb.toString().toUpperCase().split(" ")){
+			this.getFts().add(token);
+		}
 			
 	}
 
