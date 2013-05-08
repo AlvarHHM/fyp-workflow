@@ -106,33 +106,33 @@ Form form = (Form)request.getSession().getAttribute("form");
 if(form!=null){
 	%>
 	<div class="control_panel">
-	<div class="zoom"></div>
-	<div class="form_detail">
-		<table class="form_detail_table">
-		<tbody>
-			<tr>
-				<td class="form_detail_left">Form ID:</td>
-				<td><%= form.getFormID() %></td>
-			</tr>
-			<tr>
-				<td class="form_detail_left">Version:</td>
-				<td><%= form.getVersion() %></td>
-			</tr>
-			<tr>
-				<td class="form_detail_left">Title:</td>
-				<td><%= form.getTitle() %></td>
-			</tr>
-			<tr>
-				<td class="form_detail_left">Description:</td>
-				<td><%= form.getDescription() %></td>
-			</tr>
-			<tr>
-				<td><button onclick="SubmitApplication()">Submit</button></td>
-			<td></td>
-			</tr>
-		</tbody>
-		</table>
-	</div>
+		<div class="zoom"></div>
+		<div class="form_detail">
+			<table class="form_detail_table">
+			<tbody>
+				<tr>
+					<td class="form_detail_left">Form ID:</td>
+					<td><%= form.getFormID() %></td>
+				</tr>
+				<tr>
+					<td class="form_detail_left">Version:</td>
+					<td><%= form.getVersion() %></td>
+				</tr>
+				<tr>
+					<td class="form_detail_left">Title:</td>
+					<td><%= form.getTitle() %></td>
+				</tr>
+				<tr>
+					<td class="form_detail_left">Description:</td>
+					<td><%= form.getDescription() %></td>
+				</tr>
+				<tr>
+					<td><button onclick="SubmitApplication()">Submit</button></td>
+				<td></td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
 	</div>
 	<%
 }
