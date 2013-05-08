@@ -6,12 +6,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.appengine.api.datastore.Text;
 
@@ -21,13 +23,14 @@ import edu.fyp.repository.FormRepository;
 
 public class FormBuilder extends HttpServlet {
 	
+	@Autowired
 	private FormManager formManager;
 	
-	@Autowired
-	public FormBuilder(FormManager formManager){
-		this.formManager = formManager;
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+				config.getServletContext());
 	}
-		
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
@@ -46,12 +49,12 @@ public class FormBuilder extends HttpServlet {
 		form.setCreatedBy("hardCodeOne");
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
-		try{
+/*		try{*/
 			formManager.addForm(form);		
-			out.println("Sucess.");
+/*			out.println("Sucess.");
 		}catch(Exception ex){
 			out.println("Error! Form design NOT saved!");
 		}
-		out.close();
+		out.close();*/
 	}
 }

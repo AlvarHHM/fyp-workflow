@@ -30,5 +30,4 @@ public class TestServlet extends HttpServlet {
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
 				config.getServletContext());
 	}
-
 }

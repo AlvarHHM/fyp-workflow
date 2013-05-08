@@ -17,9 +17,55 @@ Application app = (Application)request.getSession().getAttribute("app");
 	<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
 	<script type="text/javascript" src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
 	<script type="text/javascript">
+	<%
 		if(form!=null&&app!=null){
-			var appData = "<%=app.getFormData()%>";
+	%>
+		 $(function() {
+			var appData = jQuery.parseJSON(("<%=app.getFormData()%>");
+			if(appData.length !== 0) {
+				for(var i = 0; i < appData.length; i++) {
+					var item = $("#"+appData.id);
+					var itemType = appData.id.split('-')[0];
+					//003a3d2
+					//003532c
+					switch (true) {
+						case (/TEXTFIELD/) .test(itemType):
+						case (/DATE/) .test(itemType):
+							item.find("input[type=text]").val(appData[i].Value);
+							break;
+						case (/RADIOBUTTON/) .test(itemType):
+							if(appData.Value!=""&value!="-1")
+									item.find(".choice").eq(value).find("input[type=radio]")
+										.attr('checked', true);
+						break;
+						case (/CHECKBOX/) .test(itemType):
+							var subVal = appData.Value.split(",");
+							subVal.each(function(index, value){
+								if(value!=""&value!="-1")
+									item.find(".choice").eq(value).find("input[type=checkbox]")
+										.attr('checked', true);
+							});
+							break;
+						case (/COMBOBOX/) .test(itemType):
+							if(appData.Value=="-1")
+								item.empty();
+							else{
+								item[0].selectedIndex = appData.Value;
+							}
+							break;
+						case (/TEXTAREA/) .test(itemType):
+							item.find("textarea").val(appData.Value);
+							break;
+						default:
+							break;
+					}
+				}
+			}
+			$(".form-item").append("<div class='overlay' ></div>");
 		}
+	<%
+		}
+	%>	
 	</script>
 </head>
 <body>

@@ -3,6 +3,7 @@ package edu.fyp.manager;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.google.appengine.api.datastore.Text;
 
@@ -10,6 +11,7 @@ import edu.fyp.bean.Form;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.UserRepository;
 
+@Service
 public class FormManager {
 	
 	private FormRepository formRepo;
