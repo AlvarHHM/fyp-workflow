@@ -22,7 +22,7 @@ public class ApplicationRepository{
 			pm.close();
 		}
 	}
-	public static Application updateApplicationPath(Key key, ApplicationPath appPath){
+	public static Application updateApplicationPath(Key key, Key appPath){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Application app;
 		try {

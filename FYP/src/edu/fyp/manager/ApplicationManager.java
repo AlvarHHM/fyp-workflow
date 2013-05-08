@@ -14,15 +14,13 @@ public class ApplicationManager {
 		ApplicationRepository.addApplication(app);
 		ApplicationPath appPath = ApplicationPathGenerator.generatePath(
 				app.getFormID(), app.getVersion());
-		ApplicationRepository.updateApplicationPath(app.getKey(), appPath);
-		System.out.println("app path"+app.getAppPath().getKey().toString());
-		System.out.println("app key"+app.getKey().toString());
+		ApplicationRepository.updateApplicationPath(app.getKey(), appPath.getKey());
 		processApplication(app.getKey());
 	}
 
 	public static void processApplication(Key key) {
 		Application app = ApplicationRepository.getApplication(key);
-		ApplicationPath appPath = app.getAppPath();
+		ApplicationPath appPath = ApplicationPathRepository.getApplication(app.getAppPath());
 		PathNode currentNode=null;
 		do{
 			currentNode= PathNodeRepository.getNode(appPath.getCurrentNode());
@@ -39,6 +37,8 @@ public class ApplicationManager {
 				currentNode = (FailNode)currentNode;
 			}
 			currentNode.process();
+			System.out.println(currentNodeKind);
+			System.out.println(currentNode.getState());
 			if(currentNode.getState().equalsIgnoreCase("finish")){
 				if(currentNodeKind.equalsIgnoreCase("ApproveNode")||currentNodeKind.equalsIgnoreCase("NoticeNode")||currentNodeKind.equalsIgnoreCase("StartNode")){
 					appPath.setCurrentNode(((RelayNode)currentNode).getNextNode());

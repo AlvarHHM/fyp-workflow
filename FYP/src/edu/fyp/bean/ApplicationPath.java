@@ -18,6 +18,7 @@ public class ApplicationPath {
 	@Persistent
     private Key currentNode;
 
+	
     public ApplicationPath() {
     	
     }
@@ -44,8 +45,8 @@ public class ApplicationPath {
     }
     
     public Key getKey() {
-        return currentNode;
-    }
+        return key;
+    } 
 
     public void setKey(Key key) {
         this.key = key;

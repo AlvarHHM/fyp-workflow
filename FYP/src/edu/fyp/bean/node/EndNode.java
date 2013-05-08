@@ -13,16 +13,4 @@ public class EndNode extends PathNode{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public String getState() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setState(String state) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -30,7 +30,7 @@ public class Application implements Serializable {
     @Persistent
     private Date applyDate;
     @Persistent
-    private ApplicationPath appPath;
+    private Key appPath;
     
     public Application() {
     	this.status="Processing";
@@ -91,11 +91,11 @@ public class Application implements Serializable {
     public void setApplyDate(Date applyDate) {
         this.applyDate = applyDate;
     }
-	public ApplicationPath getAppPath() {
+	public Key getAppPath() {
 		return appPath;
 	}
 
-	public void setAppPath(ApplicationPath appPath) {
+	public void setAppPath(Key appPath) {
 		this.appPath = appPath;
 	}
 

@@ -16,6 +16,7 @@ import edu.fyp.bean.node.PathNode;
 import edu.fyp.bean.node.StartNode;
 import edu.fyp.factory.PathNodeFactory;
 import edu.fyp.repository.ApplicationPathRepository;
+import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.PathNodeRepository;
 
 public class ApplicationPathGenerator {
@@ -64,6 +65,7 @@ public class ApplicationPathGenerator {
 				e.printStackTrace();
 			}
 		}
+		ApplicationPathRepository.addApplicationPath(appPath);
 		return appPath;
 	}
 	private static void storePathNode(HashMap<String, PathNode> pathNodeMap) {
@@ -87,7 +89,7 @@ public class ApplicationPathGenerator {
 				PathNode pathNode = pathNodeMap.get(jo.get("id"));
 				String tcp = jo.getString("tcp");
 				String fcp = jo.getString("fcp");
-			
+
 				try{
 				tcp=tcp.substring(tcp.indexOf('"')+1, tcp.lastIndexOf('"'));
 				}catch(Exception e){
@@ -98,7 +100,7 @@ public class ApplicationPathGenerator {
 				}catch(Exception e){
 					fcp=null;
 				}
-				
+
 				if(jo.getString("type").equalsIgnoreCase("approval")){
 					if(tcp!=null){
 						System.out.println(jo.getString("id")+" tto "+tcp);
@@ -131,7 +133,7 @@ public class ApplicationPathGenerator {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 }
