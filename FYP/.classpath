@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="edu/fyp/search/SearchJanitor.java|edu/fyp/search/SearchJanitorUtils.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-beans-3.2.1.RELEASE.jar"/>
@@ -11,6 +11,7 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-expression-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.jdbc-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/ST-4.0.7.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lucene-appengine-4.2.1-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/v2"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.2.3.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
