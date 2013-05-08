@@ -12,7 +12,6 @@ import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
-import edu.fyp.search.SearchJanitor;
 
 @PersistenceCapable
 public class Employee implements Serializable {
@@ -155,6 +154,27 @@ public class Employee implements Serializable {
 	}
 	
 	public void updateFullTextSearchIndex(){
+		
+		StringBuffer sb = new StringBuffer();
+		if (this.getDepartment() != null) {
+			sb.append(this.getDepartment().getDeptName());
+			sb.append(" ");
+			sb.append(this.getDepartment().getDeptId());
+			sb.append(" ");
+		}
+		sb.append(this.getEmpId());
+		sb.append(" ");
+		sb.append(this.getNickName());
+		sb.append(" ");
+		sb.append(this.getEngSurname());
+		sb.append(" ");
+		sb.append(this.getEngOtherName());
+		sb.append(" ");
+		if (this.getTitle() != null){
+			sb.append(this.getTitle().getEngTitle());
+			sb.append(" ");
+		}
+			
 	}
 
 	public enum Title {

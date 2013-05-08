@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.fyp.bean.Employee;
 import edu.fyp.bean.User;
 import edu.fyp.repository.UserRepository;
 
@@ -27,7 +28,10 @@ public class UserManager {
 		return result!=null&&result.getPassword().equals(password)?result:null;
 	}
 	
-	public List<User> searchUserByFullText(){
-		return null;
+	public List<Employee> searchEmployeeByFullText(String queryString){
+		
+		return userRepo.searchEmployeeByFullText(queryString);
+		
+		
 	}
 }
