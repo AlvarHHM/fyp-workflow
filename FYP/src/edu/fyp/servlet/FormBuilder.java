@@ -30,6 +30,7 @@ public class FormBuilder extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		resp.setContentType("text/plain");
 		PrintWriter out = resp.getWriter();
 		if(req.getParameter("FormID").equalsIgnoreCase("")||
 				req.getParameter("Version").equalsIgnoreCase("")){

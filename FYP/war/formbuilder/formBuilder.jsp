@@ -5,19 +5,15 @@
 <title>Form Builder</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
-<script type="text/javascript"
-	src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/master.css">
-<link rel="stylesheet" type="text/css"
-	href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
 <link rel="stylesheet" type="text/css" href="css/formBuilder.css">
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link href="path/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script type="text/javascript" src="js/formBuilder/drag-and-drop.js"></script>
-<script type="text/javascript"
-	src="js/formBuilder/select-and-property.js"></script>
-<script type="text/javascript"
-	src="js/formBuilder/element-validation.js"></script>
+<script type="text/javascript" src="js/formBuilder/select-and-property.js"></script>
+<script type="text/javascript" src="js/formBuilder/element-validation.js"></script>
 <script type="text/javascript" src="js/formBuilder/save-and-load.js"></script>
 <script type="text/javascript">
             $(function() {

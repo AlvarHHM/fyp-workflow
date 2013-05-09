@@ -31,6 +31,7 @@ public class ShowClientApplication extends HttpServlet {
 	
 	@Autowired
 	private FormManager formManager;
+	@Autowired
 	private ApplicationRepository appRepo;
 	
 	public void init(ServletConfig config) throws ServletException {

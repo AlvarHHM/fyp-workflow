@@ -44,6 +44,7 @@ public class ApplyApplication extends HttpServlet {
 		Application app = new Application();
 		app.setFormID(formID);
 		app.setVersion(version);
+		app.setFormData(data);
 		app.setApplyDate(new Date());
 		/*try {*/
 			appManager.applyApplication(app);

@@ -8,16 +8,18 @@ Form form = (Form)request.getSession().getAttribute("form");
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
+	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
-    <link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
-	<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
-	<script type="text/javascript" src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<title>Form</title>
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
 		 $(function() {
+			 	$(".hasDatepicker").removeClass("hasDatepicker");
 				$(".date-picker").datepicker();
         });
 		function SubmitApplication(){
@@ -56,15 +58,14 @@ Form form = (Form)request.getSession().getAttribute("form");
 									temp.Label = $(this).find("legend.label").html();
 									
 									$(this).find("input[type=checkbox]:checked").each(function(){
-										var choice = $(this).find("input[type=checkbox]:checked").parents(".choice");
-										temp.Value += $(this).find(".choice").index(choice)+",";
+										var choice = $(this).parents(".choice");
+										temp.Value += $(this).parents(".form-item").find(".choice").index(choice)+",";
 									});
 									break;
 								case (/COMBOBOX/) .test(itemType):
 									temp.Label = $(this).find("label.label").html();
 									
-									var choice = $(this).find("option:selected");
-									temp.Value = $(this).find("select").index(choice);
+									temp.Value = $(this).find("select")[0].selectedIndex;
 									break;
 								case (/TEXTAREA/) .test(itemType):
 									temp.Label = $(this).find("label.label").html();

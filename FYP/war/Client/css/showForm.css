@@ -58,3 +58,13 @@ margin-right: 10px;
 	border: 1px solid #2C5463;
 	background-color:white;
 }
+.form-item{
+    float:left;
+    position: relative;
+    white-space:nowrap;
+}
+
+.choice label{
+	white-space:nowrap;
+	display:inline;
+}

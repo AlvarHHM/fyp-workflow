@@ -1,4 +1,4 @@
                     <ul>
-                        <li><a href="maintainForm.html">Maintain Forms</a></li>
-                        <li><a href="formBuilder.html">Create Form</a></li>
+                        <li><a href="/formbuilder/showBuilderFormListServlet">Maintain Forms</a></li>
+                        <li><a href="/formbuilder/formBuilder.jsp">Create Form</a></li>
                     </ul>
