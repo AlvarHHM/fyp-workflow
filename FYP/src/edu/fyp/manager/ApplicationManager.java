@@ -54,6 +54,7 @@ public class ApplicationManager {
 			if(currentNode.getState().equalsIgnoreCase("finish")){
 				if(currentNode instanceof edu.fyp.bean.node.RelayNode){
 					appPath.setCurrentNode(((RelayNode)currentNode).getNextNode());
+					appPathRepo.updateCurrentNode(appPath.getKey(),((RelayNode)currentNode).getNextNode());
 				}else if(currentNode instanceof FailNode){
 					appRepo.updateApplicationStatus(key,"Rejected");
 				}else if(currentNode instanceof SuccessNode){
@@ -68,13 +69,18 @@ public class ApplicationManager {
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
 		Key nodeKey = KeyFactory.stringToKey(nodeKeyStr);
 		boolean approve;
+		Application app = appRepo.getApplication(appKey);
+		ApplicationPath appPath = appPathRepo.getApplication(app.getAppPath());
+		ApproveNode pathNode = (ApproveNode) pathNodeRepo.getNode(nodeKey);
+		
 		if(approveStr.equalsIgnoreCase("true")){
 			approve = true;
 		}else{
 			approve = false;
 		}		
-		Application app = appRepo.getApplication(appKey);
-		ApproveNode pathNode = (ApproveNode) pathNodeRepo.getNode(nodeKey);
+
 		pathNode.approve(approve);		
+		appPathRepo.updateCurrentNode(appPath.getKey(),pathNode.getNextNode());
+		processApplication(app.getKey());
 	}
 }

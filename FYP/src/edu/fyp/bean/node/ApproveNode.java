@@ -20,6 +20,16 @@ public class ApproveNode extends RelayNode{
 	public ApproveNode(){
 		this.setState("Approving");
 	}
+	
+	public void approve(boolean approve) {
+		this.setState("finish");
+		if(approve){
+			this.setNextNode(this.nextTrueNode);
+		}else{
+			this.setNextNode(this.nextFalseNode);
+		}
+	}
+	
 	public Key getNextTrueNode() {
 		return nextTrueNode;
 	}
@@ -50,5 +60,5 @@ public class ApproveNode extends RelayNode{
 	public void setSuperLevel(int superLevel) {
 		this.superLevel = superLevel;
 	}
-   
+  
 }

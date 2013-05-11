@@ -252,5 +252,15 @@
 		<servlet-name>showClientApplication</servlet-name>
 		<url-pattern>/Client/showClientApplication</url-pattern>
 	</servlet-mapping>	
+	
 	<!-- End of Show client application -->
+	
+			<servlet>
+		<servlet-name>approveAppNode</servlet-name>
+		<servlet-class>edu.fyp.servlet.ApproveAppNode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>approveAppNode</servlet-name>
+		<url-pattern>/Client/approveAppNode</url-pattern>
+	</servlet-mapping>	
 </web-app>
