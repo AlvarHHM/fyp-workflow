@@ -5,6 +5,7 @@ import javax.jdo.PersistenceManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,18 +22,10 @@ public class UserController {
 	private UserManager userManager;
 	
 	
-	@RequestMapping("/user")
-	public @ResponseBody String test(){
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		
-		
-		
-		
-		return "Hello World";
-	}
 	
-	@RequestMapping(value="/user/search", params="{queryString}")
-	public @ResponseBody String searechUser(@RequestParam String queryString){
+	
+	@RequestMapping(value="/searchUser.do", method=RequestMethod.GET)
+	public @ResponseBody String searechUser(@RequestParam(value="queryString",required=true) String queryString){
 		Gson gson = new Gson();
 		return gson.toJson(userManager.searchEmployeeByFullText(queryString));
 

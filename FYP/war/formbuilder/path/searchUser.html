@@ -6,17 +6,52 @@
 <script
 	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 <script>
-	$("#search-input").keyup(function() {
+	$(document).ready(function() {
+		$("#search-input").keyup(function() {
+			$.ajax({
+				type : "GET",
+				url : "/searchUser.do",
+				data : {
+					queryString : $("#search-input").val()
+				},
+				success : function(msg) {
+					refreshResult(msg);
+				}
 
+			});
+		});
 	});
+	
+	function refreshResult(object){
+		$("#user-list").empty();
+		console.log(object);
+		var result = JSON.parse(object);
+		console.log(result);
+		$("#user-list").append($('<li data-role="list-divider" role="heading">Employee</li>'));
+		$.each(result,function(i,e){
+			console.log(e);
+			var item = $("<li></li>");
+			item.attr("data-theme","f");
+			var itemLink = $("<a></a>");
+			itemLink.attr("href","#");
+			itemLink.attr("data-transition","slide");
+			itemLink.click(function(){
+				returnValue(e.empId);
+			}); 
+			itemLink.html(e.engOtherName+" "+e.engSurname+", "+e.nickName);
+			item.append(itemLink);
+			console.log(item);
+			$("#user-list").append(item);
+			
+		});
+		$("#user-list").listview("refresh");
+	}
 
 	function returnValue(value) {
 		userId.value = value;
 		top.close();
 		return false;
 	}
-	
-	
 </script>
 </head>
 <body>
@@ -26,14 +61,11 @@
 				<input name="" id="search-input" placeholder="" value=""
 					type="search">
 			</div>
-			<ul id="user-list" data-role="listview" data-divider-theme="c" data-inset="true">
-				<li data-role="list-divider" role="heading">Divider</li>
-				<li data-theme="f"><a href="#page1" data-transition="slide" onClick="return returnValue('123')">
-						Button </a></li>
-				<li data-theme="f"><a href="#page1" data-transition="slide">
-						Button </a></li>
-				<li data-theme="f"><a href="#page1" data-transition="slide">
-						Button </a></li>
+			<ul id="user-list" data-role="listview" data-divider-theme="c"
+				data-inset="true">
+				<li data-role="list-divider" role="heading">Employee</li>
+				<li data-theme="f"><a href="#page1" data-transition="slide"
+					onClick="return returnValue('123')"> Please enter search key </a></li>
 
 			</ul>
 		</div>
