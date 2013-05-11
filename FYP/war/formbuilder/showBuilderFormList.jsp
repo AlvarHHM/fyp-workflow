@@ -12,6 +12,15 @@
 	href="/formbuilder/css/common.css">
 	<link rel="stylesheet" type="text/css"
 	href="/formbuilder/css/showBuilderFormList.css">
+	<script type="text/javascript" src="/formbuilder/js/libs/jquery-1.8.2/jquery.js"></script>
+	<script>
+	$(function(){
+		$.each($('select[name="status"]'),function(){
+			var currentStatus= $(this).parent().find("input[name='currentStatus']").val();
+			$(this).val(currentStatus);
+			});
+	});
+	</script>
 </head>
 <body>
 	<div id="bodyContainer">
@@ -42,6 +51,7 @@
 								<th>Version</th>
 								<th>Title</th>
 								<th>Description</th>
+								<th>Status</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -67,6 +77,19 @@
 								<td><%=tempForm.getVersion()%></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=tempForm.getDescription()%></td>
+								<td>
+								<form method="get" action="/formbuilder/updateFromStatus">
+								<select name="status">
+									<option value="Editing">Editing</option>
+									<option value="Release">Release</option>
+									<option value="Disable">Disable</option>
+								</select>
+								<input type="hidden" name="currentStatus" value="<%= tempForm.getStatus() %>"/>
+								<input type="hidden" name="formID" value="<%=tempForm.getFormID()%>"/>
+								<input type="hidden" name="version" value="<%=tempForm.getVersion()%>"/>
+								<input type="submit"/>
+								</form>
+								</td>
 								<td><a
 									href="showBuilderFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
 									target="_blank"> <img src="/formbuilder/img/dc.png" width="30px"

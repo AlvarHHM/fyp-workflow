@@ -26,8 +26,6 @@ public class Form implements Serializable{
 	private Text formHtml;
 	@Persistent
 	private String description;
-	@Persistent
-	private String createDate;
 	//	@Persistent
 	// private ArrayList<UserGroup> userGroup;
 	@Persistent
@@ -41,6 +39,15 @@ public class Form implements Serializable{
 	@Persistent
 	private Date createdDate;
 
+	public Form(){
+		this.status="Editing";
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getFormID() {
 		return formID;
 	}

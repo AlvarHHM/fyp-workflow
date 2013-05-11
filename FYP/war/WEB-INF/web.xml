@@ -160,6 +160,20 @@
 		<url-pattern>/formbuilder/showBuilderForm</url-pattern>
 	</servlet-mapping>	
 	<!-- end of show builder -->
+	<!-- update form status -->
+				<servlet>
+		<servlet-name>updateFromStatus</servlet-name>
+		<servlet-class>edu.fyp.servlet.UpdateFormStatus</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value/>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateFromStatus</servlet-name>
+		<url-pattern>/formbuilder/updateFromStatus</url-pattern>
+	</servlet-mapping>
+		<!-- end of update form status -->
 	<!-- show client form and list -->
 			<servlet>
 		<servlet-name>showClientFormListServlet</servlet-name>
