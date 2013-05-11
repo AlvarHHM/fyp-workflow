@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
@@ -44,29 +45,36 @@ public class ApplicationManager {
 		do{
 			currentNode= pathNodeRepo.getNode(appPath.getCurrentNode());
 			String currentNodeKind = appPath.getCurrentNode().getKind();
-			if(currentNodeKind.equalsIgnoreCase("StartNode")){
-				currentNode = (StartNode)currentNode;
-			}else if(currentNodeKind.equalsIgnoreCase("ApproveNode")){
-				currentNode = (ApproveNode)currentNode;
-			}else if(currentNodeKind.equalsIgnoreCase("NoticeNode")){
-				currentNode = (NoticeNode)currentNode;
-			}else if(currentNodeKind.equalsIgnoreCase("SuccessNode")){
-				currentNode = (SuccessNode)currentNode;
-			}else if(currentNodeKind.equalsIgnoreCase("FailNode")){
-				currentNode = (FailNode)currentNode;
-			}
 			currentNode.process();
 			System.out.println(currentNodeKind);
 			System.out.println(currentNode.getState());
+			System.out.println(currentNode.getNodeKey());
+			System.out.println(((RelayNode)currentNode).getNextNode());
+			System.out.println(appPath.getCurrentNode());
 			if(currentNode.getState().equalsIgnoreCase("finish")){
-				if(currentNodeKind.equalsIgnoreCase("ApproveNode")||currentNodeKind.equalsIgnoreCase("NoticeNode")||currentNodeKind.equalsIgnoreCase("StartNode")){
+				if(currentNode instanceof edu.fyp.bean.node.RelayNode){
 					appPath.setCurrentNode(((RelayNode)currentNode).getNextNode());
-				}else if(currentNodeKind.equalsIgnoreCase("FailNode")){
+				}else if(currentNode instanceof FailNode){
 					appRepo.updateApplicationStatus(key,"Rejected");
-				}else if(currentNodeKind.equalsIgnoreCase("SuccessNode")){
-					appRepo.updateApplicationStatus(key,"Accepted");
+				}else if(currentNode instanceof SuccessNode){
+					appRepo.updateApplicationStatus(key,"Approved");
 				}
 			}
 		}while(currentNode.getNodeKey().compareTo(appPath.getCurrentNode())!=0);
+	}
+
+	public void approveApplicationNode(String appKeyStr, String nodeKeyStr,
+			String approveStr) {
+		Key appKey = KeyFactory.stringToKey(appKeyStr);
+		Key nodeKey = KeyFactory.stringToKey(nodeKeyStr);
+		boolean approve;
+		if(approveStr.equalsIgnoreCase("true")){
+			approve = true;
+		}else{
+			approve = false;
+		}		
+		Application app = appRepo.getApplication(appKey);
+		ApproveNode pathNode = (ApproveNode) pathNodeRepo.getNode(nodeKey);
+		pathNode.approve(approve);		
 	}
 }

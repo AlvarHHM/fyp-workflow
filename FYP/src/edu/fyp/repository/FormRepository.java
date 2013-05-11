@@ -75,4 +75,12 @@ public class FormRepository {
 				"FormID:"+formID+"+Version:"+version);
 		return k;
 	}
+	public void updateFormStatus(String formID, String version, String status) {
+		Form form = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Key k = generateKey(formID,version);
+		form = pm.getObjectById(Form.class, k);
+		form.setStatus(status);
+		pm.close();
+	}
 }

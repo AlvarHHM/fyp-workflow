@@ -61,6 +61,7 @@ public class ApplicationPathGenerator {
 			JSONObject jo;
 			try {
 				jo = jsonAry.getJSONObject(i);
+				System.out.println(jo.toString());
 				String nodeID="";
 				nodeID = jo.getString("id");
 				pathNodeMap.put(nodeID,pnf.createNode(jo));

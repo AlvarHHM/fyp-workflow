@@ -37,6 +37,10 @@ public class FormManager {
 		formRepo.updateFormPath(formID,version,path);
 	}
 
+	public void updateFormStatus(String formID, String version, String status){
+		formRepo.updateFormStatus(formID,version,status);
+	}
+	
 	public ArrayList<Form> searchForm(String search, String keyword) {
 		return formRepo.searchForm(search, keyword);
 	}

@@ -1,0 +1,4 @@
+**/datastore-indexes-auto.xml
+**/appengine-generated/local_db.bin
+*.class
+*.war
