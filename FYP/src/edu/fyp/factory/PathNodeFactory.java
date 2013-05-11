@@ -28,37 +28,40 @@ public class PathNodeFactory {
 		return pathNode;
 	}
 	private PathNode createStartNode(JSONObject json) {
-		PathNode pathNode = new StartNode();
+		StartNode pathNode = new StartNode();
 		return pathNode;
 	}
 
 	private PathNode createApproveNode(JSONObject json) {
-		PathNode pathNode = new ApproveNode();
+		ApproveNode pathNode = new ApproveNode();
 		return pathNode;
 	}
 
 	private PathNode createNoticeNode(JSONObject json) {
-		PathNode pathNode = (NoticeNode)new NoticeNode();
-/*		try {
+		NoticeNode pathNode = new NoticeNode();
+		try {
 			JSONObject nodeProps = json.getJSONObject("props");
-			if(nodeProps.getString("email")!=null){
-				((NoticeNode) pathNode).setEmail(nodeProps.getString("email"));
+			if(nodeProps.getString("notice-message")!=null){
+				pathNode.setNoticeMessage(nodeProps.getString("notice-message"));
+			}
+			if(nodeProps.getString("notice-type").equalsIgnoreCase("email")){
+				pathNode.setType(nodeProps.getString("notice-type"));
+				pathNode.setEmail(nodeProps.getString("notice-email"));
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			System.out.println("error");
 			e.printStackTrace();
-		}*/
+		}
 		return pathNode;
 	}
 
 	private PathNode createSuccessNode(JSONObject json) {
-		PathNode pathNode = new SuccessNode();
+		SuccessNode pathNode = new SuccessNode();
 		return pathNode;
 	}
 
 	private PathNode createFailNode(JSONObject json) {
-		PathNode pathNode = new FailNode();
+		FailNode pathNode = new FailNode();
 		return pathNode;
 	}
 }
