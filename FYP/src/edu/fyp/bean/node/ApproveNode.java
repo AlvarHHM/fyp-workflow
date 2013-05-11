@@ -3,7 +3,14 @@ package edu.fyp.bean.node;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.appengine.api.datastore.Key;
+
+import edu.fyp.manager.ApplicationPathGenerator;
+import edu.fyp.repository.ApplicationPathRepository;
+import edu.fyp.repository.ApplicationRepository;
+import edu.fyp.repository.PathNodeRepository;
 
 @PersistenceCapable
 public class ApproveNode extends RelayNode{
@@ -17,9 +24,10 @@ public class ApproveNode extends RelayNode{
     private String deptID;
 	@Persistent
     private int superLevel;
-	public ApproveNode(){
+
+	public ApproveNode() {
 		this.setState("Approving");
-	}
+	}	
 	
 	public void approve(boolean approve) {
 		this.setState("finish");

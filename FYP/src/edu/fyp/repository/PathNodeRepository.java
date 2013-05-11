@@ -34,6 +34,7 @@ public class PathNodeRepository {
 	    } 
 	    return pathNode;
 	}
+	
 	public void updateStartNextNode(StartNode startNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
@@ -43,6 +44,7 @@ public class PathNodeRepository {
 	        pm.close();
 	    }
 	}
+	
 	public void updateNoticeNextNode(NoticeNode noticeNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
@@ -52,6 +54,17 @@ public class PathNodeRepository {
 	        pm.close();
 	    }
 	}
+	
+	public void updateApproveNextNode(ApproveNode approveNode, Key nextNodeKey){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+	    try {
+	    	ApproveNode an = pm.getObjectById(ApproveNode.class, approveNode.getNodeKey());
+	        an.setNextNode(nextNodeKey);
+	    } finally {
+	        pm.close();
+	    }
+	}
+	
 	public void updateApproveNextTrueNode(ApproveNode approveNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
@@ -61,6 +74,7 @@ public class PathNodeRepository {
 	        pm.close();
 	    }
 	}
+	
 	public void updateApproveNextFalseNode(ApproveNode approveNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {

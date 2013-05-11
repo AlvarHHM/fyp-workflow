@@ -46,22 +46,34 @@ public class ApproveAppNode extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		String appKey = req.getParameter("appKey");
 		String nodeKey = req.getParameter("nodeKey");
-		String approve = req.getParameter("approve");
+		String approveStr = req.getParameter("approve");
+		boolean approve;
+		
+		if(approveStr.equalsIgnoreCase("true")){
+			approve = true;
+		}else if(approveStr.equalsIgnoreCase("false")){
+			approve = false;
+		}else{
+			out.println("Error. Approve only accept true or false.");
+			return ;
+		}
+		
 		if (
 				appKey.equalsIgnoreCase("") 
 				|| appKey == null
 				|| nodeKey.equalsIgnoreCase("")
 				|| nodeKey == null
-				|| approve.equalsIgnoreCase("")
-				|| approve == null
 				) {
 			out.println("Application Key, Node Key, approve can not be empty.");
 			return ;
 		}
-		try {
+		
+/*		try {*/
 			appManager.approveApplicationNode(appKey,nodeKey,approve);
-		} catch (Exception e) {
+/*		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");
-		}
+		}*/
+		
+		out.close();
 	}
 }

@@ -131,7 +131,7 @@ public class ApplicationPathGenerator {
 					if(fcp!=null){
 						System.out.println(jo.getString("id")+" fto "+fcp);
 						if(pathNodeMap.get(fcp)!=null){
-							pathNodeRepo.updateApproveNextTrueNode((ApproveNode)pathNode,pathNodeMap.get(fcp).getNodeKey());
+							pathNodeRepo.updateApproveNextFalseNode((ApproveNode)pathNode,pathNodeMap.get(fcp).getNodeKey());
 						}
 					}
 				}else if(jo.getString("type").equalsIgnoreCase("notice")){
