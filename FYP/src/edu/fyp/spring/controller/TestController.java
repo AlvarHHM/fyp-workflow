@@ -35,8 +35,9 @@ public class TestController {
 		employee.setEngOtherName("Hoi Hei");
 		employee.setEmpId("H001");
 		employee.updateFullTextSearchIndex();
+		user.setEmployee(employee);
 		employee.setUser(user);
-		pm.makePersistent(employee);
+		pm.makePersistent(user);
 		pm.close();
 		
 		

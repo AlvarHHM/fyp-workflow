@@ -24,10 +24,7 @@ public class UserController {
 	@RequestMapping("/user")
 	public @ResponseBody String test(){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		ApproveNode an1 = new ApproveNode();
-		ApproveNode an2 = new ApproveNode();
-		pm.makePersistent(an1);
-		pm.makePersistent(an2).setNextNode(an1.getNodeID());
+		
 		
 		
 		
