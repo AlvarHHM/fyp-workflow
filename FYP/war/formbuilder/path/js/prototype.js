@@ -55,7 +55,7 @@ Node.prototype.loadMenu = function() {
 			
 			$.each(props,function(i,v){
 				$("#" + i).val(v);
-				console.log("#" + i+"|"+v);
+//				console.log("#" + i+"|"+v);
 				if($("#" + i)[0].tagName == "SELECT"){
 					$("#" + i).change();
 				}

@@ -126,9 +126,9 @@
 							<div id="notice-employeeId-warpper" style="display: none">
 								<label>Employee Id</label><br>
 								<div class="input-append">
-									<input type="text" id="notice-employeeId" class="property-value"
-										disabled> <input type="submit" class="search-btn"
-										value="submit"> <a class="btn"
+									<input type="text" id="notice-employeeId"
+										class="property-value" disabled> <input type="submit"
+										class="search-btn" value="submit"> <a class="btn"
 										onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
 								</div>
 							</div>
@@ -138,6 +138,14 @@
 							<div id="notice-email-warpper" style="display: none">
 								<label>Email Address</label><br> <input type="text"
 									id="notice-email" class="property-value">
+							</div>
+						</div>
+						<div class="property-item">
+							<div id="notice-message-warpper" style="">
+								<label>Additional Mesaage</label><br>
+								<textarea rows="4" cols="50"  id="notice-message"
+									class="property-value"></textarea>
+							
 							</div>
 						</div>
 
