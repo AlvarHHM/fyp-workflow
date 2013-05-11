@@ -18,12 +18,15 @@ public class ApplicationManager {
 	private ApplicationPathGenerator apg;
 	private ApplicationRepository appRepo;
 	private ApplicationPathRepository appPathRepo;
+	private PathNodeRepository pathNodeRepo;
 	
 	@Autowired
-	public ApplicationManager(ApplicationPathGenerator apg,ApplicationRepository appRepo,ApplicationPathRepository appPathRepo){
+	public ApplicationManager(ApplicationPathGenerator apg,ApplicationRepository appRepo,ApplicationPathRepository appPathRepo
+			,PathNodeRepository pathNodeRepo){
 		this.apg = apg;
-		this.appRepo=appRepo;
-		this.appPathRepo=appPathRepo;
+		this.appRepo = appRepo;
+		this.appPathRepo = appPathRepo;
+		this.pathNodeRepo = pathNodeRepo;
 	}
 	
 	public void applyApplication(Application app) {
@@ -39,7 +42,7 @@ public class ApplicationManager {
 		ApplicationPath appPath = appPathRepo.getApplication(app.getAppPath());
 		PathNode currentNode=null;
 		do{
-			currentNode= PathNodeRepository.getNode(appPath.getCurrentNode());
+			currentNode= pathNodeRepo.getNode(appPath.getCurrentNode());
 			String currentNodeKind = appPath.getCurrentNode().getKind();
 			if(currentNodeKind.equalsIgnoreCase("StartNode")){
 				currentNode = (StartNode)currentNode;
@@ -64,6 +67,6 @@ public class ApplicationManager {
 					appRepo.updateApplicationStatus(key,"Accepted");
 				}
 			}
-		}while(currentNode.getNodeID().compareTo(appPath.getCurrentNode())!=0);
+		}while(currentNode.getNodeKey().compareTo(appPath.getCurrentNode())!=0);
 	}
 }

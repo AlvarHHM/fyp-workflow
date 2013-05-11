@@ -1,5 +1,7 @@
 package edu.fyp.factory;
 
+import org.springframework.stereotype.Service;
+
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
@@ -19,6 +21,9 @@ public class PathNodeFactory {
 			pathNode= createSuccessNode(json);
 		}else if(json.getString("type").equalsIgnoreCase("fail")){
 			pathNode= createFailNode(json);
+		}
+		if(pathNode!=null){
+			pathNode.setNodeID(json.getString("id"));
 		}
 		return pathNode;
 	}

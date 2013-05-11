@@ -14,9 +14,11 @@ import com.google.appengine.api.datastore.Key;
 public abstract class PathNode {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Key nodeID;
+	private Key nodeKey;
 	@Persistent
 	private String state;
+	@Persistent
+	private String nodeID;
 
 	public abstract void process();
 
@@ -28,11 +30,19 @@ public abstract class PathNode {
 		this.state = state;
 	}
 
-	public Key getNodeID() {
+	public String getNodeID() {
 		return nodeID;
 	}
 
-	public void setNodeID(Key nodeID) {
+	public void setNodeID(String nodeID) {
 		this.nodeID = nodeID;
+	}
+
+	public Key getNodeKey() {
+		return nodeKey;
+	}
+
+	public void setNodeKey(Key nodeKey) {
+		this.nodeKey = nodeKey;
 	}
 }

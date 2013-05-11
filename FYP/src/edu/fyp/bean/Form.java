@@ -116,6 +116,7 @@ public class Form implements Serializable{
 
 	public Key getKey(){
 		return key;
+		
 	}public void setKey(Key key){
 		this.key=key;
 	}

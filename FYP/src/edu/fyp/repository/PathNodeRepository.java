@@ -13,7 +13,7 @@ import edu.fyp.bean.node.StartNode;
 
 @Repository
 public class PathNodeRepository {
-	public static void addPathNode(PathNode pathNode){
+	public void addPathNode(PathNode pathNode){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(pathNode);
@@ -21,7 +21,7 @@ public class PathNodeRepository {
 			pm.close();
 		}
 	}
-	public static PathNode getNode(Key key){
+	public PathNode getNode(Key key){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		PathNode pathNode=null;
 	    try {
@@ -34,37 +34,37 @@ public class PathNodeRepository {
 	    } 
 	    return pathNode;
 	}
-	public static void updateStartNextNode(StartNode startNode, Key nextNodeKey){
+	public void updateStartNextNode(StartNode startNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
-	    	StartNode sn = pm.getObjectById(StartNode.class, startNode.getNodeID());
+	    	StartNode sn = pm.getObjectById(StartNode.class, startNode.getNodeKey());
 	        sn.setNextNode(nextNodeKey);
 	    } finally {
 	        pm.close();
 	    }
 	}
-	public static void updateNoticeNextNode(NoticeNode noticeNode, Key nextNodeKey){
+	public void updateNoticeNextNode(NoticeNode noticeNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
-	    	NoticeNode nn = pm.getObjectById(NoticeNode.class, noticeNode.getNodeID());
+	    	NoticeNode nn = pm.getObjectById(NoticeNode.class, noticeNode.getNodeKey());
 	        nn.setNextNode(nextNodeKey);
 	    } finally {
 	        pm.close();
 	    }
 	}
-	public static void updateApproveNextTrueNode(ApproveNode approveNode, Key nextNodeKey){
+	public void updateApproveNextTrueNode(ApproveNode approveNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
-	    	ApproveNode an = pm.getObjectById(ApproveNode.class, approveNode.getNodeID());
+	    	ApproveNode an = pm.getObjectById(ApproveNode.class, approveNode.getNodeKey());
 	        an.setNextTrueNode(nextNodeKey);
 	    } finally {
 	        pm.close();
 	    }
 	}
-	public static void updateApproveNextFalseNode(ApproveNode approveNode, Key nextNodeKey){
+	public void updateApproveNextFalseNode(ApproveNode approveNode, Key nextNodeKey){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
-	    	ApproveNode an = pm.getObjectById(ApproveNode.class, approveNode.getNodeID());
+	    	ApproveNode an = pm.getObjectById(ApproveNode.class, approveNode.getNodeKey());
 	        an.setNextFalseNode(nextNodeKey);
 	    } finally {
 	        pm.close();

@@ -31,21 +31,24 @@ public class ApplicationPathGenerator {
 	
 	private FormManager formManager;
 	private ApplicationPathRepository appPathRepo;
+	private PathNodeRepository pathNodeRepo;
 	
 	@Autowired
-	public ApplicationPathGenerator(FormManager formManager,ApplicationPathRepository appPathRepo){
+	public ApplicationPathGenerator(FormManager formManager,ApplicationPathRepository appPathRepo, 
+			PathNodeRepository pathNodeRepo){
 		this.formManager = formManager;
 		this.appPathRepo = appPathRepo;
+		this.pathNodeRepo = pathNodeRepo;
 	}
 	
 	public ApplicationPath generatePath(String formID, String version) {
 		Form form = formManager.getFormByIDVersion(formID, version);
 		Text path =form.getPath();
 		Gson gson = new Gson();
+		PathNodeFactory pnf = new PathNodeFactory();
 		ApplicationPath appPath= new ApplicationPath();
 		String[] str = gson.fromJson(path.getValue(), String[].class);
 		HashMap<String,PathNode> pathNodeMap = new HashMap<String, PathNode>();
-		PathNodeFactory pnf = new PathNodeFactory();
 		JSONArray jsonAry = new JSONArray();
 		try {
 			jsonAry = strToJSONArray(str);
@@ -74,8 +77,8 @@ public class ApplicationPathGenerator {
 			try {
 				jo = jsonAry.getJSONObject(i);
 				if(jo.getString("type").equalsIgnoreCase("start")){
-					appPath.setStartNode(pathNodeMap.get(jo.get("id")).getNodeID());
-					appPath.setCurrentNode(pathNodeMap.get(jo.get("id")).getNodeID());
+					appPath.setStartNode(pathNodeMap.get(jo.get("id")).getNodeKey());
+					appPath.setCurrentNode(pathNodeMap.get(jo.get("id")).getNodeKey());
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -87,8 +90,7 @@ public class ApplicationPathGenerator {
 	}
 	private void storePathNode(HashMap<String, PathNode> pathNodeMap) {
 		for(Object key:pathNodeMap.keySet()){
-			PathNodeRepository.addPathNode(pathNodeMap.get(key));
-			System.out.println(pathNodeMap.get(key).getNodeID().toString());
+			pathNodeRepo.addPathNode(pathNodeMap.get(key));
 		}
 	}
 	private JSONArray strToJSONArray(String[] str) throws JSONException{
@@ -122,27 +124,27 @@ public class ApplicationPathGenerator {
 					if(tcp!=null){
 						System.out.println(jo.getString("id")+" tto "+tcp);
 						if(pathNodeMap.get(tcp)!=null){
-							PathNodeRepository.updateApproveNextTrueNode((ApproveNode)pathNode,pathNodeMap.get(tcp).getNodeID());
+							pathNodeRepo.updateApproveNextTrueNode((ApproveNode)pathNode,pathNodeMap.get(tcp).getNodeKey());
 						}
 					}
 					if(fcp!=null){
 						System.out.println(jo.getString("id")+" fto "+fcp);
 						if(pathNodeMap.get(fcp)!=null){
-							PathNodeRepository.updateApproveNextTrueNode((ApproveNode)pathNode,pathNodeMap.get(fcp).getNodeID());
+							pathNodeRepo.updateApproveNextTrueNode((ApproveNode)pathNode,pathNodeMap.get(fcp).getNodeKey());
 						}
 					}
 				}else if(jo.getString("type").equalsIgnoreCase("notice")){
 					if(tcp!=null){
 						System.out.println(jo.getString("id")+" tto "+tcp);
 						if(pathNodeMap.get(tcp)!=null){
-							PathNodeRepository.updateNoticeNextNode((NoticeNode)pathNode,pathNodeMap.get(tcp).getNodeID());
+							pathNodeRepo.updateNoticeNextNode((NoticeNode)pathNode,pathNodeMap.get(tcp).getNodeKey());
 						}
 					}
 				}else if(jo.getString("type").equalsIgnoreCase("start")){
 					if(tcp!=null){
 						System.out.println(jo.getString("id")+" tto "+tcp);
 						if(pathNodeMap.get(tcp)!=null){
-							PathNodeRepository.updateStartNextNode((StartNode)pathNode,pathNodeMap.get(tcp).getNodeID());
+							pathNodeRepo.updateStartNextNode((StartNode)pathNode,pathNodeMap.get(tcp).getNodeKey());
 						}
 					}
 				}
