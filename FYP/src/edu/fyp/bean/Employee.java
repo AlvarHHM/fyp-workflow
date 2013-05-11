@@ -41,6 +41,8 @@ public class Employee implements Serializable {
 	@Persistent
 	private Title title;
 	@Persistent
+	private String email;
+	@Persistent
 	private Set<String> fts;
 	
 	public Employee(){
@@ -143,6 +145,14 @@ public class Employee implements Serializable {
 
 	public void setTitle(Title title) {
 		this.title = title;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Set<String> getFts() {
