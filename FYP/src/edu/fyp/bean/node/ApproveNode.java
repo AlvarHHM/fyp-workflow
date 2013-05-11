@@ -12,15 +12,13 @@ public class ApproveNode extends RelayNode{
 	@Persistent
     private Key nextFalseNode;
 	@Persistent
-    private Key nextNode;
-	@Persistent
     private String empID;
 	@Persistent
     private String deptID;
 	@Persistent
     private int superLevel;
 	public ApproveNode(){
-		
+		this.setState("Approving");
 	}
 	public Key getNextTrueNode() {
 		return nextTrueNode;
@@ -33,12 +31,6 @@ public class ApproveNode extends RelayNode{
 	}
 	public void setNextFalseNode(Key nextFalseNode) {
 		this.nextFalseNode = nextFalseNode;
-	}
-	public Key getNextNode() {
-		return nextNode;
-	}
-	public void setNextNode(Key nextNode) {
-		this.nextNode = nextNode;
 	}
 	public String getEmpID() {
 		return empID;
