@@ -1,5 +1,7 @@
 package edu.fyp.manager;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -46,16 +48,17 @@ public class ApplicationManager {
 
 	public void processApplication(Key key) {
 		Application app = appRepo.getApplication(key);
-		ApplicationPath appPath = appPathRepo.getApplication(app.getAppPath());
+		ApplicationPath appPath = appPathRepo.getApplicationPath(app.getAppPath());
 		PathNode currentNode = null;
-		 ((Object) applicationContext).getBeanFactory().registerSingleton
 		do {
 			currentNode = pathNodeRepo.getNode(appPath.getCurrentNode());
 			String currentNodeKind = appPath.getCurrentNode().getKind();
+			applicationContext.getAutowireCapableBeanFactory().autowireBean(currentNode);
+			System.out.println("Current path "+appPath.getKey());
+			System.out.println("Current node "+currentNode.getNodeKey());
 			currentNode.process();
-			System.out.println(appPath.getCurrentNode());
 			if (currentNode.getState().equalsIgnoreCase("finish")) {
-				if (currentNode instanceof edu.fyp.bean.node.RelayNode) {
+				if (currentNode instanceof RelayNode) {
 					appPath.setCurrentNode(((RelayNode) currentNode)
 							.getNextNode());
 					appPathRepo.updateCurrentNode(appPath.getKey(),
@@ -74,17 +77,23 @@ public class ApplicationManager {
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
 		Key nodeKey = KeyFactory.stringToKey(nodeKeyStr);
 		Application app = appRepo.getApplication(appKey);
-		ApplicationPath appPath = appPathRepo.getApplication(app.getAppPath());
+		ApplicationPath appPath = appPathRepo.getApplicationPath(app.getAppPath());
 		ApproveNode pathNode = (ApproveNode) pathNodeRepo.getNode(nodeKey);
 		System.out.println(pathNode.getNodeKey());
 		System.out.println(appPath.getCurrentNode());
 		if (pathNode.getNodeKey().equals(appPath.getCurrentNode())) {
-			System.out.println("here ?");
 			pathNode.approve(approve);
 			pathNodeRepo.updateApproveNextNode(pathNode, pathNode.getNextNode());//Update datastore
 			appPathRepo.updateCurrentNode(appPath.getKey(),
 					pathNode.getNextNode());
 			processApplication(app.getKey());
 		}
+	}
+
+	public Application getApplicationByCurrentNode(Key nodeKey) {
+		ApplicationPath appPath=appPathRepo.getApplicationPathByCurrentNode(nodeKey);
+		System.out.println(appPath.getKey()+" getApplicationCurrentNode app path ");
+		Application app = appRepo.getApplicationByPathKey(appPath.getKey());;
+		return app;
 	}
 }
