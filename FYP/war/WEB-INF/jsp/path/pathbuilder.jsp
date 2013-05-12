@@ -2,31 +2,9 @@
 <html>
 <head>
 <script type="text/javascript">
-	var formID = "${param.formID}";
-	var version = "${param.version}";
+	
 	var formKey = "${formKey}"
-			// 	function searchUser() {
-			// 		dataitem = window.open("about:blank", "dataitem",
-			// 				"width=300,height=500,toolbar=no,menubar=no,scrollbars=yes");
-			// 		with(dataitem.document){
-			// 			writeln("<html><head>");
-			// 			writeln("<link rel=\"stylesheet\" href=\"/css/jquery.mobile-1.3.1.min.css\"/>");
-			// 			writeln("<sc"+"ript");
-			// 			writeln("src=\"js/jquery-1.9.1.min.js\">");
-			// 			writeln("</sc"+"ript>");
-			// 			writeln("<sc"+"ript");
-			// 			writeln("src=\"/js/jquery.mobile-1.3.1.min.js\">");
-			// 			writeln("</sc"+"ript>");
-			// 			writeln("<sc"+"ript>");
-			// 			writeln("$(\"#user-list\").trigger('create');$(document).ready(function() {$(\"#user-list\").listview(\"refresh\");$(\"#search-input\").keyup(function() {$.ajax({type : \"GET\",url : \"/searchUser.do\",data : {queryString : $(\"#search-input\").val()},success : function(msg) {refreshResult(msg);}});});});function refreshResult(object){$(\"#user-list\").empty();console.log(object);var result = JSON.parse(object);console.log(result);$(\"#user-list\").append($(\"<li data-role=\\\"list-divider\\\" role=\\\"heading\\\">Employee</li>\"));$.each(result,function(i,e){console.log(e);var item = $(\"<li></li>\");item.attr(\"data-theme\",\"f\");var itemLink = $(\"<a></a>\");itemLink.attr(\"href\",\"#\");itemLink.attr(\"data-transition\",\"slide\");itemLink.click(function(){returnValue(e.empId);}); itemLink.html(e.engOtherName+\" \"+e.engSurname+\", \"+e.nickName);item.append(itemLink);console.log(item);$(\"#user-list\").append(item);});$(\"#user-list\").listview(\"refresh\");}function returnValue(value) {userId.value = value;top.close();return false;}");
-			// 			writeln("</sc"+"ript>");
-			// 			writeln("</head>");
-			// 			writeln('<body><div data-role="page" id="page1"><div data-role="content"><div data-role="fieldcontain"><input name="" id="search-input" placeholder="" value=""type="search"></div><ul id="user-list" data-role="listview" data-divider-theme="c"data-inset="true"><li data-role="list-divider" role="heading">Employee</li><li data-theme="f"><a href="#page1" data-transition="slide"onClick=""> Please enter search key </a></li></ul></div></div></body>');
-			// 			writeln("</html>");
-
-			// 		}
-			// 		return dataitem.userId;
-			// 	}
+			
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>

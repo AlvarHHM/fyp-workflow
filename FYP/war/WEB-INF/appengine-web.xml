@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-	<application>alvartestproject</application>
+	<application>workflow-fyp</application>
 	<version>1</version>
 
 	<!-- Allows App Engine to send multiple requests to one instance in parallel: -->
@@ -13,6 +13,8 @@
 
 	<resource-files>
 		<include path="/**.html" />
+		<include path="/WEB-INF/mail-template/**" />
+		<include path="/mail-template/**" />
 	</resource-files>
 
 	<!-- HTTP Sessions are disabled by default. To enable HTTP sessions specify: 
