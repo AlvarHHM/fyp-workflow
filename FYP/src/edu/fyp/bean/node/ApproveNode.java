@@ -22,26 +22,29 @@ import edu.fyp.repository.PathNodeRepository;
 public class ApproveNode extends RelayNode{
 	@Persistent
     private Key nextTrueNode;
+	
 	@Persistent
     private Key nextFalseNode;
+	
 	@Persistent
     private String empID;
+	
 	@Persistent
     private String deptID;
+	
 	@Persistent
     private int superLevel;
+	
+	@Persistent
+    private String type;
+	
+	@Autowired
+	ApplicationManager appManager;
 
-	public ApproveNode() throws IOException {
-		ApplicationManager appManager = new ApplicationManager();
-		MailNotice mn = new MailNotice();
-		MailBody mb = new MailBody("/mail-template/NotifyOfComingAproval.html");
-		mb.setProperty("userId", "User ID");
-		mn.setTitle("test");
-		mn.setTo("mahoihei@gmial.com");
-		NoticeMailService.getIntance().batchNotice(mn);
-		NoticeMailService.getIntance().processBatch();
-		this.setState("Approving");
-	}	
+	public void process(){
+
+    }
+	
 	
 	public void approve(boolean approve) {
 		this.setState("finish");
@@ -55,32 +58,50 @@ public class ApproveNode extends RelayNode{
 	public Key getNextTrueNode() {
 		return nextTrueNode;
 	}
+	
 	public void setNextTrueNode(Key nextTrueNode) {
 		this.nextTrueNode = nextTrueNode;
 	}
+	
 	public Key getNextFalseNode() {
 		return nextFalseNode;
 	}
+	
 	public void setNextFalseNode(Key nextFalseNode) {
 		this.nextFalseNode = nextFalseNode;
 	}
+	
 	public String getEmpID() {
 		return empID;
 	}
+	
 	public void setEmpID(String empID) {
 		this.empID = empID;
 	}
+	
 	public String getDeptID() {
 		return deptID;
 	}
+	
 	public void setDeptID(String deptID) {
 		this.deptID = deptID;
 	}
+	
 	public int getSuperLevel() {
 		return superLevel;
 	}
+	
 	public void setSuperLevel(int superLevel) {
 		this.superLevel = superLevel;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
   
 }

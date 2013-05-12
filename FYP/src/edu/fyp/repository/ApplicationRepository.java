@@ -1,6 +1,5 @@
 package edu.fyp.repository;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +15,8 @@ import edu.fyp.bean.ApplicationPath;
 import edu.fyp.bean.Form;
 
 @Repository
-public class ApplicationRepository{
-	public void addApplication(Application app){
+public class ApplicationRepository {
+	public void addApplication(Application app) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(app);
@@ -25,7 +24,8 @@ public class ApplicationRepository{
 			pm.close();
 		}
 	}
-	public Application updateApplicationPath(Key key, Key appPath){
+
+	public Application updateApplicationPath(Key key, Key appPath) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Application app;
 		try {
@@ -36,8 +36,8 @@ public class ApplicationRepository{
 		}
 		return app;
 	}
-	
-	public Application updateApplicationStatus(Key key, String status){
+
+	public Application updateApplicationStatus(Key key, String status) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Application app;
 		try {
@@ -48,10 +48,10 @@ public class ApplicationRepository{
 		}
 		return app;
 	}
-	
+
 	public Application getApplication(Key key) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Application app=null;
+		Application app = null;
 		try {
 			app = pm.getObjectById(Application.class, key);
 		} finally {
@@ -59,6 +59,7 @@ public class ApplicationRepository{
 		}
 		return app;
 	}
+
 	public ArrayList<Application> getAllApplication() {
 		List<Application> appList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -67,11 +68,31 @@ public class ApplicationRepository{
 		pm.close();
 		return listToArrayListForm(appList);
 	}
-	protected ArrayList<Application> listToArrayListForm(List<Application> appList){
+
+	protected ArrayList<Application> listToArrayListForm(
+			List<Application> appList) {
 		ArrayList<Application> appArrayList = new ArrayList<Application>();
-		for(int i=0;i<appList.size();i++){
-			appArrayList.add((Application)appList.get(i));
+		for (int i = 0; i < appList.size(); i++) {
+			appArrayList.add((Application) appList.get(i));
 		}
 		return appArrayList;
+	}
+
+	public Application getApplicationByPathKey(Key pathKey) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Application app = null;
+		Query query = pm.newQuery(Application.class,
+				" appPath == pathKey ");
+		query.declareParameters("String pathKey");
+		List<Application> results = (List<Application>) query
+				.execute(pathKey);
+		for( int i = 0 ; i < results.size() ; i++){
+			if(results.get(i).getAppPath().compareTo(pathKey)==0){
+				app = results.get(i);
+				break;
+			}
+		}
+		pm.close();
+		return app;
 	}
 }

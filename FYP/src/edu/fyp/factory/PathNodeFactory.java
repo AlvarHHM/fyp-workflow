@@ -34,6 +34,15 @@ public class PathNodeFactory {
 
 	private PathNode createApproveNode(JSONObject json) {
 		ApproveNode pathNode = new ApproveNode();
+		try {
+			JSONObject nodeProps = json.getJSONObject("props");
+			if(nodeProps.getString("approval-type").equalsIgnoreCase("super")){
+				pathNode.setNoticeMessage(nodeProps.getString("notice-message"));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return pathNode;
 	}
 

@@ -1,24 +1,56 @@
 package edu.fyp.bean.node;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import edu.fyp.bean.Application;
+import edu.fyp.bean.ApplicationPath;
+import edu.fyp.manager.ApplicationManager;
+import edu.fyp.notify.email.MailBody;
+import edu.fyp.notify.email.MailNotice;
+import edu.fyp.notify.email.NoticeMailService;
+import edu.fyp.repository.ApplicationPathRepository;
+import edu.fyp.repository.ApplicationRepository;
 
 @PersistenceCapable
 public class NoticeNode extends RelayNode{
 	@Persistent
     private String empID;
+	
 	@Persistent
     private String email;
+	
 	@Persistent 
 	private String noticeMessage="";
+	
 	@Persistent 
 	private String type;
 	
+	@Autowired
+	ApplicationManager appManager;
+	
+	
 	public void process(){
-        System.out.println("Test NoticeNode process");
-        System.out.println(type);
-        System.out.println(email);
-        System.out.println(noticeMessage);
+		Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
+		MailNotice mn = new MailNotice();
+		MailBody mb;
+		try {
+			mb = new MailBody("/mail-template/NotifyOfNotice.html");
+			mb.setProperty("%applyDate", app.getApplyDate().toString());
+			mb.setProperty("%message", this.getNoticeMessage());
+			mn.setTitle("Application Notice - ");
+			mn.setTo(this.getEmail());
+			NoticeMailService.getIntance().batchNotice(mn);
+			NoticeMailService.getIntance().processBatch();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         this.setState("finish");
     }
 	
