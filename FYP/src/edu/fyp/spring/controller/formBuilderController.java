@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class formBuilderController {
+public class FormBuilderController {
 
 
 	@RequestMapping("/formbuilder/formBuilder.jsp")
