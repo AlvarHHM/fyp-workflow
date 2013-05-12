@@ -11,6 +11,8 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-expression-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/org.springframework.jdbc-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/ST-4.0.7.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.3.jar"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/v2"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.2.3.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>

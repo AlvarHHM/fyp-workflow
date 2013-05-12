@@ -255,6 +255,16 @@
 	
 	<!-- End of Show client application -->
 	
+<!-- 	Servlet For Document Upload -->
+	<servlet>
+		<servlet-name>documentUpload</servlet-name>
+		<servlet-class>edu.fyp.servlet.DocumentBlobServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>documentUpload</servlet-name>
+		<url-pattern>/uploadDoc</url-pattern>
+	</servlet-mapping>
+	
 			<servlet>
 		<servlet-name>approveAppNode</servlet-name>
 		<servlet-class>edu.fyp.servlet.ApproveAppNode</servlet-class>
