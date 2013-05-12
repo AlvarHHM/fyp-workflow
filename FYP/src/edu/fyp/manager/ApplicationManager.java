@@ -1,6 +1,7 @@
 package edu.fyp.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.google.appengine.api.datastore.Key;
@@ -20,16 +21,19 @@ public class ApplicationManager {
 	private ApplicationRepository appRepo;
 	private ApplicationPathRepository appPathRepo;
 	private PathNodeRepository pathNodeRepo;
+	private ApplicationContext applicationContext;
 
 	@Autowired
 	public ApplicationManager(ApplicationPathGenerator apg,
 			ApplicationRepository appRepo,
 			ApplicationPathRepository appPathRepo,
-			PathNodeRepository pathNodeRepo) {
+			PathNodeRepository pathNodeRepo,
+			ApplicationContext applicationContext) {
 		this.apg = apg;
 		this.appRepo = appRepo;
 		this.appPathRepo = appPathRepo;
 		this.pathNodeRepo = pathNodeRepo;
+		this.applicationContext = applicationContext;
 	}
 
 	public void applyApplication(Application app) {
@@ -44,6 +48,7 @@ public class ApplicationManager {
 		Application app = appRepo.getApplication(key);
 		ApplicationPath appPath = appPathRepo.getApplication(app.getAppPath());
 		PathNode currentNode = null;
+		 ((Object) applicationContext).getBeanFactory().registerSingleton
 		do {
 			currentNode = pathNodeRepo.getNode(appPath.getCurrentNode());
 			String currentNodeKind = appPath.getCurrentNode().getKind();
