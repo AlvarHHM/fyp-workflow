@@ -1,24 +1,271 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<listener>
-    	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<context-param>  
-        <param-name>contextConfigLocation</param-name>  
-        <param-value>/WEB-INF/dispatcherServlet-servlet.xml</param-value>  
-    </context-param> 
-	
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/dispatcherServlet-servlet.xml</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
 		<init-param>
 			<param-name>services</param-name>
-			<param-value/>
+			<param-value />
 		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<url-pattern>/_ah/spi/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>formBuilder</servlet-name>
+		<servlet-class>edu.fyp.servlet.FormBuilder</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>formBuilder</servlet-name>
+		<url-pattern>/formbuilder/formBuilder</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showClientFormListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowClientFormList</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientFormListServlet</servlet-name>
+		<url-pattern>/Client/showClientFormListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showClientFormList</servlet-name>
+		<jsp-file>/Client/showClientFormList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientFormList</servlet-name>
+		<url-pattern>/Client/showClientFormList</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showClientFormServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowClientForm</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientFormServlet</servlet-name>
+		<url-pattern>/Client/showClientFormServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showClientForm</servlet-name>
+		<jsp-file>/Client/showClientForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientForm</servlet-name>
+		<url-pattern>/Client/showClientForm</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>home</servlet-name>
+		<jsp-file>/Client/home.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>home</servlet-name>
+		<url-pattern>/Client/home</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>addFormPath</servlet-name>
+		<servlet-class>edu.fyp.servlet.AddFormPath</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addFormPath</servlet-name>
+		<url-pattern>/formbuilder/addFormPath</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>applyApplication</servlet-name>
+		<servlet-class>edu.fyp.servlet.ApplyApplication</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>applyApplication</servlet-name>
+		<url-pattern>/Client/applyApplication</url-pattern>
+	</servlet-mapping>
+	<!-- show builder form and list -->
+	<servlet>
+		<servlet-name>showBuilderFormListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowBuilderFormList</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showBuilderFormListServlet</servlet-name>
+		<url-pattern>/formbuilder/showBuilderFormListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showBuilderFormList</servlet-name>
+		<jsp-file>/formbuilder/showBuilderFormList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showBuilderFormList</servlet-name>
+		<url-pattern>/formbuilder/showBuilderFormList</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showBuilderFormServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowBuilderForm</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showBuilderFormServlet</servlet-name>
+		<url-pattern>/formbuilder/showBuilderFormServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showBuilderForm</servlet-name>
+		<jsp-file>/formbuilder/showBuilderForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showBuilderForm</servlet-name>
+		<url-pattern>/formbuilder/showBuilderForm</url-pattern>
+	</servlet-mapping>
+	<!-- end of show builder -->
+	<!-- update form status -->
+	<servlet>
+		<servlet-name>updateFromStatus</servlet-name>
+		<servlet-class>edu.fyp.servlet.UpdateFormStatus</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateFromStatus</servlet-name>
+		<url-pattern>/formbuilder/updateFromStatus</url-pattern>
+	</servlet-mapping>
+	<!-- end of update form status -->
+	<!-- show client form and list -->
+	<servlet>
+		<servlet-name>showClientFormListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowClientFormList</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value />
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientFormListServlet</servlet-name>
+		<url-pattern>/Client/showClientFormListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>showClientFormList</servlet-name>
+		<jsp-file>/Client/showClientFormList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientFormList</servlet-name>
+		<url-pattern>/Client/showClientFormList</url-pattern>
+	</servlet-mapping>
+	<!-- cut -->
+	<servlet>
+		<servlet-name>showClientForm</servlet-name>
+		<jsp-file>/Client/showClientForm.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientForm</servlet-name>
+		<url-pattern>/Client/showClientForm</url-pattern>
+	</servlet-mapping>
+	<!-- end of show client -->
+
+
+	<servlet>
+		<servlet-name>test</servlet-name>
+		<servlet-class>edu.fyp.servlet.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>test</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+
+	<!-- Show client application -->
+	<servlet>
+		<servlet-name>showClientApplicationListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowClientApplicationList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplicationListServlet</servlet-name>
+		<url-pattern>/Client/showClientApplicationListServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>showClientApplicationList</servlet-name>
+		<jsp-file>/Client/showClientApplicationList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplicationList</servlet-name>
+		<url-pattern>/Client/showClientApplicationList</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>showClientApplicationServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowClientApplication</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplicationServlet</servlet-name>
+		<url-pattern>/Client/showClientApplicationServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>showClientApplication</servlet-name>
+		<jsp-file>/Client/showClientApplication.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showClientApplication</servlet-name>
+		<url-pattern>/Client/showClientApplication</url-pattern>
+	</servlet-mapping>
+
+	<!-- End of Show client application -->
+
+	<!-- Servlet For Document Upload -->
+	<servlet>
+		<servlet-name>documentUpload</servlet-name>
+		<servlet-class>edu.fyp.servlet.DocumentBlobServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>documentUpload</servlet-name>
+		<url-pattern>/uploadDoc</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>approveAppNode</servlet-name>
+		<servlet-class>edu.fyp.servlet.ApproveAppNode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>approveAppNode</servlet-name>
+		<url-pattern>/Client/approveAppNode</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -32,245 +279,4 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-		<servlet>
-		<servlet-name>formBuilder</servlet-name>
-		<servlet-class>edu.fyp.servlet.FormBuilder</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>formBuilder</servlet-name>
-		<url-pattern>/formbuilder/formBuilder</url-pattern>
-	</servlet-mapping>
-		<servlet>
-		<servlet-name>showClientFormListServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowClientFormList</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientFormListServlet</servlet-name>
-		<url-pattern>/Client/showClientFormListServlet</url-pattern>
-	</servlet-mapping>
-			<servlet>
-		<servlet-name>showClientFormList</servlet-name>
-		<jsp-file>/Client/showClientFormList.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientFormList</servlet-name>
-		<url-pattern>/Client/showClientFormList</url-pattern>
-	</servlet-mapping>	
-			<servlet>
-		<servlet-name>showClientFormServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowClientForm</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientFormServlet</servlet-name>
-		<url-pattern>/Client/showClientFormServlet</url-pattern>
-	</servlet-mapping>
-			<servlet>
-		<servlet-name>showClientForm</servlet-name>
-		<jsp-file>/Client/showClientForm.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientForm</servlet-name>
-		<url-pattern>/Client/showClientForm</url-pattern>
-	</servlet-mapping>	
-	
-	<servlet>
-		<servlet-name>home</servlet-name>
-		<jsp-file>/Client/home.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>home</servlet-name>
-		<url-pattern>/Client/home</url-pattern>
-	</servlet-mapping>	
-		<servlet>
-		<servlet-name>addFormPath</servlet-name>
-		<servlet-class>edu.fyp.servlet.AddFormPath</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>addFormPath</servlet-name>
-		<url-pattern>/formbuilder/addFormPath</url-pattern>
-	</servlet-mapping>
-	
-				<servlet>
-		<servlet-name>applyApplication</servlet-name>
-		<servlet-class>edu.fyp.servlet.ApplyApplication</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>applyApplication</servlet-name>
-		<url-pattern>/Client/applyApplication</url-pattern>
-	</servlet-mapping>
-<!-- show builder form and list -->
-			<servlet>
-		<servlet-name>showBuilderFormListServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowBuilderFormList</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showBuilderFormListServlet</servlet-name>
-		<url-pattern>/formbuilder/showBuilderFormListServlet</url-pattern>
-	</servlet-mapping>
-			<servlet>
-		<servlet-name>showBuilderFormList</servlet-name>
-		<jsp-file>/formbuilder/showBuilderFormList.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showBuilderFormList</servlet-name>
-		<url-pattern>/formbuilder/showBuilderFormList</url-pattern>
-	</servlet-mapping>	
-			<servlet>
-		<servlet-name>showBuilderFormServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowBuilderForm</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showBuilderFormServlet</servlet-name>
-		<url-pattern>/formbuilder/showBuilderFormServlet</url-pattern>
-	</servlet-mapping>
-			<servlet>
-		<servlet-name>showBuilderForm</servlet-name>
-		<jsp-file>/formbuilder/showBuilderForm.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showBuilderForm</servlet-name>
-		<url-pattern>/formbuilder/showBuilderForm</url-pattern>
-	</servlet-mapping>	
-	<!-- end of show builder -->
-	<!-- update form status -->
-				<servlet>
-		<servlet-name>updateFromStatus</servlet-name>
-		<servlet-class>edu.fyp.servlet.UpdateFormStatus</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>updateFromStatus</servlet-name>
-		<url-pattern>/formbuilder/updateFromStatus</url-pattern>
-	</servlet-mapping>
-		<!-- end of update form status -->
-	<!-- show client form and list -->
-			<servlet>
-		<servlet-name>showClientFormListServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowClientFormList</servlet-class>
-		<init-param>
-			<param-name>services</param-name>
-			<param-value/>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientFormListServlet</servlet-name>
-		<url-pattern>/Client/showClientFormListServlet</url-pattern>
-	</servlet-mapping>
-			<servlet>
-		<servlet-name>showClientFormList</servlet-name>
-		<jsp-file>/Client/showClientFormList.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientFormList</servlet-name>
-		<url-pattern>/Client/showClientFormList</url-pattern>
-	</servlet-mapping>	
-			<!-- cut -->
-			<servlet>
-		<servlet-name>showClientForm</servlet-name>
-		<jsp-file>/Client/showClientForm.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientForm</servlet-name>
-		<url-pattern>/Client/showClientForm</url-pattern>
-	</servlet-mapping>	
-	<!-- end of show client -->
-	
-
-	<servlet>
-		<servlet-name>test</servlet-name>
-		<servlet-class>edu.fyp.servlet.TestServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>test</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>	
-	
-	<!-- Show client application -->
-		<servlet>
-		<servlet-name>showClientApplicationListServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowClientApplicationList</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientApplicationListServlet</servlet-name>
-		<url-pattern>/Client/showClientApplicationListServlet</url-pattern>
-	</servlet-mapping>	
-	
-	<servlet>
-		<servlet-name>showClientApplicationList</servlet-name>
-		<jsp-file>/Client/showClientApplicationList.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientApplicationList</servlet-name>
-		<url-pattern>/Client/showClientApplicationList</url-pattern>
-	</servlet-mapping>	
-	
-			<servlet>
-		<servlet-name>showClientApplicationServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowClientApplication</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientApplicationServlet</servlet-name>
-		<url-pattern>/Client/showClientApplicationServlet</url-pattern>
-	</servlet-mapping>	
-	
-		<servlet>
-		<servlet-name>showClientApplication</servlet-name>
-		<jsp-file>/Client/showClientApplication.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>showClientApplication</servlet-name>
-		<url-pattern>/Client/showClientApplication</url-pattern>
-	</servlet-mapping>	
-	
-	<!-- End of Show client application -->
-	
-<!-- 	Servlet For Document Upload -->
-	<servlet>
-		<servlet-name>documentUpload</servlet-name>
-		<servlet-class>edu.fyp.servlet.DocumentBlobServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>documentUpload</servlet-name>
-		<url-pattern>/uploadDoc</url-pattern>
-	</servlet-mapping>
-	
-			<servlet>
-		<servlet-name>approveAppNode</servlet-name>
-		<servlet-class>edu.fyp.servlet.ApproveAppNode</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>approveAppNode</servlet-name>
-		<url-pattern>/Client/approveAppNode</url-pattern>
-	</servlet-mapping>	
 </web-app>
