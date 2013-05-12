@@ -1,5 +1,7 @@
 package edu.fyp.bean.node;
 
+import java.io.IOException;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
@@ -7,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.appengine.api.datastore.Key;
 
+import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.ApplicationPathGenerator;
+import edu.fyp.notify.email.MailBody;
+import edu.fyp.notify.email.MailNotice;
+import edu.fyp.notify.email.NoticeMailService;
 import edu.fyp.repository.ApplicationPathRepository;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.PathNodeRepository;
@@ -25,7 +31,15 @@ public class ApproveNode extends RelayNode{
 	@Persistent
     private int superLevel;
 
-	public ApproveNode() {
+	public ApproveNode() throws IOException {
+		ApplicationManager appManager = new ApplicationManager();
+		MailNotice mn = new MailNotice();
+		MailBody mb = new MailBody("/mail-template/NotifyOfComingAproval.html");
+		mb.setProperty("userId", "User ID");
+		mn.setTitle("test");
+		mn.setTo("mahoihei@gmial.com");
+		NoticeMailService.getIntance().batchNotice(mn);
+		NoticeMailService.getIntance().processBatch();
 		this.setState("Approving");
 	}	
 	

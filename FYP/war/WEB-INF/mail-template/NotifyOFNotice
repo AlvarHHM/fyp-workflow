@@ -1,10 +1,9 @@
-==Approve Application==========================================================
+==Application Notice==========================================================
 
 Form Title    : %formTitle
 Applier       : %applier
 Department    : %department
 Apply Date    : %applyDate
-Approve       : <a href="%approve"></a>
-Reject        : <a href="%reject"></a>
+Message       : %message
 
 ===============================================================================
