@@ -21,7 +21,7 @@ public class Employee implements Serializable {
 	@Persistent
 	private int superLevel;
 	@Persistent
-	private Department department;
+	private Key department;
 	@Persistent
 	private String superId;
 	@Persistent(mappedBy = "employee")
@@ -67,11 +67,11 @@ public class Employee implements Serializable {
 		this.superLevel = superLevel;
 	}
 
-	public Department getDepartment() {
+	public Key getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(Department department) {
+	public void setDepartment(Key department) {
 		this.department = department;
 	}
 
@@ -163,33 +163,7 @@ public class Employee implements Serializable {
 		this.fts = fts;
 	}
 	
-	public void updateFullTextSearchIndex(){
-		
-		StringBuffer sb = new StringBuffer();
-		if (this.getDepartment() != null) {
-			sb.append(this.getDepartment().getDeptName());
-			sb.append(" ");
-			sb.append(this.getDepartment().getDeptId());
-			sb.append(" ");
-		}
-		sb.append(this.getEmpId());
-		sb.append(" ");
-		sb.append(this.getNickName());
-		sb.append(" ");
-		sb.append(this.getEngSurname());
-		sb.append(" ");
-		sb.append(this.getEngOtherName());
-		sb.append(" ");
-		if (this.getTitle() != null){
-			sb.append(this.getTitle().getEngTitle());
-			sb.append(" ");
-		}
-		this.setFts(new HashSet<String>());
-		for(String token:sb.toString().toUpperCase().split(" ")){
-			this.getFts().add(token);
-		}
-			
-	}
+	
 
 	public enum Title {
 		COOFF("CHIEF OPERATIONS OFFICER", "Àç¹BÁ`ºÊ", 100), SD("SALES DIRECTOR",

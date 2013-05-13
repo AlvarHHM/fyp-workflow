@@ -29,15 +29,15 @@ public class UserRepository {
 
 	}
 	
-	public Employee queryUserByDeptIdAndLevel(String deptId,int level){
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Employee.class, "superLevel == levelParam && department.deptId == deptParam");
-		query.declareParameters("int levelParam,String deptParam");
-		List<Employee> result = (List<Employee>) query.execute(level,deptId);
-		return result.size()!=0?result.get(0):null;
-	}
+//	public Employee queryUserByDeptIdAndLevel(String deptId,int level){
+//		PersistenceManager pm = PMF.get().getPersistenceManager();
+//		Query query = pm.newQuery(Employee.class, "superLevel == levelParam && department.deptId == deptParam");
+//		query.declareParameters("int levelParam,String deptParam");
+//		List<Employee> result = (List<Employee>) query.execute(level,deptId);
+//		return result.size()!=0?result.get(0):null;
+//	}
 	
-	public Employee queryUserByDeptKeyAndLevel(Key deptKey,int level){
+	public Employee queryEmployeeByDeptKeyAndLevel(Key deptKey,int level){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Department dept = pm.getObjectById(Department.class, deptKey);
 		Query query = pm.newQuery();

@@ -4,6 +4,7 @@
 <script type="text/javascript">
 	
 	var formKey = "${param.formKey}"
+	var pahtJson = "${path}";
 			
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>

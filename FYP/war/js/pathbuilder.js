@@ -3,6 +3,7 @@ var nodeId = 0;
 var selectedWay;
 $(document).ready(
 		function() {
+			
 			jsPlumb.importDefaults({
 				ConnectionOverlays : [ [ "Arrow", {
 					location : 0.9
