@@ -18,9 +18,56 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
+		var selectedUpload = "";
+		
 		 $(function() {
-			 	$(".hasDatepicker").removeClass("hasDatepicker");
-				$(".date-picker").datepicker();
+			$(".hasDatepicker").removeClass("hasDatepicker");
+			$(".date-picker").datepicker();
+				
+			/*	For file validation only.
+			$('.form-item .upload :file').change(function() {
+				var file = this.files[0];
+				name = file.name;
+				size = file.size;
+				type = file.type;
+			});
+			*/
+			$('.form-item .upload button').click(function() {
+					var item = $(this).parents(".form-item");
+					var formData = new FormData(item.find('form')[0]);
+					
+					$.ajax({
+						url : 'http://localhost:8080/FYP/uploadDoc',
+						type : 'POST',
+						xhr : 	function() {
+									var myXhr = $.ajaxSettings.xhr();
+									
+									if (myXhr.upload) {
+										myXhr.upload.addEventListener(
+												'progress',
+													(function(item){
+														return function(e){
+															if (e.lengthComputable) {
+																item.find('progress').attr({
+																	value : e.loaded,
+																	max : e.total
+																});
+															}
+														}
+													})(item)
+												,false); 
+									}
+									return myXhr;
+								},
+						success : 	function(e) {
+										console.log(e);
+									},
+						data : formData,
+						cache : false,
+						contentType : false,
+						processData : false
+					});
+				});
         });
 		function SubmitApplication(){
 			
