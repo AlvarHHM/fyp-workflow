@@ -28,7 +28,7 @@
                     }
                 });
 				
-				$(".date-picker").datepicker();
+				//$(".date-picker").datepicker();
             });//
             
 			function addAR(btn){
@@ -107,6 +107,12 @@
 										<span class="formBuilder-component-name">Heading</span>
 									</div>
 									<div class="formBuilder-component-container"
+										id="component-LABEL">
+										<div class="overlay"></div>
+										<img class="formBuilder-component-icon" src="img/Label.jpg" />
+										<span class="formBuilder-component-name">Label</span>
+									</div>
+									<div class="formBuilder-component-container"
 										id="component-TEXTFIELD">
 										<div class="overlay"></div>
 										<img class="formBuilder-component-icon" src="img/Textbox.jpg" />
@@ -142,6 +148,12 @@
 										<img class="formBuilder-component-icon"
 											src="img/DatePicker.jpg" /> <span
 											class="formBuilder-component-name">Date Picker</span>
+									</div>
+									<div class="formBuilder-component-container"
+										id="component-UPLOAD">
+										<div class="overlay"></div>
+										<img class="formBuilder-component-icon" src="img/Upload.jpg" />
+										<span class="formBuilder-component-name">Upload</span>
 									</div>
 								</div>
 								<div id="tab-properties">

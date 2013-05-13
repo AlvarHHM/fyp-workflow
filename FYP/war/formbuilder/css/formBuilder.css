@@ -126,3 +126,6 @@ body{
 .choice label{
 	display:inline;
 }
+progress{
+	display:block;
+}
