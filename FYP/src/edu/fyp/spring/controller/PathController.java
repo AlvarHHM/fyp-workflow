@@ -15,12 +15,12 @@ public class PathController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="/path",params="{formKey}")
-//	public  ModelAndView pathWithFormKey(@RequestParam(value="formKey", required=true)String formKey){
-//		ModelAndView mav = new ModelAndView("path/pathbuilder");
-//		mav.addObject("formKey", formKey);
-//		return mav;
-//	}
+	@RequestMapping(value="/path",params="{formKey}")
+	public  ModelAndView pathWithFormKey(@RequestParam(value="formKey", required=true)String formKey){
+		ModelAndView mav = new ModelAndView("path/pathbuilder");
+		mav.addObject("formKey", formKey);
+		return mav;
+	}
 	
 	
 	
