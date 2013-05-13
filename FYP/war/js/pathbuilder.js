@@ -3,7 +3,7 @@ var nodeId = 0;
 var selectedWay;
 $(document).ready(
 		function() {
-			
+			loadPath(pathJson);
 			jsPlumb.importDefaults({
 				ConnectionOverlays : [ [ "Arrow", {
 					location : 0.9
@@ -227,4 +227,33 @@ function showPropertyPanel(data){
 			
 			
 	}
+}
+
+
+function loadPath(jsonArray){
+	var nodes = [];
+	$.each(jsonArray,function(i,e){
+		nodes.push(JSON.parse(e));
+	});
+	$.each(nodes,function(i,e){
+		var node = $("."+e.type+"-node.node-prototype").clone();
+		console.log("."+e.type+"-node.node-prototype");
+		
+		$("#path-canvas").append(node);
+		node.attr("id",e.id);
+		node.css("left",e.x);
+		node.css("top",e.y);
+		node.removeClass("node-prototype");
+		node.addClass("node-instance");
+		node.data("props",new Node(e.id));
+		node.data("props").recoverFromObject(e);
+		console.log(e);
+		console.log(node.data("props"));
+		
+		
+	});
+	
+//	console.log(nodes);
+	
+	
 }

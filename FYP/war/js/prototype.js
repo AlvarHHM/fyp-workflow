@@ -6,6 +6,13 @@ Set.prototype.add = function(o) {
 Set.prototype.remove = function(o) {
 	delete this[o];
 }
+Set.prototype.recoverFromObject = function(object){
+	console.log(object);
+	for(var prop in object){
+		console.log(prop);
+		this.add(prop);
+	}
+}
 
 function Node(id) {
 	this.x = 0;
@@ -14,7 +21,6 @@ function Node(id) {
 	this.fcp = new Set();
 	this.id = id;
 	this.props = {};
-
 }
 Node.prototype.setType = function(type) {
 	this.type = type;
@@ -59,9 +65,18 @@ Node.prototype.loadMenu = function() {
 				if($("#" + i)[0].tagName == "SELECT"){
 					$("#" + i).change();
 				}
-					
 			});
 		}
 	});
-
+}
+Node.prototype.recoverFromObject= function(object){
+	this.props = object.props;
+	var set = new Set();
+	this.fcp = set.recoverFromObject(object.fcp);
+	set = new Set();
+	this.tcp = set.recoverFromObject(object.tcp);
+	this.id = object.id;
+	this.type = object.type;
+	this.x = object.x;
+	this.y = object.y;
 }
