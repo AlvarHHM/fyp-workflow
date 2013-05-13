@@ -68,3 +68,8 @@ margin-right: 10px;
 	white-space:nowrap;
 	display:inline;
 }
+progress{
+	margin-top:5px;
+	display:block;
+	width:100%;
+}

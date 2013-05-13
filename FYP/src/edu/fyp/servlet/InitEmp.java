@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.google.appengine.api.datastore.KeyFactory;
+
 import edu.fyp.bean.Department;
 import edu.fyp.bean.Employee;
 import edu.fyp.bean.Employee.Title;
@@ -37,6 +39,12 @@ public class InitEmp extends HttpServlet {
 		prh.setDeptId("00002");
 		prh.setDeptName("Tsuen Wan - RB");
 		
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		try {
+			pm.makePersistent(prh);
+		} finally {
+			pm.close();
+		}
 		//End of init Department
 		
 		//Init user
@@ -73,17 +81,17 @@ public class InitEmp extends HttpServlet {
 		emp2.setTitle(Title.COOFF);
 		emp2.setNickName("Peter");
 		emp2.setEmail("peter@gmail.com");
-		emp1.setSuperLevel(400);
+		emp2.setSuperLevel(400);
 		
-		emp1.setDepartment(prh);
-		emp2.setDepartment(prh);
+		emp1.setDepartment(prh.getDeptKey());
+		emp2.setDepartment(prh.getDeptKey());
 		u1.setEmployee(emp1);
 		u2.setEmployee(emp2);
 		//end of init employee
 		
 		//store emp
 		
-		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(u1);
 		} finally {
@@ -96,7 +104,6 @@ public class InitEmp extends HttpServlet {
 		} finally {
 			pm.close();
 		}
-		
 		//end of store
 	}
 }
