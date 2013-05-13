@@ -10,14 +10,14 @@
 		http://www.springframework.org/schema/mvc 
       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<mvc:annotation-driven /> 
-	
+	<mvc:annotation-driven />
+
 	<context:component-scan base-package="edu.fyp.spring.controller" />
 	<context:component-scan base-package="edu.fyp.manager" />
 	<context:component-scan base-package="edu.fyp.repository" />
 
 
-	
+
 
 
 	<bean id="jspViewResolver"
@@ -26,6 +26,27 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<bean class="org.springframework.http.MediaType">
+								<constructor-arg index="0" value="text" />
+								<constructor-arg index="1" value="plain" />
+								<constructor-arg index="2" value="UTF-8" />
+							</bean>
+						</list>
+
+					</property>
+				</bean>
+			</list>
+		</property>
 	</bean>
 
 
