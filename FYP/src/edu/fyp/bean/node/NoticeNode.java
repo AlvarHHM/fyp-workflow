@@ -2,6 +2,7 @@ package edu.fyp.bean.node;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -45,6 +46,7 @@ public class NoticeNode extends RelayNode{
 			mb.setProperty("%message", this.getNoticeMessage());
 			mn.setTitle("Application Notice - ");
 			mn.setTo(this.getEmail());
+			Logger.getAnonymousLogger().warning(this.getEmail());
 			NoticeMailService.getIntance().batchNotice(mn);
 			NoticeMailService.getIntance().processBatch();
 		} catch (Exception e) {
