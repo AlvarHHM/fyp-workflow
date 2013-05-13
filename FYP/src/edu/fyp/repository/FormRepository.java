@@ -35,6 +35,14 @@ public class FormRepository {
 		pm.close();
 		return form;
 	}
+	
+	public Form getFormByFormKey(Key formKey){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		return pm.getObjectById(Form.class,formKey);
+		
+		
+	}
+	
 	public void updateFormPath(String formID,String version, Text path) {
 		Form form = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();

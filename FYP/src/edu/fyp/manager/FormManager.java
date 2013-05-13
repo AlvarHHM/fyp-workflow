@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
@@ -27,6 +28,10 @@ public class FormManager {
 	
 	public Form getFormByIDVersion(String formID, String version){
 		return formRepo.getFormByIDVersion(formID, version);
+	}
+	
+	public Form getFormByFormKey(String formKey){
+		return formRepo.getFormByFormKey(KeyFactory.stringToKey(formKey));
 	}
 	
 	public ArrayList<Form> getAllForm(){
