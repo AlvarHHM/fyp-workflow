@@ -7,6 +7,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -29,17 +30,19 @@ import edu.fyp.repository.PathNodeRepository;
 
 @Service
 public class ApplicationPathGenerator {
-	
+
 	private FormManager formManager;
 	private ApplicationPathRepository appPathRepo;
 	private PathNodeRepository pathNodeRepo;
+	private ApplicationContext applicationContext;
 	
 	@Autowired
 	public ApplicationPathGenerator(FormManager formManager,ApplicationPathRepository appPathRepo, 
-			PathNodeRepository pathNodeRepo){
+			PathNodeRepository pathNodeRepo, ApplicationContext applicationContext){
 		this.formManager = formManager;
 		this.appPathRepo = appPathRepo;
 		this.pathNodeRepo = pathNodeRepo;
+		this.applicationContext = applicationContext;
 	}
 	
 	public ApplicationPath generatePath(String formID, String version) {
@@ -47,6 +50,7 @@ public class ApplicationPathGenerator {
 		Text path =form.getPath();
 		Gson gson = new Gson();
 		PathNodeFactory pnf = new PathNodeFactory();
+		applicationContext.getAutowireCapableBeanFactory().autowireBean(pnf);
 		ApplicationPath appPath= new ApplicationPath();
 		String[] str = gson.fromJson(path.getValue(), String[].class);
 		HashMap<String,PathNode> pathNodeMap = new HashMap<String, PathNode>();
@@ -55,8 +59,8 @@ public class ApplicationPathGenerator {
 			jsonAry = strToJSONArray(str);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			Logger.getLogger("GeneratePath - JSON error.");
-			Logger.getLogger(e.toString());
+			Logger.getAnonymousLogger().warning("GeneratePath - JSON error.");
+			Logger.getAnonymousLogger().warning(e.toString());
 		}
 		//create hashmap
 		for(int i=0;i<jsonAry.length();i++){

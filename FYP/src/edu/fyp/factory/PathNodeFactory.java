@@ -1,5 +1,6 @@
 package edu.fyp.factory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
@@ -7,8 +8,10 @@ import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
 import edu.fyp.bean.node.*;
+import edu.fyp.repository.UserRepository;
 
 public class PathNodeFactory {
+	
 	public PathNode createNode(JSONObject json) throws JSONException{
 		PathNode pathNode=null;
 		if(json.getString("type").equalsIgnoreCase("start")){
@@ -34,6 +37,17 @@ public class PathNodeFactory {
 
 	private PathNode createApproveNode(JSONObject json) {
 		ApproveNode pathNode = new ApproveNode();
+		try {
+			JSONObject nodeProps = json.getJSONObject("props");
+			if(nodeProps.getString("approval-type").equalsIgnoreCase("super")){
+				pathNode.setType(nodeProps.getString("approval-type"));
+			}else if(nodeProps.getString("approval-type").equalsIgnoreCase("lud")){
+				pathNode.setType(nodeProps.getString("approval-type"));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return pathNode;
 	}
 

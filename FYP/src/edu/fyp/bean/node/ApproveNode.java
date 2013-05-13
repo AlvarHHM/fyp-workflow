@@ -42,10 +42,9 @@ public class ApproveNode extends RelayNode{
 	ApplicationManager appManager;
 
 	public void process(){
-
+		this.setState("approving");
     }
-	
-	
+		
 	public void approve(boolean approve) {
 		this.setState("finish");
 		if(approve){
