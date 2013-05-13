@@ -187,17 +187,12 @@ $(document).ready(
 		    });
 			$("#save-btn").click(function(){
 				var result = [];
-				var reqFormID="";
-				var reqVersion="";
-				if(formID != ""){
-					reqFormID=formID;
+				if(formKey == null){
+					alert("formKey null!!");
+					window.close;
 				}
-				if(version != ""){
-					reqVersion=version;
-				}
-				if(formID=="" && version ==""){
-					return;
-				}
+					
+				
 				$("#path-canvas").children().each(function(i,e){
 					if($(this).hasClass("node")){
 						result.push(JSON.stringify($(this).data("props")));
@@ -207,7 +202,7 @@ $(document).ready(
 				$.post("/formbuilder/addFormPath"
 						,{
 							path:result,
-							formKey:formKey;
+							formKey:formKey
 						})
 						.always(function(data) {
 							alert(data);
