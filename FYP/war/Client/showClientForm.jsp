@@ -37,28 +37,30 @@ Form form = (Form)request.getSession().getAttribute("form");
 					var formData = new FormData(item.find('form')[0]);
 					
 					$.ajax({
-						url : 'http://localhost:8080/FYP/uploadDoc',
+						url : '/uploadDoc',
 						type : 'POST',
+						
 						xhr : 	function() {
-									var myXhr = $.ajaxSettings.xhr();
-									
-									if (myXhr.upload) {
-										myXhr.upload.addEventListener(
-												'progress',
-													(function(item){
-														return function(e){
-															if (e.lengthComputable) {
-																item.find('progress').attr({
-																	value : e.loaded,
-																	max : e.total
-																});
-															}
-														}
-													})(item)
-												,false); 
-									}
-									return myXhr;
-								},
+							var myXhr = $.ajaxSettings.xhr();
+							
+							if (myXhr.upload) {
+								myXhr.upload.addEventListener(
+										'progress',
+											(function(item){
+												return function(e){
+													if (e.lengthComputable) {
+														item.find('progress').attr({
+															value : e.loaded,
+															max : e.total
+														});
+													}
+												}
+											})(item)
+										,false); 
+							}
+							return myXhr;
+						},
+						
 						success : 	function(e) {
 										console.log(e);
 									},
@@ -67,6 +69,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 						contentType : false,
 						processData : false
 					});
+					return false;
 				});
         });
 		function SubmitApplication(){
