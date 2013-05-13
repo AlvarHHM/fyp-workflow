@@ -1,4 +1,5 @@
 var Set = function() {
+	
 }
 Set.prototype.add = function(o) {
 	this[o] = true;
@@ -7,9 +8,7 @@ Set.prototype.remove = function(o) {
 	delete this[o];
 }
 Set.prototype.recoverFromObject = function(object){
-	console.log(object);
 	for(var prop in object){
-		console.log(prop);
 		this.add(prop);
 	}
 }
@@ -71,12 +70,16 @@ Node.prototype.loadMenu = function() {
 }
 Node.prototype.recoverFromObject= function(object){
 	this.props = object.props;
-	var set = new Set();
-	this.fcp = set.recoverFromObject(object.fcp);
-	set = new Set();
-	this.tcp = set.recoverFromObject(object.tcp);
+	var tset = new Set();
+	tset.recoverFromObject(object.tcp);
+	this.tcp = tset;
+	var fset = new Set();
+	fset.recoverFromObject(object.fcp);
+	this.fcp = fset;
 	this.id = object.id;
 	this.type = object.type;
 	this.x = object.x;
 	this.y = object.y;
+	
+	
 }
