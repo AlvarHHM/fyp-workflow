@@ -47,7 +47,6 @@ function selectFormItem(itemId) {
 				t: x
 			}, function(e) {
 				e.data.i.css("left", e.data.t.val()+"px");
-				getStyle();
 			});
 
 	//Y text
@@ -58,7 +57,6 @@ function selectFormItem(itemId) {
 				t: y
 			}, function(e) {
 				e.data.i.css("top", e.data.t.val()+"px");
-				getStyle();
 			});
 
 	//Label text
@@ -93,18 +91,18 @@ function selectFormItem(itemId) {
         }});
 
 	//Css Text
-	getStyle();
-		
+	displayStyle();
+	
 	//Show property Panel
     $("#formBuilder-leftPanel>ul>li:nth-child(2)").show();
     $("#formBuilder-leftPanel").tabs("option", "active", 1);
+	
     //change the choice type of the property
-    setChoiceType(item.attr("type"));
+    setChoiceType();
 }
 
 //change the choice type of the property
 function setChoiceType() {
-
 
     var itemType = $(".selected").attr("id").split('-')[0].toUpperCase();
     switch (true) {
@@ -174,18 +172,6 @@ function setChoiceType() {
                 addChoice($(this), index, "COMBOBOX");
             });
             break;
-        case (/HEADING/).test(itemType):
-			$("#validation").hide();
-		
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
-            $("#radio-list,#checkbox-list,#combobox-list").hide();
-            break;
-		case (/LABEL/).test(itemType):
-			$("#validation").hide();
-		
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
-            $("#radio-list,#checkbox-list,#combobox-list").hide();
-            break;
         case (/TEXTAREA/).test(itemType):
 			$("#validation").show();
 		
@@ -198,20 +184,21 @@ function setChoiceType() {
             $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
+		case (/LABEL/).test(itemType):
+        case (/HEADING/).test(itemType):
         case (/UPLOAD/).test(itemType):
+        default:
 			$("#validation").hide();
 		
             $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
-        default:
-            break;
 
     }
 
-            $("#formBuilder-leftPanel #options").show();
-            if ($("#formBuilder-leftPanel #options>fieldset>div:visible").length===0)
-                $("#formBuilder-leftPanel #options").hide();
+	$("#formBuilder-leftPanel #options").show();
+	if ($("#formBuilder-leftPanel #options>fieldset>div:visible").length===0)
+		$("#formBuilder-leftPanel #options").hide();
     
 }
 function addChoice(choice, index, type) {
@@ -288,28 +275,76 @@ function getChoiceHtml(itemType) {
         var itemType = itemType.toUpperCase();
     }
     switch (true) {
-        case/RADIO/.test(itemType):
+        case (/RADIO/).test(itemType):
             html = "<span class='choice'><input type='radio'/><label>Radio Button</label></span>";
             break;
-        case/CHECKBOX/.test(itemType):
+        case (/CHECKBOX/).test(itemType):
             html = "<span><input class='choice'type='checkbox'/><label>Checkbox</label></span>";
             break;
-        default:
-            //combobox
+		case (/COMBOBOX/).test(itemType):
             html = "<option class='choice'></option>";
+            break;
+        default:
             break;
     }
     return html;
 }
 
-function getStyle(){
-	var style = $(".selected").attr("style");
-	if (typeof style !== 'undefined' && style !== false) {
-		$("#itemCSS").val(style);
-	}else{
-		$("#itemCSS").val("position:absolute;");
-	}
+function displayStyle(){
+	var item = $(".selected");
+    var itemType = item.attr("id").split('-')[0].toUpperCase();
+	
+	$(".formItem-properties-group#css>div").hide();
+	switch (true) {
+        case (/TEXTFIELD/).test(itemType):
+			getStyle(item.find("text"))
+            break;
+        case (/RADIOBUTTON/).test(itemType):
+		
+            break;
+        case (/CHECKBOX/).test(itemType):
+		
+            break;
+        case (/COMBOBOX/).test(itemType):
+		
+            break;
+        case (/HEADING/).test(itemType):
+		
+            break;
+		case (/LABEL/).test(itemType):
+		
+            break;
+        case (/TEXTAREA/).test(itemType):
+		
+            break;
+        case (/DATE/).test(itemType):
+		
+            break;
+        case (/UPLOAD/).test(itemType):
+		
+            break;
+        default:
+            break;
+
+    }
 }
-function setStyle(){
-	$(".selected").attr("style",$("#itemCSS").val());
+
+function getStyle(target,cssDiv){
+	var style = target.attr("style");
+	var cssText = cssDiv.find(".itemCSS");
+	
+	if (typeof style !== 'undefined' && style !== false) {
+		cssText.val(style);
+	}else{
+		cssText.val("");
+	}
+	cssDiv.find("button").unbind("click")
+		.bind("	click", 
+				{
+					tar: target,
+					text: cssText
+				},function(){
+					tar.attr("style",text.val());
+				});
+	
 }
