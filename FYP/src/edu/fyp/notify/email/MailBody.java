@@ -30,7 +30,7 @@ public class MailBody {
 	}
 	
 	public void setProperty(String name,String value){
-		template.replaceAll("\\{"+name+"\\}", value); 
+		template=template.replaceAll("\\{"+name+"\\}", value); 
 	}
 	
 	public String getBody(){

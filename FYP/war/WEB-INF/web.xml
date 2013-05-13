@@ -275,4 +275,13 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    	<servlet>
+		<servlet-name>initEmp</servlet-name>
+		<servlet-class>edu.fyp.servlet.InitEmp</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>initEmp</servlet-name>
+		<url-pattern>/initEmp</url-pattern>
+	</servlet-mapping>
 </web-app>
