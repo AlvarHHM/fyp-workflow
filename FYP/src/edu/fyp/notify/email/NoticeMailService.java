@@ -43,14 +43,17 @@ public class NoticeMailService {
 	}
 
 	public void processBatch() {
+//		Logger.getAnonymousLogger().warning(String.valueOf(batch.size()));
 		for (MailNotice mail : batch) {
 			processMail(mail);
+			batch.remove(mail);
 		}
 	}
 
 	private void processMail(MailNotice c) {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
+		Logger.getAnonymousLogger().warning(c.toString());
 		try {
 			Message msg = new MimeMessage(session);
 			Multipart mp = new MimeMultipart();

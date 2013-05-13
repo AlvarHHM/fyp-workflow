@@ -17,6 +17,7 @@ public class MailBody {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
 		}
 		String text = "";
 		String line;

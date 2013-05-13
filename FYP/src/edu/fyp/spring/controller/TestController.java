@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -106,6 +107,7 @@ public class TestController {
 			mp.addBodyPart(htmlPart);
 			msg.setContent(mp);
 			Transport.send(msg);
+			
 
 		} catch (AddressException e) {
 			e.printStackTrace();
