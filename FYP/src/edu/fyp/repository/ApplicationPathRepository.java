@@ -66,7 +66,7 @@ public class ApplicationPathRepository {
 
 		Query query = pm.newQuery(ApplicationPath.class,
 				" currentNode == nodeKey ");
-		query.declareParameters("String nodeKey");
+		query.declareParameters("com.google.appengine.api.datastore.Key nodeKey");
 		List<ApplicationPath> results = (List<ApplicationPath>) query.execute(nodeKey);
 		System.out.println(results.size());
 		for(int i = 0 ; i < results.size() ; i++){

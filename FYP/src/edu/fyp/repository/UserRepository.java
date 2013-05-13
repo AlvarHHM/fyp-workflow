@@ -47,7 +47,21 @@ public class UserRepository {
 		return result.size()!=0?result.get(0):null;
 	}
 	
+	public Department queryDepartmentByDeptKey(Key deptKey){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Department dept = pm.getObjectById(Department.class, deptKey);
+		return dept;
+	}
 	
+	public Employee queryEmployeeByEmpID(String empIDStr){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		System.out.println(empIDStr);
+		Query query = pm.newQuery();
+		query.setFilter(" empId == empIDStr");
+		query.declareParameters("String empIDStr");
+		List<Employee> result = (List<Employee>) query.execute(empIDStr);
+		return result.size()!=0?result.get(0):null;
+	}
 
 	public List<Employee> searchEmployeeByFullText(String queryString) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();

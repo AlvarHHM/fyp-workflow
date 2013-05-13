@@ -2,6 +2,7 @@ package edu.fyp.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -92,8 +93,9 @@ public class ApplicationManager {
 	}
 
 	public Application getApplicationByCurrentNode(Key nodeKey) {
+		Logger.getAnonymousLogger().warning("this nodeKey find appPath  " + nodeKey.toString());
 		ApplicationPath appPath=appPathRepo.getApplicationPathByCurrentNode(nodeKey);
-		System.out.println(appPath.getKey()+" getApplicationCurrentNode app path ");
+		Logger.getAnonymousLogger().warning(appPath.getKey()+" getApplication CurrentNode app path ");
 		Application app = appRepo.getApplicationByPathKey(appPath.getKey());;
 		return app;
 	}

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.google.appengine.api.datastore.KeyFactory;
+
 import edu.fyp.bean.Department;
 import edu.fyp.bean.Employee;
 import edu.fyp.bean.Employee.Title;
@@ -102,7 +104,6 @@ public class InitEmp extends HttpServlet {
 		} finally {
 			pm.close();
 		}
-		
 		//end of store
 	}
 }

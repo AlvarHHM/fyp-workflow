@@ -83,7 +83,7 @@ public class ApplicationRepository {
 		Application app = null;
 		Query query = pm.newQuery(Application.class,
 				" appPath == pathKey ");
-		query.declareParameters("String pathKey");
+		query.declareParameters("com.google.appengine.api.datastore.Key pathKey");
 		List<Application> results = (List<Application>) query
 				.execute(pathKey);
 		for( int i = 0 ; i < results.size() ; i++){

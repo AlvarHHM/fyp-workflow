@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -42,16 +43,17 @@ public class ApplyApplication extends HttpServlet {
 		String version = req.getParameter("Version");
 		Text data = new Text(req.getParameter("Data"));
 		Application app = new Application();
-		app.setEmpID("A");//hardcode
+		app.setEmpID("H0000001");//hardcode
 		app.setFormID(formID);
 		app.setVersion(version);
 		app.setFormData(data);
 		app.setApplyDate(new Date());
-		/*try {*/
+/*		try {*/
 			appManager.applyApplication(app);
 			out.println("Application applied.");
 /*		} catch (Exception e) {
 			System.out.println(e.toString());
+			Logger.getAnonymousLogger().warning(e.toString());
 			out.println("Error. Please contact IT support.");
 		}*/
 	}

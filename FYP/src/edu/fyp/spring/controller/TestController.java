@@ -27,11 +27,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
+import edu.fyp.bean.ApplicationPath;
 import edu.fyp.bean.Employee;
 import edu.fyp.bean.TestAutoWiredBean;
 import edu.fyp.bean.User;
+import edu.fyp.bean.node.ApproveNode;
 import edu.fyp.manager.NotificationManager;
 import edu.fyp.manager.UserManager;
+import edu.fyp.repository.ApplicationPathRepository;
 import edu.fyp.repository.PMF;
 
 @Controller
@@ -46,6 +52,9 @@ public class TestController {
 	@Autowired
 	private NotificationManager notificationManger;
 
+	@Autowired
+	private ApplicationPathRepository appPathRepo; 
+	
 	@RequestMapping("/test.do")
 	public @ResponseBody
 	String test() throws Exception {
@@ -123,5 +132,14 @@ public class TestController {
 		return "hello";
 	}
 	
+	@RequestMapping("/testCurrnet")
+	public @ResponseBody
+	String testCurrnet() throws Exception {
+		String nodeStr = "agx3b3JrZmxvdy1meXByEgsSC0FwcHJvdmVOb2RlGL0FDA";
+		Key nodeKey = KeyFactory.stringToKey(nodeStr);
+		ApplicationPath appPath = appPathRepo.getApplicationPathByCurrentNode(nodeKey);
+		Logger.getAnonymousLogger().warning(appPath.getCurrentNode().toString());
+		return nodeStr;
+	}
 
 }
