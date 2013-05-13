@@ -71,17 +71,8 @@ public class TestController {
 	@RequestMapping("testNotice")
 	public @ResponseBody
 	String testNotice() throws Exception {
-		File f = new File("WEB-INF/mail-template/NotifyOfNotice.html");
-		BufferedReader in = null;
-
-		in = new BufferedReader(new FileReader(f));
-
-		String text = "";
-		String line;
-		while ((line = in.readLine()) != null) {
-			text += line;
-		}
-		return "Hello";
+		this.notificationManger.testNotify();
+		return "hello";
 	}
 
 }

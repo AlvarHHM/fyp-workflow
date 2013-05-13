@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,16 +20,17 @@ import javax.mail.internet.MimeMultipart;
 public class NoticeMailService {
 
 	private static NoticeMailService instance;
-	private List<MailNotice> batch = new ArrayList<MailNotice>();
+	private List<MailNotice> batch;
 
 	private NoticeMailService() {
+		batch = new ArrayList<MailNotice>();
 	}
 
 	public static NoticeMailService getIntance() {
 		if (instance == null) {
 			synchronized (NoticeMailService.class) {
 				if (instance == null)
-					return new NoticeMailService();
+					instance = new NoticeMailService();
 			}
 		}
 		return instance;
