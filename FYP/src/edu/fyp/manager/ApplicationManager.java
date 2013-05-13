@@ -1,5 +1,6 @@
 package edu.fyp.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +96,9 @@ public class ApplicationManager {
 		System.out.println(appPath.getKey()+" getApplicationCurrentNode app path ");
 		Application app = appRepo.getApplicationByPathKey(appPath.getKey());;
 		return app;
+	}
+
+	public List<Application> getEmpApplication(String empID) {
+		return appRepo.getEmpApplication(empID);
 	}
 }

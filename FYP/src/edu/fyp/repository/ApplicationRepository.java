@@ -95,4 +95,24 @@ public class ApplicationRepository {
 		pm.close();
 		return app;
 	}
+
+	public List<Application> searchApplication(String search, String keyword,String empID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		q.setFilter(search + " == keyword");
+		q.declareParameters("String keyword");
+		List<Application> results = (List<Application>) q.execute(keyword);
+		pm.close();
+		return results;
+	}
+
+	public List<Application> getEmpApplication(String empID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		q.setFilter("empID == empIDStr");
+		q.declareParameters("String empIDStr");
+		List<Application> results = (List<Application>) q.execute(empID);
+		pm.close();
+		return results;
+	}
 }

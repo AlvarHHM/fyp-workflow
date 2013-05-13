@@ -284,4 +284,24 @@
 		<servlet-name>initEmp</servlet-name>
 		<url-pattern>/initEmp</url-pattern>
 	</servlet-mapping>
+	
+	<!-- show approve application -->
+	    	<servlet>
+		<servlet-name>showApproveApplicationListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowApproveApplicationList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showApproveApplicationListServlet</servlet-name>
+		<url-pattern>/Client/showApproveApplicationListServlet</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>showApproveApplicationList</servlet-name>
+		<jsp-file>/Client/showApproveApplicationList.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showApproveApplicationList</servlet-name>
+		<url-pattern>/Client/showApproveApplicationList</url-pattern>
+	</servlet-mapping>
+	<!-- end of show approve application -->
 </web-app>

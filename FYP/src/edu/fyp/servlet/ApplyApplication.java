@@ -42,6 +42,7 @@ public class ApplyApplication extends HttpServlet {
 		String version = req.getParameter("Version");
 		Text data = new Text(req.getParameter("Data"));
 		Application app = new Application();
+		app.setEmpID("A");//hardcode
 		app.setFormID(formID);
 		app.setVersion(version);
 		app.setFormData(data);
