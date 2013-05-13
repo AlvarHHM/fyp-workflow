@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.appengine.api.datastore.Key;
 
+import edu.fyp.bean.Application;
 import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.ApplicationPathGenerator;
 import edu.fyp.notify.email.MailBody;
@@ -43,6 +44,22 @@ public class ApproveNode extends RelayNode{
 
 	public void process(){
 		this.setState("approving");
+		Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
+/*		MailNotice mn = new MailNotice();
+		MailBody mb;
+		try {
+			mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
+			mb.setProperty("%applyDate", app.getApplyDate().toString());
+			mb.setProperty("%message", this.getNoticeMessage());
+			mn.setTitle("Application Notice - ");
+			mn.setTo(this.getEmail());
+			NoticeMailService.getIntance().batchNotice(mn);
+			NoticeMailService.getIntance().processBatch();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+			e.printStackTrace();
+		}*/
     }
 		
 	public void approve(boolean approve) {

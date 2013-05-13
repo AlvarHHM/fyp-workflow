@@ -49,4 +49,8 @@ public class FormManager {
 	public ArrayList<Form> searchForm(String search, String keyword) {
 		return formRepo.searchForm(search, keyword);
 	}
+
+	public void updateFormPath(String formKey, Text path) {
+		formRepo.updateFormPath(formKey,path);		
+	}
 }

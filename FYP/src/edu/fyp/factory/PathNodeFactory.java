@@ -1,5 +1,7 @@
 package edu.fyp.factory;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,10 +45,16 @@ public class PathNodeFactory {
 				pathNode.setType(nodeProps.getString("approval-type"));
 			}else if(nodeProps.getString("approval-type").equalsIgnoreCase("lud")){
 				pathNode.setType(nodeProps.getString("approval-type"));
+			}else if(nodeProps.getString("approval-type").equalsIgnoreCase("ld")){
+				pathNode.setType(nodeProps.getString("approval-type"));
+				pathNode.setDeptID(nodeProps.getString("approval-deptId"));
+				pathNode.setSuperLevel(Integer.parseInt(nodeProps.getString("approval-superLv")));
+			}else if(nodeProps.getString("approval-type").equalsIgnoreCase("spec")){
+				pathNode.setType(nodeProps.getString("approval-type"));
+				pathNode.setEmpID(nodeProps.getString("approval-employeeId"));
 			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			Logger.getAnonymousLogger().warning(e.toString());
 		}
 		return pathNode;
 	}
@@ -63,8 +71,7 @@ public class PathNodeFactory {
 				pathNode.setEmail(nodeProps.getString("notice-email"));
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.toString());
 		}
 		return pathNode;
 	}

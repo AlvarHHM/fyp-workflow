@@ -43,17 +43,16 @@ public class AddFormPath extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String formID = req.getParameter("formID");
-		String version = req.getParameter("version");
+		String formKey = req.getParameter("formKey");
 		Text path = new Text(req.getParameter("path"));
-		if (formID.equalsIgnoreCase("") || version.equalsIgnoreCase("")
+		if (formKey.equalsIgnoreCase("")
 				|| path.getValue().equalsIgnoreCase("")) {
-			out.println("Form ID, Version, Path can not be empty.");
+			out.println("Form Key, Path can not be empty.");
 			out.close();
 			return ;
 		}
 		try {
-			formManager.updateFormPath(formID, version, path);
+			formManager.updateFormPath(formKey, path);
 			out.println("Path maintained success.");
 		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");

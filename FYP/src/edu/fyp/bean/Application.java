@@ -17,18 +17,28 @@ public class Application implements Serializable {
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
+    
     @Persistent
     private String empID;
+    
+    @Persistent
+    private String approvingEmpID;
+    
     @Persistent
     private String formID;
+    
 	@Persistent
     private String version;
+	
     @Persistent
     private String status;
+    
     @Persistent
     private Text formData;
+    
     @Persistent
     private Date applyDate;
+    
     @Persistent
     private Key appPath;
     
@@ -97,6 +107,14 @@ public class Application implements Serializable {
 
 	public void setAppPath(Key appPath) {
 		this.appPath = appPath;
+	}
+
+	public String getApprovingEmpID() {
+		return approvingEmpID;
+	}
+
+	public void setApprovingEmpID(String approvingEmpID) {
+		this.approvingEmpID = approvingEmpID;
 	}
 
 }

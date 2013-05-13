@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry excluding="edu/fyp/search/SearchJanitor.java|edu/fyp/search/SearchJanitorUtils.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-beans-3.2.1.RELEASE.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-context-3.2.1.RELEASE.jar"/>

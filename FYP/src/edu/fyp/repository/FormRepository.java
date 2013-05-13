@@ -91,4 +91,11 @@ public class FormRepository {
 		form.setStatus(status);
 		pm.close();
 	}
+	public void updateFormPath(String formKey, Text path) {
+		Form form = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		form = pm.getObjectById(Form.class, formKey);
+		form.setPath(path);
+		pm.close();
+	}
 }
