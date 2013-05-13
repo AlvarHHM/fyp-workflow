@@ -77,24 +77,22 @@ public class InitEmp extends HttpServlet {
 		
 		emp1.setDepartment(prh);
 		emp2.setDepartment(prh);
-		emp1.setUser(u1);
-		emp2.setUser(u2);
+		u1.setEmployee(emp1);
+		u2.setEmployee(emp2);
 		//end of init employee
 		
 		//store emp
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
-			pm.makePersistent(emp1);
-			System.out.println(emp1.getEmpKey() + " added");
+			pm.makePersistent(u1);
 		} finally {
 			pm.close();
 		}
 		
 		pm = PMF.get().getPersistenceManager();
 		try {
-			pm.makePersistent(emp2);
-			System.out.println(emp1.getEmpKey() + " added");
+			pm.makePersistent(u2);
 		} finally {
 			pm.close();
 		}
