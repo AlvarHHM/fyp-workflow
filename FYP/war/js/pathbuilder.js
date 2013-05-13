@@ -207,7 +207,7 @@ $(document).ready(
 				$.post("/formbuilder/addFormPath"
 						,{
 							path:result,
-							formKey:formKey;
+							formKey:formKey
 						})
 						.always(function(data) {
 							alert(data);
