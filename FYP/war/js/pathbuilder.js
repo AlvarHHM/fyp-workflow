@@ -150,18 +150,18 @@ $(document).ready(
 				console.log(connectionInfo);
 				$(connectionInfo.source[0]).data("props").removeLink(connectionInfo.targetId);
 				/*
-				if($(connectionInfo.source[0]).data("props").pass == connectionInfo.targetId)
-					delete $(connectionInfo.source[0]).data("props").pass;
-				else
-					delete $(connectionInfo.source[0]).data("props").fail;
-				*/
-//				delete connectionInfo.source[0].data("props").pass;
-//				delete connectionInfo.source[0].data("props").fail;
+				 * if($(connectionInfo.source[0]).data("props").pass ==
+				 * connectionInfo.targetId) delete
+				 * $(connectionInfo.source[0]).data("props").pass; else delete
+				 * $(connectionInfo.source[0]).data("props").fail;
+				 */
+// delete connectionInfo.source[0].data("props").pass;
+// delete connectionInfo.source[0].data("props").fail;
 				
 			});
-//			$("select").select2({
+// $("select").select2({
 //				
-//			});
+// });
 			$.contextMenu({
 		        selector: '.node-instance', 
 		        callback: function(key, options) {
@@ -171,7 +171,7 @@ $(document).ready(
 		            	break;
 		            	
 		            case "setting":
-		            	//console.log($(this).data());
+		            	// console.log($(this).data());
 		            	$(this).data("props").loadMenu();
 		            	$("#property-panel").data("props",$(this).data("props"));
 		            	break;
@@ -207,11 +207,11 @@ $(document).ready(
 				$.post("/formbuilder/addFormPath"
 						,{
 							path:result,
-							formID:reqFormID,
-							version:reqVersion
+							formKey:formKey;
 						})
 						.always(function(data) {
 							alert(data);
+							window.close();
 						});
 			});
 

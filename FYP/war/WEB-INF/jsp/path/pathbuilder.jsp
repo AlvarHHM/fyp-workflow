@@ -3,7 +3,7 @@
 <head>
 <script type="text/javascript">
 	
-	var formKey = "${formKey}"
+	var formKey = "${param.formKey}"
 			
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>

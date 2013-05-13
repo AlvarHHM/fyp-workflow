@@ -25,6 +25,7 @@ public class MailBody {
 		}
 		
 		template = text;
+		
 	}
 	
 	public void setProperty(String name,String value){

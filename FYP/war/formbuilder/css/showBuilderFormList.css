@@ -34,7 +34,7 @@ table.viewFormTable th,table.viewFormTable td {
 }
 
 table.viewFormTable tbody th,table.viewFormTable td {
-	text-align: center;
+	text-align: left;
 	vertical-align: top;
 }
 

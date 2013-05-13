@@ -2,6 +2,7 @@ package edu.fyp.notify.email;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -63,14 +64,17 @@ public class NoticeMailService {
 			mp.addBodyPart(htmlPart);
 			msg.setContent(mp);
 			Transport.send(msg);
-
+			Logger.getAnonymousLogger().warning(Arrays.toString(msg.getAllRecipients()));
 		} catch (AddressException e) {
 			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
 		}
 
 	}

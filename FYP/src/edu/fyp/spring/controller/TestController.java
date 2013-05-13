@@ -4,8 +4,21 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -74,5 +87,39 @@ public class TestController {
 		this.notificationManger.testNotify();
 		return "hello";
 	}
+	
+	@RequestMapping("/test3")
+	public @ResponseBody
+	String test3() throws Exception {
+		Properties props = new Properties();
+		Session session = Session.getDefaultInstance(props, null);
+		try {
+			Message msg = new MimeMessage(session);
+			Multipart mp = new MimeMultipart();
+			msg.setFrom(new InternetAddress("mahoihei@gmail.com",
+					"Admin"));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(
+					"mahoihei@gmail.com", "Mr. User"));
+			msg.setSubject("test");
+			MimeBodyPart htmlPart = new MimeBodyPart();
+			htmlPart.setContent("<html></html>", "text/html");
+			mp.addBodyPart(htmlPart);
+			msg.setContent(mp);
+			Transport.send(msg);
+
+		} catch (AddressException e) {
+			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Logger.getAnonymousLogger().warning(e.getMessage());
+		}
+		return "hello";
+	}
+	
 
 }

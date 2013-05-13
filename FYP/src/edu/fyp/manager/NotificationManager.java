@@ -17,7 +17,7 @@ public class NotificationManager {
 		MailBody mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
 		mb.setProperty("userId", "User ID");
 		mn.setTitle("test");
-		mn.setTo("mahoihei@gmial.com");
+		mn.setTo("mahoihei@gmail.com");
 		mn.setBody(mb);
 		NoticeMailService.getIntance().batchNotice(mn);
 		NoticeMailService.getIntance().processBatch();

@@ -95,8 +95,8 @@
 									href="showBuilderFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
 									target="_blank"> <img src="/formbuilder/img/dc.png" width="30px"
 										height="30px" />
-								</a> <a target="_blank"
-									href="/path?formKey=<%=KeyFactory.keyToString(tempForm.getKey())%>">Path</a>
+								</a> <a target="_blank" onclick='window.open("/path?formKey=<%=KeyFactory.keyToString(tempForm.getKey())%>")'
+									style="cursor: pointer">Path</a>
 								</td>
 							</tr>
 							<%
