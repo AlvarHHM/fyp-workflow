@@ -40,15 +40,16 @@ public class NoticeNode extends RelayNode{
 		MailNotice mn = new MailNotice();
 		MailBody mb;
 		try {
-			mb = new MailBody("/mail-template/NotifyOfNotice.html");
+			mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
 			mb.setProperty("%applyDate", app.getApplyDate().toString());
 			mb.setProperty("%message", this.getNoticeMessage());
 			mn.setTitle("Application Notice - ");
 			mn.setTo(this.getEmail());
 			NoticeMailService.getIntance().batchNotice(mn);
 			NoticeMailService.getIntance().processBatch();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println(e.toString());
 			e.printStackTrace();
 		}
         this.setState("finish");

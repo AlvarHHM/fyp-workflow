@@ -78,7 +78,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 							i++;
 						}
 					});
-					$.post("http://localhost:8888/Client/applyApplication"
+					$.post("/Client/applyApplication"
 					,{
 						FormID : formId,
 						Version : version,
