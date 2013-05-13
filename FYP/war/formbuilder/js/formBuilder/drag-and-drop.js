@@ -59,7 +59,10 @@ function getItemHtml(itemType) {
     var itemType = itemType.toUpperCase();
     switch (true) {
         case (/HEADING/).test(itemType):
-            html += "<label class='label'>Heading</label>";
+            html += "<span>Heading</span>";
+            break;
+        case (/LABEL/).test(itemType):
+            html += "<label class='label'>Label</label>";
             break;
         case (/TEXTFIELD/) .test(itemType):
             html += "<label class='label'>Text Field</label><input type='text'/>";
@@ -81,6 +84,11 @@ function getItemHtml(itemType) {
             break;
         case (/DATE/) .test(itemType):
             html += "<label class='label'>Date Picker</label><input class='date-picker' type='text'/>";
+            break;
+        case (/UPLOAD/) .test(itemType):
+            html += "<form class='upload' enctype='multipart/form-data'>"+
+						"<input name='file' type='file' /><button>Upload</button>"+
+					"</form><progress></progress>";
             break;
         default:
             break;

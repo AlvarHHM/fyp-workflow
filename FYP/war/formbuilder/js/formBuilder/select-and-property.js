@@ -180,6 +180,12 @@ function setChoiceType() {
             $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
+		case (/LABEL/).test(itemType):
+			$("#validation").hide();
+		
+            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#radio-list,#checkbox-list,#combobox-list").hide();
+            break;
         case (/TEXTAREA/).test(itemType):
 			$("#validation").show();
 		
@@ -188,6 +194,12 @@ function setChoiceType() {
             break;
         case (/DATE/).test(itemType):
 			$("#validation").show();
+		
+            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#radio-list,#checkbox-list,#combobox-list").hide();
+            break;
+        case (/UPLOAD/).test(itemType):
+			$("#validation").hide();
 		
             $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
