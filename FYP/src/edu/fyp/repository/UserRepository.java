@@ -40,7 +40,7 @@ public class UserRepository {
 	public Employee queryEmployeeByDeptKeyAndLevel(Key deptKey,int level){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Department dept = pm.getObjectById(Department.class, deptKey);
-		Query query = pm.newQuery();
+		Query query = pm.newQuery(Employee.class);
 		query.setFilter("superLevel == levelParam && department == deptParam");
 		query.declareParameters("int levelParam,edu.fyp.bean.Department deptParam");
 		List<Employee> result = (List<Employee>) query.execute(level,dept);
@@ -56,7 +56,7 @@ public class UserRepository {
 	public Employee queryEmployeeByEmpID(String empIDStr){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		System.out.println(empIDStr);
-		Query query = pm.newQuery();
+		Query query = pm.newQuery(Employee.class);
 		query.setFilter(" empId == empIDStr");
 		query.declareParameters("String empIDStr");
 		List<Employee> result = (List<Employee>) query.execute(empIDStr);
