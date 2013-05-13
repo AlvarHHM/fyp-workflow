@@ -1,6 +1,7 @@
 package edu.fyp.manager;
 
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -54,7 +55,8 @@ public class ApplicationPathGenerator {
 			jsonAry = strToJSONArray(str);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Logger.getLogger("GeneratePath - JSON error.");
+			Logger.getLogger(e.toString());
 		}
 		//create hashmap
 		for(int i=0;i<jsonAry.length();i++){

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="edu.fyp.bean.Form"%>
+<%@page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%
 	//Get form list
 	ArrayList<Form> formList = (ArrayList) request.getSession()
@@ -94,8 +95,8 @@
 									href="showBuilderFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
 									target="_blank"> <img src="/formbuilder/img/dc.png" width="30px"
 										height="30px" />
-								</a> <a 
-									href="/formbuilder/path/pathbuilder.jsp?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>">Path</a>
+								</a> <a target="_blank"
+									href="/path?formKey=<%=KeyFactory.keyToString(tempForm.getKey())%>">Path</a>
 								</td>
 							</tr>
 							<%
