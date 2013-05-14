@@ -19,7 +19,7 @@
 				<fieldset>
 					<legend align='center'>You can apply these Form</legend>
 					<div class="searchField">
-						<form method="get" action="showFormListServlet">
+						<form method="get" action="/Client/showClientFormListServlet">
 							<select name="search">
 								<option value="formID">Form ID</option>
 								<option value="title">Title</option>

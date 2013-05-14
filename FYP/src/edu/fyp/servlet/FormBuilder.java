@@ -16,6 +16,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Form;
+import edu.fyp.bean.User;
 import edu.fyp.manager.FormManager;
 
 public class FormBuilder extends HttpServlet {
@@ -38,13 +39,14 @@ public class FormBuilder extends HttpServlet {
 			out.close();
 			return ;
 		}
+		User user = (User) req.getSession().getAttribute("USER");
 		Form form = new Form();
 		form.setFormHtml(new Text(req.getParameter("FormHtml")));
 		form.setConstraint(req.getParameter("Constraint"));
 		form.setDescription(req.getParameter("Description"));
 		form.setTitle(req.getParameter("Title"));
-		form.setCreatedDate(new Date());
-		form.setCreatedBy("hardCodeOne");//hardcode
+		form.setCreatedDate(new Date());		
+		form.setCreatedBy(user.getEmployee().getEmpId());
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
 		form.setPath(new Text(""));

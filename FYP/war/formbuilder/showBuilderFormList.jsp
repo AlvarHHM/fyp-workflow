@@ -36,7 +36,7 @@
 				<fieldset>
 					<legend align='center'>You can Maintain these Application</legend>
 					<div class="searchField">
-						<form method="get" action="showFormListServlet">
+						<form method="get" action="/formbuilder/showBuilderFormListServlet">
 							<select name="search">
 								<option value="formID">Form ID</option>
 								<option value="title">Title</option>

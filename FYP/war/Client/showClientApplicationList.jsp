@@ -23,7 +23,7 @@
 				<fieldset>
 					<legend align='center'>Application</legend>
 					<div class="searchField">
-						<form method="get" action="showFormListServlet">
+						<form method="get" action="/Client/showClientApplicationListServlet">
 							<select name="search">
 								<option value="formID">Form ID</option>
 								<option value="title">Title</option>

@@ -26,8 +26,6 @@ public class Form implements Serializable{
 	private Text formHtml;
 	@Persistent
 	private String description;
-	//	@Persistent
-	// private ArrayList<UserGroup> userGroup;
 	@Persistent
 	private Text path;
 	@Persistent
