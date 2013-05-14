@@ -53,4 +53,12 @@ public class FormManager {
 	public void updateFormPath(String formKey, Text path) {
 		formRepo.updateFormPath(formKey,path);		
 	}
+
+	public ArrayList<Form> searchReleaseForm(String search, String keyword) {
+		return formRepo.searchReleaseForm(search, keyword);
+	}
+
+	public ArrayList<Form> getAllReleaseForm() {
+		return formRepo.getAllReleaseForm();
+	}
 }

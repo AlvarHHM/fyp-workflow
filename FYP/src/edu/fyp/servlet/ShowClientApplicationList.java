@@ -17,6 +17,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.Form;
+import edu.fyp.bean.User;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
@@ -38,7 +39,8 @@ public class ShowClientApplicationList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String empID = "H0000001";//hard code
+		User user = (User) req.getSession().getAttribute("USER");
+		String empID = user.getEmployee().getEmpId();
 		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;

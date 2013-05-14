@@ -21,6 +21,7 @@ import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.Form;
+import edu.fyp.bean.User;
 import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.ApplicationRepository;
@@ -42,19 +43,20 @@ public class ApplyApplication extends HttpServlet {
 		String formID = req.getParameter("FormID");
 		String version = req.getParameter("Version");
 		Text data = new Text(req.getParameter("Data"));
+		User user = (User) req.getSession().getAttribute("USER");
 		Application app = new Application();
-		app.setEmpID("H0000001");//hardcode
+		app.setEmpID(user.getEmployee().getEmpId());
 		app.setFormID(formID);
 		app.setVersion(version);
 		app.setFormData(data);
 		app.setApplyDate(new Date());
-/*		try {*/
+		try {
 			appManager.applyApplication(app);
 			out.println("Application applied.");
-/*		} catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println(e.toString());
 			Logger.getAnonymousLogger().warning(e.toString());
 			out.println("Error. Please contact IT support.");
-		}*/
+		}
 	}
 }
