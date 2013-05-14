@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,20 +37,21 @@ public class LoginController {
 	public String loginWithRedirect(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password,
-			@RequestParam("redirect")String url) throws UnsupportedEncodingException {
+			@RequestParam("redirect")String url,HttpSession session) throws UnsupportedEncodingException {
 		
 		user = userManager.login(userName, password);
+		session.setAttribute("USER", user);
 		return "redirect:"+URLDecoder.decode(url, "UTF-8");
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {"userName","password"})
 	public String login(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
-			@RequestParam("password") String password,ModelMap map){
+			@RequestParam("password") String password,HttpSession session){
 		
 		user = userManager.login(userName, password);
+		session.setAttribute("USER", user);
 		if (user != null){
-			map.put("USER", user);
 			return "redirect:/Client/home.jsp";
 		}else
 			return "redirect:/Client/login2.html?error=1";

@@ -10,7 +10,7 @@ import edu.fyp.repository.PMF;
 
 public class SearchEmployeeUtil {
 
-	public void updateIndex(Employee emp) {
+	public static void updateIndex(Employee emp) {
 		StringBuffer sb = new StringBuffer();
 		if (emp.getDepartment() != null) {
 			PersistenceManager pm = PMF.get().getPersistenceManager();
