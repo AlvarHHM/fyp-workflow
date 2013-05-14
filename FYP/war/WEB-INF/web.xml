@@ -297,7 +297,7 @@
 	
 		<servlet>
 		<servlet-name>showApproveApplicationList</servlet-name>
-		<jsp-file>/Client/showApproveApplicationList</jsp-file>
+		<jsp-file>/Client/showApproveApplicationList.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>showApproveApplicationList</servlet-name>
