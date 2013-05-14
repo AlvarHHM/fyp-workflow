@@ -46,6 +46,9 @@ public class ApproveNode extends RelayNode{
 	@Persistent
     private String type;
 	
+	@Persistent
+    private String approverID;
+	
 	@Autowired
 	private ApplicationManager appManager;
 	
@@ -97,6 +100,8 @@ public class ApproveNode extends RelayNode{
 		}
 		
 		appRepo.updateApproveEmp(app.getKey(), approver.getEmpId());
+		this.setApproverID(approver.getEmpId());
+		pathNodeRepo.updateNodeApproveID(this, this.getApproverID());
 		
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOFComingApproval.html");
@@ -178,4 +183,13 @@ public class ApproveNode extends RelayNode{
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	public String getApproverID() {
+		return approverID;
+	}
+
+	public void setApproverID(String approverID) {
+		this.approverID = approverID;
+	}
+	
 }

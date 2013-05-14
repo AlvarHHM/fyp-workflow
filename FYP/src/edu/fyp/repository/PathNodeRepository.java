@@ -61,6 +61,19 @@ public class PathNodeRepository {
 	    }
 	}
 	
+	public void updateNodeApproveID(ApproveNode pathNode, String approveID){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+	    try {
+	    	String classKind = pathNode.getNodeKey().getKind();
+	    	ApproveNode an = (ApproveNode) pm.getObjectById(ApproveNode.class, pathNode.getNodeKey());
+	    	an.setApproverID(approveID);
+	    }catch(Exception E){
+	    	Logger.getAnonymousLogger().warning(E.toString());
+	    }	    finally {
+	        pm.close();
+	    }
+	}
+		
 	public void updateNodeDate(PathNode pathNode){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 	    try {
