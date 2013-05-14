@@ -72,12 +72,9 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 							<tr>
 								<td><%= tempForm.getTitle() %></td>
 								<td><%= app.getFormID() %></td>
-<<<<<<< HEAD
 								<td><%= app.getVersion() %></td>
 								<td><a href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
-=======
 								<td><a target="_blank" href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
->>>>>>> e135e3833f8fe4a8a6b5027789664cbb8653e30e
 								<td><%= dateformat.format(app.getApplyDate()) %></td>
 								<td><%= app.getStatus() %></td>
 													<td><a href="showClientApplicationServlet?formID=<%= app.getFormID() %>&version=<%= app.getVersion() %>&appKey=<%= appKeyStr %>" target="_blank">
