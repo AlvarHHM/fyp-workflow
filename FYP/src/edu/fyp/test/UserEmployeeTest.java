@@ -10,9 +10,12 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
+import edu.fyp.bean.Department;
+import edu.fyp.bean.Employee;
 import edu.fyp.bean.User;
 import edu.fyp.manager.UserManager;
 import edu.fyp.repository.PMF;
+import edu.fyp.search.SearchEmployeeUtil;
 
 import org.junit.After;
 import org.junit.Before;
@@ -47,14 +50,25 @@ public class UserEmployeeTest {
   
 
     @Test
-    public void testFullTextSearch() {
-    	User user = new User();
-    	user.setUserName("testUser");
-    	user.setPassword("testPassword");
+    public void testEmployeeFullTextSearch() {
     	PersistenceManager pm = PMF.get().getPersistenceManager();
+    	Department dept = new Department();
+    	pm.makePersistent(dept);
+    	User user = new User();
+    	Employee employee = new Employee();
+    	employee.setDepartment(dept.getDeptKey());
+    	user.setEmployee(employee);
+    	employee.setUser(user);
+    	
+    	employee.setNickName("testNickName");
+    	employee.setEngSurname("testSur");
+    	SearchEmployeeUtil.updateIndex(employee);
+    	
+    	
     	pm.makePersistent(user);
     	pm.close();
-        assert(userMan.login("testUser", "testPassword")!= null);
+    	
+        assert(userMan.searchEmployeeByFullText("testNickName").size()>0);
         
     }
 
