@@ -17,13 +17,13 @@ $(document).ready(function() {
 		$("#form-title").html($("#formName").val());
 	});
 	
-	$('#formBuilder-stage').keyup(function(e){
+	$("html").keyup(function(e){
 		if(e.keyCode == 46){
             $(".form-item.selected").remove();
 			$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
 			$("#formBuilder-leftPanel").tabs("option", "active", 0);
 		}
-	}) 
+	}); 
 });
 
 function selectFormItem(itemId) {
@@ -47,7 +47,7 @@ function selectFormItem(itemId) {
 				$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
 				$("#formBuilder-leftPanel").tabs("option", "active", 0);
 		});
-
+		
 	//X text
     x
             .val(item.css("left").replace("px",""))
