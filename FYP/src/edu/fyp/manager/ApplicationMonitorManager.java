@@ -23,7 +23,6 @@ import edu.fyp.repository.UserRepository;
 @Service
 public class ApplicationMonitorManager {
 
-	private ApplicationPathGenerator apg;
 	private ApplicationRepository appRepo;
 	private ApplicationPathRepository appPathRepo;
 	private PathNodeRepository pathNodeRepo;
@@ -31,12 +30,11 @@ public class ApplicationMonitorManager {
 	private UserRepository userRepo;
 
 	@Autowired
-	public ApplicationMonitorManager(ApplicationPathGenerator apg,
+	public ApplicationMonitorManager(
 			ApplicationRepository appRepo,
 			ApplicationPathRepository appPathRepo,
 			PathNodeRepository pathNodeRepo,
 			ApplicationContext applicationContext, UserRepository userRepo) {
-		this.apg = apg;
 		this.appRepo = appRepo;
 		this.appPathRepo = appPathRepo;
 		this.pathNodeRepo = pathNodeRepo;

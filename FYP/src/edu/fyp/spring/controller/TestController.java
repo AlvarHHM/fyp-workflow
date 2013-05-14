@@ -20,6 +20,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -148,5 +149,12 @@ public class TestController {
 		System.out.println(appKey.toString());
 		System.out.println(appKey.getId());
 		return appMonManager.getApplicationPath(appKey).toString();
+	}
+	
+	@RequestMapping("/testSession")
+	public @ResponseBody
+	String testSession(HttpSession session) throws Exception {
+		
+		return ((User)session.getAttribute("USER")).getEmployee().toString();
 	}
 }

@@ -50,8 +50,11 @@ public class LoginController {
 			@RequestParam("password") String password,HttpSession session){
 		
 		user = userManager.login(userName, password);
-		session.setAttribute("USER", user);
+		
 		if (user != null){
+			session.setAttribute("USER", user);
+			session.setAttribute("EMP", user.getEmployee());
+			session.setAttribute("DEPT", user.getEmployee().getDepartment());
 			return "redirect:/Client/home.jsp";
 		}else
 			return "redirect:/Client/login2.html?error=1";

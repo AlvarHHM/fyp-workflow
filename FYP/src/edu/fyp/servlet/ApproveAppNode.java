@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -68,11 +69,12 @@ public class ApproveAppNode extends HttpServlet {
 			return ;
 		}
 		
-/*		try {*/
+		try {
 			appManager.approveApplicationNode(appKey,nodeKey,approve);
-/*		} catch (Exception e) {
+		} catch (Exception e) {
+			Logger.getAnonymousLogger().warning(e.toString());
 			out.println("Error. Please contact IT support.");
-		}*/
+		}
 		
 		out.close();
 	}

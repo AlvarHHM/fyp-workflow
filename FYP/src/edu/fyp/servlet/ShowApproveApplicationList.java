@@ -45,8 +45,8 @@ public class ShowApproveApplicationList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		User user = (User) req.getSession().getAttribute("USER");
-		String empID = user.getEmployee().getEmpId();
+		Employee emp = (Employee) req.getSession().getAttribute("EMP");
+		String empID = emp.getEmpId();
 		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;
