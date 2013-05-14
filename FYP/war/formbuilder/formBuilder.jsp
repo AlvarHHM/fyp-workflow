@@ -82,8 +82,7 @@
 					<div id="content">
 						<div id="formBuilder-container">
 							<div id="form-header">
-								<span id="form-title-label">Title: </span><span id="form-title">A
-									title</span>
+								<span id="form-title-label">Title: </span><span id="form-title">New Form</span>
 								<div id="form-save-container">
 									<input type="button" value="Back" onclick="goBack()">
 
@@ -237,11 +236,25 @@
 									</div>
 									<div class="formItem-properties-group" id="css">
 										<hr />
-										<div>
-											<label>CSS Rule</label>
+										<div id="label-css">
+											<label>Label CSS Rule</label>
 											<div>
-												<textarea id="itemCSS"></textarea>
-												<button onclick="setStyle()">Set CSS</button>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
+											</div>
+										</div>
+										<div id="textbox-css">
+											<label>Textbox CSS Rule</label>
+											<div>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
+											</div>
+										</div>
+										<div id="heading-css">
+											<label>Heading CSS Rule</label>
+											<div>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
 											</div>
 										</div>
 									</div>

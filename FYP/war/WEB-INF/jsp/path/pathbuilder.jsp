@@ -4,26 +4,27 @@
 <script type="text/javascript">
 	
 	var formKey = "${param.formKey}"
-	var pahtJson = "${path}";
+	var pathJson = ${path};
 			
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/jquery.ui.position.js"></script>
+<script type="text/javascript" src="/js/jquery.jsPlumb-1.3.16-all-min.js"></script>
 <script type="text/javascript" src="/js/jquery.contextMenu.js"></script>
 <script type="text/javascript" src="/js/jquery.lightbox_me.js"></script>
 <script type="text/javascript" src="/js/select2.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/prototype.js"></script>
 <script type="text/javascript" src="/js/property.js"></script>
+<script type="text/javascript" src="/js/pathbuilder.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css"
 	href="/css/jquery.contextMenu.css">
 <link rel="stylesheet" type="text/css" href="/css/select2.css">
 <link rel="stylesheet" type="text/css" href="/css/pathbuilder2.css">
-<script src="/js/jquery.jsPlumb-1.3.16-all-min.js"></script>
-<script src="/js/pathbuilder.js"></script>
+
 </head>
 
 <body>
