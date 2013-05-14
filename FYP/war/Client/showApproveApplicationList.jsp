@@ -2,11 +2,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="edu.fyp.bean.Form"%>
+<%@page import="edu.fyp.bean.Employee"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 
 <%
 //Get form list
-ArrayList<Application> appList = (ArrayList)request.getSession().getAttribute("appList");
+ArrayList<Form> formList = (ArrayList<Form>)request.getSession().getAttribute("formList");
+ArrayList<Application> appList = (ArrayList<Application>)request.getSession().getAttribute("appList");
+ArrayList<Employee> empList = (ArrayList<Employee>)request.getSession().getAttribute("empList");
 SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 
 %>
