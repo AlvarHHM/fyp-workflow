@@ -63,6 +63,16 @@
 					break;
 				case (/UPLOAD/).test(itemType):
 					item.find("input.uploaded-file").val(appData[i].Value);
+					item.find("input[type=file]").prop('disabled', true);
+					item.find("button").html("Download");
+					item.find("button").unbind("click")
+						.bind(
+							"click",
+							{i:item},
+							function(e){
+								window.open("/GetDocumentServlet?filekey="+appData[i].Value);
+							});
+					item.find("progress").hide();
 					break;
 				default:
 					break;
