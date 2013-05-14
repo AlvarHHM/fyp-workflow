@@ -37,10 +37,12 @@ public class PathController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/path",params={"appKey"})
+	@RequestMapping(value="/pathReadOnly",params={"appKey"})
 	public ModelAndView pathReadOnly(@RequestParam(value="appKey", required=true)String appKey){
 		ModelAndView mav = new ModelAndView("path/pathviewer");
-		appMonManager.getApplicationPath(KeyFactory.stringToKey(appKey));
+		String json = appMonManager.getApplicationPath(KeyFactory.stringToKey(appKey));
+		mav.addObject("appKey", appKey);
+		mav.addObject("appJson", json);
 		
 		return mav;
 	}

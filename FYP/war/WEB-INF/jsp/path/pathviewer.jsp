@@ -3,7 +3,7 @@
 <head>
 <script type="text/javascript">
 	
-	var formKey = "${param.formKey}"
+	var formKey = "${appKey}"
 	var pathJson = ${path};
 			
 </script>
