@@ -49,9 +49,8 @@ public class FullTextSearchEmployeeTest {
     }
 
   
-
     @Test
-    public void testEmployeeFullTextSearchNickName() {
+    public void testEmployeeFullTextSearch() {
     	PersistenceManager pm = PMF.get().getPersistenceManager();
     	Department dept = new Department();
     	pm.makePersistent(dept);
@@ -62,113 +61,23 @@ public class FullTextSearchEmployeeTest {
     	employee.setUser(user);
     	
     	employee.setNickName("testNickName");
+    	employee.setEngSurname("testSurname");
+    	employee.setEngOtherName("testOtherName");
+    	employee.setEmpId("testEmpId");
+    	dept.setDeptId("testDeptId");
+    	dept.setDeptName("testDeptName");
     	SearchEmployeeUtil.updateIndex(employee);
     	pm.makePersistent(user);
     	pm.close();
 	
         Assert.assertTrue(userMan.searchEmployeeByFullText("testNickName").size()!=0);
-        
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testSurname").size()!=0);
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testOtherName").size()!=0);
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testEmpId").size()!=0);
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testDeptId").size()!=0);
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testDeptName").size()!=0);
     }
-    
-    @Test
-    public void testEmployeeFullTextSearchSurname() {
-    	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	User user = new User();
-    	Employee employee = new Employee();
-    	employee.setDepartment(dept.getDeptKey());
-    	user.setEmployee(employee);
-    	employee.setUser(user);
-    	
-    	employee.setEngSurname("testName");
-    	SearchEmployeeUtil.updateIndex(employee);
-    	pm.makePersistent(user);
-    	pm.close();
-	
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testName").size()!=0);
-        
-    }
-    
-    @Test
-    public void testEmployeeFullTextSearchOtherName() {
-    	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	User user = new User();
-    	Employee employee = new Employee();
-    	employee.setDepartment(dept.getDeptKey());
-    	user.setEmployee(employee);
-    	employee.setUser(user);
-    	
-    	employee.setEngOtherName("testName");
-    	SearchEmployeeUtil.updateIndex(employee);
-    	pm.makePersistent(user);
-    	pm.close();
-	
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testName").size()!=0);
-        
-    }
-    
-    @Test
-    public void testEmployeeFullTextSearchEmpId() {
-    	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	User user = new User();
-    	Employee employee = new Employee();
-    	employee.setDepartment(dept.getDeptKey());
-    	user.setEmployee(employee);
-    	employee.setUser(user);
-    	
-    	employee.setEmpId("testId");
-    	SearchEmployeeUtil.updateIndex(employee);
-    	pm.makePersistent(user);
-    	pm.close();
-	
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testId").size()!=0);
-        
-    }
-    
-    @Test
-    public void testEmployeeFullTextSearchDeptId() {
-    	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	User user = new User();
-    	Employee employee = new Employee();
-    	employee.setDepartment(dept.getDeptKey());
-    	user.setEmployee(employee);
-    	employee.setUser(user);
-    	
-    	dept.setDeptId("testId");
-    	SearchEmployeeUtil.updateIndex(employee);
-    	pm.makePersistent(user);
-    	pm.close();
-	
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testId").size()!=0);
-        
-    }
-    
-    @Test
-    public void testEmployeeFullTextSearchDeptName() {
-    	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	User user = new User();
-    	Employee employee = new Employee();
-    	employee.setDepartment(dept.getDeptKey());
-    	user.setEmployee(employee);
-    	employee.setUser(user);
-    	
-    	dept.setDeptName("testName");
-    	SearchEmployeeUtil.updateIndex(employee);
-    	pm.makePersistent(user);
-    	pm.close();
-	
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testName").size()!=0);
-        
-    }
+
 
     
 }

@@ -16,17 +16,20 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
 import edu.fyp.bean.Department;
 import edu.fyp.bean.Employee;
+import edu.fyp.bean.Form;
+import edu.fyp.manager.FormManager;
 import edu.fyp.manager.UserManager;
+import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 import edu.fyp.repository.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:**/dispatcherServlet-servlet.xml"})
-public class UserEmployeeTest {
+public class FormTest {
 
 	
 	@Autowired
-	UserRepository userRepo;
+	FormManager formMan;
 
     private final LocalServiceTestHelper helper =
         new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
@@ -42,15 +45,25 @@ public class UserEmployeeTest {
     }
     
     @Test
-    public void testQueryByDeptAndLevel(){
+    public void testGetFormByIDVersion(){
     	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Employee emp = new Employee();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	emp.setDepartment(dept.getDeptKey());
-    	emp.setSuperLevel(100);
-    	pm.makePersistent(emp);
-    	Assert.assertTrue(userRepo.queryEmployeeByDeptKeyAndLevel(dept.getDeptKey(), 100)!=null);
+    	Form form = new Form();
+    	form.setVersion("testVersion");
+    	form.setFormID("testId");
+    	formMan.addForm(form);
+    	Assert.assertTrue(formMan.getFormByIDVersion("testId", "testVersion").getKey().equals(form.getKey()));
+    }
+    
+    @Test
+    public void testSearchForm(){
+    	PersistenceManager pm = PMF.get().getPersistenceManager();
+    	Form form = new Form();
+    	form.setFormID("testId");
+    	form.setTitle("testTitle");
+    	formMan.addForm(form);
+    	Assert.assertTrue(formMan.searchForm("title", "testTitle").size()!=0);
+    	Assert.assertTrue(formMan.searchForm("formID", "testId").size()!=0);
+    	
     	
     }
 }
