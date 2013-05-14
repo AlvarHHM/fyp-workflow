@@ -26,8 +26,7 @@
 <script type="text/javascript">
 	<%if (form != null && app != null) {%>
 		 $(function() {
-			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>
-	');
+			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
 		if (appData.length !== 0) {
 			for ( var i = 0; i < appData.length; i++) {
 				var item = $("#" + appData[i].Id);
