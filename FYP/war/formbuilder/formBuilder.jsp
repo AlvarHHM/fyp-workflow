@@ -227,15 +227,6 @@
 											<option value="4">Four</option>
 										</select> <span>Column</span>
 									</div>
-									<div class="formItem-properties-group" id="options">
-										<hr />
-										<fieldset>
-											<legend>Option</legend>
-											<div id="item-required">
-												<input type="checkbox" /> <label>Required</label>
-											</div>
-										</fieldset>
-									</div>
 									<div class="formItem-properties-group" id="css">
 										<hr />
 										<div id="text-css">
@@ -287,6 +278,15 @@
 												<button>Set CSS</button>
 											</div>
 										</div>
+									</div>
+									<div class="formItem-properties-group" id="options">
+										<hr />
+										<fieldset>
+											<legend>Option</legend>
+											<div id="item-required">
+												<input type="checkbox" /><label>Required</label>
+											</div>
+										</fieldset>
 									</div>
 									<!--
                                         <div class="formItem-properties-group" id="validation">
