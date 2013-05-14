@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.appengine.api.datastore.KeyFactory;
+
 import edu.fyp.bean.Form;
+import edu.fyp.manager.ApplicationMonitorManager;
 import edu.fyp.manager.FormManager;
 
 @Controller
@@ -15,6 +18,9 @@ public class PathController {
 	
 	@Autowired
 	private FormManager formManager;
+	
+	@Autowired
+	private ApplicationMonitorManager appMonManager;
 	
 	@RequestMapping("/path")
 	public  ModelAndView path(){
@@ -32,8 +38,9 @@ public class PathController {
 	}
 	
 	@RequestMapping(value="/path",params={"appKey"})
-	public ModelAndView pathReadOnly(){
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView pathReadOnly(@RequestParam(value="appKey", required=true)String appKey){
+		ModelAndView mav = new ModelAndView("path/pathviewer");
+		appMonManager.getApplicationPath(KeyFactory.stringToKey(appKey));
 		
 		return mav;
 	}

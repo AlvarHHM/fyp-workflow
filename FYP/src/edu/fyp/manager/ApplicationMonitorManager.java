@@ -44,7 +44,7 @@ public class ApplicationMonitorManager {
 		this.userRepo = userRepo;
 	}
 
-	public JSONArray getApplicationPath(Key appKey) {
+	public String getApplicationPath(Key appKey) {
 		Application app = appRepo.getApplication(appKey);
 		ApplicationPath appPath = appPathRepo.getApplicationPath(app
 				.getAppPath());
@@ -86,6 +86,6 @@ public class ApplicationMonitorManager {
 				Logger.getAnonymousLogger().warning(e.toString());
 			}
 		}
-		return jsonAry;
+		return jsonAry.toString();
 	}
 }
