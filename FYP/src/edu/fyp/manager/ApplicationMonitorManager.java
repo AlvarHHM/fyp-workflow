@@ -84,6 +84,8 @@ public class ApplicationMonitorManager {
 			try {
 				jo.put("Node-Type", currentNode.getNodeKey().getKind());
 				jo.put("approver", "");
+				long millisecond = currentNode.getProcessDate().getTime();
+				jo.put("Timestamp",millisecond);
 				jo.put("Node-ID", currentNode.getNodeID());
 				jsonAry.put(jo);
 			} catch (JSONException e) {
