@@ -62,7 +62,9 @@
 					break;
 				case (/UPLOAD/).test(itemType):
 					item.find("input.uploaded-file").val(appData[i].Value);
-					item.find("input[type=file]").prop('disabled', true);
+					item.find("input[type=file]").prop('type', "text").prop('disabled', true)
+						.val(appData[i].FileName);
+					
 					item.find("button").html("Download");
 					item.find("button").unbind("click")
 						.bind(

@@ -53,7 +53,7 @@ public class FormBuilder extends HttpServlet {
 		form.setPath(new Text(""));
 		try{
 			formManager.addForm(form);		
-			out.println("Sucess.");
+			out.println("Success.");
 		}catch(Exception ex){
 			out.println("Error! Form design NOT saved!");
 		}

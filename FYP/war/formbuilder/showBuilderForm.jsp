@@ -20,6 +20,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 		var data = new Array();
 		 $(function() {
 				$(".date-picker").datepicker();
+				$("button").click(function(){return false;})
         });
 		function SubmitApplication(){
 			
