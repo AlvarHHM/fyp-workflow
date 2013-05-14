@@ -11,12 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
+import edu.fyp.bean.Department;
+import edu.fyp.bean.Employee;
+import edu.fyp.bean.Form;
 import edu.fyp.manager.ApplicationManager;
 import edu.fyp.notify.email.MailBody;
 import edu.fyp.notify.email.MailNotice;
 import edu.fyp.notify.email.NoticeMailService;
 import edu.fyp.repository.ApplicationPathRepository;
 import edu.fyp.repository.ApplicationRepository;
+import edu.fyp.repository.FormRepository;
+import edu.fyp.repository.PathNodeRepository;
+import edu.fyp.repository.UserRepository;
 
 @PersistenceCapable
 public class NoticeNode extends RelayNode{
@@ -34,17 +40,34 @@ public class NoticeNode extends RelayNode{
 	
 	@Autowired
 	ApplicationManager appManager;
+
+	@Autowired
+	private PathNodeRepository pathNodeRepo;
 	
+	@Autowired
+	private FormRepository formRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	public void process(){
 		Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
+		Form form =formRepo.getFormByIDVersion(app.getFormID(), app.getVersion());
+		Department dept;
+		Employee applier;
+		applier = userRepo.queryEmployeeByEmpID(app.getEmpID());
+		dept = userRepo.queryDepartmentByDeptKey(applier.getDepartment());
 		MailNotice mn = new MailNotice();
 		MailBody mb;
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
-			mb.setProperty("DetailapplyDate", app.getApplyDate().toString());
-			mb.setProperty("Detailmessage", this.getNoticeMessage());
-			mn.setTitle("Application Notice - ");
+			mb.setProperty("applyDate", app.getApplyDate().toString());
+			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngOtherName());
+			mb.setProperty("department", dept.getDeptName());
+			mb.setProperty("formTitle", form.getTitle());
+			mb.setProperty("message", this.getNoticeMessage());
+			mn.setTitle("Application Notice - " + form.getTitle()
+					+ " by " + applier.getEngOtherName()+applier.getEngOtherName());
 			mn.setTo(this.getEmail());
 			mn.setBody(mb);
 			Logger.getAnonymousLogger().warning(this.getEmail());
@@ -55,6 +78,8 @@ public class NoticeNode extends RelayNode{
 			Logger.getAnonymousLogger().warning(e.toString());
 		}
         this.setState("finish");
+		pathNodeRepo.updateNodeDate(this);
+        pathNodeRepo.updateNodeState(this, this.getState());
     }
 	
     public String getEmpID(){

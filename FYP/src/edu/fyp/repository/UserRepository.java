@@ -39,11 +39,10 @@ public class UserRepository {
 	
 	public Employee queryEmployeeByDeptKeyAndLevel(Key deptKey,int level){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Department dept = pm.getObjectById(Department.class, deptKey);
 		Query query = pm.newQuery(Employee.class);
 		query.setFilter("superLevel == levelParam && department == deptParam");
-		query.declareParameters("int levelParam,edu.fyp.bean.Department deptParam");
-		List<Employee> result = (List<Employee>) query.execute(level,dept);
+		query.declareParameters("int levelParam,com.google.appengine.api.datastore.Key deptParam");
+		List<Employee> result = (List<Employee>) query.execute(level,deptKey);
 		return result.size()!=0?result.get(0):null;
 	}
 	
@@ -53,9 +52,17 @@ public class UserRepository {
 		return dept;
 	}
 	
+	public Department queryDepartmentByDeptID(String deptIDStr){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query query = pm.newQuery(Department.class);
+		query.setFilter(" deptId == deptIDStr");
+		query.declareParameters("String deptIDStr");
+		List<Department> result = (List<Department>) query.execute(deptIDStr);
+		return result.size()!=0?result.get(0):null;
+	}
+	
 	public Employee queryEmployeeByEmpID(String empIDStr){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		System.out.println(empIDStr);
 		Query query = pm.newQuery(Employee.class);
 		query.setFilter(" empId == empIDStr");
 		query.declareParameters("String empIDStr");

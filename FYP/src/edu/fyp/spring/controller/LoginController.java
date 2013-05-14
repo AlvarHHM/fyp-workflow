@@ -46,7 +46,10 @@ public class LoginController {
 			@RequestParam("password") String password){
 		
 		user = userManager.login(userName, password);
-		return "redirect:/Client/home.jsp";
+		if (user != null)
+			return "redirect:/Client/home.jsp";
+		else
+			return "redirect:/Client/login2.html?error=1";
 	}
 	
 	

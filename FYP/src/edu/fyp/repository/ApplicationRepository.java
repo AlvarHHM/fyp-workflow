@@ -66,10 +66,10 @@ public class ApplicationRepository {
 		Query q = pm.newQuery(Application.class);
 		appList = (List<Application>) q.execute();
 		pm.close();
-		return listToArrayListForm(appList);
+		return listToArrayList(appList);
 	}
 
-	protected ArrayList<Application> listToArrayListForm(
+	protected ArrayList<Application> listToArrayList(
 			List<Application> appList) {
 		ArrayList<Application> appArrayList = new ArrayList<Application>();
 		for (int i = 0; i < appList.size(); i++) {
@@ -96,23 +96,55 @@ public class ApplicationRepository {
 		return app;
 	}
 
-	public List<Application> searchApplication(String search, String keyword,String empID) {
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query q = pm.newQuery(Form.class);
-		q.setFilter(search + " == keyword");
-		q.declareParameters("String keyword");
-		List<Application> results = (List<Application>) q.execute(keyword);
-		pm.close();
-		return results;
-	}
-
 	public List<Application> getEmpApplication(String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query q = pm.newQuery(Form.class);
+		Query q = pm.newQuery(Application.class);
 		q.setFilter("empID == empIDStr");
 		q.declareParameters("String empIDStr");
 		List<Application> results = (List<Application>) q.execute(empID);
 		pm.close();
-		return results;
+		return listToArrayList(results);
+	}
+	
+	public List<Application> searchEmpApplication(String search, String keyword, String empID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Application.class);
+		q.setFilter(search +" == keyword && empID == empIDStr");
+		q.declareParameters("String keyword, String empIDStr");
+		List<Application> results = (List<Application>) q.execute(keyword,empID);
+		pm.close();
+		return listToArrayList(results);
+	}
+	
+	public List<Application> getApproveApplication(String empID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Application.class);
+		q.setFilter("approvingEmpID == empIDStr");
+		q.declareParameters("String empIDStr");
+		List<Application> results = (List<Application>) q.execute(empID);
+		pm.close();
+		return listToArrayList(results);
+	}
+	
+	public List<Application> searchApproveApplication(String search, String keyword, String empID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Application.class);
+		q.setFilter(search +" == keyword && approvingEmpID == empIDStr");
+		q.declareParameters("String keyword, String empIDStr");
+		List<Application> results = (List<Application>) q.execute(keyword,empID);
+		pm.close();
+		return listToArrayList(results);
+	}
+	
+	public Application updateApproveEmp(Key key, String empID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Application app;
+		try {
+			app = pm.getObjectById(Application.class, key);
+			app.setApprovingEmpID(empID);
+		} finally {
+			pm.close();
+		}
+		return app;
 	}
 }

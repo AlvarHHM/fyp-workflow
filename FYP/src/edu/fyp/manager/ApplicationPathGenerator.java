@@ -129,37 +129,35 @@ public class ApplicationPathGenerator {
 
 				if(jo.getString("type").equalsIgnoreCase("approval")){
 					if(tcp!=null){
-						System.out.println(jo.getString("id")+" tto "+tcp);
+						Logger.getAnonymousLogger().warning(jo.getString("id")+" tto "+tcp);
 						if(pathNodeMap.get(tcp)!=null){
 							pathNodeRepo.updateApproveNextTrueNode((ApproveNode)pathNode,pathNodeMap.get(tcp).getNodeKey());
 						}
 					}
 					if(fcp!=null){
-						System.out.println(jo.getString("id")+" fto "+fcp);
+						Logger.getAnonymousLogger().warning(jo.getString("id")+" fto "+fcp);
 						if(pathNodeMap.get(fcp)!=null){
 							pathNodeRepo.updateApproveNextFalseNode((ApproveNode)pathNode,pathNodeMap.get(fcp).getNodeKey());
 						}
 					}
 				}else if(jo.getString("type").equalsIgnoreCase("notice")){
 					if(tcp!=null){
-						System.out.println(jo.getString("id")+" tto "+tcp);
+						Logger.getAnonymousLogger().warning(jo.getString("id")+" tto "+tcp);
 						if(pathNodeMap.get(tcp)!=null){
 							pathNodeRepo.updateNoticeNextNode((NoticeNode)pathNode,pathNodeMap.get(tcp).getNodeKey());
 						}
 					}
 				}else if(jo.getString("type").equalsIgnoreCase("start")){
 					if(tcp!=null){
-						System.out.println(jo.getString("id")+" tto "+tcp);
+						Logger.getAnonymousLogger().warning(jo.getString("id")+" tto "+tcp);
 						if(pathNodeMap.get(tcp)!=null){
 							pathNodeRepo.updateStartNextNode((StartNode)pathNode,pathNodeMap.get(tcp).getNodeKey());
 						}
 					}
 				}
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (Exception e) {
+				Logger.getAnonymousLogger().warning(e.toString());
 			}
-
 		}
 	}
 }

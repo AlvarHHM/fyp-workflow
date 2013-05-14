@@ -21,6 +21,7 @@ import edu.fyp.bean.Employee.Title;
 import edu.fyp.bean.User;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.PMF;
+import edu.fyp.search.SearchEmployeeUtil;
 
 public class InitEmp extends HttpServlet {
 	
@@ -80,7 +81,7 @@ public class InitEmp extends HttpServlet {
 		emp2.setChiOthername("©¼¼w");
 		emp2.setTitle(Title.COOFF);
 		emp2.setNickName("Peter");
-		emp2.setEmail("peter@gmail.com");
+		emp2.setEmail("autscr23@gmail.com");
 		emp2.setSuperLevel(400);
 		
 		emp1.setDepartment(prh.getDeptKey());
@@ -104,6 +105,9 @@ public class InitEmp extends HttpServlet {
 		} finally {
 			pm.close();
 		}
+		SearchEmployeeUtil seu = new SearchEmployeeUtil();
+		seu.updateIndex(emp1);
+		seu.updateIndex(emp2);
 		//end of store
 	}
 }

@@ -22,12 +22,19 @@ public class PathController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/path",params="{formKey}")
+	@RequestMapping(value="/path",params={"formKey"})
 	public  ModelAndView pathWithFormKey(@RequestParam(value="formKey", required=true)String formKey){
 		ModelAndView mav = new ModelAndView("path/pathbuilder");
 		Form form = formManager.getFormByFormKey(formKey);
 		mav.addObject("path", form.getPath().getValue());
 		mav.addObject("formKey", formKey);
+		return mav;
+	}
+	
+	@RequestMapping(value="/path",params={"appKey"})
+	public ModelAndView pathReadOnly(){
+		ModelAndView mav = new ModelAndView();
+		
 		return mav;
 	}
 	

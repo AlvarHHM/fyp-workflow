@@ -1,5 +1,8 @@
 package edu.fyp.repository;
 
+import java.util.Date;
+import java.util.logging.Logger;
+
 import javax.jdo.PersistenceManager;
 
 import org.springframework.stereotype.Repository;
@@ -41,6 +44,32 @@ public class PathNodeRepository {
 	    	StartNode sn = pm.getObjectById(StartNode.class, startNode.getNodeKey());
 	        sn.setNextNode(nextNodeKey);
 	    } finally {
+	        pm.close();
+	    }
+	}
+	
+	public void updateNodeState(PathNode pathNode,String state){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+	    try {
+	    	String classKind = pathNode.getNodeKey().getKind();
+	    	PathNode pn = (PathNode) pm.getObjectById(Class.forName("edu.fyp.bean.node."+classKind), pathNode.getNodeKey());
+	    	pn.setState(state);
+	    }catch(Exception E){
+	    	Logger.getAnonymousLogger().warning(E.toString());
+	    }	    finally {
+	        pm.close();
+	    }
+	}
+	
+	public void updateNodeDate(PathNode pathNode){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+	    try {
+	    	String classKind = pathNode.getNodeKey().getKind();
+	    	PathNode pn = (PathNode) pm.getObjectById(Class.forName("edu.fyp.bean.node."+classKind), pathNode.getNodeKey());
+	    	pn.setProcessDate(new Date());
+	    }catch(Exception E){
+	    	Logger.getAnonymousLogger().warning(E.toString());
+	    }	    finally {
 	        pm.close();
 	    }
 	}
