@@ -38,6 +38,8 @@ $(document).ready(function(){
 				Constraint : constraint})
 			.always(function(data) {
 				alert(data);
+				if((/Success./).test(data))
+					window.location("showBuilderFormListServlet")
 			});
 	})
 });

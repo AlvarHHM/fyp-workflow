@@ -15,6 +15,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.google.appengine.api.datastore.Text;
 
+import edu.fyp.bean.Employee;
 import edu.fyp.bean.Form;
 import edu.fyp.bean.User;
 import edu.fyp.manager.FormManager;
@@ -39,20 +40,20 @@ public class FormBuilder extends HttpServlet {
 			out.close();
 			return ;
 		}
-		User user = (User) req.getSession().getAttribute("USER");
+		Employee emp = (Employee) req.getSession().getAttribute("EMP");
 		Form form = new Form();
 		form.setFormHtml(new Text(req.getParameter("FormHtml")));
 		form.setConstraint(req.getParameter("Constraint"));
 		form.setDescription(req.getParameter("Description"));
 		form.setTitle(req.getParameter("Title"));
 		form.setCreatedDate(new Date());		
-		form.setCreatedBy(user.getEmployee().getEmpId());
+		form.setCreatedBy(emp.getEmpId());
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
 		form.setPath(new Text(""));
 		try{
 			formManager.addForm(form);		
-			out.println("Sucess.");
+			out.println("Success.");
 		}catch(Exception ex){
 			out.println("Error! Form design NOT saved!");
 		}

@@ -89,7 +89,6 @@ Form form = (Form)request.getSession().getAttribute("form");
 						if(!((/HEADING/).test(itemType)|(/LABEL/).test(itemType))){
 							var temp = new Object();
 							temp.Id = this.id;
-							temp.Label = "";
 							temp.Value = "";
 							
 							switch (true) {
@@ -115,6 +114,18 @@ Form form = (Form)request.getSession().getAttribute("form");
 									break;
 								case (/UPLOAD/) .test(itemType):
 									temp.Value = $(this).find("input.uploaded-file").val();
+									temp.FileName = "";
+									
+									var fullPath = $(this).find("input[type=file]").val();
+									if (fullPath) {
+										var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+										var filename = fullPath.substring(startIndex);
+										if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+											filename = filename.substring(1);
+										}
+										temp.FileName = filename;
+									}
+									
 									break;
 								default:
 									break;
