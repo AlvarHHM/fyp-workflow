@@ -8,12 +8,24 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 
+import edu.fyp.manager.UserManager;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:**/dispatcherServlet-servlet.xml"})
 public class LocalDatastoreTest {
+	
+	@Autowired
+	UserManager userMan;
 
     private final LocalServiceTestHelper helper =
         new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
@@ -40,6 +52,8 @@ public class LocalDatastoreTest {
     @Test
     public void testInsert1() {
         doTest();
+//        assert(userMan!=null);
+        
     }
 
     @Test
