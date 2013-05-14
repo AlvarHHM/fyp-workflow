@@ -69,7 +69,7 @@
 							"click",
 							{i:item},
 							function(e){
-								window.open("/GetDocumentServlet?filekey="+appData[i].Value);
+								window.open("/uploadDoc?id="+appData[i].Value);
 							});
 					item.find("progress").hide();
 					break;
