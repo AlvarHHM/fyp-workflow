@@ -85,7 +85,7 @@ function selectFormItem(itemId) {
     }, function(e) {
         if (e.data.t.attr("checked")) {
             label.attr("disabled", false);
-            e.data.i.find(".item-text").css("display", "inline");
+            e.data.i.find(".item-text").css("display", "block");
         } else {
             label.attr("disabled", true);
             e.data.i.find(".item-text").css("display", "none");

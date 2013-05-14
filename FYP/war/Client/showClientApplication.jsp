@@ -61,6 +61,9 @@
 				case (/TEXTAREA/).test(itemType):
 					item.find("textarea").val(appData[i].Value);
 					break;
+				case (/UPLOAD/).test(itemType):
+					item.find("input.uploaded-file").val(appData[i].Value);
+					break;
 				default:
 					break;
 				}
