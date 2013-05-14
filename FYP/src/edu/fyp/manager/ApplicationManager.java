@@ -82,6 +82,7 @@ public class ApplicationManager {
 		Application app = appRepo.getApplication(appKey);
 		ApplicationPath appPath = appPathRepo.getApplicationPath(app.getAppPath());
 		ApproveNode pathNode = (ApproveNode) pathNodeRepo.getNode(nodeKey);
+		applicationContext.getAutowireCapableBeanFactory().autowireBean(pathNode);
 		System.out.println(pathNode.getNodeKey());
 		System.out.println(appPath.getCurrentNode());
 		if (pathNode.getNodeKey().equals(appPath.getCurrentNode())) {

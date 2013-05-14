@@ -44,7 +44,7 @@ public class FormBuilder extends HttpServlet {
 		form.setDescription(req.getParameter("Description"));
 		form.setTitle(req.getParameter("Title"));
 		form.setCreatedDate(new Date());
-		form.setCreatedBy("hardCodeOne");
+		form.setCreatedBy("hardCodeOne");//hardcode
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
 		try{

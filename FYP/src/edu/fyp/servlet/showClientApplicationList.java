@@ -35,16 +35,15 @@ public class ShowClientApplicationList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String empID = "A";//hard code
+		String empID = "H0000001";//hard code
 		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
-		ArrayList<Application> appList = null;
-/*		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			formList = FormManager.searchForm( search, keyword);
+		List<Application> appList = null;
+		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
+			appList = appRepo.searchEmpApplication(search, keyword, empID);
 		}else{
-			formList = FormManager.getAllForm();
-		}*/
-		appList = appRepo.getAllApplication();
+			appList = appRepo.getEmpApplication(empID);
+		}
 		req.getSession().setAttribute("appList", appList);
 		req.getRequestDispatcher("/Client/showClientApplicationList").forward(req, resp);
 	}
