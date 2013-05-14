@@ -3,10 +3,11 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="edu.fyp.bean.Application"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
-
+<%@page import="edu.fyp.bean.Form"%>
 <%
 //Get form list
-ArrayList<Application> appList = (ArrayList)request.getSession().getAttribute("appList");
+ArrayList<Form> formList = (ArrayList<Form>)request.getSession().getAttribute("formList");
+ArrayList<Application> appList = (ArrayList<Application>)request.getSession().getAttribute("appList");
 SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 
 %>
@@ -36,9 +37,10 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 						<thead>
 							<tr>
 								<th>Form Name</th>
+								<th>Form ID</th>
+								<th>Form Version</th>
 								<th>Process flow</th>
 								<th>Apply Date</th>
-								<th>Status</th>
 								<th>action</th>
 							</tr>
 						</thead>
@@ -59,9 +61,18 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 				for(int i=0;i<appList.size();i++){
 					Application app = appList.get(i);
 					String appKeyStr = KeyFactory.keyToString(app.getKey());
+					Form tempForm = null;
+					for(int j = 0 ; j < formList.size() ; j++){
+						if(formList.get(j).getFormID().equalsIgnoreCase(app.getFormID())
+								&& formList.get(j).getVersion().equalsIgnoreCase(app.getVersion()){
+							tempForm = formList.get(j);
+						}
+					}
 					%>
 							<tr>
+								<td><%= tempForm.getTitle() %></td>
 								<td><%= app.getFormID() %></td>
+								<td><%= app.getVersion() %></td>
 								<td><a href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
 								<td><%= dateformat.format(app.getApplyDate()) %></td>
 								<td><%= app.getStatus() %></td>
@@ -83,4 +94,5 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 </html>
 <% 
 request.getSession().removeAttribute("formList");
+request.getSession().removeAttribute("appList");
 %>

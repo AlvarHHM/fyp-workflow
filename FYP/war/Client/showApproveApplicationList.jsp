@@ -36,9 +36,10 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 						<thead>
 							<tr>
 								<th>Form Name</th>
+								<th>Form ID</th>
+								<th>Form Version</th>
 								<th>Process flow</th>
 								<th>Apply Date</th>
-								<th>Status</th>
 								<th>action</th>
 							</tr>
 						</thead>
@@ -83,4 +84,5 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 </html>
 <% 
 request.getSession().removeAttribute("formList");
+request.getSession().removeAttribute("appList");
 %>
