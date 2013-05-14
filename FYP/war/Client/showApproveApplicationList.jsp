@@ -62,7 +62,7 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 					%>
 							<tr>
 								<td><%= app.getFormID() %></td>
-								<td><%= "Path" %></td>
+								<td><a href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
 								<td><%= dateformat.format(app.getApplyDate()) %></td>
 								<td><%= app.getStatus() %></td>
 													<td><a href="showClientApplicationServlet?formID=<%= app.getFormID() %>&version=<%= app.getVersion() %>&appKey=<%= appKeyStr %>" target="_blank">
