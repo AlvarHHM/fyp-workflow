@@ -4,6 +4,7 @@ $(document).ready(function() {
         if (e.target===this) {
             $(".form-item.selected .remove-button").remove();
             $(".form-item.selected").removeClass('selected');
+			
             $("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
             $("#formBuilder-leftPanel").tabs("option", "active", 0);
         }
@@ -15,6 +16,14 @@ $(document).ready(function() {
 	$("#formName").bind("keyup input paste", function() {
 		$("#form-title").html($("#formName").val());
 	});
+	
+	$('#formBuilder-stage').keyup(function(e){
+		if(e.keyCode == 46){
+            $(".form-item.selected").remove();
+			$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
+			$("#formBuilder-leftPanel").tabs("option", "active", 0);
+		}
+	}) 
 });
 
 function selectFormItem(itemId) {
@@ -347,8 +356,8 @@ function getStyle(target,cssDiv){
 				{
 					tar: target,
 					text: cssText
-				},function(){
-					tar.attr("style",text.val());
+				},function(e){
+					e.data.tar.attr("style",e.data.text.val());
 				});
 	cssDiv.show();
 }
