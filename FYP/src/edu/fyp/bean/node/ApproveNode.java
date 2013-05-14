@@ -1,6 +1,7 @@
 package edu.fyp.bean.node;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 import javax.jdo.annotations.PersistenceCapable;
@@ -68,6 +69,7 @@ public class ApproveNode extends RelayNode{
 	public void process(){
 		this.setState("approving");
 		pathNodeRepo.updateNodeState(this, this.getState());
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
 		Form form =formRepo.getFormByIDVersion(app.getFormID(), app.getVersion());
 		Department dept;
@@ -106,14 +108,14 @@ public class ApproveNode extends RelayNode{
 		
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOFComingApproval.html");
-			mb.setProperty("applyDate", app.getApplyDate().toString());
-			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngOtherName());
+			mb.setProperty("applyDate", dateformat.format(app.getApplyDate()));
+			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngSurname());
 			mb.setProperty("department", dept.getDeptName());
 			mb.setProperty("formTitle", form.getTitle());
 			mb.setProperty("approve", approveStr+"true");
 			mb.setProperty("reject", approveStr+"false");
 			mn.setTitle("Application Notice - " + form.getTitle()
-					+ " by " + applier.getEngOtherName()+applier.getEngOtherName());
+					+ " by " + applier.getEngOtherName()+applier.getEngSurname());
 			mn.setTo(approver.getEmail());
 			mn.setBody(mb);
 			Logger.getAnonymousLogger().warning(approver.getEmail());

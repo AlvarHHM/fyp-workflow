@@ -38,9 +38,9 @@ public class ShowClientFormList extends HttpServlet {
 		String keyword = req.getParameter("keyword");
 		ArrayList<Form> formList = null;
 		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			formList = formManager.searchForm( search, keyword);
+			formList = formManager.searchReleaseForm( search, keyword);
 		}else{
-			formList = formManager.getAllForm();
+			formList = formManager.getAllReleaseForm();
 		}
 		req.getSession().setAttribute("formList", formList);
 		req.getRequestDispatcher("/Client/showClientFormList").forward(req, resp);

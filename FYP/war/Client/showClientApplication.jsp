@@ -5,14 +5,16 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-Form form = (Form)request.getSession().getAttribute("form");
-Application app = (Application)request.getSession().getAttribute("app");
-SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	Form form = (Form) request.getSession().getAttribute("form");
+	Application app = (Application) request.getSession().getAttribute(
+			"app");
+	SimpleDateFormat dateformat = new SimpleDateFormat(
+			"yyyy-MM-dd hh:mm:ss");
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Application Display - <%= form.getTitle() %></title>
+<title>Application Display - <%=form.getTitle()%></title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/showForm.css">
 <link rel="stylesheet" type="text/css"
@@ -22,66 +24,78 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 <script type="text/javascript"
 	src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
 <script type="text/javascript">
-	<%
-		if(form!=null&&app!=null){
-	%>
+	<%if (form != null && app != null) {%>
 		 $(function() {
 			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
-			if(appData.length !== 0) {
-				for(var i = 0; i < appData.length; i++) {
-					var item = $("#"+appData[i].Id);
-					var itemType = appData[i].Id.split('-')[0];
-					
-					switch (true) {
-						case (/TEXTFIELD/) .test(itemType):
-						case (/DATE/) .test(itemType):
-							item.find("input[type=text]").val(appData[i].Value);
-							break;
-						case (/RADIOBUTTON/) .test(itemType):
-							if(appData[i].Value!==""&appData[i].Value!="-1")
-									item.find(".choice").eq(appData[i].Value).find("input[type=radio]")
-										.attr('checked', true);
-						break;
-						case (/CHECKBOX/) .test(itemType):
-							var subVal = appData[i].Value.split(",");
-							$(subVal).each(function(index, value){
-								if(value!==""&value!="-1")
-									item.find(".choice").eq(value).find("input[type=checkbox]")
-										.attr('checked', true);
+		if (appData.length !== 0) {
+			for ( var i = 0; i < appData.length; i++) {
+				var item = $("#" + appData[i].Id);
+				var itemType = appData[i].Id.split('-')[0];
+
+				switch (true) {
+				case (/TEXTFIELD/).test(itemType):
+				case (/DATE/).test(itemType):
+					item.find("input[type=text]").val(appData[i].Value);
+					break;
+				case (/RADIOBUTTON/).test(itemType):
+					if (appData[i].Value !== "" & appData[i].Value != "-1")
+						item.find(".choice").eq(appData[i].Value).find(
+								"input[type=radio]").attr('checked', true);
+					break;
+				case (/CHECKBOX/).test(itemType):
+					var subVal = appData[i].Value.split(",");
+					$(subVal).each(
+							function(index, value) {
+								if (value !== "" & value != "-1")
+									item.find(".choice").eq(value).find(
+											"input[type=checkbox]").attr(
+											'checked', true);
 							});
-							break;
-						case (/COMBOBOX/) .test(itemType):
-							if(appData[i].Value!=="-1"){
-								item.find("select")[0].selectedIndex = appData[i].Value;
-							}
-							break;
-						case (/TEXTAREA/) .test(itemType):
-							item.find("textarea").val(appData[i].Value);
-							break;
-						default:
-							break;
+					break;
+				case (/COMBOBOX/).test(itemType):
+					if (appData[i].Value !== "-1") {
+						item.find("select")[0].selectedIndex = appData[i].Value;
 					}
+					break;
+				case (/TEXTAREA/).test(itemType):
+					item.find("textarea").val(appData[i].Value);
+					break;
+				case (/UPLOAD/).test(itemType):
+					item.find("input.uploaded-file").val(appData[i].Value);
+					item.find("input[type=file]").prop('disabled', true);
+					item.find("button").html("Download");
+					item.find("button").unbind("click")
+						.bind(
+							"click",
+							{i:item},
+							function(e){
+								window.open("/GetDocumentServlet?filekey="+appData[i].Value);
+							});
+					item.find("progress").hide();
+					break;
+				default:
+					break;
 				}
 			}
-			$(".form-item").append("<div class='overlay' ></div>");
-		});
-	<%
 		}
-	%>	
-	</script>
+		$(".form-item").append("<div class='overlay' ></div>");
+	});
+<%}%>
+	
+</script>
 </head>
 <body>
 
 	<div class="form_container">
 		<%
-	if(app==null){
+			if (app == null) {
 		%>
 		<span>Error. Application not found.</span>
 	</div>
 	<%
-	}else if(form!=null){
-		%>
-	<%= form.getFormHtml().getValue() %>
+		} else if (form != null) {
+	%>
+	<%=form.getFormHtml().getValue()%>
 	</div>
 	<div class="control_panel">
 		<div class="zoom"></div>
@@ -89,33 +103,41 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			<table class="app_detail_table">
 				<tbody>
 					<tr>
+						<td class="app_detail_left">Application ID:</td>
+						<td><%=app.getAppID()%></td>
+					</tr>
+					<tr>
 						<td class="app_detail_left">Title:</td>
-						<td><%= form.getTitle() %></td>
+						<td><%=form.getTitle()%></td>
+					</tr>
+					<tr>
+						<td class="app_detail_left">Form ID</td>
+						<td><%=form.getFormID()%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Version:</td>
-						<td><%= form.getVersion() %></td>
+						<td><%=form.getVersion()%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Apply Date:</td>
-						<td><%= dateformat.format(app.getApplyDate()) %></td>
+						<td><%=dateformat.format(app.getApplyDate())%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Description:</td>
-						<td><%= form.getDescription() %></td>
+						<td><%=form.getDescription()%></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 	<%
-	}
+		}
 	%>
 
 </body>
 </html>
 
-<% 
-request.getSession().removeAttribute("app");
-request.getSession().removeAttribute("form");
+<%
+	request.getSession().removeAttribute("app");
+	request.getSession().removeAttribute("form");
 %>

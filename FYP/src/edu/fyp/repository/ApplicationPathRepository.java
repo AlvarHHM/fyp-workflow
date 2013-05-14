@@ -18,12 +18,11 @@ public class ApplicationPathRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(appPath);
-			System.out.println(appPath.getKey() + " added");
 		} finally {
 			pm.close();
 		}
 	}
-
+	
 	public void updateStartNode(Key pathKey, Key nodeKey) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		ApplicationPath appPath;

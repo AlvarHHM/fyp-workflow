@@ -17,6 +17,9 @@ public class Application implements Serializable {
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
+       
+    @Persistent
+    private Long appID;
     
     @Persistent
     private String empID;
@@ -117,4 +120,12 @@ public class Application implements Serializable {
 		this.approvingEmpID = approvingEmpID;
 	}
 
+	public Long getAppID() {
+		return appID;
+	}
+
+	public void setAppID(Long appID) {
+		this.appID = appID;
+	}
+	
 }

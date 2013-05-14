@@ -20,6 +20,7 @@ public class ApplicationRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(app);
+			app.setAppID(app.getKey().getId());
 		} finally {
 			pm.close();
 		}

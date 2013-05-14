@@ -23,7 +23,7 @@
 				<fieldset>
 					<legend align='center'>Application</legend>
 					<div class="searchField">
-						<form method="get" action="showFormListServlet">
+						<form method="get" action="/Client/showClientApplicationListServlet">
 							<select name="search">
 								<option value="formID">Form ID</option>
 								<option value="title">Title</option>
@@ -35,7 +35,8 @@
 					<table class="viewFormTable">
 						<thead>
 							<tr>
-								<th>Form Name</th>
+								<th>Application ID</th>
+								<th>Form Title</th>
 								<th>Form ID</th>
 								<th>Form Version</th>
 								<th>Process flow</th>
@@ -74,6 +75,7 @@
 										}
 							%>
 							<tr>
+								<td><%=app.getAppID() %></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=app.getFormID()%></td>
 								<td><%=app.getVersion()%></td>

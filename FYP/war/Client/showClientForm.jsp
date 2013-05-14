@@ -86,7 +86,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 					$('.form-item').each(function() {
 						var itemType = this.id.split('-')[0];
 						
-						if(!(/HEADING/).test(itemType)){
+						if(!((/HEADING/).test(itemType)|(/LABEL/).test(itemType))){
 							var temp = new Object();
 							temp.Id = this.id;
 							temp.Label = "";
@@ -95,31 +95,26 @@ Form form = (Form)request.getSession().getAttribute("form");
 							switch (true) {
 								case (/TEXTFIELD/) .test(itemType):
 								case (/DATE/) .test(itemType):
-									temp.Label = $(this).find("label.label").html();
 									temp.Value = $(this).find("input[type=text]").val();
 									break;
 								case (/RADIOBUTTON/) .test(itemType):
-									temp.Label = $(this).find("legend.label").html();
-											
 									var choice = $(this).find("input[type=radio]:checked").parents(".choice");
 									temp.Value = $(this).find(".choice").index(choice);
 								break;
 								case (/CHECKBOX/) .test(itemType):
-									temp.Label = $(this).find("legend.label").html();
-									
 									$(this).find("input[type=checkbox]:checked").each(function(){
 										var choice = $(this).parents(".choice");
 										temp.Value += $(this).parents(".form-item").find(".choice").index(choice)+",";
 									});
 									break;
 								case (/COMBOBOX/) .test(itemType):
-									temp.Label = $(this).find("label.label").html();
-									
 									temp.Value = $(this).find("select")[0].selectedIndex;
 									break;
 								case (/TEXTAREA/) .test(itemType):
-									temp.Label = $(this).find("label.label").html();
 									temp.Value = $(this).find("textarea").val();
+									break;
+								case (/UPLOAD/) .test(itemType):
+									temp.Value = $(this).find("input.uploaded-file").val();
 									break;
 								default:
 									break;

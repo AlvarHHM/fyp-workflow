@@ -4,8 +4,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,21 +37,26 @@ public class LoginController {
 	public String loginWithRedirect(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password,
-			@RequestParam("redirect")String url) throws UnsupportedEncodingException {
+			@RequestParam("redirect")String url,HttpSession session) throws UnsupportedEncodingException {
 		
 		user = userManager.login(userName, password);
+		session.setAttribute("USER", user);
 		return "redirect:"+URLDecoder.decode(url, "UTF-8");
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {"userName","password"})
 	public String login(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
-			@RequestParam("password") String password){
+			@RequestParam("password") String password,HttpSession session){
 		
 		user = userManager.login(userName, password);
-		if (user != null)
+		
+		if (user != null){
+			session.setAttribute("USER", user);
+			session.setAttribute("EMP", user.getEmployee());
+			session.setAttribute("DEPT", user.getEmployee().getDepartment());
 			return "redirect:/Client/home.jsp";
-		else
+		}else
 			return "redirect:/Client/login2.html?error=1";
 	}
 	

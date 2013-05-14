@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="edu.fyp.bean.Form"%>
 <%@page import="edu.fyp.bean.Employee"%>
 <%@page import="edu.fyp.bean.ApplicationPath"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="edu.fyp.bean.Form"%>
 <%@page import="edu.fyp.bean.Department"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
@@ -19,7 +19,7 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Application Display - <%= form.getTitle() %></title>
+<title>Application Approve - <%=form.getTitle()%></title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/showForm.css">
 <link rel="stylesheet" type="text/css"
@@ -81,7 +81,8 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
 	<div class="form_container">
 		<%
-	if(app==null){
+
+			if (app == null) {
 		%>
 		<span>Error. Application not found.</span>
 	</div>
@@ -96,23 +97,32 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			<table class="app_detail_table">
 				<tbody>
 					<tr>
+						<td class="app_detail_left">Application ID:</td>
+						<td><%=app.getAppID()%></td>
+					</tr>
+					<tr>
 						<td class="app_detail_left">Title:</td>
-						<td><%= form.getTitle() %></td>
+						<td><%=form.getTitle()%></td>
+					</tr>
+					<tr>
+						<td class="app_detail_left">Form ID</td>
+						<td><%=form.getFormID()%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Version:</td>
-						<td><%= form.getVersion() %></td>
+						<td><%=form.getVersion()%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Apply Date:</td>
-						<td><%= dateformat.format(app.getApplyDate()) %></td>
+						<td><%=dateformat.format(app.getApplyDate())%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Description:</td>
-						<td><%= form.getDescription() %></td>
+						<td><%=form.getDescription()%></td>
 					</tr>
 				</tbody>
 			</table>
+			<br>
 			<table class="app_detail_table">
 				<tbody>
 					<tr>
@@ -128,7 +138,8 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 					</tr>
 					<tr>
 					<td></td>
-					<td><a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=true">Approve</a>  
+					<td><a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=true">Approve</a>
+					<br>  
 					<a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=false">Reject</a></td>
 					</tr><tr>
 				</tr></tbody>
@@ -136,8 +147,16 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		</div>
 	</div>
 	<%
-	}
+		}
 	%>
 
 </body>
 </html>
+<%
+request.getSession().removeAttribute("emp");
+request.getSession().removeAttribute("dept");
+request.getSession().removeAttribute("form");
+request.getSession().removeAttribute("app");
+request.getSession().removeAttribute("appPath");
+%>
+
