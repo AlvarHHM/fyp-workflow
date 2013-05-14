@@ -64,6 +64,7 @@ public class ApproveNode extends RelayNode{
 	@Autowired
 	private PathNodeRepository pathNodeRepo;
 	
+	
 	public void process(){
 		this.setState("approving");
 		pathNodeRepo.updateNodeState(this, this.getState());

@@ -165,29 +165,29 @@ $(document).ready(
 // $("select").select2({
 //				
 // });
-			$.contextMenu({
-		        selector: '.node-instance', 
-		        callback: function(key, options) {
-		            switch(key){
-		            case "delete":
-		            	$(this).remove();
-		            	break;
-		            	
-		            case "setting":
-		            	// console.log($(this).data());
-		            	$(this).data("props").loadMenu();
-		            	$("#property-panel").data("props",$(this).data("props"));
-		            	break;
-		            }
-		            
-		            
-		        },
-		        items: {
-		            "delete": {name: "Delete", icon: "delete"},
-		            "setting": {name:"Setting", icon: "setting"},
-		            
-		        }
-		    });
+//			$.contextMenu({
+//		        selector: '.node-instance', 
+//		        callback: function(key, options) {
+//		            switch(key){
+//		            case "delete":
+//		            	$(this).remove();
+//		            	break;
+//		            	
+//		            case "setting":
+//		            	// console.log($(this).data());
+//		            	$(this).data("props").loadMenu();
+//		            	$("#property-panel").data("props",$(this).data("props"));
+//		            	break;
+//		            }
+//		            
+//		            
+//		        },
+//		        items: {
+//		            "delete": {name: "Delete", icon: "delete"},
+//		            "setting": {name:"Setting", icon: "setting"},
+//		            
+//		        }
+//		    });
 			$("#save-btn").click(function(){
 				var result = [];
 				if(formKey == null){
