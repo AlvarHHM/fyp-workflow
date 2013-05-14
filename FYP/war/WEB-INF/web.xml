@@ -303,5 +303,23 @@
 		<servlet-name>showApproveApplicationList</servlet-name>
 		<url-pattern>/Client/showApproveApplicationList</url-pattern>
 	</servlet-mapping>
+	
+		    	<servlet>
+		<servlet-name>showApproveApplicationServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowApproveApplication</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showApproveApplicationServlet</servlet-name>
+		<url-pattern>/Client/showApproveApplicationServlet</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>showApproveApplication</servlet-name>
+		<jsp-file>/Client/showApproveApplication.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showApproveApplication</servlet-name>
+		<url-pattern>/Client/showApproveApplication</url-pattern>
+	</servlet-mapping>
 	<!-- end of show approve application -->
 </web-app>

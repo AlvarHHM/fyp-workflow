@@ -1,16 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="edu.fyp.bean.Form"%>
+<%@page import="edu.fyp.bean.Employee"%>
+<%@page import="edu.fyp.bean.ApplicationPath"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="edu.fyp.bean.Department"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 Form form = (Form)request.getSession().getAttribute("form");
+ApplicationPath appPath  = (ApplicationPath)request.getSession().getAttribute("appPath");
+Employee emp = (Employee)request.getSession().getAttribute("emp");
+Department dept = (Department)request.getSession().getAttribute("dept");
 Application app = (Application)request.getSession().getAttribute("app");
+SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Approve Application - <%= form.getTitle() %></title>
+<title>Application Display - <%= form.getTitle() %></title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/showForm.css">
 <link rel="stylesheet" type="text/css"
@@ -23,14 +32,6 @@ Application app = (Application)request.getSession().getAttribute("app");
 	<%
 		if(form!=null&&app!=null){
 	%>
-		function approveApplication(){
-			
-		}
-		
-		function rejectApplication(){
-			
-		}
-		
 		 $(function() {
 			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
 			if(appData.length !== 0) {
@@ -104,25 +105,33 @@ Application app = (Application)request.getSession().getAttribute("app");
 					</tr>
 					<tr>
 						<td class="app_detail_left">Apply Date:</td>
-						<td><%= app.getApplyDate() %></td>
+						<td><%= dateformat.format(app.getApplyDate()) %></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Description:</td>
 						<td><%= form.getDescription() %></td>
 					</tr>
-	<%
-		if(form!=null&&app!=null){
-	%>
-					<tr>
-						<td colspan="2">
-								<button onclick="approveApplication();">Approve</button>
-								<button onclick="rejectApplication();">Reject</button>
-							</td>
-					</tr>
-	<%
-		}
-	%>	
 				</tbody>
+			</table>
+			<table class="app_detail_table">
+				<tbody>
+					<tr>
+					<td>Applier:</td>
+					<td><%= emp.getEngOtherName() + " " + emp.getEngSurname() %></td></tr>
+					<tr>
+					<td>Department</td>
+					<td><%= dept.getDeptName() %></td>
+					</tr>
+					<tr>
+					<td>Apply Date</td>
+					<td><%= dateformat.format(app.getApplyDate()) %></td>
+					</tr>
+					<tr>
+					<td></td>
+					<td><a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=true">Approve</a>  
+					<a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=false">Reject</a></td>
+					</tr><tr>
+				</tr></tbody>
 			</table>
 		</div>
 	</div>
@@ -132,8 +141,3 @@ Application app = (Application)request.getSession().getAttribute("app");
 
 </body>
 </html>
-
-<% 
-request.getSession().removeAttribute("app");
-request.getSession().removeAttribute("form");
-%>

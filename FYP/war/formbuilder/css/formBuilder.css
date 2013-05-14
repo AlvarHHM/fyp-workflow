@@ -123,9 +123,13 @@ body{
     margin-bottom: 20px;
 }
 
+ #options label{
+	display:inline;
+}
 .choice label{
 	display:inline;
 }
+
 progress{
 	margin-top:5px;
 	display:block;

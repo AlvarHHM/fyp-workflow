@@ -11,8 +11,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
     <link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
-	<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
-	<script type="text/javascript" src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
+	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
 	<title>Form</title>
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
@@ -123,10 +123,12 @@ if(form!=null){
 				<td class="form_detail_left">Description:</td>
 				<td><%= form.getDescription() %>
 			</tr>
+			<!--
 			<tr>
 				<td><button onclick="SubmitApplication()">Submit</button></td>
 			<td></td>
 			</tr>
+			-->
 		</tbody>
 		</table>
 	</div>

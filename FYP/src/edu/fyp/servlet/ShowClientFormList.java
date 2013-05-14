@@ -34,7 +34,6 @@ public class ShowClientFormList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String empID = "A";//hard code
 		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		ArrayList<Form> formList = null;

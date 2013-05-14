@@ -3,12 +3,12 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="edu.fyp.bean.Application"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
-
+<%@page import="edu.fyp.bean.Form"%>
 <%
-//Get form list
-ArrayList<Application> appList = (ArrayList)request.getSession().getAttribute("appList");
-SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-
+	//Get form list
+	ArrayList<Form> formList = (ArrayList<Form>) request.getSession().getAttribute("formList");
+	ArrayList<Application> appList = (ArrayList<Application>) request.getSession().getAttribute("appList");
+	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <html>
 <head>
@@ -36,6 +36,8 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 						<thead>
 							<tr>
 								<th>Form Name</th>
+								<th>Form ID</th>
+								<th>Form Version</th>
 								<th>Process flow</th>
 								<th>Apply Date</th>
 								<th>Status</th>
@@ -48,30 +50,46 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 							</tr>
 						</tfoot>
 						<tbody>
-							<% 
-			if(appList.size()==0){
-%>
+							<%
+								if (appList.size() == 0) {
+							%>
 							<tr>
 								<td colspan="10">No Application.</td>
 							</tr>
 							<%
-			} else{
-				for(int i=0;i<appList.size();i++){
-					Application app = appList.get(i);
-					String appKeyStr = KeyFactory.keyToString(app.getKey());
-					%>
+								} else {
+									for (int i = 0; i < appList.size(); i++) {
+										Application app = appList.get(i);
+										String appKeyStr = KeyFactory.keyToString(app.getKey());
+										Form tempForm = null;
+										for (int j = 0; j < formList.size(); j++) {
+											String formID = formList.get(j).getFormID();
+											String version = formList.get(j).getVersion();
+											String appFormID = app.getFormID();
+											String appFormVersion = app.getVersion();
+											if (formID.equalsIgnoreCase(appFormID)
+													&& version.equalsIgnoreCase(appFormVersion)) {
+												tempForm = formList.get(j);
+											}
+										}
+							%>
 							<tr>
-								<td><%= app.getFormID() %></td>
-								<td><a href="<%= "Path" %>">Path</a></td>
-								<td><%= dateformat.format(app.getApplyDate()) %></td>
-								<td><%= app.getStatus() %></td>
-													<td><a href="showClientApplicationServlet?formID=<%= app.getFormID() %>&version=<%= app.getVersion() %>&appKey=<%= appKeyStr %>" target="_blank">
-					<img src="img/dc.png" width="30px" height="30px"/></a>
+								<td><%=tempForm.getTitle()%></td>
+								<td><%=app.getFormID()%></td>
+								<td><%=app.getVersion()%></td>
+								<td><a target="_blank"
+									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
+								<td><%=dateformat.format(app.getApplyDate())%></td>
+								<td><%=app.getStatus()%></td>
+								<td><a
+									href="showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
+									target="_blank"> <img src="img/dc.png" width="30px"
+										height="30px" /></a>
 							</tr>
 							<%
-				}
-			}
-			%>
+								}
+								}
+							%>
 						</tbody>
 					</table>
 				</fieldset>
@@ -81,6 +99,7 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	</div>
 </body>
 </html>
-<% 
-request.getSession().removeAttribute("formList");
+<%
+	request.getSession().removeAttribute("formList");
+	request.getSession().removeAttribute("appList");
 %>

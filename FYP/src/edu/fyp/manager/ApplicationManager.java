@@ -45,6 +45,7 @@ public class ApplicationManager {
 		ApplicationPath appPath = apg.generatePath(app.getFormID(),
 				app.getVersion());
 		appRepo.updateApplicationPath(app.getKey(), appPath.getKey());
+		
 		processApplication(app.getKey());
 	}
 
@@ -102,6 +103,10 @@ public class ApplicationManager {
 		return app;
 	}
 
+	public Application getApplication(Key appKey){
+		return appRepo.getApplication(appKey);
+	}
+	
 	public List<Application> getEmpApplication(String empID) {
 		return appRepo.getEmpApplication(empID);
 	}

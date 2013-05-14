@@ -59,34 +59,35 @@ function getItemHtml(itemType) {
     var itemType = itemType.toUpperCase();
     switch (true) {
         case (/HEADING/).test(itemType):
-            html += "<span>Heading</span>";
+            html += "<span class='item-text'>Heading</span>";
             break;
         case (/LABEL/).test(itemType):
-            html += "<label class='label'>Label</label>";
+            html += "<label class='label item-text'>Label</label>";
             break;
         case (/TEXTFIELD/) .test(itemType):
-            html += "<label class='label'>Text Field</label><input type='text'/>";
+            html += "<label class='item-text'>Text Field</label><input type='text'/>";
             break;
         case (/RADIOBUTTON/) .test(itemType):
-            html += "<fieldset><legend class='label'>Radio Group</legend>"
+            html += "<fieldset><legend class='item-text'>Radio Group</legend>"
                     + "<div class='choice'><input type='radio'/><label>Radio Button</label></div></fieldset>";
             break;
         case (/CHECKBOX/) .test(itemType):
-            html += "<fieldset><legend class='label'>Checkbox Group</legend>"
+            html += "<fieldset><legend class='item-text'>Checkbox Group</legend>"
                     + "<div class='choice'><input type='checkbox'/><label>Checkbox</label></div></fieldset>";
             break;
         case (/COMBOBOX/) .test(itemType):
-            html += "<label class='label'>Select</label><select>"
+            html += "<label class='item-text'>Select</label><select>"
                     + "<option class='choice'>Combox Option</option></select>";
             break;
         case (/TEXTAREA/) .test(itemType):
-            html += "<label class='label'>Textarea</label><textarea></textarea>";
+            html += "<label class='item-text'>Textarea</label><textarea></textarea>";
             break;
         case (/DATE/) .test(itemType):
-            html += "<label class='label'>Date Picker</label><input class='date-picker' type='text'/>";
+            html += "<label class='item-text'>Date Picker</label><input class='date-picker' type='text'/>";
             break;
         case (/UPLOAD/) .test(itemType):
-            html += "<form class='upload' enctype='multipart/form-data'>"+
+            html += "<label class='item-text'>File Upload</label>"+
+					"<form class='upload' enctype='multipart/form-data'>"+
 						"<input name='file' type='file' /><button>Upload</button>"+
 					"</form><progress></progress>";
             break;

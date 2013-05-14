@@ -47,6 +47,7 @@ public class FormBuilder extends HttpServlet {
 		form.setCreatedBy("hardCodeOne");//hardcode
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
+		form.setPath(new Text(""));
 		try{
 			formManager.addForm(form);		
 			out.println("Sucess.");

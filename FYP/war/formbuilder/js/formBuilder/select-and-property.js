@@ -4,6 +4,7 @@ $(document).ready(function() {
         if (e.target===this) {
             $(".form-item.selected .remove-button").remove();
             $(".form-item.selected").removeClass('selected');
+			
             $("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
             $("#formBuilder-leftPanel").tabs("option", "active", 0);
         }
@@ -38,7 +39,7 @@ function selectFormItem(itemId) {
 				$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
 				$("#formBuilder-leftPanel").tabs("option", "active", 0);
 		});
-
+		
 	//X text
     x
             .val(item.css("left").replace("px",""))
@@ -61,16 +62,16 @@ function selectFormItem(itemId) {
 
 	//Label text
     label
-            .val(item.find(".label").html())
+            .val(item.find(".item-text").html())
             .unbind("keyup input paste").bind("keyup input paste", {
         i: item,
         t: label
     }, function(e) {
-        e.data.i.find(".label").html(e.data.t.val());
+        e.data.i.find(".item-text").html(e.data.t.val());
     });
 
 	//Label Checkbox
-    if (item.find(".label:visible").length===0) {
+    if (item.find(".item-text:visible").length===0) {
         label.attr("disabled", true);
         labelShow.attr("checked", false);
     } else {
@@ -84,10 +85,10 @@ function selectFormItem(itemId) {
     }, function(e) {
         if (e.data.t.attr("checked")) {
             label.attr("disabled", false);
-            e.data.i.find(".label").css("display", "inline");
+            e.data.i.find(".item-text").css("display", "inline");
         } else {
             label.attr("disabled", true);
-            e.data.i.find(".label").css("display", "none");
+            e.data.i.find(".item-text").css("display", "none");
         }});
 
 	//Css Text
@@ -295,34 +296,38 @@ function displayStyle(){
     var itemType = item.attr("id").split('-')[0].toUpperCase();
 	
 	$(".formItem-properties-group#css>div").hide();
+	$(".formItem-properties-group#css>div button").unbind("click")
+	
+	getStyle(item.find(".item-text"),$("#text-css"));
+			
 	switch (true) {
         case (/TEXTFIELD/).test(itemType):
-			getStyle(item.find("text"))
+        case (/DATE/).test(itemType):
+			getStyle(item.find("input[type=text]"),$("#textbox-css"));
             break;
         case (/RADIOBUTTON/).test(itemType):
-		
+			getStyle(item.find(".choice"),$("#choice-css"));
+			getStyle(item.find("input[type=radio]"),$("#choice-box-css"));
+			getStyle(item.find(".choice label"),$("#choice-label-css"));
             break;
         case (/CHECKBOX/).test(itemType):
-		
+			getStyle(item.find(".choice"),$("#choice-css"));
+			getStyle(item.find("input[type=checkbox]"),$("#choice-box-css"));
+			getStyle(item.find(".choice label"),$("#choice-label-css"));
             break;
         case (/COMBOBOX/).test(itemType):
-		
-            break;
-        case (/HEADING/).test(itemType):
-		
-            break;
-		case (/LABEL/).test(itemType):
-		
+			getStyle(item.find("select"),$("#choice-css"));
             break;
         case (/TEXTAREA/).test(itemType):
-		
-            break;
-        case (/DATE/).test(itemType):
-		
+			getStyle(item.find("textarea"),$("#textbox-css"));
             break;
         case (/UPLOAD/).test(itemType):
-		
+			getStyle(item.find("input[type=file]"),$("#textbox-css"));
+			getStyle(item.find("button"),$("#button-css"));
+			getStyle(item.find("progress"),$("#progress-css"));
             break;
+        case (/HEADING/).test(itemType):
+		case (/LABEL/).test(itemType):
         default:
             break;
 
@@ -338,13 +343,13 @@ function getStyle(target,cssDiv){
 	}else{
 		cssText.val("");
 	}
-	cssDiv.find("button").unbind("click")
+	cssDiv.find("button")
 		.bind("	click", 
 				{
 					tar: target,
 					text: cssText
-				},function(){
-					tar.attr("style",text.val());
+				},function(e){
+					e.data.tar.attr("style",e.data.text.val());
 				});
-	
+	cssDiv.show();
 }

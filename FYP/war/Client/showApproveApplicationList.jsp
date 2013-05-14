@@ -2,11 +2,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="edu.fyp.bean.Form"%>
+<%@page import="edu.fyp.bean.Employee"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 
 <%
 //Get form list
-ArrayList<Application> appList = (ArrayList)request.getSession().getAttribute("appList");
+ArrayList<Form> formList = (ArrayList<Form>)request.getSession().getAttribute("formList");
+ArrayList<Application> appList = (ArrayList<Application>)request.getSession().getAttribute("appList");
+ArrayList<Employee> empList = (ArrayList<Employee>)request.getSession().getAttribute("empList");
 SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 
 %>
@@ -36,9 +40,12 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 						<thead>
 							<tr>
 								<th>Form Name</th>
+								<th>Form ID</th>
+								<th>Form Version</th>
+								<th>Applier</th>
 								<th>Process flow</th>
 								<th>Apply Date</th>
-								<th>Status</th>
+																<th>Status</th>
 								<th>action</th>
 							</tr>
 						</thead>
@@ -59,13 +66,33 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 				for(int i=0;i<appList.size();i++){
 					Application app = appList.get(i);
 					String appKeyStr = KeyFactory.keyToString(app.getKey());
+					Form tempForm = null;
+					Employee tempEmp = null;
+					for(int j = 0 ; j < formList.size() ; j++){
+						String formID = formList.get(j).getFormID();
+						String version = formList.get(j).getVersion();
+						String appFormID = app.getFormID();
+						String appFormVersion = app.getVersion();
+						if(formID.equalsIgnoreCase(appFormID) && version.equalsIgnoreCase(appFormVersion)){
+							tempForm = formList.get(j);
+						}
+					}
+					for( int j = 0 ; j < empList.size() ; j++){
+						if(empList.get(j).getEmpId().equalsIgnoreCase(app.getEmpID())){
+							tempEmp = empList.get(j);
+						}
+					}
+					String name = tempEmp.getEngOtherName() + " " + tempEmp.getEngSurname();
 					%>
 							<tr>
+								<td><%= tempForm.getTitle() %></td>
 								<td><%= app.getFormID() %></td>
-								<td><%= "Path" %></td>
+								<td><%= app.getVersion() %></td>
+								<td><%= name %></td>
+								<td><a href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
 								<td><%= dateformat.format(app.getApplyDate()) %></td>
 								<td><%= app.getStatus() %></td>
-													<td><a href="showClientApplicationServlet?formID=<%= app.getFormID() %>&version=<%= app.getVersion() %>&appKey=<%= appKeyStr %>" target="_blank">
+													<td><a href="/Client/showApproveApplicationServlet?appKey=<%= KeyFactory.keyToString(app.getKey()) %>" target="_blank">
 					<img src="img/dc.png" width="30px" height="30px"/></a>
 							</tr>
 							<%
@@ -83,4 +110,5 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 </html>
 <% 
 request.getSession().removeAttribute("formList");
+request.getSession().removeAttribute("appList");
 %>

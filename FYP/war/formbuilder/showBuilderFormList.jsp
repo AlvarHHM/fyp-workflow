@@ -48,7 +48,7 @@
 					<table class="viewFormTable">
 						<thead>
 							<tr>
-								<th>Application ID</th>
+								<th>Form ID</th>
 								<th>Version</th>
 								<th>Title</th>
 								<th>Description</th>

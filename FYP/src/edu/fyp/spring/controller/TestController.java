@@ -39,6 +39,7 @@ import edu.fyp.bean.node.FailNode;
 import edu.fyp.bean.node.PathNode;
 import edu.fyp.bean.node.StartNode;
 import edu.fyp.bean.node.SuccessNode;
+import edu.fyp.manager.ApplicationMonitorManager;
 import edu.fyp.manager.NotificationManager;
 import edu.fyp.manager.UserManager;
 import edu.fyp.repository.ApplicationPathRepository;
@@ -59,6 +60,9 @@ public class TestController {
 	@Autowired
 	private ApplicationPathRepository appPathRepo; 
 	
+	@Autowired
+	private ApplicationMonitorManager appMonManager;
+	
 	@RequestMapping("/test.do")
 	public @ResponseBody
 	String test() throws Exception {
@@ -74,7 +78,7 @@ public class TestController {
 		employee.setEngSurname("Ma");
 		employee.setEngOtherName("Hoi Hei");
 		employee.setEmpId("H001");
-		employee.updateFullTextSearchIndex();
+//		employee.updateFullTextSearchIndex();
 		user.setEmployee(employee);
 		employee.setUser(user);
 		pm.makePersistent(user);
@@ -139,16 +143,8 @@ public class TestController {
 	@RequestMapping("/testCurrnet")
 	public @ResponseBody
 	String testCurrnet() throws Exception {
-		PathNode p1 = new StartNode();
-		PathNode p2 = new ApproveNode();
-		PathNode p3 = new SuccessNode();
-		PathNode p4 = new FailNode();
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		pm.makePersistent(p1);
-		pm.makePersistent(p2);
-		pm.makePersistent(p3);
-		pm.makePersistent(p4);
-		return "A";
+		String appKeyStr ="ag5zfndvcmtmbG93LWZ5cHISCxILQXBwbGljYXRpb24Yky8M";
+		Key appKey = KeyFactory.stringToKey(appKeyStr);
+		return appMonManager.getApplicationPath(appKey).toString();
 	}
-
 }

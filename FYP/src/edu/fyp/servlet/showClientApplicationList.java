@@ -27,6 +27,9 @@ public class ShowClientApplicationList extends HttpServlet {
 	@Autowired
 	private ApplicationRepository appRepo;
 
+	@Autowired
+	private FormRepository formRepo;
+	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
@@ -44,6 +47,8 @@ public class ShowClientApplicationList extends HttpServlet {
 		}else{
 			appList = appRepo.getEmpApplication(empID);
 		}
+		ArrayList<Form> formList = formRepo.getAllForm();
+		req.getSession().setAttribute("formList", formList);
 		req.getSession().setAttribute("appList", appList);
 		req.getRequestDispatcher("/Client/showClientApplicationList").forward(req, resp);
 	}
