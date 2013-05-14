@@ -80,7 +80,7 @@ public class InitEmp extends HttpServlet {
 		emp2.setChiOthername("©¼¼w");
 		emp2.setTitle(Title.COOFF);
 		emp2.setNickName("Peter");
-		emp2.setEmail("peter@gmail.com");
+		emp2.setEmail("autscr23@gmail.com");
 		emp2.setSuperLevel(400);
 		
 		emp1.setDepartment(prh.getDeptKey());

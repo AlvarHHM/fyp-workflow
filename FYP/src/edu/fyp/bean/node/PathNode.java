@@ -1,7 +1,5 @@
 package edu.fyp.bean.node;
 
-import java.io.IOException;
-
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.PersistenceCapable;
@@ -21,7 +19,7 @@ public abstract class PathNode {
 	private String state;
 	@Persistent
 	private String nodeID;
-
+	
 	public abstract void process();
 
 	public String getState() {

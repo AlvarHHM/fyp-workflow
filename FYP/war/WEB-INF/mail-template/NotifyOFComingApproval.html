@@ -10,18 +10,39 @@
 
 </head>
 <body>
-	<pre>
-==Approve Application==========================================================
-
-Form Title    : {formTitle}
-Applier       : {applier}
-Department    : {department}
-Apply Date    : {applyDate}
-Approve       : <a href="{approve}"></a>
-Reject        : <a href="{reject}"></a>
-
-===============================================================================
-</pre>
+	<table>
+		<tr>
+			<td colspan="10">==Application
+				Notice==========================================================</td>
+		</tr>
+		<tr>
+			<td>Form Title:</td>
+			<td>{formTitle}</td>
+		</tr>
+		<tr>
+			<td>Applier:</td>
+			<td>{applier}</td>
+		</tr>
+		<tr>
+			<td>Department:</td>
+			<td>{department}</td>
+		</tr>
+		<tr>
+			<td>Apply Date:</td>
+			<td>{applyDate}</td>
+		</tr>
+		<tr>
+			<td>Approve:</td>
+			<td><a href="http://workflow-fyp.appspot.com/{approve}">approve</a></td>
+		</tr>
+		<tr>
+			<td>reject:</td>
+			<td><a href="http://workflow-fyp.appspot.com/{reject}">reject</a></td>
+		</tr>
+		<tr>
+			<td colspan="10">===============================================================================</td>
+		</tr>
+	</table>
 </body>
 
 </html>

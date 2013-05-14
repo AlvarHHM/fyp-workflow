@@ -1,18 +1,24 @@
 package edu.fyp.bean.node;
 
+import java.util.logging.Logger;
+
 import javax.jdo.annotations.PersistenceCapable;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.appengine.api.datastore.Key;
 
+import edu.fyp.repository.PathNodeRepository;
+
 @PersistenceCapable
 public class StartNode extends RelayNode {
-	public StartNode(){}
-	public StartNode(Key nextNode) {
-		super.setState("finish");
-		super.setNextNode(nextNode);
-	}
+	
+	@Autowired
+	private PathNodeRepository pathNodeRepo;
+
 	public void process(){
-        System.out.println("Test Start process");
-		super.setState("finish");
+        Logger.getAnonymousLogger().warning("Start process - " + this.getNodeKey());
+		this.setState("finish");
+		pathNodeRepo.updateNodeState(this, this.getState());
 	}
 }
