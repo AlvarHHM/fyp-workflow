@@ -15,45 +15,49 @@ import edu.fyp.manager.FormManager;
 
 @Controller
 public class PathController {
-	
+
 	@Autowired
 	private FormManager formManager;
-	
+
 	@Autowired
 	private ApplicationMonitorManager appMonManager;
-	
+
 	@RequestMapping("/path")
-	public  ModelAndView path(){
+	public ModelAndView path() {
 		ModelAndView mav = new ModelAndView("path/pathbuilder");
 		return mav;
 	}
-	
-	@RequestMapping(value="/path",params={"formKey"})
-	public  ModelAndView pathWithFormKey(@RequestParam(value="formKey", required=true)String formKey){
+
+	@RequestMapping(value = "/path", params = { "formKey" })
+	public ModelAndView pathWithFormKey(
+			@RequestParam(value = "formKey", required = true) String formKey) {
 		ModelAndView mav = new ModelAndView("path/pathbuilder");
 		Form form = formManager.getFormByFormKey(formKey);
-		if(form.getPath() == null||"".equals(form.getPath().getValue()))
+		if (form.getPath() == null || "".equals(form.getPath().getValue()))
 			mav.addObject("path", "''");
 		else
 			mav.addObject("path", form.getPath().getValue());
 		mav.addObject("formKey", formKey);
 		return mav;
 	}
-	
-	@RequestMapping(value="/pathReadOnly",params={"appKey"})
-	public ModelAndView pathReadOnly(@RequestParam(value="appKey", required=true)String appKey){
+
+	@RequestMapping(value = "/pathReadOnly", params = { "appKey" })
+	public ModelAndView pathReadOnly(
+			@RequestParam(value = "appKey", required = true) String appKey) {
 		ModelAndView mav = new ModelAndView("path/pathviewer");
-		String json = appMonManager.getApplicationPath(KeyFactory.stringToKey(appKey));
+		String json = appMonManager.getApplicationPath(KeyFactory
+				.stringToKey(appKey));
 		mav.addObject("appKey", appKey);
-		mav.addObject("appJson", json);
-		
+		if (json == null || "".equals(json))
+			mav.addObject("appJson", "''");
+		else
+			mav.addObject("appJson", json);
+
 		return mav;
 	}
-	
-	
-	
+
 	@RequestMapping("/searchUserPanel")
-	public  ModelAndView searchUserPanel(){
+	public ModelAndView searchUserPanel() {
 		ModelAndView mav = new ModelAndView("path/searchUser");
 		return mav;
 	}
