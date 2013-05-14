@@ -32,6 +32,7 @@ public class PathController {
 	public  ModelAndView pathWithFormKey(@RequestParam(value="formKey", required=true)String formKey){
 		ModelAndView mav = new ModelAndView("path/pathbuilder");
 		Form form = formManager.getFormByFormKey(formKey);
+		if(form.getPath()==null)throw new RuntimeException();
 		mav.addObject("path", form.getPath().getValue());
 		mav.addObject("formKey", formKey);
 		return mav;

@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	
 	var formKey = "${appKey}"
-	var pathJson = ${path};
+	var appJson = (${appJson});
 			
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -18,7 +18,7 @@
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/prototype.js"></script>
 <script type="text/javascript" src="/js/property.js"></script>
-<script type="text/javascript" src="/js/pathbuilder.js"></script>
+<script type="text/javascript" src="/js/pathviewer.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" type="text/css"
@@ -30,13 +30,13 @@
 
 <body>
 	<div id="main-container">
-		<button id="save-btn">Save</button>
+		<button id="save-btn" style="display: none">Save</button>
 		<div id="content-wrapper">
 			<div id="path-canvas-wrapper">
 				<div id="path-canvas"></div>
 			</div>
 		</div>
-		<div id="right-wrapper">
+		<div id="right-wrapper" style="display: none">
 
 			<div id="select-node">
 				<span class="title">Add Node</span>

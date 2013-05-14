@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	
 	var formKey = "${param.formKey}"
-	var pathJson = ""+${path};
+	var pathJson = ${path};
 			
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
