@@ -1,6 +1,7 @@
 package edu.fyp.bean.node;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -51,6 +52,7 @@ public class NoticeNode extends RelayNode{
 	private UserRepository userRepo;
 	
 	public void process(){
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
 		Form form =formRepo.getFormByIDVersion(app.getFormID(), app.getVersion());
 		Department dept;
@@ -61,13 +63,13 @@ public class NoticeNode extends RelayNode{
 		MailBody mb;
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
-			mb.setProperty("applyDate", app.getApplyDate().toString());
-			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngOtherName());
+			mb.setProperty("applyDate", dateformat.format(app.getApplyDate()));
+			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngSurname());
 			mb.setProperty("department", dept.getDeptName());
 			mb.setProperty("formTitle", form.getTitle());
 			mb.setProperty("message", this.getNoticeMessage());
 			mn.setTitle("Application Notice - " + form.getTitle()
-					+ " by " + applier.getEngOtherName()+applier.getEngOtherName());
+					+ " by " + applier.getEngOtherName()+applier.getEngSurname());
 			mn.setTo(this.getEmail());
 			mn.setBody(mb);
 			Logger.getAnonymousLogger().warning(this.getEmail());

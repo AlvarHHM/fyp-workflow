@@ -98,4 +98,26 @@ public class FormRepository {
 		form.setPath(path);
 		pm.close();
 	}
+	public ArrayList<Form> searchReleaseForm(String search, String keyword) {
+		List<Form> formList = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		q.setFilter(search + " == keyword && status == Release");
+		q.setOrdering("formID asc");
+		q.declareParameters("String keyword");
+		formList = (List<Form>) q.execute(keyword);
+		pm.close();
+		return listToArrayListForm(formList);
+	}
+	
+	public ArrayList<Form> getAllReleaseForm() {
+		List<Form> formList = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Form.class);
+		q.setFilter(" status == Release");
+		q.setOrdering("formID asc");
+		formList = (List<Form>) q.execute();
+		pm.close();
+		return listToArrayListForm(formList);
+	}
 }
