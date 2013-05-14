@@ -16,14 +16,6 @@ $(document).ready(function() {
 	$("#formName").bind("keyup input paste", function() {
 		$("#form-title").html($("#formName").val());
 	});
-	
-	$("html").keyup(function(e){
-		if(e.keyCode == 46){
-            $(".form-item.selected").remove();
-			$("#formBuilder-leftPanel>ul>li:nth-child(2)").hide();
-			$("#formBuilder-leftPanel").tabs("option", "active", 0);
-		}
-	}); 
 });
 
 function selectFormItem(itemId) {
