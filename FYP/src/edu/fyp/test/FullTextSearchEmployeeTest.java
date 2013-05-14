@@ -29,55 +29,56 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:**/dispatcherServlet-servlet.xml"})
+@ContextConfiguration(locations = { "file:**/dispatcherServlet-servlet.xml" })
 public class FullTextSearchEmployeeTest {
-	
+
 	@Autowired
 	UserManager userMan;
 
-    private final LocalServiceTestHelper helper =
-        new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+	private final LocalServiceTestHelper helper = new LocalServiceTestHelper(
+			new LocalDatastoreServiceTestConfig());
 
-    @Before
-    public void setUp() {
-        helper.setUp();
-    }
+	@Before
+	public void setUp() {
+		helper.setUp();
+	}
 
-    @After
-    public void tearDown() {
-        helper.tearDown();
-    }
+	@After
+	public void tearDown() {
+		helper.tearDown();
+	}
 
-  
-    @Test
-    public void testEmployeeFullTextSearch() {
-    	PersistenceManager pm = PMF.get().getPersistenceManager();
-    	Department dept = new Department();
-    	pm.makePersistent(dept);
-    	User user = new User();
-    	Employee employee = new Employee();
-    	employee.setDepartment(dept.getDeptKey());
-    	user.setEmployee(employee);
-    	employee.setUser(user);
-    	
-    	employee.setNickName("testNickName");
-    	employee.setEngSurname("testSurname");
-    	employee.setEngOtherName("testOtherName");
-    	employee.setEmpId("testEmpId");
-    	dept.setDeptId("testDeptId");
-    	dept.setDeptName("testDeptName");
-    	SearchEmployeeUtil.updateIndex(employee);
-    	pm.makePersistent(user);
-    	pm.close();
-	
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testNickName").size()!=0);
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testSurname").size()!=0);
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testOtherName").size()!=0);
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testEmpId").size()!=0);
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testDeptId").size()!=0);
-        Assert.assertTrue(userMan.searchEmployeeByFullText("testDeptName").size()!=0);
-    }
+	@Test
+	public void testEmployeeFullTextSearch() {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Department dept = new Department();
+		pm.makePersistent(dept);
+		User user = new User();
+		Employee employee = new Employee();
+		employee.setDepartment(dept.getDeptKey());
+		user.setEmployee(employee);
+		employee.setUser(user);
 
+		employee.setNickName("testNickName");
+		employee.setEngSurname("testSurname");
+		employee.setEngOtherName("testOtherName");
+		employee.setEmpId("testEmpId");
+		dept.setDeptId("testDeptId");
+		dept.setDeptName("testDeptName");
+		SearchEmployeeUtil.updateIndex(employee);
+		pm.makePersistent(user);
+		pm.close();
 
-    
+		Assert.assertTrue(userMan.searchEmployeeByFullText("testNickName")
+				.size() != 0);
+		Assert.assertTrue(userMan.searchEmployeeByFullText("testSurname")
+				.size() != 0);
+		Assert.assertTrue(userMan.searchEmployeeByFullText("testOtherName")
+				.size() != 0);
+		Assert.assertTrue(userMan.searchEmployeeByFullText("testEmpId").size() != 0);
+		Assert.assertTrue(userMan.searchEmployeeByFullText("testDeptId").size() != 0);
+		Assert.assertTrue(userMan.searchEmployeeByFullText("testDeptName")
+				.size() != 0);
+	}
+
 }
