@@ -63,8 +63,11 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 					String appKeyStr = KeyFactory.keyToString(app.getKey());
 					Form tempForm = null;
 					for(int j = 0 ; j < formList.size() ; j++){
-						if(formList.get(j).getFormID().equalsIgnoreCase(app.getFormID())
-								&& formList.get(j).getVersion().equalsIgnoreCase(app.getVersion()){
+						String formID = formList.get(j).getFormID();
+						String version = formList.get(j).getVersion();
+						String appFormID = app.getFormID();
+						String appFormVersion = app.getVersion();
+						if(formID.equalsIgnoreCase(appFormID) && version.equalsIgnoreCase(appFormVersion)){
 							tempForm = formList.get(j);
 						}
 					}
@@ -73,7 +76,6 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 								<td><%= tempForm.getTitle() %></td>
 								<td><%= app.getFormID() %></td>
 								<td><%= app.getVersion() %></td>
-								<td><a href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
 								<td><a target="_blank" href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
 								<td><%= dateformat.format(app.getApplyDate()) %></td>
 								<td><%= app.getStatus() %></td>
