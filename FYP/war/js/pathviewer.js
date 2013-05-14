@@ -313,47 +313,47 @@ function loadPath(jsonArray){
 		}
 		
 		
-		jsPlumb.draggable(node);
-		
-		jsPlumb.makeSource(node.children(".tcp"), {
-			parent : node,
-			anchor : "Continuous",
-			connector : [ "Flowchart", {
-				curviness : 20
-			} ],
-			connectorStyle : {
-				strokeStyle : "#0fff00",
-				lineWidth : 2
-			},
-			maxConnections : 2,
-			onMaxConnections : function(info, e) {
-				alert("Maximum connections ("
-						+ info.maxConnections + ") reached");
-			}
-		});
-		jsPlumb.makeSource(node.children(".fcp"), {
-			parent : node,
-			anchor : "Continuous",
-			connector : [ "Flowchart", {
-				curviness : 20
-			} ],
-			connectorStyle : {
-				strokeStyle : "#ff0000",
-				lineWidth : 2
-			},
-			maxConnections : 2,
-			onMaxConnections : function(info, e) {
-				alert("Maximum connections ("
-						+ info.maxConnections + ") reached");
-			}
-		});
-		
-		jsPlumb.makeTarget(node, {
-			dropOptions : {
-				hoverClass : "dragHover"
-			},
-			anchor : "Continuous"
-		});
+//		jsPlumb.draggable(node);
+//		
+//		jsPlumb.makeSource(node.children(".tcp"), {
+//			parent : node,
+//			anchor : "Continuous",
+//			connector : [ "Flowchart", {
+//				curviness : 20
+//			} ],
+//			connectorStyle : {
+//				strokeStyle : "#0fff00",
+//				lineWidth : 2
+//			},
+//			maxConnections : 2,
+//			onMaxConnections : function(info, e) {
+//				alert("Maximum connections ("
+//						+ info.maxConnections + ") reached");
+//			}
+//		});
+//		jsPlumb.makeSource(node.children(".fcp"), {
+//			parent : node,
+//			anchor : "Continuous",
+//			connector : [ "Flowchart", {
+//				curviness : 20
+//			} ],
+//			connectorStyle : {
+//				strokeStyle : "#ff0000",
+//				lineWidth : 2
+//			},
+//			maxConnections : 2,
+//			onMaxConnections : function(info, e) {
+//				alert("Maximum connections ("
+//						+ info.maxConnections + ") reached");
+//			}
+//		});
+//		
+//		jsPlumb.makeTarget(node, {
+//			dropOptions : {
+//				hoverClass : "dragHover"
+//			},
+//			anchor : "Continuous"
+//		});
 	});
 	
 	
