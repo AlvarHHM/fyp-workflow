@@ -18,6 +18,7 @@ import edu.fyp.repository.PMF;
 import edu.fyp.search.SearchEmployeeUtil;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +51,7 @@ public class UserEmployeeTest {
   
 
     @Test
-    public void testEmployeeFullTextSearch() {
+    public void testEmployeeFullTextSearchNickName() {
     	PersistenceManager pm = PMF.get().getPersistenceManager();
     	Department dept = new Department();
     	pm.makePersistent(dept);
@@ -61,14 +62,51 @@ public class UserEmployeeTest {
     	employee.setUser(user);
     	
     	employee.setNickName("testNickName");
-    	employee.setEngSurname("testSur");
     	SearchEmployeeUtil.updateIndex(employee);
-    	
-    	
     	pm.makePersistent(user);
     	pm.close();
+	
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testNickName").size()!=0);
+        
+    }
+    
+    @Test
+    public void testEmployeeFullTextSearchSurname() {
+    	PersistenceManager pm = PMF.get().getPersistenceManager();
+    	Department dept = new Department();
+    	pm.makePersistent(dept);
+    	User user = new User();
+    	Employee employee = new Employee();
+    	employee.setDepartment(dept.getDeptKey());
+    	user.setEmployee(employee);
+    	employee.setUser(user);
     	
-        assert(userMan.searchEmployeeByFullText("testNickName").size()>0);
+    	employee.setEngSurname("testName");
+    	SearchEmployeeUtil.updateIndex(employee);
+    	pm.makePersistent(user);
+    	pm.close();
+	
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testName").size()!=0);
+        
+    }
+    
+    @Test
+    public void testEmployeeFullTextSearchOtherName() {
+    	PersistenceManager pm = PMF.get().getPersistenceManager();
+    	Department dept = new Department();
+    	pm.makePersistent(dept);
+    	User user = new User();
+    	Employee employee = new Employee();
+    	employee.setDepartment(dept.getDeptKey());
+    	user.setEmployee(employee);
+    	employee.setUser(user);
+    	
+    	employee.setEngOtherName("testName");
+    	SearchEmployeeUtil.updateIndex(employee);
+    	pm.makePersistent(user);
+    	pm.close();
+	
+        Assert.assertTrue(userMan.searchEmployeeByFullText("testName").size()!=0);
         
     }
 

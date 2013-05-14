@@ -15,6 +15,7 @@ import edu.fyp.manager.UserManager;
 import edu.fyp.repository.PMF;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,7 +55,7 @@ public class LoginTest {
     	PersistenceManager pm = PMF.get().getPersistenceManager();
     	pm.makePersistent(user);
     	pm.close();
-        assert(userMan.login("testUser", "testPassword")!= null);
+    	 Assert.assertTrue(userMan.login("testUser", "testPassword")!= null);
         
     }
 
@@ -66,7 +67,7 @@ public class LoginTest {
     	PersistenceManager pm = PMF.get().getPersistenceManager();
     	pm.makePersistent(user);
     	pm.close();
-        assert(userMan.login("WrongUser", "WrongName")== null);
+        Assert.assertTrue(userMan.login("WrongUser", "WrongName")== null);
     	
     	
     }
