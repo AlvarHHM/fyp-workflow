@@ -143,8 +143,10 @@ public class TestController {
 	@RequestMapping("/testCurrnet")
 	public @ResponseBody
 	String testCurrnet() throws Exception {
-		String appKeyStr ="ag5zfndvcmtmbG93LWZ5cHISCxILQXBwbGljYXRpb24Yky8M";
+		String appKeyStr ="agx3b3JrZmxvdy1meXByEgsSC0FwcGxpY2F0aW9uGMsHDA";
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
+		System.out.println(appKey.toString());
+		System.out.println(appKey.getId());
 		return appMonManager.getApplicationPath(appKey).toString();
 	}
 }

@@ -7,12 +7,14 @@
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 
 <%
-//Get form list
-ArrayList<Form> formList = (ArrayList<Form>)request.getSession().getAttribute("formList");
-ArrayList<Application> appList = (ArrayList<Application>)request.getSession().getAttribute("appList");
-ArrayList<Employee> empList = (ArrayList<Employee>)request.getSession().getAttribute("empList");
-SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-
+	//Get form list
+	ArrayList<Form> formList = (ArrayList<Form>) request.getSession()
+			.getAttribute("formList");
+	ArrayList<Application> appList = (ArrayList<Application>) request
+			.getSession().getAttribute("appList");
+	ArrayList<Employee> empList = (ArrayList<Employee>) request
+			.getSession().getAttribute("empList");
+	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <html>
 <head>
@@ -39,13 +41,14 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 					<table class="viewFormTable">
 						<thead>
 							<tr>
+								<th>Application ID</th>
 								<th>Form Name</th>
 								<th>Form ID</th>
 								<th>Form Version</th>
 								<th>Applier</th>
 								<th>Process flow</th>
 								<th>Apply Date</th>
-																<th>Status</th>
+								<th>Status</th>
 								<th>action</th>
 							</tr>
 						</thead>
@@ -55,50 +58,57 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 							</tr>
 						</tfoot>
 						<tbody>
-							<% 
-			if(appList.size()==0){
-%>
+							<%
+								if (appList.size() == 0) {
+							%>
 							<tr>
 								<td colspan="10">No Application.</td>
 							</tr>
 							<%
-			} else{
-				for(int i=0;i<appList.size();i++){
-					Application app = appList.get(i);
-					String appKeyStr = KeyFactory.keyToString(app.getKey());
-					Form tempForm = null;
-					Employee tempEmp = null;
-					for(int j = 0 ; j < formList.size() ; j++){
-						String formID = formList.get(j).getFormID();
-						String version = formList.get(j).getVersion();
-						String appFormID = app.getFormID();
-						String appFormVersion = app.getVersion();
-						if(formID.equalsIgnoreCase(appFormID) && version.equalsIgnoreCase(appFormVersion)){
-							tempForm = formList.get(j);
-						}
-					}
-					for( int j = 0 ; j < empList.size() ; j++){
-						if(empList.get(j).getEmpId().equalsIgnoreCase(app.getEmpID())){
-							tempEmp = empList.get(j);
-						}
-					}
-					String name = tempEmp.getEngOtherName() + " " + tempEmp.getEngSurname();
-					%>
+								} else {
+									for (int i = 0; i < appList.size(); i++) {
+										Application app = appList.get(i);
+										String appKeyStr = KeyFactory.keyToString(app.getKey());
+										Form tempForm = null;
+										Employee tempEmp = null;
+										for (int j = 0; j < formList.size(); j++) {
+											String formID = formList.get(j).getFormID();
+											String version = formList.get(j).getVersion();
+											String appFormID = app.getFormID();
+											String appFormVersion = app.getVersion();
+											if (formID.equalsIgnoreCase(appFormID)
+													&& version.equalsIgnoreCase(appFormVersion)) {
+												tempForm = formList.get(j);
+											}
+										}
+										for (int j = 0; j < empList.size(); j++) {
+											if (empList.get(j).getEmpId()
+													.equalsIgnoreCase(app.getEmpID())) {
+												tempEmp = empList.get(j);
+											}
+										}
+										String name = tempEmp.getEngOtherName() + " "
+												+ tempEmp.getEngSurname();
+							%>
 							<tr>
-								<td><%= tempForm.getTitle() %></td>
-								<td><%= app.getFormID() %></td>
-								<td><%= app.getVersion() %></td>
-								<td><%= name %></td>
-								<td><a href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
-								<td><%= dateformat.format(app.getApplyDate()) %></td>
-								<td><%= app.getStatus() %></td>
-													<td><a href="/Client/showApproveApplicationServlet?appKey=<%= KeyFactory.keyToString(app.getKey()) %>" target="_blank">
-					<img src="img/dc.png" width="30px" height="30px"/></a>
+								<td><%=app.getAppID()%></td>
+								<td><%=tempForm.getTitle()%></td>
+								<td><%=app.getFormID()%></td>
+								<td><%=app.getVersion()%></td>
+								<td><%=name%></td>
+								<td><a
+									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
+								<td><%=dateformat.format(app.getApplyDate())%></td>
+								<td><%=app.getStatus()%></td>
+								<td><a
+									href="/Client/showApproveApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
+									target="_blank"> <img src="img/dc.png" width="30px"
+										height="30px" /></a>
 							</tr>
 							<%
-				}
-			}
-			%>
+								}
+								}
+							%>
 						</tbody>
 					</table>
 				</fieldset>
@@ -108,7 +118,7 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	</div>
 </body>
 </html>
-<% 
-request.getSession().removeAttribute("formList");
-request.getSession().removeAttribute("appList");
+<%
+	request.getSession().removeAttribute("formList");
+	request.getSession().removeAttribute("appList");
 %>

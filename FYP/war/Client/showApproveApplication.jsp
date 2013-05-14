@@ -97,8 +97,16 @@
 			<table class="app_detail_table">
 				<tbody>
 					<tr>
+						<td class="app_detail_left">Application ID:</td>
+						<td><%=app.getAppID()%></td>
+					</tr>
+					<tr>
 						<td class="app_detail_left">Title:</td>
 						<td><%=form.getTitle()%></td>
+					</tr>
+					<tr>
+						<td class="app_detail_left">Form ID</td>
+						<td><%=form.getFormID()%></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Version:</td>
