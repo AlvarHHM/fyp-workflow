@@ -56,10 +56,14 @@ public class ApproveNode extends RelayNode{
 	private FormRepository formRepo;
 	
 	@Autowired
+	private ApplicationRepository appRepo;
+	
+	@Autowired
 	private PathNodeRepository pathNodeRepo;
 	
 	public void process(){
 		this.setState("approving");
+		pathNodeRepo.updateNodeState(this, this.getState());
 		Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
 		Form form =formRepo.getFormByIDVersion(app.getFormID(), app.getVersion());
 		Department dept;
@@ -80,11 +84,19 @@ public class ApproveNode extends RelayNode{
 		}else if(this.getType().equalsIgnoreCase("lud")){
 			approver = userRepo.queryEmployeeByDeptKeyAndLevel(
 					applier.getDepartment(), this.getSuperLevel());
+		}else if(this.getType().equalsIgnoreCase("ld")){
+			Department dep = userRepo.queryDepartmentByDeptID(this.getDeptID());
+			approver = userRepo.queryEmployeeByDeptKeyAndLevel(
+					dep.getDeptKey(), this.getSuperLevel());
+		}else if (this.getType().equalsIgnoreCase("ld")){
+			approver = userRepo.queryEmployeeByEmpID(this.getEmpID());
 		}
 		
 		if(approver==null){
 			return ;
 		}
+		
+		appRepo.updateApproveEmp(app.getKey(), approver.getEmpId());
 		
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOFComingApproval.html");
@@ -110,6 +122,8 @@ public class ApproveNode extends RelayNode{
 		
 	public void approve(boolean approve) {
 		this.setState("finish");
+		pathNodeRepo.updateNodeDate(this);
+		pathNodeRepo.updateNodeState(this, this.getState());
 		if(approve){
 			this.setNextNode(this.nextTrueNode);
 		}else{
@@ -164,6 +178,4 @@ public class ApproveNode extends RelayNode{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-  
 }

@@ -1,5 +1,7 @@
 package edu.fyp.bean.node;
 
+import java.util.Date;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.PersistenceCapable;
@@ -19,6 +21,8 @@ public abstract class PathNode {
 	private String state;
 	@Persistent
 	private String nodeID;
+	@Persistent
+	private Date processDate;
 	
 	public abstract void process();
 
@@ -44,5 +48,13 @@ public abstract class PathNode {
 
 	public void setNodeKey(Key nodeKey) {
 		this.nodeKey = nodeKey;
+	}
+	
+	public Date getProcessDate() {
+		return processDate;
+	}
+
+	public void setProcessDate(Date processDate) {
+		this.processDate = processDate;
 	}
 }

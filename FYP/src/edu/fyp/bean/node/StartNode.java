@@ -19,6 +19,7 @@ public class StartNode extends RelayNode {
 	public void process(){
         Logger.getAnonymousLogger().warning("Start process - " + this.getNodeKey());
 		this.setState("finish");
+		pathNodeRepo.updateNodeDate(this);
 		pathNodeRepo.updateNodeState(this, this.getState());
 	}
 }

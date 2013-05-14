@@ -2,10 +2,12 @@
 	pageEncoding="ISO-8859-1"%>
 <%@page import="edu.fyp.bean.Form"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 Form form = (Form)request.getSession().getAttribute("form");
 Application app = (Application)request.getSession().getAttribute("app");
+SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 %>
 <html>
 <head>
@@ -96,7 +98,7 @@ Application app = (Application)request.getSession().getAttribute("app");
 					</tr>
 					<tr>
 						<td class="app_detail_left">Apply Date:</td>
-						<td><%= app.getApplyDate() %></td>
+						<td><%= dateformat.format(app.getApplyDate()) %></td>
 					</tr>
 					<tr>
 						<td class="app_detail_left">Description:</td>

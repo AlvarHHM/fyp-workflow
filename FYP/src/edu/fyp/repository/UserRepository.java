@@ -52,9 +52,17 @@ public class UserRepository {
 		return dept;
 	}
 	
+	public Department queryDepartmentByDeptID(String deptIDStr){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query query = pm.newQuery(Department.class);
+		query.setFilter(" deptId == deptIDStr");
+		query.declareParameters("String deptIDStr");
+		List<Department> result = (List<Department>) query.execute(deptIDStr);
+		return result.size()!=0?result.get(0):null;
+	}
+	
 	public Employee queryEmployeeByEmpID(String empIDStr){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		System.out.println(empIDStr);
 		Query query = pm.newQuery(Employee.class);
 		query.setFilter(" empId == empIDStr");
 		query.declareParameters("String empIDStr");
