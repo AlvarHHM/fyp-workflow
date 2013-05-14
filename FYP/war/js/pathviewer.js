@@ -1,4 +1,3 @@
-//wtf
 var selectedNode = false;
 var nodeId = 0;
 var selectedWay;
