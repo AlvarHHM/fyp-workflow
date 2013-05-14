@@ -44,8 +44,6 @@ public class ApplicationMonitorManager {
 	}
 
 	public String getApplicationPath(Key appKey) {
-		SimpleDateFormat dateformat = new SimpleDateFormat(
-				"yyyy-MM-dd hh:mm:ss");
 		Application app = appRepo.getApplication(appKey);
 		ApplicationPath appPath = appPathRepo.getApplicationPath(app
 				.getAppPath());
@@ -57,7 +55,8 @@ public class ApplicationMonitorManager {
 			JSONObject jo = new JSONObject();
 			try {
 				jo.put("Node-Type", currentNode.getNodeKey().getKind());
-				jo.put("Timestamp",dateformat.format(currentNode.getProcessDate()));
+				long millisecond = currentNode.getProcessDate().getTime();
+				jo.put("Timestamp",millisecond);
 				jo.put("Node-ID", currentNode.getNodeID());
 				if (currentNode.getNodeKey().getKind()
 						.equalsIgnoreCase("ApproveNode")) {
