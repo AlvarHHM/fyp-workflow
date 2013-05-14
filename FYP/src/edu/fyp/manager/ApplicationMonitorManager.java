@@ -84,6 +84,7 @@ public class ApplicationMonitorManager {
 			try {
 				jo.put("Node-Type", currentNode.getNodeKey().getKind());
 				jo.put("approver", "");
+				jo.put("Node-ID", currentNode.getNodeID());
 				jsonAry.put(jo);
 			} catch (JSONException e) {
 				Logger.getAnonymousLogger().warning(e.toString());
