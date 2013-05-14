@@ -102,6 +102,10 @@ public class ApplicationManager {
 		return app;
 	}
 
+	public Application getApplication(Key appKey){
+		return appRepo.getApplication(appKey);
+	}
+	
 	public List<Application> getEmpApplication(String empID) {
 		return appRepo.getEmpApplication(empID);
 	}
