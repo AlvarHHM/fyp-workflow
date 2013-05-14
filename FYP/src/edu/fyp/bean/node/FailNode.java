@@ -46,13 +46,13 @@ public class FailNode extends EndNode{
 		MailBody mb;
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
-			mb.setProperty("applyDate", dateformat.format(app.getApplyDate().toString()));
-			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngSurname());
+			mb.setProperty("applyDate", dateformat.format(app.getApplyDate()));
+			mb.setProperty("applier", applier.getEngOtherName()+" "+applier.getEngSurname());
 			mb.setProperty("department", dept.getDeptName());
 			mb.setProperty("formTitle", form.getTitle());
 			mb.setProperty("message", "Your application have been approved.");
 			mn.setTitle("Application Notice - " + form.getTitle()
-					+ " by " + applier.getEngOtherName()+applier.getEngSurname());
+					+ " by " + applier.getEngOtherName()+" "+applier.getEngSurname());
 			mn.setTo(applier.getEmail());
 			mn.setBody(mb);
 			NoticeMailService.getIntance().batchNotice(mn);

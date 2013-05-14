@@ -20,6 +20,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Application;
+import edu.fyp.bean.Employee;
 import edu.fyp.bean.Form;
 import edu.fyp.bean.User;
 import edu.fyp.manager.ApplicationManager;
@@ -43,9 +44,9 @@ public class ApplyApplication extends HttpServlet {
 		String formID = req.getParameter("FormID");
 		String version = req.getParameter("Version");
 		Text data = new Text(req.getParameter("Data"));
-		User user = (User) req.getSession().getAttribute("USER");
+		Employee emp = (Employee) req.getSession().getAttribute("EMP");
 		Application app = new Application();
-		app.setEmpID(user.getEmployee().getEmpId());
+		app.setEmpID(emp.getEmpId());
 		app.setFormID(formID);
 		app.setVersion(version);
 		app.setFormData(data);
