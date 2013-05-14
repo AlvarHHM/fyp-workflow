@@ -56,8 +56,10 @@ public class ShowApproveApplicationList extends HttpServlet {
 		ArrayList<Form> formList = formRepo.getAllForm();
 		ArrayList<Employee> empList = new ArrayList<Employee>();
 		for(int i = 0 ; i < appList.size() ; i ++){
-			
+			Employee employee = userRepo.queryEmployeeByEmpID(appList.get(i).getEmpID());
+			empList.add(employee);
 		}
+		req.getSession().setAttribute("empList", empList);
 		req.getSession().setAttribute("formList", formList);
 		req.getSession().setAttribute("appList", appList);
 		req.getRequestDispatcher("/Client/showApproveApplicationList").forward(req, resp);
