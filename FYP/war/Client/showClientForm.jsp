@@ -86,7 +86,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 					$('.form-item').each(function() {
 						var itemType = this.id.split('-')[0];
 						
-						if(!(/HEADING/).test(itemType)){
+						if(!((/HEADING/).test(itemType)|(/LABEL/).test(itemType))){
 							var temp = new Object();
 							temp.Id = this.id;
 							temp.Label = "";
