@@ -164,7 +164,7 @@
 											<span>Y</span><input type="text" />
 										</div>
 										<div class="form-item-property" id="item-label">
-											<span>Label</span><input type="text" /> <input
+											<span>Text</span><input type="text" /> <input
 												type="checkbox" checked />
 										</div>
 									</div>
@@ -190,8 +190,9 @@
 										<hr />
 										<label>Radio group</label>
 										<ul id="radio-choices">
-											<li class="sample-choice"><input type="radio" /> <input
-												class="choice" type="text" />
+											<li class="sample-choice">
+												<!--<input type="radio" />-->
+												<input class="choice" type="text" />
 												<button class="add">+</button>
 												<button class="remove">-</button></li>
 										</ul>
@@ -200,8 +201,9 @@
 										<hr />
 										<label>Checkbox group</label>
 										<ul id="checkbox-choices">
-											<li class="sample-choice"><input type="checkbox" /> <input
-												class="choice" type="text" />
+											<li class="sample-choice">
+												<!--<input type="checkbox" />-->
+												<input class="choice" type="text" />
 												<button class="add">+</button>
 												<button class="remove">-</button></li>
 										</ul>
@@ -210,8 +212,8 @@
 										<hr />
 										<label>Combo Box</label>
 										<ul id="combobox-choices">
-											<li class="sample-choice"><input class="choice"
-												type="text" />
+											<li class="sample-choice">
+												<input class="choice" type="text" />
 												<button class="add">+</button>
 												<button class="remove">-</button></li>
 										</ul>
@@ -236,8 +238,29 @@
 									</div>
 									<div class="formItem-properties-group" id="css">
 										<hr />
-										<div id="label-css">
-											<label>Label CSS Rule</label>
+										<div id="text-css">
+											<label>Text CSS Rule</label>
+											<div>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
+											</div>
+										</div>
+										<div id="choice-css">
+											<label>Choice CSS Rule</label>
+											<div>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
+											</div>
+										</div>
+										<div id="choice-box-css">
+											<label>Checkbox/Radio CSS Rule</label>
+											<div>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
+											</div>
+										</div>
+										<div id="choice-label-css">
+											<label>Choice label CSS Rule</label>
 											<div>
 												<textarea class="itemCSS"></textarea>
 												<button>Set CSS</button>
@@ -250,8 +273,15 @@
 												<button>Set CSS</button>
 											</div>
 										</div>
-										<div id="heading-css">
-											<label>Heading CSS Rule</label>
+										<div id="button-css">
+											<label>Button CSS Rule</label>
+											<div>
+												<textarea class="itemCSS"></textarea>
+												<button>Set CSS</button>
+											</div>
+										</div>
+										<div id="progress-css">
+											<label>Progress Bar CSS Rule</label>
 											<div>
 												<textarea class="itemCSS"></textarea>
 												<button>Set CSS</button>

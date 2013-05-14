@@ -13,6 +13,7 @@
 <script type="text/javascript" src="/js/jquery.jsPlumb-1.3.16-all-min.js"></script>
 <script type="text/javascript" src="/js/jquery.contextMenu.js"></script>
 <script type="text/javascript" src="/js/jquery.lightbox_me.js"></script>
+<script type="text/javascript" src="/js/jquery.md5.min.js"></script>
 <script type="text/javascript" src="/js/select2.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/prototype.js"></script>

@@ -31,6 +31,13 @@ public class PathController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/path",params={"appKey"})
+	public ModelAndView pathReadOnly(){
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
 	
 	
 	@RequestMapping("/searchUserPanel")

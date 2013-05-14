@@ -24,7 +24,8 @@ $(document).ready(
 				selectedNode = $(this).clone();
 				selectedNode.removeClass("node-prototype");
 				selectedNode.addClass("node-instance");
-				var id = "node-" + nodeId++;
+//				var id = "node-" + nodeId++;
+				var id = "node-" +$.md5((Math.random()*(new Date).getMilliseconds()).toString());
 				selectedNode.attr("id", id);
 				var node = new Node(id);
 				selectedNode.data("props",node);
@@ -141,8 +142,7 @@ $(document).ready(
 			});
 
 			jsPlumb.bind("jsPlumbConnection", function(connectionInfo) {
-// console.log(connectionInfo);
-// console.log(connectionInfo.source[0]);
+ console.log(connectionInfo);
 				if(selectedWay)
 					$(connectionInfo.source[0]).data("props").addTcp(connectionInfo.targetId);
 				else
