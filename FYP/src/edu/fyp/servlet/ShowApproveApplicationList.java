@@ -16,12 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import edu.fyp.bean.Application;
+import edu.fyp.bean.Employee;
 import edu.fyp.bean.Form;
 import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
+import edu.fyp.repository.UserRepository;
 
 public class ShowApproveApplicationList extends HttpServlet {
 	
@@ -30,6 +32,9 @@ public class ShowApproveApplicationList extends HttpServlet {
 
 	@Autowired
 	private FormRepository formRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -49,6 +54,10 @@ public class ShowApproveApplicationList extends HttpServlet {
 			appList = appRepo.getApproveApplication(empID);
 		}
 		ArrayList<Form> formList = formRepo.getAllForm();
+		ArrayList<Employee> empList = new ArrayList<Employee>();
+		for(int i = 0 ; i < appList.size() ; i ++){
+			
+		}
 		req.getSession().setAttribute("formList", formList);
 		req.getSession().setAttribute("appList", appList);
 		req.getRequestDispatcher("/Client/showApproveApplicationList").forward(req, resp);
