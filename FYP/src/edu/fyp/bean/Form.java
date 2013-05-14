@@ -41,7 +41,7 @@ public class Form implements Serializable{
 
 	public Form(){
 		this.status="Editing";
-		this.path = new Text("");
+		this.path = new Text(" ");
 	}
 	public String getStatus() {
 		return status;
