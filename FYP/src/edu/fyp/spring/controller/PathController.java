@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.appengine.api.datastore.KeyFactory;
 
+import edu.fyp.bean.Application;
 import edu.fyp.bean.Form;
+import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.ApplicationMonitorManager;
 import edu.fyp.manager.FormManager;
 
@@ -21,6 +23,9 @@ public class PathController {
 
 	@Autowired
 	private ApplicationMonitorManager appMonManager;
+
+	@Autowired
+	private ApplicationManager appManager;
 
 	@RequestMapping("/path")
 	public ModelAndView path() {
@@ -47,6 +52,14 @@ public class PathController {
 		ModelAndView mav = new ModelAndView("path/pathviewer");
 		String json = appMonManager.getApplicationPath(KeyFactory
 				.stringToKey(appKey));
+		String pathJson;
+		Application app = appManager.getApplication(KeyFactory
+				.stringToKey(appKey));
+		Form form = formManager.getFormByIDVersion(app.getFormID(), app.getVersion());
+		if (form.getPath() == null || "".equals(form.getPath().getValue()))
+			mav.addObject("path", "''");
+		else
+			mav.addObject("path", form.getPath().getValue());
 		mav.addObject("appKey", appKey);
 		if (json == null || "".equals(json))
 			mav.addObject("appJson", "''");

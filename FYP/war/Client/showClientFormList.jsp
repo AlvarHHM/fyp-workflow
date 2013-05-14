@@ -17,7 +17,7 @@
 			<%@ include file="menu.jsp"%>
 			<div id="mainBody">
 				<fieldset>
-					<legend align='center'>You can apply these Application</legend>
+					<legend align='center'>You can apply these Form</legend>
 					<div class="searchField">
 						<form method="get" action="showFormListServlet">
 							<select name="search">

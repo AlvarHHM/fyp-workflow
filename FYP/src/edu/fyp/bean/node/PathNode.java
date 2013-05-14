@@ -18,7 +18,7 @@ public abstract class PathNode {
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Key nodeKey;
 	@Persistent
-	private String state;
+	private String state = "pending";
 	@Persistent
 	private String nodeID;
 	@Persistent

@@ -2,19 +2,20 @@
 <html>
 <head>
 <script type="text/javascript">
-	
 	var formKey = "${appKey}"
-	var appJson = (${appJson});
-			
+	var appJson = ${appJson};
+	var pathJson = ${path};
 </script>
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/jquery.ui.position.js"></script>
-<script type="text/javascript" src="/js/jquery.jsPlumb-1.3.16-all-min.js"></script>
+<script type="text/javascript"
+	src="/js/jquery.jsPlumb-1.3.16-all-min.js"></script>
 <script type="text/javascript" src="/js/jquery.contextMenu.js"></script>
 <script type="text/javascript" src="/js/jquery.lightbox_me.js"></script>
 <script type="text/javascript" src="/js/jquery.md5.min.js"></script>
 <script type="text/javascript" src="/js/select2.min.js"></script>
+<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/prototype.js"></script>
 <script type="text/javascript" src="/js/property.js"></script>
@@ -29,6 +30,7 @@
 </head>
 
 <body>
+
 	<div id="main-container">
 		<button id="save-btn" style="display: none">Save</button>
 		<div id="content-wrapper">

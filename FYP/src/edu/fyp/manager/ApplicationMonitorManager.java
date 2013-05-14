@@ -48,6 +48,7 @@ public class ApplicationMonitorManager {
 		Application app = appRepo.getApplication(appKey);
 		ApplicationPath appPath = appPathRepo.getApplicationPath(app
 				.getAppPath());
+		if(appPath == null)return "";
 		PathNode currentNode = pathNodeRepo.getNode(appPath.getStartNode());
 		JSONArray jsonAry = new JSONArray();
 		while (currentNode.getState().equalsIgnoreCase("finish")

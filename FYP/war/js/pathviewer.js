@@ -165,29 +165,29 @@ $(document).ready(
 // $("select").select2({
 //				
 // });
-			$.contextMenu({
-		        selector: '.node-instance', 
-		        callback: function(key, options) {
-		            switch(key){
-		            case "delete":
-		            	$(this).remove();
-		            	break;
-		            	
-		            case "setting":
-		            	// console.log($(this).data());
-		            	$(this).data("props").loadMenu();
-		            	$("#property-panel").data("props",$(this).data("props"));
-		            	break;
-		            }
-		            
-		            
-		        },
-		        items: {
-		            "delete": {name: "Delete", icon: "delete"},
-		            "setting": {name:"Setting", icon: "setting"},
-		            
-		        }
-		    });
+//			$.contextMenu({
+//		        selector: '.node-instance', 
+//		        callback: function(key, options) {
+//		            switch(key){
+//		            case "delete":
+//		            	$(this).remove();
+//		            	break;
+//		            	
+//		            case "setting":
+//		            	// console.log($(this).data());
+//		            	$(this).data("props").loadMenu();
+//		            	$("#property-panel").data("props",$(this).data("props"));
+//		            	break;
+//		            }
+//		            
+//		            
+//		        },
+//		        items: {
+//		            "delete": {name: "Delete", icon: "delete"},
+//		            "setting": {name:"Setting", icon: "setting"},
+//		            
+//		        }
+//		    });
 			$("#save-btn").click(function(){
 				var result = [];
 				if(formKey == null){
@@ -313,47 +313,47 @@ function loadPath(jsonArray){
 		}
 		
 		
-		jsPlumb.draggable(node);
-		
-		jsPlumb.makeSource(node.children(".tcp"), {
-			parent : node,
-			anchor : "Continuous",
-			connector : [ "Flowchart", {
-				curviness : 20
-			} ],
-			connectorStyle : {
-				strokeStyle : "#0fff00",
-				lineWidth : 2
-			},
-			maxConnections : 2,
-			onMaxConnections : function(info, e) {
-				alert("Maximum connections ("
-						+ info.maxConnections + ") reached");
-			}
-		});
-		jsPlumb.makeSource(node.children(".fcp"), {
-			parent : node,
-			anchor : "Continuous",
-			connector : [ "Flowchart", {
-				curviness : 20
-			} ],
-			connectorStyle : {
-				strokeStyle : "#ff0000",
-				lineWidth : 2
-			},
-			maxConnections : 2,
-			onMaxConnections : function(info, e) {
-				alert("Maximum connections ("
-						+ info.maxConnections + ") reached");
-			}
-		});
-		
-		jsPlumb.makeTarget(node, {
-			dropOptions : {
-				hoverClass : "dragHover"
-			},
-			anchor : "Continuous"
-		});
+//		jsPlumb.draggable(node);
+//		
+//		jsPlumb.makeSource(node.children(".tcp"), {
+//			parent : node,
+//			anchor : "Continuous",
+//			connector : [ "Flowchart", {
+//				curviness : 20
+//			} ],
+//			connectorStyle : {
+//				strokeStyle : "#0fff00",
+//				lineWidth : 2
+//			},
+//			maxConnections : 2,
+//			onMaxConnections : function(info, e) {
+//				alert("Maximum connections ("
+//						+ info.maxConnections + ") reached");
+//			}
+//		});
+//		jsPlumb.makeSource(node.children(".fcp"), {
+//			parent : node,
+//			anchor : "Continuous",
+//			connector : [ "Flowchart", {
+//				curviness : 20
+//			} ],
+//			connectorStyle : {
+//				strokeStyle : "#ff0000",
+//				lineWidth : 2
+//			},
+//			maxConnections : 2,
+//			onMaxConnections : function(info, e) {
+//				alert("Maximum connections ("
+//						+ info.maxConnections + ") reached");
+//			}
+//		});
+//		
+//		jsPlumb.makeTarget(node, {
+//			dropOptions : {
+//				hoverClass : "dragHover"
+//			},
+//			anchor : "Continuous"
+//		});
 	});
 	
 	
