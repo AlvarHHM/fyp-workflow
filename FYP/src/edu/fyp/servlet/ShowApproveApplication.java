@@ -52,6 +52,6 @@ public class ShowApproveApplication extends HttpServlet {
 		app = appRepo.getApplication(appKey);
 		req.getSession().setAttribute("form", form);
 		req.getSession().setAttribute("app", app);
-		req.getRequestDispatcher("/Client/showClientApplication").forward(req, resp);
+		req.getRequestDispatcher("/Client/showApproveApplication.jsp").forward(req, resp);
 	}
 }

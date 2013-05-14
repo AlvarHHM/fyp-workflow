@@ -26,7 +26,7 @@ import edu.fyp.repository.PMF;
 public class ShowApproveApplicationList extends HttpServlet {
 	
 	@Autowired
-	private ApplicationManager appManager;
+	private ApplicationRepository appRepo;
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -36,16 +36,16 @@ public class ShowApproveApplicationList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String empID = "A";//hard code
+		String empID = "H0000002";//hard code
 		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;
 		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			appList = appManager.searchEmpForm( search, keyword);
+			appList = appRepo.searchApproveApplication(search, keyword, empID);
 		}else{
-			/*appList = appManager.getAllEmpForm();*/
+			appList = appRepo.getApproveApplication(empID);
 		}
 		req.getSession().setAttribute("appList", appList);
-		req.getRequestDispatcher("/Client/showClientApplicationList").forward(req, resp);
+		req.getRequestDispatcher("/Client/showApproveApplicationList.jsp").forward(req, resp);
 	}
 }
