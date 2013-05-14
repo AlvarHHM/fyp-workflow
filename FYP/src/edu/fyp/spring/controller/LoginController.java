@@ -6,6 +6,7 @@ import java.net.URLDecoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,12 +44,13 @@ public class LoginController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {"userName","password"})
 	public String login(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
-			@RequestParam("password") String password){
+			@RequestParam("password") String password,ModelMap map){
 		
 		user = userManager.login(userName, password);
-		if (user != null)
+		if (user != null){
+			map.put("USER", user);
 			return "redirect:/Client/home.jsp";
-		else
+		}else
 			return "redirect:/Client/login2.html?error=1";
 	}
 	
