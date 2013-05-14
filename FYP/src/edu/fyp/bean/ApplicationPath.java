@@ -1,13 +1,14 @@
 package edu.fyp.bean;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
+
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import com.google.appengine.api.datastore.Key;
 
-import edu.fyp.bean.node.PathNode;
 @PersistenceCapable
 public class ApplicationPath {
     @PrimaryKey

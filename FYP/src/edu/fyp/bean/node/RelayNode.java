@@ -11,7 +11,7 @@ import com.google.appengine.api.datastore.Key;
 @Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
 public abstract class RelayNode extends PathNode {
 	@Persistent
-	private Key nextNode;
+	protected Key nextNode;
 
 	public Key getNextNode() {
 		return nextNode;

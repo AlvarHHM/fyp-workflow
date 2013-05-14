@@ -52,9 +52,10 @@ public class ApplicationManager {
 		Application app = appRepo.getApplication(key);
 		ApplicationPath appPath = appPathRepo.getApplicationPath(app.getAppPath());
 		PathNode currentNode = null;
+		Logger.getAnonymousLogger().warning(appPath.getKey().toString());
 		do {
 			currentNode = pathNodeRepo.getNode(appPath.getCurrentNode());
-			String currentNodeKind = appPath.getCurrentNode().getKind();
+			Logger.getAnonymousLogger().warning(" Processing -> " + currentNode.getNodeKey().toString());
 			applicationContext.getAutowireCapableBeanFactory().autowireBean(currentNode);
 			System.out.println("Current path "+appPath.getKey());
 			System.out.println("Current node "+currentNode.getNodeKey());

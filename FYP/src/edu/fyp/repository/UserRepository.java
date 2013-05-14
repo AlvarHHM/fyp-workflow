@@ -39,11 +39,10 @@ public class UserRepository {
 	
 	public Employee queryEmployeeByDeptKeyAndLevel(Key deptKey,int level){
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Department dept = pm.getObjectById(Department.class, deptKey);
 		Query query = pm.newQuery(Employee.class);
 		query.setFilter("superLevel == levelParam && department == deptParam");
-		query.declareParameters("int levelParam,edu.fyp.bean.Department deptParam");
-		List<Employee> result = (List<Employee>) query.execute(level,dept);
+		query.declareParameters("int levelParam,com.google.appengine.api.datastore.Key deptParam");
+		List<Employee> result = (List<Employee>) query.execute(level,deptKey);
 		return result.size()!=0?result.get(0):null;
 	}
 	

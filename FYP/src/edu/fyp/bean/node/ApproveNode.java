@@ -1,6 +1,7 @@
 package edu.fyp.bean.node;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -8,6 +9,7 @@ import javax.jdo.annotations.Persistent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.Department;
@@ -53,6 +55,8 @@ public class ApproveNode extends RelayNode{
 	@Autowired
 	private FormRepository formRepo;
 	
+	@Autowired
+	private PathNodeRepository pathNodeRepo;
 	
 	public void process(){
 		this.setState("approving");
@@ -61,8 +65,8 @@ public class ApproveNode extends RelayNode{
 		Department dept;
 		Employee applier;
 		Employee approver = null;
-		String approveStr = "/Client/approveAppNode?appKey=" + app.getKey()
-				+"&nodeKey=" + this.getNodeKey() + "&approve=";
+		String approveStr = "Client/approveAppNode?appKey=" + KeyFactory.keyToString(app.getKey())
+				+"&nodeKey=" + KeyFactory.keyToString(this.getNodeKey()) + "&approve=";
 		
 		MailNotice mn = new MailNotice();
 		MailBody mb;
@@ -73,9 +77,13 @@ public class ApproveNode extends RelayNode{
 		if(this.getType().equalsIgnoreCase("super")){
 			approver = userRepo.queryEmployeeByDeptKeyAndLevel(
 					applier.getDepartment(), applier.getSuperLevel()+200);
-			if(approver==null){
-				return ;
-			}
+		}else if(this.getType().equalsIgnoreCase("lud")){
+			approver = userRepo.queryEmployeeByDeptKeyAndLevel(
+					applier.getDepartment(), this.getSuperLevel());
+		}
+		
+		if(approver==null){
+			return ;
 		}
 		
 		try {
@@ -89,11 +97,13 @@ public class ApproveNode extends RelayNode{
 			mn.setTitle("Application Notice - " + form.getTitle()
 					+ " by " + applier.getEngOtherName()+applier.getEngOtherName());
 			mn.setTo(approver.getEmail());
+			mn.setBody(mb);
+			Logger.getAnonymousLogger().warning(approver.getEmail());
 			NoticeMailService.getIntance().batchNotice(mn);
 			NoticeMailService.getIntance().processBatch();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.toString());
+			Logger.getAnonymousLogger().warning(e.toString());
 			e.printStackTrace();
 		}
     }

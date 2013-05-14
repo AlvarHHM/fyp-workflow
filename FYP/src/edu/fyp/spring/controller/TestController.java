@@ -35,6 +35,10 @@ import edu.fyp.bean.Employee;
 import edu.fyp.bean.TestAutoWiredBean;
 import edu.fyp.bean.User;
 import edu.fyp.bean.node.ApproveNode;
+import edu.fyp.bean.node.FailNode;
+import edu.fyp.bean.node.PathNode;
+import edu.fyp.bean.node.StartNode;
+import edu.fyp.bean.node.SuccessNode;
 import edu.fyp.manager.NotificationManager;
 import edu.fyp.manager.UserManager;
 import edu.fyp.repository.ApplicationPathRepository;
@@ -135,11 +139,16 @@ public class TestController {
 	@RequestMapping("/testCurrnet")
 	public @ResponseBody
 	String testCurrnet() throws Exception {
-		String nodeStr = "agx3b3JrZmxvdy1meXByEgsSC0FwcHJvdmVOb2RlGL0FDA";
-		Key nodeKey = KeyFactory.stringToKey(nodeStr);
-		ApplicationPath appPath = appPathRepo.getApplicationPathByCurrentNode(nodeKey);
-		Logger.getAnonymousLogger().warning(appPath.getCurrentNode().toString());
-		return nodeStr;
+		PathNode p1 = new StartNode();
+		PathNode p2 = new ApproveNode();
+		PathNode p3 = new SuccessNode();
+		PathNode p4 = new FailNode();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm.makePersistent(p1);
+		pm.makePersistent(p2);
+		pm.makePersistent(p3);
+		pm.makePersistent(p4);
+		return "A";
 	}
 
 }
