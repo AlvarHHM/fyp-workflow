@@ -152,42 +152,9 @@ $(document).ready(
 			jsPlumb.bind("jsPlumbConnectionDetached", function(connectionInfo) {
 				console.log(connectionInfo);
 				$(connectionInfo.source[0]).data("props").removeLink(connectionInfo.targetId);
-				/*
-				 * if($(connectionInfo.source[0]).data("props").pass ==
-				 * connectionInfo.targetId) delete
-				 * $(connectionInfo.source[0]).data("props").pass; else delete
-				 * $(connectionInfo.source[0]).data("props").fail;
-				 */
-// delete connectionInfo.source[0].data("props").pass;
-// delete connectionInfo.source[0].data("props").fail;
 				
 			});
-// $("select").select2({
-//				
-// });
-//			$.contextMenu({
-//		        selector: '.node-instance', 
-//		        callback: function(key, options) {
-//		            switch(key){
-//		            case "delete":
-//		            	$(this).remove();
-//		            	break;
-//		            	
-//		            case "setting":
-//		            	// console.log($(this).data());
-//		            	$(this).data("props").loadMenu();
-//		            	$("#property-panel").data("props",$(this).data("props"));
-//		            	break;
-//		            }
-//		            
-//		            
-//		        },
-//		        items: {
-//		            "delete": {name: "Delete", icon: "delete"},
-//		            "setting": {name:"Setting", icon: "setting"},
-//		            
-//		        }
-//		    });
+
 			$("#save-btn").click(function(){
 				var result = [];
 				if(formKey == null){
@@ -261,6 +228,7 @@ function loadPath(jsonArray){
 		
 		
 		
+		
 
 
 		
@@ -313,47 +281,27 @@ function loadPath(jsonArray){
 		}
 		
 		
-//		jsPlumb.draggable(node);
-//		
-//		jsPlumb.makeSource(node.children(".tcp"), {
-//			parent : node,
-//			anchor : "Continuous",
-//			connector : [ "Flowchart", {
-//				curviness : 20
-//			} ],
-//			connectorStyle : {
-//				strokeStyle : "#0fff00",
-//				lineWidth : 2
-//			},
-//			maxConnections : 2,
-//			onMaxConnections : function(info, e) {
-//				alert("Maximum connections ("
-//						+ info.maxConnections + ") reached");
-//			}
-//		});
-//		jsPlumb.makeSource(node.children(".fcp"), {
-//			parent : node,
-//			anchor : "Continuous",
-//			connector : [ "Flowchart", {
-//				curviness : 20
-//			} ],
-//			connectorStyle : {
-//				strokeStyle : "#ff0000",
-//				lineWidth : 2
-//			},
-//			maxConnections : 2,
-//			onMaxConnections : function(info, e) {
-//				alert("Maximum connections ("
-//						+ info.maxConnections + ") reached");
-//			}
-//		});
-//		
-//		jsPlumb.makeTarget(node, {
-//			dropOptions : {
-//				hoverClass : "dragHover"
-//			},
-//			anchor : "Continuous"
-//		});
+	});
+	
+	$.each(appJson,function(i,e){
+		$("#"+e["Node-ID"]).processed = true;
+		$("#"+e["Node-ID"]).css("background-color","#CAFF70");
+		var props = $("#"+e["Node-ID"]).data("props");
+		props.timestamp = e["Timestamp"];
+		props.approver = e["approver"];
+		props.nodeType = e["Node-Type"];
+		props.nodeId = e["Node-ID"];
+		
+	});
+	
+	$(".node-instance").click(function(){
+		var props = $(this).data("props");
+		var date = new Date(props.timestamp);
+		var dateStr = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+		$("#node-detail-panel .timestamp").html(dateStr); 
+		$("#node-detail-panel .approver").html(props.approver); 
+		$("#node-detail-panel .node-type").html(props.nodeType); 
+		$("#node-detail-panel .node-Id").html(props.nodeId); 
 	});
 	
 	

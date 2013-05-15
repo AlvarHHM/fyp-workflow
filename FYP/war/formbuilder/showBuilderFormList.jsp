@@ -34,7 +34,7 @@
 			</div>
 			<div id="mainBody">
 				<fieldset>
-					<legend align='center'>You can Maintain these Application</legend>
+					<legend align='center'>You can Maintain these Form</legend>
 					<div class="searchField">
 						<form method="get" action="/formbuilder/showBuilderFormListServlet">
 							<select name="search">

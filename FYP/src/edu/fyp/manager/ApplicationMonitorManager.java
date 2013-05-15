@@ -1,5 +1,6 @@
 package edu.fyp.manager;
 
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,8 @@ public class ApplicationMonitorManager {
 			JSONObject jo = new JSONObject();
 			try {
 				jo.put("Node-Type", currentNode.getNodeKey().getKind());
+				long millisecond = currentNode.getProcessDate().getTime();
+				jo.put("Timestamp",millisecond);
 				jo.put("Node-ID", currentNode.getNodeID());
 				if (currentNode.getNodeKey().getKind()
 						.equalsIgnoreCase("ApproveNode")) {
@@ -81,6 +84,9 @@ public class ApplicationMonitorManager {
 			try {
 				jo.put("Node-Type", currentNode.getNodeKey().getKind());
 				jo.put("approver", "");
+				long millisecond = currentNode.getProcessDate().getTime();
+				jo.put("Timestamp",millisecond);
+				jo.put("Node-ID", currentNode.getNodeID());
 				jsonAry.put(jo);
 			} catch (JSONException e) {
 				Logger.getAnonymousLogger().warning(e.toString());
