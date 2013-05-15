@@ -26,13 +26,39 @@
 	href="/css/jquery.contextMenu.css">
 <link rel="stylesheet" type="text/css" href="/css/select2.css">
 <link rel="stylesheet" type="text/css" href="/css/pathbuilder2.css">
+<style type="text/css">
+.node-instance{
+	cursor :pointer;
+}
 
+</style>
 </head>
 
 <body>
 
 	<div id="main-container">
 		<button id="save-btn" style="display: none">Save</button>
+		<div id="node-detail-panel">
+			<table>
+				<tr>
+					<td>Node Type: </td>
+					<td class="node-type"></td>
+				</tr>
+				<tr>
+					<td>Node Id: </td>
+					<td class="node-Id"></td>
+				</tr>
+				<tr>
+					<td>Timestamp: </td>
+					<td class="timestamp"></td>
+				</tr>
+				<tr>
+					<td>Approver: </td>
+					<td class="approver"></td>
+				</tr>
+				<tr></tr>
+			</table>
+		</div>
 		<div id="content-wrapper">
 			<div id="path-canvas-wrapper">
 				<div id="path-canvas"></div>
@@ -69,110 +95,15 @@
 
 
 			</div>
-			<div id="property-panel" style="display: none">
-				<div class="property" id="approval-property">
-					<div class="property-inner">
-						<span class="title">Approval Setting</span>
-						<div class="property-item">
-							<select id="approval-type" style="width: 200px"
-								class="property-value">
-								<option></option>
-								<option value="super">Supervisor</option>
-								<option value="lud">Level in User Department</option>
-								<option value="ld">Level in a Department</option>
-								<option value="spec">Specific user</option>
-							</select>
-						</div>
-						<div class="property-item">
-							<div id="approval-deptId-wrapper" style="display: none">
-								<label>Dept Id</label><br> <input id="approval-deptId"
-									type="text" class="property-value"> <input
-									type="submit" class="search-btn" value="submit">
 
-							</div>
-						</div>
-						<div class="property-item">
-							<div id="approval-superLv-wrapper" style="display: none">
-								<label>Super Level</label><br> <input id="approval-superLv"
-									type="text" class="property-value">
-
-							</div>
-						</div>
-						<div class="property-item">
-							<div id="approval-employeeId-warpper" style="display: none">
-								<label>Employee Id<br>
-									<div class="input-append">
-										<input type="text" id="approval-employeeId"
-											class="property-value appendedInputButtons" disabled>
-										<a class="btn"
-											onClick='userId = this.parentNode.children[0]; dataitem = window.open("/searchUserPanel","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
-									</div>
-								</label>
-
-							</div>
-						</div>
-						<div class="property-submit-wrapper">
-							<button class="property-submit-btn css_btn_class">Submit</button>
-							<button class="property-cancel-btn css_btn_class">Cancel</button>
-						</div>
-					</div>
-				</div>
-				<div class="property" id="notice-property">
-					<div class="property-inner">
-						<span class="title">Notice Setting</span>
-						<div class="property-item">
-							<select id="notice-type" class="property-value"
-								style="width: 200px">
-								<option></option>
-								<option value="email">Notify by Email</option>
-								<option value="system">Notify by System</option>
-							</select>
-						</div>
-						<div class="property-item">
-							<div id="notice-employeeId-warpper" style="display: none">
-								<label>Employee Id</label><br>
-								<div class="input-append">
-									<input type="text" id="notice-employeeId"
-										class="property-value" disabled> <input type="submit"
-										class="search-btn" value="submit"> <a class="btn"
-										onClick='userId = this.parentNode.children[0]; dataitem = window.open("/searchUserPanel","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="property-item">
-							<div id="notice-email-warpper" style="display: none">
-								<label>Email Address</label><br> <input type="text"
-									id="notice-email" class="property-value">
-							</div>
-						</div>
-						<div class="property-item">
-							<div id="notice-message-warpper" style="">
-								<label>Additional Mesaage</label><br>
-								<textarea rows="4" cols="50" id="notice-message"
-									class="property-value"></textarea>
-
-							</div>
-						</div>
-
-						<div class="property-submit-wrapper">
-							<button class="property-submit-btn css_btn_class">Submit</button>
-							<button class="property-cancel-btn css_btn_class">Cancel</button>
-						</div>
-					</div>
-				</div>
-				<div class="property" id="check-property">
-					<span class="title">Check Setting</span>
-					<div class="property-item"></div>
-					<div class="property-submit-wrapper">
-						<button class="property-submit-btn css_btn_class">Submit</button>
-						<button class="property-cancel-btn css_btn_class">Cancel</button>
-					</div>
-
-				</div>
-			</div>
 
 
 		</div>
+
+
+
+
+	</div>
+
 </body>
 </html>
