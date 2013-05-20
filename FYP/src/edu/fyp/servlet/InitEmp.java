@@ -79,20 +79,20 @@ public class InitEmp extends HttpServlet {
 		u2.setPassword("123456");
 		
 		User u3 = new User();
-		u2.setUserName("autscr0003");
-		u2.setPassword("123456");
+		u3.setUserName("autscr0003");
+		u3.setPassword("123456");
 		
 		User u4 = new User();
-		u2.setUserName("autscr0004");
-		u2.setPassword("123456");
+		u4.setUserName("autscr0004");
+		u4.setPassword("123456");
 		
 		User u5 = new User();
-		u2.setUserName("autscr0005");
-		u2.setPassword("123456");
+		u5.setUserName("autscr0005");
+		u5.setPassword("123456");
 		
 		User u6 = new User();
-		u2.setUserName("autscr0006");
-		u2.setPassword("123456");
+		u6.setUserName("autscr0006");
+		u6.setPassword("123456");
 		
 		//Init end of user
 		
@@ -121,48 +121,48 @@ public class InitEmp extends HttpServlet {
 		emp2.setSuperLevel(400);
 		
 		Employee emp3 =  new Employee();
-		emp2.setEmpId("H0000003");
-		emp2.setEngSurname("PANG");
-		emp2.setEngOtherName("YUI MING");
-		emp2.setChiSurname("趁");
-		emp2.setChiOthername("耀明");
-		emp2.setTitle(Title.DM);
-		emp2.setNickName("FRANCO");
-		emp2.setEmail("autscr0003@gmail.com");
-		emp2.setSuperLevel(600);
+		emp3.setEmpId("H0000003");
+		emp3.setEngSurname("PANG");
+		emp3.setEngOtherName("YUI MING");
+		emp3.setChiSurname("趁");
+		emp3.setChiOthername("耀明");
+		emp3.setTitle(Title.DM);
+		emp3.setNickName("FRANCO");
+		emp3.setEmail("autscr0003@gmail.com");
+		emp3.setSuperLevel(600);
 		
 		Employee emp4 =  new Employee();
-		emp2.setEmpId("H0000004");
-		emp2.setEngSurname("TANG");
-		emp2.setEngOtherName("TZE MAN");
-		emp2.setChiSurname("鄧");
-		emp2.setChiOthername("子敏");
-		emp2.setTitle(Title.COOFF);
-		emp2.setNickName("RACHEL");
-		emp2.setEmail("autscr0004@gmail.com");
-		emp2.setSuperLevel(200);
+		emp4.setEmpId("H0000004");
+		emp4.setEngSurname("TANG");
+		emp4.setEngOtherName("TZE MAN");
+		emp4.setChiSurname("鄧");
+		emp4.setChiOthername("子敏");
+		emp4.setTitle(Title.COOFF);
+		emp4.setNickName("RACHEL");
+		emp4.setEmail("autscr0004@gmail.com");
+		emp4.setSuperLevel(200);
 		
 		Employee emp5 =  new Employee();
-		emp2.setEmpId("H0000005");
-		emp2.setEngSurname("YIP");
-		emp2.setEngOtherName("OI HA");
-		emp2.setChiSurname("葉");
-		emp2.setChiOthername("愛霞");
-		emp2.setTitle(Title.COOFF);
-		emp2.setNickName("CARRIE");
-		emp2.setEmail("autscr0005@gmail.com");
-		emp2.setSuperLevel(400);
+		emp5.setEmpId("H0000005");
+		emp5.setEngSurname("YIP");
+		emp5.setEngOtherName("OI HA");
+		emp5.setChiSurname("葉");
+		emp5.setChiOthername("愛霞");
+		emp5.setTitle(Title.COOFF);
+		emp5.setNickName("CARRIE");
+		emp5.setEmail("autscr0005@gmail.com");
+		emp5.setSuperLevel(400);
 		
 		Employee emp6 =  new Employee();
-		emp2.setEmpId("H0000006");
-		emp2.setEngSurname("LI");
-		emp2.setEngOtherName("MAN");
-		emp2.setChiSurname("李");
-		emp2.setChiOthername("文");
-		emp2.setTitle(Title.DM);
-		emp2.setNickName("HELEN");
-		emp2.setEmail("autscr0006@gmail.com");
-		emp2.setSuperLevel(600);
+		emp6.setEmpId("H0000006");
+		emp6.setEngSurname("LI");
+		emp6.setEngOtherName("MAN");
+		emp6.setChiSurname("李");
+		emp6.setChiOthername("文");
+		emp6.setTitle(Title.DM);
+		emp6.setNickName("HELEN");
+		emp6.setEmail("autscr0006@gmail.com");
+		emp6.setSuperLevel(600);
 		
 		emp1.setDepartment(prh.getDeptKey());
 		emp2.setDepartment(prh.getDeptKey());
@@ -184,45 +184,15 @@ public class InitEmp extends HttpServlet {
 		pm = PMF.get().getPersistenceManager();
 		try {
 			pm.makePersistent(u1);
-		} finally {
-			pm.close();
-		}
-		
-		pm = PMF.get().getPersistenceManager();
-		try {
 			pm.makePersistent(u2);
-		} finally {
-			pm.close();
-		}
-		
-		pm = PMF.get().getPersistenceManager();
-		try {
 			pm.makePersistent(u3);
-		} finally {
-			pm.close();
-		}
-		
-		pm = PMF.get().getPersistenceManager();
-		try {
 			pm.makePersistent(u4);
-		} finally {
-			pm.close();
-		}
-		
-		pm = PMF.get().getPersistenceManager();
-		try {
 			pm.makePersistent(u5);
-		} finally {
-			pm.close();
-		}
-		
-		pm = PMF.get().getPersistenceManager();
-		try {
 			pm.makePersistent(u6);
 		} finally {
 			pm.close();
 		}
-			
+
 		SearchEmployeeUtil.updateIndex(emp1);
 		SearchEmployeeUtil.updateIndex(emp2);
 		SearchEmployeeUtil.updateIndex(emp3);
