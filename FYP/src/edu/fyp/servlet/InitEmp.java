@@ -179,7 +179,14 @@ public class InitEmp extends HttpServlet {
 		u6.setEmployee(emp6);
 		//end of init employee
 		
-		//store emp
+		//store emp	
+
+		SearchEmployeeUtil.updateIndex(emp1);
+		SearchEmployeeUtil.updateIndex(emp2);
+		SearchEmployeeUtil.updateIndex(emp3);
+		SearchEmployeeUtil.updateIndex(emp4);
+		SearchEmployeeUtil.updateIndex(emp5);
+		SearchEmployeeUtil.updateIndex(emp6);
 		
 		pm = PMF.get().getPersistenceManager();
 		try {
@@ -192,13 +199,6 @@ public class InitEmp extends HttpServlet {
 		} finally {
 			pm.close();
 		}
-
-		SearchEmployeeUtil.updateIndex(emp1);
-		SearchEmployeeUtil.updateIndex(emp2);
-		SearchEmployeeUtil.updateIndex(emp3);
-		SearchEmployeeUtil.updateIndex(emp4);
-		SearchEmployeeUtil.updateIndex(emp5);
-		SearchEmployeeUtil.updateIndex(emp6);
 		//end of store
 	}
 }
