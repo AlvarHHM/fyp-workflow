@@ -64,12 +64,12 @@ public class NoticeNode extends RelayNode{
 		try {
 			mb = new MailBody("WEB-INF/mail-template/NotifyOfNotice.html");
 			mb.setProperty("applyDate", dateformat.format(app.getApplyDate()));
-			mb.setProperty("applier", applier.getEngOtherName()+applier.getEngSurname());
+			mb.setProperty("applier", applier.getEngOtherName()+" "+applier.getEngSurname());
 			mb.setProperty("department", dept.getDeptName());
 			mb.setProperty("formTitle", form.getTitle());
 			mb.setProperty("message", this.getNoticeMessage());
 			mn.setTitle("Application Notice - " + form.getTitle()
-					+ " by " + applier.getEngOtherName()+applier.getEngSurname());
+					+ " by " + applier.getEngOtherName()+ " " +applier.getEngSurname());
 			mn.setTo(this.getEmail());
 			mn.setBody(mb);
 			Logger.getAnonymousLogger().warning(this.getEmail());
