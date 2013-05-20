@@ -8,7 +8,7 @@
                         <a href="#">log out</a>
                     </div>
                     <div id="userHi">
-                        Welcome, <User Name>.
+                        Welcome, ${sessionScope.EMP.nickName} ${sessionScope.EMP.engSurname}
                     </div>
                 </div>
             </div>
