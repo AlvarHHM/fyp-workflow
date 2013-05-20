@@ -55,7 +55,7 @@ public class FormRepository {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
-		q.setOrdering("formID asc");
+		q.setOrdering("createdDate desc");
 		formList = (List<Form>) q.execute();
 		pm.close();
 		return listToArrayListForm(formList);
@@ -65,8 +65,8 @@ public class FormRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		q.setFilter(search + " == keyword");
-		q.setOrdering("formID asc");
 		q.declareParameters("String keyword");
+		q.setOrdering("createdDate desc");
 		formList = (List<Form>) q.execute(keyword);
 		pm.close();
 		return listToArrayListForm(formList);
@@ -103,8 +103,8 @@ public class FormRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		q.setFilter(search + " == keyword && status == Release");
-		q.setOrdering("formID asc");
 		q.declareParameters("String keyword");
+		q.setOrdering("createdDate desc");
 		formList = (List<Form>) q.execute(keyword);
 		pm.close();
 		return listToArrayListForm(formList);
@@ -115,7 +115,7 @@ public class FormRepository {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
 		q.setFilter(" status == Release");
-		q.setOrdering("formID asc");
+		q.setOrdering("createdDate desc");
 		formList = (List<Form>) q.execute();
 		pm.close();
 		return listToArrayListForm(formList);

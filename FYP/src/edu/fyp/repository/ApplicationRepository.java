@@ -100,6 +100,7 @@ public class ApplicationRepository {
 	public List<Application> getEmpApplication(String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Application.class);
+		q.setOrdering("applyDate desc");
 		q.setFilter("empID == empIDStr");
 		q.declareParameters("String empIDStr");
 		List<Application> results = (List<Application>) q.execute(empID);
@@ -110,6 +111,7 @@ public class ApplicationRepository {
 	public List<Application> searchEmpApplication(String search, String keyword, String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Application.class);
+		q.setOrdering("applyDate desc");
 		q.setFilter(search +" == keyword && empID == empIDStr");
 		q.declareParameters("String keyword, String empIDStr");
 		List<Application> results = (List<Application>) q.execute(keyword,empID);
@@ -120,6 +122,7 @@ public class ApplicationRepository {
 	public List<Application> getApproveApplication(String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Application.class);
+		q.setOrdering("applyDate desc");
 		q.setFilter("approvingEmpID == empIDStr");
 		q.declareParameters("String empIDStr");
 		List<Application> results = (List<Application>) q.execute(empID);
@@ -130,6 +133,7 @@ public class ApplicationRepository {
 	public List<Application> searchApproveApplication(String search, String keyword, String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Application.class);
+		q.setOrdering("applyDate desc");
 		q.setFilter(search +" == keyword && approvingEmpID == empIDStr");
 		q.declareParameters("String keyword, String empIDStr");
 		List<Application> results = (List<Application>) q.execute(keyword,empID);
