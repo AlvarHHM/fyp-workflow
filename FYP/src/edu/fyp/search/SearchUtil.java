@@ -1,5 +1,6 @@
 package edu.fyp.search;
 
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 
 import javax.jdo.PersistenceManager;
@@ -7,6 +8,7 @@ import javax.jdo.PersistenceManager;
 import edu.fyp.bean.Application;
 import edu.fyp.bean.Department;
 import edu.fyp.bean.Employee;
+import edu.fyp.bean.Form;
 import edu.fyp.repository.PMF;
 
 public class SearchUtil {
@@ -44,15 +46,24 @@ public class SearchUtil {
 	public static void updateApplicationIndex(Application app){
 		StringBuffer sb = new StringBuffer();
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Form form = pm.getObjectById(Form.class,app.getFormKey());
+		sb.append(app.getFormID());
+		sb.append(" ");
 		sb.append(app.getAppID());
 		sb.append(" ");
-		sb.append(app.getEmpID());
-		sb.append(" ");
 		sb.append(app.getStatus());
 		sb.append(" ");
-		sb.append(app.getStatus());
+		sb.append(form.getTitle());
 		sb.append(" ");
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		sb.append(sdf.format(app.getApplyDate()));
+		sb.append(" ");
+		sdf = new SimpleDateFormat("yyyy-MM");
+		sb.append(sdf.format(app.getApplyDate()));
+		app.setFts(new HashSet<String>());
+		for (String token : sb.toString().toUpperCase().split(" ")) {
+			app.getFts().add(token);
+		}
 		
 	}
 
