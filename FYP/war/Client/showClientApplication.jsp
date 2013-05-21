@@ -70,6 +70,7 @@ $(function() {
 							"click",
 							{i:item},
 							function(e){
+							
 								window.open("/uploadDoc?id="+i.find("input.uploaded-file").val());
 								return false;
 							});
