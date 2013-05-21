@@ -171,18 +171,6 @@
 									</div>
 									<div class="formItem-properties-group" id="item-text-size">
 										<hr />
-										<span>Range</span>
-										<div id="size-min">
-											<span>Min</span> <input type="text" value="0" />
-										</div>
-										<div id="size-max">
-											<span>Max</span> <input type="text" />
-										</div>
-										<div id="size-format">
-											<span>Format</span> <select>
-												<option>Characters</option>
-											</select>
-										</div>
 										<div id="item-text-defaultValue">
 											<label>Default Value</label> <input type="text" />
 										</div>
@@ -370,6 +358,17 @@
                                                 </li>
                                             </ul>
 										-->
+									</div>
+									<div class="formItem-properties-group" id="auto-fill">
+										<hr/>
+										<span>Auto Fill</span>
+										<br/>
+										<div id="auto-fill-name">
+											<input style="display:inline" type="checkbox" />
+											<div style="display:inline">
+												<label style="display:inline">Name</label>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div id="tab-formOptions">

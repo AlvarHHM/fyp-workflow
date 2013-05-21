@@ -107,35 +107,37 @@ function selectFormItem(itemId) {
 
 //change the choice type of the property
 function setChoiceType() {
-
+	$("#auto-fill").hide();
     var itemType = $(".selected").attr("id").split('-')[0].toUpperCase();
     switch (true) {
         case (/TEXTFIELD/).test(itemType):
             //INPUT TYPE='TEXT'
             $("#item-text-size,#textDefaultValue,#validation").show();
+			$("#auto-fill").show();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
 
-            $("#size-min input")
-                    .unbind("keyup input paste").bind("keyup input paste", function() {
-                $(".selected input").attr('min', $("#size-min input").val());
-            });
-            $("#size-max input")
-                    .unbind("keyup input paste").bind("keyup input paste", function() {
-                $(".selected input").attr('max', $("#size-max input").val());
-            });
+			
+			if($(".selected input").hasClass("auto-name")){
+				$("#auto-fill-name>input[type=checkbox]").attr("checked", true);
+			}else{
+				$("#auto-fill-name>input[type=checkbox]").attr("checked", false);
+			}
+				
+			$("#auto-fill-name>input").bind("change",{i:$(".selected input")},function(e){
+				if($(this).is(":checked")){
+					e.data.i.find("input").addClass("auto-name");
+				}else{
+					e.data.i.find("input").removeClass("auto-name");
+				}
+			
+			});
+			
+			$("#textDefaultValue input").val($(".selected input").val());
             $("#textDefaultValue input")
                     .unbind("keyup input paste").bind("keyup input paste", function() {
                 $(".selected input").attr("value", $("#textDefaultValue input").val());
             });
 
-            $("#item-required input")
-                    .unbind("change").bind("change", function() {
-                if ($("#item-required").is(':checked')) {
-                    $(".selected input").addClass("required");
-                } else {
-                    $(".selected input").removeClass("required");
-                }
-            });
             break;
         case (/RADIOBUTTON/).test(itemType):
             $("#item-text-size,#textDefaultValue").hide();

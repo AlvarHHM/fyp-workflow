@@ -23,11 +23,13 @@ Form form = (Form)request.getSession().getAttribute("form");
 		var formKey = "<%= KeyFactory.keyToString(form.getKey())%>";
 		var uploadedFileName = "null";
 		var uploadingFileName = "";
+		var userSurName = "${sessionScope.EMP.engSurname}";
+		var userNickName = "${sessionScope.EMP.nickName}";
 		
 		 $(function() {
 			$(".hasDatepicker").removeClass("hasDatepicker");
 			$(".date-picker").datepicker();
-				
+			$(".auto-name").val(userNickName+" "+userSurName);
 			/*	For file validation only.
 			$('.form-item .upload :file').change(function() {
 				var file = this.files[0];
