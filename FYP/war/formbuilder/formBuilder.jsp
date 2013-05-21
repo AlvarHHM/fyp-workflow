@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/formBuilder/drag-and-drop.js"></script>
 <script type="text/javascript" src="js/formBuilder/select-and-property.js"></script>
 <script type="text/javascript" src="js/formBuilder/element-validation.js"></script>
+<script type="text/javascript" src="js/formBuilder/local-validation.js"></script>
 <script type="text/javascript" src="js/formBuilder/save-and-load.js"></script>
 <script type="text/javascript">
             $(function() {
@@ -288,6 +289,22 @@
 											</div>
 										</fieldset>
 									</div>
+									<div class="formItem-properties-group" id="validation">
+                                            <hr/>
+                                            <span>Validation</span>
+                                            <br/>
+                                            <ul>
+                                                <li id="Local-Validation">
+                                                    <div>
+                                                        <ul>
+                                                            <li>
+																
+															</li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
 									<!--
                                         <div class="formItem-properties-group" id="validation">
                                             <hr/>
@@ -352,6 +369,7 @@
 											<div>
 												<textarea id="formDesc"></textarea>
 											</div></li>
+										<!--
 										<li>
 											<fieldset>
 												<legend>Access Right</legend>
@@ -377,6 +395,7 @@
 												</div>
 											</fieldset>
 										</li>
+										-->
 									</ul>
 								</div>
 							</div>

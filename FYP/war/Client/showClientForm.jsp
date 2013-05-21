@@ -12,6 +12,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 <!-- 	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script> -->
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.validate.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
 	<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -99,6 +100,12 @@ Form form = (Form)request.getSession().getAttribute("form");
 					});
 					return false;
 				});
+				$("#filling-form")
+					.validate()
+					.unbind('submit')
+					.bind('submit',function(){
+					   return false;
+					});
         });
 		function SubmitApplication(){
 			
@@ -176,19 +183,21 @@ Form form = (Form)request.getSession().getAttribute("form");
 	</script>
 </head>
 <body>
-	<div class="form_container">
-	<%
-	if(form==null){
-		%>
-		Error. Form not found.
+	<form id="filling-form">
+		<div class="form_container">
 		<%
-	}else{
+		if(form==null){
+			%>
+			Error. Form not found.
+			<%
+		}else{
+			%>
+			<%= form.getFormHtml().getValue() %>
+			<%
+		}
 		%>
-		<%= form.getFormHtml().getValue() %>
-		<%
-	}
-	%>
-	</div>
+		</div>
+	</form>
 <%
 if(form!=null){
 	%>
