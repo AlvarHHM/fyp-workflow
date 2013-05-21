@@ -1,11 +1,10 @@
             <div id="topContainer">
                 <div id="banner">
-                    <img src="/Clinet/img/logo40.png">
+                    <img src="/Client/img/logo40.png">
                 </div>
                 <div id="userMenu">
                     <div id="userAction">
-                        <a href="#">Setting</a>
-                        <a href="#">log out</a>
+                        <a href="#"><img src="/Client/img/logout.png" style="width: 20; height: 20;/></a>
                     </div>
                     <div id="userHi">
                         Welcome, ${sessionScope.EMP.nickName} ${sessionScope.EMP.engSurname}
