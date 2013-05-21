@@ -9,6 +9,7 @@ function showValidation(){
 	$("#validation>div").hide();
 	$("#validation input").unbind("change keyup input paste");
 	
+    switch (true) {
         case (/CHECKBOX/).test(itemType):
 			//Validate required on checkbox is buggy
 			break;
@@ -107,8 +108,7 @@ function showValidation(){
         case (/HEADING/).test(itemType):
         default:
             break;
-
-    }
+	}
 }
 function validateEmail(item,itemType){
 	$("#validate-email").show();
