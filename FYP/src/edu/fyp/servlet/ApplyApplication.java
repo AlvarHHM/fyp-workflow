@@ -28,6 +28,7 @@ import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
+import edu.fyp.search.SearchUtil;
 
 public class ApplyApplication extends HttpServlet {
 	
@@ -54,6 +55,7 @@ public class ApplyApplication extends HttpServlet {
 		app.setFormData(data);
 		app.setFormKey(KeyFactory.stringToKey(formKey));
 		app.setApplyDate(new Date());
+		SearchUtil.updateApplicationIndex(app);
 		try {
 			appManager.applyApplication(app);
 			out.println("Application applied.");
