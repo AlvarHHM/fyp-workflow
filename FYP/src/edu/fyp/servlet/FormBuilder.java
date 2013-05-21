@@ -57,7 +57,7 @@ public class FormBuilder extends HttpServlet {
 			formManager.addForm(form);		
 			out.println("Success.");
 		}catch(Exception ex){
-			Logger.getAnonymousLogger().warning(ex.toString());
+			Logger.getAnonymousLogger().warning(ex.getMessage());
 			out.println("Error! Form design NOT saved!");
 		}
 		out.close();

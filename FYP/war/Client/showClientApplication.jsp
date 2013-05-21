@@ -72,6 +72,7 @@
 							{i:item},
 							function(e){
 								window.open("/uploadDoc?id="+appData[i].Value);
+								
 							});
 					item.find("progress").hide();
 					break;

@@ -75,6 +75,7 @@ public class SearchUtil {
 		sb.append(" ");
 		sb.append(form.getTitle());
 		sb.append(" ");
+		form.setFts(new HashSet<String>());
 		for (String token : sb.toString().toUpperCase().split(" ")) {
 			form.getFts().add(token);
 		}

@@ -323,4 +323,10 @@
 		<servlet-name>reassignApprover</servlet-name>
 		<url-pattern>/Client/reassignApprover</url-pattern>
 	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>formbuilder/showBuilderFormListServlet</welcome-file>
+		<welcome-file>home</welcome-file>
+	</welcome-file-list>
+	
 </web-app>
