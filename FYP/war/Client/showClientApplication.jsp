@@ -68,10 +68,10 @@ $(function() {
 					item.find("button").unbind("click")
 						.bind(
 							"click",
-							{i:item},
+							{v:appData[i].Value},
 							function(e){
 							
-								window.open("/uploadDoc?id="+i.find("input.uploaded-file").val());
+								window.open("/uploadDoc?id="+v);
 								return false;
 							});
 					item.find("progress").hide();
