@@ -3,6 +3,8 @@ package edu.fyp.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +57,7 @@ public class FormBuilder extends HttpServlet {
 			formManager.addForm(form);		
 			out.println("Success.");
 		}catch(Exception ex){
+			Logger.getAnonymousLogger().warning(ex.toString());
 			out.println("Error! Form design NOT saved!");
 		}
 		out.close();
