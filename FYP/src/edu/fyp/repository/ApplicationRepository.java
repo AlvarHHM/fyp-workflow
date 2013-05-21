@@ -113,6 +113,15 @@ public class ApplicationRepository {
 		return listToArrayList(results);
 	}
 	
+	public List<Application> getEmpApplication() {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(Application.class);
+		q.setOrdering("applyDate desc");
+		List<Application> results = (List<Application>) q.execute();
+		pm.close();
+		return listToArrayList(results);
+	}
+	
 	public List<Application> searchEmpApplication(String keyword, String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 //		Query q = pm.newQuery(Application.class);
@@ -126,6 +135,61 @@ public class ApplicationRepository {
 
 		queryBuffer.append("SELECT FROM " + Application.class.getName()
 				+ " WHERE empID == "+empID+" && ");
+
+		StringBuffer declareParametersBuffer = new StringBuffer();
+
+		Set<String> queryTokens = new HashSet<String>();
+		for (String token : queryString.split(" ")) {
+			queryTokens.add(token.trim().toUpperCase());
+		}
+		List<String> parametersForSearch = new ArrayList<String>(queryTokens);
+		int parameterCounter = 0;
+
+		while (parameterCounter < queryTokens.size()) {
+
+			queryBuffer.append("fts == param" + parameterCounter);
+			declareParametersBuffer.append("String param" + parameterCounter);
+
+			if (parameterCounter + 1 < queryTokens.size()) {
+				queryBuffer.append(" && ");
+				declareParametersBuffer.append(", ");
+
+			}
+
+			parameterCounter++;
+
+		}
+
+		Query query = pm.newQuery(queryBuffer.toString());
+
+		query.declareParameters(declareParametersBuffer.toString());
+		
+		
+		List<Application> results = (List<Application>) query
+				.executeWithArray(parametersForSearch.toArray());
+		
+		
+		
+		
+		
+		
+		
+		return listToArrayList(results);
+	}
+	
+	public List<Application> searchEmpApplication(String keyword) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+//		Query q = pm.newQuery(Application.class);
+//		q.setOrdering("applyDate desc");
+//		q.setFilter("empID == empIDStr");
+//		q.declareParameters("String keyword, String empIDStr");
+//		List<Application> results = (List<Application>) q.execute(keyword,empID);
+//		pm.close();
+		String queryString = keyword.toUpperCase();
+		StringBuffer queryBuffer = new StringBuffer();
+
+		queryBuffer.append("SELECT FROM " + Application.class.getName()
+				+ " WHERE ");
 
 		StringBuffer declareParametersBuffer = new StringBuffer();
 

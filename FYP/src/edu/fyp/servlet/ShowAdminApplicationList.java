@@ -45,9 +45,9 @@ public class ShowAdminApplicationList extends HttpServlet {
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;
 		if(keyword!=null && !keyword.equalsIgnoreCase("")){
-			appList = appRepo.searchEmpApplication(keyword, empID);
+			appList = appRepo.searchEmpApplication(keyword);
 		}else{
-			appList = appRepo.getEmpApplication(empID);
+			appList = appRepo.getEmpApplication();
 		}
 		ArrayList<Form> formList = formRepo.getAllForm();
 		req.getSession().setAttribute("formList", formList);

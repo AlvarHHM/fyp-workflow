@@ -8,7 +8,7 @@
 			<a href="#"><img src="/formbuilder/img/logout.png" style="width: 20; height: 20;"/></a>
         </div>
 		<div id="userHi">
-		<labe>Welcome, ${sessionScope.EMP.nickName} ${sessionScope.EMP.engSurname}</label>
+		<labe>Welcome, ${sessionScope.BUILDER_EMP.nickName} ${sessionScope.BUILDER_EMP.engSurname}</label>
 		</div>
     </div>
  </div>
