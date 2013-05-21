@@ -2,7 +2,7 @@
 $(function(){
 
 });
-function showValidation()(){
+function showValidation(){
 	var item = $(".selected");
     var itemType = item.attr("id").split('-')[0].toUpperCase();
 	

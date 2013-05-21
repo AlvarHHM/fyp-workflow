@@ -113,7 +113,7 @@ function setChoiceType() {
         case (/TEXTFIELD/).test(itemType):
             //INPUT TYPE='TEXT'
             $("#item-text-size,#textDefaultValue,#validation").show();
-            $("#radio-list,#checkbox-list,,#combobox-list").hide();
+            $("#radio-list,#checkbox-list,#combobox-list").hide();
 
             $("#size-min input")
                     .unbind("keyup input paste").bind("keyup input paste", function() {
