@@ -45,6 +45,7 @@ public class PathNodeFactory {
 				pathNode.setType(nodeProps.getString("approval-type"));
 			}else if(nodeProps.getString("approval-type").equalsIgnoreCase("lud")){
 				pathNode.setType(nodeProps.getString("approval-type"));
+				pathNode.setSuperLevel(Integer.parseInt(nodeProps.getString("approval-superLv")));
 			}else if(nodeProps.getString("approval-type").equalsIgnoreCase("ld")){
 				pathNode.setType(nodeProps.getString("approval-type"));
 				pathNode.setDeptID(nodeProps.getString("approval-deptId"));
