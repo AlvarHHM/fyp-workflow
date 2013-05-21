@@ -116,6 +116,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 				<%
 			}else{
 				%>
+				if($("#filling-form").valid()){
 					var data = new Array();
 					var i = 0;
 					$('.form-item').each(function() {
@@ -176,6 +177,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 					.always(function(data) {
 						alert(data);
 					});
+					
+				}
 				<%
 			}
 			%>

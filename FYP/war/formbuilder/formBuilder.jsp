@@ -219,6 +219,7 @@
 												<button class="remove">-</button></li>
 										</ul>
 									</div>
+									<!--
 									<div class="formItem-properties-group" id="item-boxLayout">
 										<hr />
 										<span>Layout</span> <br /> <select>
@@ -228,6 +229,7 @@
 											<option value="4">Four</option>
 										</select> <span>Column</span>
 									</div>
+									-->
 									<div class="formItem-properties-group" id="css">
 										<hr />
 										<div id="text-css">
@@ -280,6 +282,7 @@
 											</div>
 										</div>
 									</div>
+									<!--
 									<div class="formItem-properties-group" id="options">
 										<hr />
 										<fieldset>
@@ -289,27 +292,45 @@
 											</div>
 										</fieldset>
 									</div>
+									-->
 									<div class="formItem-properties-group" id="validation">
-                                            <hr/>
-                                            <span>Validation</span>
-                                            <br/>
-                                            <ul>
-                                                <li id="Local-Validation">
-                                                    <div>
-                                                        <ul>
-                                                            <li>
-																
-															</li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-									<!--
-                                        <div class="formItem-properties-group" id="validation">
-                                            <hr/>
-                                            <span>Validation</span>
-                                            <br/>
+										<hr/>
+										<span>Validation</span>
+										<br/>
+										<div id="validate-required">
+											<input type="checkbox" />
+											<div style="display:inline">
+												<label>Required</label>
+											</div>
+										</div>
+										<div id="validate-email">
+											<input type="checkbox" />
+											<div style="display:inline">
+												<label>Is Email</label>
+											</div>
+										</div>
+										<div id="validate-number">
+											<input type="checkbox" />
+											<div style="display:inline">
+												<label>Is Number</label>
+											</div>
+										</div>
+										<div id="validate-max-len">
+											<input type="checkbox" />
+											<div style="display:inline">
+												<label>Max length</label>
+												<input style="display:inline" class="validate-value" type="text"/>
+											</div>
+										</div>
+										<div id="validate-min-len">
+											<input type="checkbox" />
+											<div style="display:inline">
+												<label>Min length</label>
+												<input style="display:inline" class="validate-value" type="text"/>
+											</div>
+										</div>
+										
+									<!--	Database Validation
                                             <ul>
                                                 <li id="form-databaseValidation">
                                                     <div>
@@ -348,8 +369,8 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div>
 										-->
+									</div>
 								</div>
 								<div id="tab-formOptions">
 									<ul>

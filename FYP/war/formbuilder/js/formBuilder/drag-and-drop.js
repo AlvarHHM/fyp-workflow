@@ -30,7 +30,7 @@ function addFormItem(itemType, x, y) {
     $("#formBuilder-stage")
             .append("<div id='" + id + "' class='form-item'></div>");
     $("#" + id)
-            .append("<div>" + getItemHtml(itemType) + "</div>")
+            .append("<div>" + getItemHtml(itemType,id) + "</div>")
             .append("<div class='overlay' ></div>")
             .draggable({
         containment: "parent"
@@ -54,7 +54,7 @@ function addFormItem(itemType, x, y) {
     selectFormItem(id);
 }
 
-function getItemHtml(itemType) {
+function getItemHtml(itemType,id) {
     var html = "";
     var itemType = itemType.toUpperCase();
     switch (true) {
@@ -69,11 +69,11 @@ function getItemHtml(itemType) {
             break;
         case (/RADIOBUTTON/) .test(itemType):
             html += "<fieldset><legend class='item-text'>Radio Group</legend>"
-                    + "<div class='choice'><input type='radio'/><label>Radio Button</label></div></fieldset>";
+                    + "<div class='choice'><input name='"+id+"[]'  type='radio'/><label>Radio Button</label></div></fieldset>";
             break;
         case (/CHECKBOX/) .test(itemType):
             html += "<fieldset><legend class='item-text'>Checkbox Group</legend>"
-                    + "<div class='choice'><input type='checkbox'/><label>Checkbox</label></div></fieldset>";
+                    + "<div class='choice'><input name='"+id+"[]' type='checkbox'/><label>Checkbox</label></div></fieldset>";
             break;
         case (/COMBOBOX/) .test(itemType):
             html += "<label class='item-text'>Select</label><select>"

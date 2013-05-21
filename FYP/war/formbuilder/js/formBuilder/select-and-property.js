@@ -100,6 +100,9 @@ function selectFormItem(itemId) {
 	
     //change the choice type of the property
     setChoiceType();
+	
+	//Show correct validation for the element
+	showValidation();
 }
 
 //change the choice type of the property
@@ -109,8 +112,8 @@ function setChoiceType() {
     switch (true) {
         case (/TEXTFIELD/).test(itemType):
             //INPUT TYPE='TEXT'
-            $("#item-text-size,#textDefaultValue,#item-required,#validation").show();
-            $("#radio-list,#checkbox-list,#item-boxLayout,#combobox-list").hide();
+            $("#item-text-size,#textDefaultValue,#validation").show();
+            $("#radio-list,#checkbox-list,,#combobox-list").hide();
 
             $("#size-min input")
                     .unbind("keyup input paste").bind("keyup input paste", function() {
@@ -135,11 +138,12 @@ function setChoiceType() {
             });
             break;
         case (/RADIOBUTTON/).test(itemType):
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
-            $("#combobox-list").hide();
-
+            $("#item-text-size,#textDefaultValue").hide();
             $("#radio-list,#validation").show();
+			
+            $("#combobox-list").hide();
             $("#checkbox-list").hide();
+			
             var container = $("#radio-list #radio-choices");
             var choices = $(".selected fieldset .choice");
             container.children().not(".sample-choice").remove();
@@ -148,11 +152,12 @@ function setChoiceType() {
             });
             break;
         case (/CHECKBOX/).test(itemType):
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
-            $("#combobox-list").hide();
-
+            $("#item-text-size,#textDefaultValue").hide();
             $("#checkbox-list,#validation").show();
+			
+            $("#combobox-list").hide();
             $("#radio-list").hide();
+			
             var container = $("#checkbox-list #checkbox-choices");
             var choices = $(".selected fieldset .choice");
             container.children().not(".sample-choice").remove();
@@ -162,10 +167,11 @@ function setChoiceType() {
             break;
         case (/COMBOBOX/).test(itemType):
             //is a combobox
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#item-text-size,#textDefaultValue,").hide();
+            $("#combobox-list,#validation").show();
+			
             $("#radio-list,#checkbox-list").hide();
 			
-            $("#combobox-list,#validation").show();
             var container = $("#combobox-list #combobox-choices");
             var choices = $(".selected option");
             container.children().not(".sample-choice").remove();
@@ -176,13 +182,13 @@ function setChoiceType() {
         case (/TEXTAREA/).test(itemType):
 			$("#validation").show();
 		
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#item-text-size,#textDefaultValue").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
         case (/DATE/).test(itemType):
 			$("#validation").show();
 		
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#item-text-size,#textDefaultValue").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
 		case (/LABEL/).test(itemType):
@@ -191,16 +197,16 @@ function setChoiceType() {
         default:
 			$("#validation").hide();
 		
-            $("#item-text-size,#textDefaultValue,#item-required,#item-boxLayout").hide();
+            $("#item-text-size,#textDefaultValue").hide();
             $("#radio-list,#checkbox-list,#combobox-list").hide();
             break;
 
     }
-
+	/*
 	$("#formBuilder-leftPanel #options").show();
 	if ($("#formBuilder-leftPanel #options>fieldset>div:visible").length===0)
 		$("#formBuilder-leftPanel #options").hide();
-    
+    */
 }
 function addChoice(choice, index, type) {
     if (/RADIO/.test(type)) {
