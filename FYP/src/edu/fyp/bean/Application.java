@@ -29,6 +29,9 @@ public class Application implements Serializable {
     private String approvingEmpID;
     
     @Persistent
+    private Key formKey;
+    
+    @Persistent
     private String formID;
     
 	@Persistent
@@ -70,7 +73,15 @@ public class Application implements Serializable {
         this.empID = empID;
     }
     
-    public String getFormID() {
+    public Key getFormKey() {
+		return formKey;
+	}
+
+	public void setFormKey(Key formKey) {
+		this.formKey = formKey;
+	}
+
+	public String getFormID() {
         return formID;
     }
 

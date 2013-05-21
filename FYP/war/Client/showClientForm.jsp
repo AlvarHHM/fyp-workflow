@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="edu.fyp.bean.Form"%>
+<%@page import="com.google.appengine.api.datastore.KeyFactory" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 //Get form
@@ -18,6 +19,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
+		var formKey = "<%= KeyFactory.keyToString(form.getKey())%>";
 		var selectedUpload = "";
 		
 		 $(function() {
@@ -137,6 +139,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 					$.post("/Client/applyApplication"
 					,{
 						FormID : formId,
+						FormKey: formKey,
 						Version : version,
 						Data : JSON.stringify(data)})
 					.always(function(data) {

@@ -22,68 +22,6 @@ Form form = (Form)request.getSession().getAttribute("form");
 				$(".date-picker").datepicker();
 				$("button").click(function(){return false;})
         });
-		function SubmitApplication(){
-			
-			<%
-			if(form==null){
-				%>
-					alert("Error. Form not found.");
-				<%
-			}else{
-				%>
-					$('.form-item').each(function() {
-						var id = this.id;
-						var itemType = id.split('-')[1];
-						
-						if(!(/HEADING/).test(itemType)){
-							var temp = new Array();
-							temp["Label"] = "";
-							temp["Value"] = "";
-							switch (true) {
-								case (/TEXTFIELD/) .test(itemType):
-								case (/DATE/) .test(itemType):
-									temp["Label"] = $(this).find("label.label").html();
-									temp["Value"] = $(this).find("input[type=text]").val();
-									break;
-								case (/RADIOBUTTON/) .test(itemType):
-									temp["Label"] = $(this).find("legend.label").html();
-									temp["Value"] = 
-											$(this).find("input[type=radio]:checked")
-																.next("label").html();
-								break;
-								case (/CHECKBOX/) .test(itemType):
-									temp["Label"] = $(this).find("legend.label").html();
-									$(this).find("input[type=checkbox]:checked").each(function(){
-										temp["Value"] += $(this).next("label").html();
-									});
-									break;
-								case (/COMBOBOX/) .test(itemType):
-									temp["Label"] = $(this).find("label.label").html();
-									temp["Value"] = 
-											$(this).find("option:selected").html();
-									break;
-								case (/TEXTAREA/) .test(itemType):
-									temp["Label"] = $(this).find("label.label").html();
-									temp["Value"] = $(this).find("textarea").val();
-									break;
-								default:
-									break;
-							}
-							data[id] = temp;
-						}
-					});
-					$.post("http://localhost:8888/Client/applyApplication"
-					,{
-						FormID : formId,
-						Version : version,
-						Data : data})
-					.always(function(data) {
-						alert(data);
-					});
-				<%
-			}
-			%>
-		}
 	</script>
 </head>
 <body>

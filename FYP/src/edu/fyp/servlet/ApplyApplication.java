@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 
 import edu.fyp.bean.Application;
@@ -43,6 +44,7 @@ public class ApplyApplication extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		String formID = req.getParameter("FormID");
 		String version = req.getParameter("Version");
+		String formKey = req.getParameter("FormKey");
 		Text data = new Text(req.getParameter("Data"));
 		Employee emp = (Employee) req.getSession().getAttribute("EMP");
 		Application app = new Application();
@@ -50,6 +52,7 @@ public class ApplyApplication extends HttpServlet {
 		app.setFormID(formID);
 		app.setVersion(version);
 		app.setFormData(data);
+		app.setFormKey(KeyFactory.stringToKey(formKey));
 		app.setApplyDate(new Date());
 		try {
 			appManager.applyApplication(app);
