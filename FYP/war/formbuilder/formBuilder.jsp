@@ -298,34 +298,34 @@
 										<span>Validation</span>
 										<br/>
 										<div id="validate-required">
-											<input type="checkbox" />
+											<input style="display:inline" type="checkbox" />
 											<div style="display:inline">
-												<label>Required</label>
+												<label style="display:inline">Required</label>
 											</div>
 										</div>
 										<div id="validate-email">
-											<input type="checkbox" />
+											<input style="display:inline" type="checkbox" />
 											<div style="display:inline">
-												<label>Is Email</label>
+												<label style="display:inline">Is Email</label>
 											</div>
 										</div>
 										<div id="validate-number">
-											<input type="checkbox" />
+											<input style="display:inline" type="checkbox" />
 											<div style="display:inline">
-												<label>Is Number</label>
+												<label style="display:inline">Is Number</label>
 											</div>
 										</div>
 										<div id="validate-max-len">
-											<input type="checkbox" />
+											<input style="display:inline" type="checkbox" />
 											<div style="display:inline">
-												<label>Max length</label>
+												<label style="display:inline">Max length</label>
 												<input style="display:inline" class="validate-value" type="text"/>
 											</div>
 										</div>
 										<div id="validate-min-len">
-											<input type="checkbox" />
+											<input style="display:inline" type="checkbox" />
 											<div style="display:inline">
-												<label>Min length</label>
+												<label style="display:inline">Min length</label>
 												<input style="display:inline" class="validate-value" type="text"/>
 											</div>
 										</div>
