@@ -58,6 +58,7 @@ public class DocumentBlobServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String skey = req.getParameter("id");
+		resp.setContentType("application/octet-stream");
 		Key key = KeyFactory.stringToKey(skey);
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Blob document = pm.getObjectById(DocumentBlob.class, key)

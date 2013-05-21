@@ -70,8 +70,13 @@ $(function() {
 							"click",
 							{i:item},
 							function(e){
+<<<<<<< HEAD
 								window.open("/uploadDoc?id="+appData[i].Value);
 								
+=======
+								window.open("/uploadDoc?id="+i.find("input.uploaded-file").val());
+								return false;
+>>>>>>> 5afb52514c019049cb08bd73a04e134763034041
 							});
 					item.find("progress").hide();
 					break;

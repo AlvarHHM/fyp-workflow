@@ -63,6 +63,9 @@ Form form = (Form)request.getSession().getAttribute("form");
 						},
 						
 						success : 	function(data) {
+										var progress = item.find('progress');
+										progress.attr("value",progress.attr.("max"));
+										
 										item.find("input.uploaded-file").val(data);
 									},
 						data : formData,
