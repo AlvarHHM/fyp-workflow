@@ -195,7 +195,7 @@ public class FormRepository {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
-		q.setFilter(" status == Release");
+		q.setFilter(" status == Release ");
 		q.setOrdering("createdDate desc");
 		formList = (List<Form>) q.execute();
 		pm.close();
