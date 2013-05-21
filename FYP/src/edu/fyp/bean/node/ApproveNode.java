@@ -81,7 +81,6 @@ public class ApproveNode extends RelayNode{
 		MailNotice mn = new MailNotice();
 		MailBody mb;
 
-		System.out.println(app.getEmpID());
 		applier = userRepo.queryEmployeeByEmpID(app.getEmpID());
 		dept = userRepo.queryDepartmentByDeptKey(applier.getDepartment());
 		if(this.getType().equalsIgnoreCase("super")){
@@ -94,7 +93,7 @@ public class ApproveNode extends RelayNode{
 			Department dep = userRepo.queryDepartmentByDeptID(this.getDeptID());
 			approver = userRepo.queryEmployeeByDeptKeyAndLevel(
 					dep.getDeptKey(), this.getSuperLevel());
-		}else if (this.getType().equalsIgnoreCase("ld")){
+		}else if (this.getType().equalsIgnoreCase("spec")){
 			approver = userRepo.queryEmployeeByEmpID(this.getEmpID());
 		}
 		

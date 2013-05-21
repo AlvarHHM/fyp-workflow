@@ -4,4 +4,8 @@
         <property name="empID" direction="asc"/>
         <property name="applyDate" direction="desc"/>
     </datastore-index>
+    <datastore-index kind="Application" ancestor="false" source="manual">
+        <property name="approvingEmpID" direction="asc"/>
+        <property name="applyDate" direction="desc"/>
+    </datastore-index>
 </datastore-indexes> 

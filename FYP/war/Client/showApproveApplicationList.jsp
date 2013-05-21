@@ -96,7 +96,7 @@
 								<td><%=app.getVersion()%></td>
 								<td><%=name%></td>
 								<td><a
-									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>"><img src="/Client/img/dc.png" width="30px"
+									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>"><img src="/Client/img/pathicon.png" width="30px"
 										height="30px" /></a></td>
 								<td><%=dateformat.format(app.getApplyDate())%></td>
 								<td><%=app.getStatus()%></td>
