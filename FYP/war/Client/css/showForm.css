@@ -77,3 +77,6 @@ progress{
 	display:block;
 	width:100%;
 }
+.form-item .item-text{
+	display:inline;
+}

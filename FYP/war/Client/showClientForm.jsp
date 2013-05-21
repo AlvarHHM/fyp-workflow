@@ -11,7 +11,6 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
 	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
 	<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -63,8 +62,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 							return myXhr;
 						},
 						
-						success : 	function(e) {
-										console.log(e);
+						success : 	function(data) {
+										item.find("input.uploaded-file").val(data);
 									},
 						data : formData,
 						cache : false,
