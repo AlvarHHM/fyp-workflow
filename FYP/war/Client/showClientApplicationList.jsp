@@ -80,12 +80,13 @@
 								<td><%=app.getFormID()%></td>
 								<td><%=app.getVersion()%></td>
 								<td><a target="_blank"
-									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>">Path</a></td>
+									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>"><img src="/Client/img/dc.png" width="30px"
+										height="30px" /></a></td>
 								<td><%=dateformat.format(app.getApplyDate())%></td>
 								<td><%=app.getStatus()%></td>
 								<td><a
 									href="showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
-									target="_blank"> <img src="img/dc.png" width="30px"
+									target="_blank"> <img src="/Client/img/dc.png" width="30px"
 										height="30px" /></a>
 							</tr>
 							<%
