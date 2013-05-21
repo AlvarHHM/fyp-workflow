@@ -40,11 +40,11 @@ function showValidation(){
 				$("#validate-required>input[type=checkbox]").attr("checked", false);
 			}
 				
-			$("#validate-required>input").bind("change",function(){
+			$("#validate-required>input").bind("change",{i:item},function(e){
 				if($(this).is(":checked")){
-					item.find("input").addClass("required");
+					e.data.i.find("input").addClass("required");
 				}else{
-					item.find("input").removeClass("required");
+					e.data.i.find("input").removeClass("required");
 				}
 			
 			});
@@ -60,11 +60,11 @@ function showValidation(){
 				$("#validate-required>input[type=checkbox]").attr("checked", false);
 			}
 				
-			$("#validate-required>input").bind("change",function(){
+			$("#validate-required>input").bind("change",{i:item},function(e){
 				if($(this).is(":checked")){
-					item.find("textarea").addClass("required");
+					e.data.i.find("textarea").addClass("required");
 				}else{
-					item.find("textarea").removeClass("required");
+					e.data.i.find("textarea").removeClass("required");
 				}
 			
 			});
@@ -78,11 +78,11 @@ function showValidation(){
 				$("#validate-required>input[type=checkbox]").attr("checked", false);
 			}
 				
-			$("#validate-required>input").bind("change",function(){
+			$("#validate-required>input").bind("change",{i:item},function(e){
 				if($(this).is(":checked")){
-					item.find("choice:first input[type=radio]").addClass("required");
+					e.data.i.find("choice:first input[type=radio]").addClass("required");
 				}else{
-					item.find("choice:first input[type=radio]").removeClass("required");
+					e.data.i.find("choice:first input[type=radio]").removeClass("required");
 				}
 			
 			});
@@ -95,11 +95,11 @@ function showValidation(){
 				$("#validate-required>input[type=checkbox]").attr("checked", false);
 			}
 				
-			$("#validate-required>input").bind("change",function(){
+			$("#validate-required>input").bind("change",{i:item},function(e){
 				if($(this).is(":checked")){
-					item.find("select").addClass("required");
+					e.data.i.find("select").addClass("required");
 				}else{
-					item.find("select").removeClass("required");
+					e.data.i.find("select").removeClass("required");
 				}
 			
 			});
@@ -118,11 +118,11 @@ function validateEmail(item,itemType){
 		$("#validate-email>input[type=checkbox]").attr("checked", false);
 	}
 		
-	$("#validate-email>input").bind("change",function(){
+	$("#validate-email>input").bind("change",{i:item},function(e){
 		if($(this).is(":checked")){
-			item.find("input").addClass("email");
+			e.data.i.find("input").addClass("email");
 		}else{
-			item.find("input").removeClass("email");
+			e.data.i.find("input").removeClass("email");
 		}
 	
 	});
@@ -136,67 +136,76 @@ function validateNumber(item){
 		$("#validate-number>input[type=checkbox]").attr("checked", false);
 	}
 		
-	$("#validate-number>input").bind("change",function(){
+	$("#validate-number>input").bind("change",{i:item},function(e){
 		if($(this).is(":checked")){
-			item.find("input").addClass("digit");
+			e.data.i.find("input").addClass("digit");
 		}else{
-			item.find("input").removeClass("digit");
+			e.data.i.find("input").removeClass("digit");
 		}
 	
 	});
 }
 function validateMaxLength(item){
-	if(item.find("input").hasAttr("maxLength")){
+    var attr = item.find("input").attr("maxLength");
+
+	if(typeof attr !== 'undefined' && attr !== false){
 		$("#validate-max-len>input[type=checkbox]").attr("checked", true);
-		$("#validate-max-len>input[type=text]").val(item.find("input").attr("maxLength"));
+		$("#validate-max-len input[type=text]").val(item.find("input,textarea").attr("maxLength"));
 	}else{
 		$("#validate-max-len>input[type=checkbox]").attr("checked", false);
+		$("#validate-max-len input[type=text]").val("");
+			$("#validate-max-len input[type=text]").prop('disabled', true);
 	}
 		
-	$("#validate-number>input").bind("change",function(){
+	$("#validate-max-len>input[type=checkbox]").bind("change",{i:item},function(e){
 		if($(this).is(":checked")){
-			$("#validate-max-len>input[type=text]").prop('disabled', false);
-			$("#validate-max-len>input[type=text]").unbind("keyup input paste");
+			$("#validate-max-len input[type=text]").prop('disabled', false);
+			e.data.i.find("input,textarea").attr("maxLength","10");
 			
-			$("#validate-max-len>input[type=text]").val("");
-		}else{
-			$("#validate-max-len>input[type=text]").prop('disabled', true);
-			item.find("input").attr("maxLength","10");
-			
-			$("#validate-max-len>input[type=text]").val("10");
-			$("#validate-max-len>input[type=text]").bind("keyup input paste",
-			{i:item},
+			$("#validate-max-len input[type=text]").val("10");
+			$("#validate-max-len input[type=text]").bind("keyup input paste",
+			{i:e.data.i},
 			function(e){
-				e.data.i.attr("maxLength",$("#validate-max-len>input[type=text]").val());
+				e.data.i.find("input,textarea").attr("maxLength",$("#validate-max-len input[type=text]").val());
 			});
+			
+		}else{
+			$("#validate-max-len input[type=text]").unbind("keyup input paste");
+			$("#validate-max-len input[type=text]").prop('disabled', true);
+			$("#validate-max-len input[type=text]").val("");
+			e.data.i.find("input,textarea").attr("maxLength",false);
 		}
 	
 	});
 }
 function validateMinLength(item){
-	if(item.find("input").hasAttr("minLength")){
-		$("#validate-number>input[type=checkbox]").attr("checked", true);
-		$("#validate-number>input[type=text]").val(item.find("input").attr("minLength"));
+    var attr = item.find("input").attr("minLength");
+
+	if(typeof attr !== 'undefined' && attr !== false){
+		$("#validate-min-len>input[type=checkbox]").attr("checked", true);
+		$("#validate-min-len input[type=text]").val(item.find("input,textarea").attr("minLength"));
 	}else{
-		$("#validate-number>input[type=checkbox]").attr("checked", false);
+		$("#validate-min-len>input[type=checkbox]").attr("checked", false);
+		$("#validate-min-len input[type=text]").val("");
+			$("#validate-min-len input[type=text]").prop('disabled', true);
 	}
 		
-	$("#validate-number>input").bind("change",function(){
+	$("#validate-min-len>input[type=checkbox]").bind("change",{i:item},function(e){
 		if($(this).is(":checked")){
-			$("#validate-min-len>input[type=text]").prop('disabled', false);
-			$("#validate-min-len>input[type=text]").unbind("keyup input paste");
+			$("#validate-min-len input[type=text]").prop('disabled', false);
+			e.data.i.find("input,textarea").attr("minLength","0");
 			
-			$("#validate-min-len>input[type=text]").val("");
-		}else{
-			$("#validate-min-len>input[type=text]").prop('disabled', true);
-			item.find("input").attr("minLength","0");
-			
-			$("#validate-min-len>input[type=text]").val("0");
-			$("#validate-min-len>input[type=text]").bind("keyup input paste",
-			{i:item},
+			$("#validate-min-len input[type=text]").val("0");
+			$("#validate-min-len input[type=text]").bind("keyup input paste",
+			{i:e.data.i},
 			function(e){
-				e.data.i.attr("minLength",$("#validate-min-len>input[type=text]").val());
+				e.data.i.find("input,textarea").attr("minLength",$("#validate-min-len input[type=text]").val());
 			});
+		}else{
+			$("#validate-min-len input[type=text]").prop('disabled', true);
+			$("#validate-min-len input[type=text]").unbind("keyup input paste");
+			$("#validate-min-len input[type=text]").val("");
+			e.data.i.find("input,textarea").attr("minLength",false);
 		}
 	
 	});
