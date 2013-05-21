@@ -21,7 +21,7 @@ function showValidation(){
 			validateMaxLength(item,itemType);
 			
 			$("#validate-required>input").bind("change",function(){
-				if($(this).is(":checked"){
+				if($(this).is(":checked")){
 					$("#validate-max-len").show();
 					$("#validate-min-len").show();
 				}else{
@@ -41,7 +41,7 @@ function showValidation(){
 			}
 				
 			$("#validate-required>input").bind("change",function(){
-				if($(this).is(":checked"){
+				if($(this).is(":checked")){
 					item.find("input").addClass("required");
 				}else{
 					item.find("input").removeClass("required");
@@ -61,7 +61,7 @@ function showValidation(){
 			}
 				
 			$("#validate-required>input").bind("change",function(){
-				if($(this).is(":checked"){
+				if($(this).is(":checked")){
 					item.find("textarea").addClass("required");
 				}else{
 					item.find("textarea").removeClass("required");
@@ -79,7 +79,7 @@ function showValidation(){
 			}
 				
 			$("#validate-required>input").bind("change",function(){
-				if($(this).is(":checked"){
+				if($(this).is(":checked")){
 					item.find("choice:first input[type=radio]").addClass("required");
 				}else{
 					item.find("choice:first input[type=radio]").removeClass("required");
@@ -96,7 +96,7 @@ function showValidation(){
 			}
 				
 			$("#validate-required>input").bind("change",function(){
-				if($(this).is(":checked"){
+				if($(this).is(":checked")){
 					item.find("select").addClass("required");
 				}else{
 					item.find("select").removeClass("required");
@@ -119,7 +119,7 @@ function validateEmail(item,itemType){
 	}
 		
 	$("#validate-email>input").bind("change",function(){
-		if($(this).is(":checked"){
+		if($(this).is(":checked")){
 			item.find("input").addClass("email");
 		}else{
 			item.find("input").removeClass("email");
@@ -137,7 +137,7 @@ function validateNumber(item){
 	}
 		
 	$("#validate-number>input").bind("change",function(){
-		if($(this).is(":checked"){
+		if($(this).is(":checked")){
 			item.find("input").addClass("digit");
 		}else{
 			item.find("input").removeClass("digit");
@@ -154,7 +154,7 @@ function validateMaxLength(item){
 	}
 		
 	$("#validate-number>input").bind("change",function(){
-		if($(this).is(":checked"){
+		if($(this).is(":checked")){
 			$("#validate-max-len>input[type=text]").prop('disabled', false);
 			$("#validate-max-len>input[type=text]").unbind("keyup input paste");
 			
@@ -182,7 +182,7 @@ function validateMinLength(item){
 	}
 		
 	$("#validate-number>input").bind("change",function(){
-		if($(this).is(":checked"){
+		if($(this).is(":checked")){
 			$("#validate-min-len>input[type=text]").prop('disabled', false);
 			$("#validate-min-len>input[type=text]").unbind("keyup input paste");
 			
