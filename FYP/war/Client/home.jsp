@@ -12,6 +12,8 @@
 			.getAttribute("approveAppList");
 	ArrayList<Form> formList = (ArrayList<Form>) request
 			.getAttribute("formList");
+	ArrayList<Form> approveFormList = (ArrayList<Form>) request.getSession().getAttribute("approveFormList" );
+	ArrayList<Form> appFormList = (ArrayList<Form>) request.getSession().getAttribute("appFormList" );
 	ArrayList<Employee> applierList = (ArrayList<Employee>) request
 			.getAttribute("applierList");
 %>
@@ -25,7 +27,7 @@
 		<div id="mainContainer">
 			<%@ include file="menu.jsp"%>
 			<div id="mainBody">
-				<fieldset class="approve_app">
+				<fieldset class="approve_app_table">
 					<legend align='center'>Latest Approve Applications</legend>
 					<table class="viewFormTable">
 						<thead>
@@ -46,16 +48,18 @@
 						</tfoot>
 						<tbody>
 							<%
-							if (approveAppList==null||approveAppList.size() > 0) {
+							if (approveAppList!=null &&approveAppList.size() > 0) {
 							%>
 							<%
 								for (int i = 0; i < approveAppList.size(); i++) {
 										Application app = approveAppList.get(i);
 										Employee emp = applierList.get(i);
-										Form form = formList.get(i);
+										Form form = approveFormList.get(i);
 							%>
 							<tr>
-								<td><%=app.getAppID()%></td>
+								<td><a
+									href="/Client/showApproveApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
+									target="_blank"><%=app.getAppID()%></a></td>
 								<td><%=form.getTitle()%></td>
 								<td><%=emp.getEngOtherName() + " " + emp.getChiSurname()%></td>
 								<td><%=app.getApplyDate()%></td>
@@ -64,10 +68,10 @@
 								}
 							}else{
 								%>
-								<tr>
+							<tr>
 								<td colspan="5">No Application needed to approve.</td>
-								</tr>
-								<%
+							</tr>
+							<%
 							}
 							%>
 							<tr>
@@ -75,7 +79,44 @@
 					</table>
 				</fieldset>
 
-				<fieldset class="float_right">
+				<fieldset class="app_table">
+					<legend align='center'>Latest Application</legend>
+					<table class="viewFormTable">
+						<thead>
+							<tr>
+								<th>Application ID</th>
+								<th>Title</th>
+								<th>Apply Date</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td colspan="10"></td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<%
+							if (appList!=null &&appList.size() > 0) {
+							%>
+							<%
+								for (int i = 0; i < appList.size(); i++) {
+										Application app = appList.get(i);
+										Form form = appForm.get(i);
+							%>
+							<tr>
+								<td><a
+									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=KeyFactory.keyToString(app.getKey())%>"
+									target="_blank"><%=app.getAppID()%></a></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+
+				<fieldset class="app_table">
 					<legend>Recent Use</legend>
 					<table>
 						<tr>
@@ -87,48 +128,6 @@
 						<tr>
 							<td><a href="#">CAPS Application</a></td>
 						</tr>
-					</table>
-				</fieldset>
-				<fieldset class="float_left">
-					<legend align='center'>Latest Application</legend>
-					<table class="viewFormTable">
-						<thead>
-							<tr>
-								<th class="">Application</th>
-								<th>Apply Date</th>
-								<th>Status</th>
-								<th>Last approval</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</tfoot>
-						<tbody>
-							<tr>
-								<td><a href="applied-app.html" target="_blank">Day
-										leave</a></td>
-								<td>12-10-2012</td>
-								<td>Processing</td>
-								<td>---</td>
-							</tr>
-							<tr>
-								<td><a href=''>Continuing Education Fund</a></td>
-								<td>22-01-2012</td>
-								<td>Approved</td>
-								<td>Tom</td>
-							</tr>
-							<tr>
-								<td><a href=''>Room booking</a></td>
-								<td>02-01-2012</td>
-								<td>Reject</td>
-								<td>Mary</td>
-							</tr>
-						</tbody>
 					</table>
 				</fieldset>
 			</div>

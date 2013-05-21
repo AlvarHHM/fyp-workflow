@@ -82,7 +82,7 @@
 								<td><%=dateformat.format(app.getApplyDate())%></td>
 								<td><%=app.getStatus()%></td>
 								<td><a
-									href="showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
+									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
 									target="_blank"> <img src="/Client/img/dc.png" width="30px"
 										height="30px" /></a>
 							</tr>
