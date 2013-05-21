@@ -60,7 +60,7 @@ $(function() {
 					item.find("textarea").val(appData[i].Value);
 					break;
 				case (/UPLOAD/).test(itemType):
-					if(appData[i].Value==""){
+					if(appData[i].Value!=""){
 						item.find("input.uploaded-file").val(appData[i].Value);
 						item.find("input[type=file]").prop('type', "text").prop('disabled', true)
 							.val(appData[i].FileName);
