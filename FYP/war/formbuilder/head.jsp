@@ -1,12 +1,14 @@
-<div id="banner">
-	<img src="logo40.png">
-</div>
-<div id="userMenu">
-	<div id="userAction">
-		<a href="#"><img src="img/Setting.png" alt="Setting" /></a> <a
-			href="login.html"><img src="img/Logout.png" alt="Logout" /></a>
+
+<div id="topContainer">
+	<div id="banner">
+		<img src="/Client/img/logo40.png">
 	</div>
-	<div id="userHi">
-		Welcome, <span>Peter Lam</span>.
-	</div>
-</div>
+	<div id="userMenu">
+		<div id="userHi">
+		<labe>Welcome, ${sessionScope.EMP.nickName} ${sessionScope.EMP.engSurname}</label>
+		</div>
+		<div id="userAction">
+			<a href="#"><img src="/Client/img/logout.png" style="width: 20; height: 20;"/></a>
+        </div>
+    </div>
+ </div>

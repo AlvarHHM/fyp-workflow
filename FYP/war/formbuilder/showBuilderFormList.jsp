@@ -96,7 +96,8 @@
 									target="_blank"> <img src="/formbuilder/img/dc.png" width="30px"
 										height="30px" />
 								</a> <a target="_blank" onclick='window.open("/path?formKey=<%=KeyFactory.keyToString(tempForm.getKey())%>")'
-									style="cursor: pointer">Path</a>
+									style="cursor: pointer"><img src="/formbuilder/img/pathicon.png" width="30px"
+										height="30px" /></a>
 								</td>
 							</tr>
 							<%
