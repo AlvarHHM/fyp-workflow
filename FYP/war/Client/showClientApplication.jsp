@@ -71,7 +71,7 @@ $(function() {
 							{v:appData[i].Value},
 							function(e){
 							
-								window.open("/uploadDoc?id="+v);
+								window.open("/uploadDoc?id="+e.data.v);
 								return false;
 							});
 					item.find("progress").hide();
