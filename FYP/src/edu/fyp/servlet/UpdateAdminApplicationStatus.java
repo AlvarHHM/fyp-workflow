@@ -37,6 +37,10 @@ public class UpdateAdminApplicationStatus extends HttpServlet {
 			out.println("Application ID can not be empty.");
 			return ;
 		}
+		if(status.equalsIgnoreCase("Processing")){
+			out.println("Application can not be set status to 'Processing'");
+			return;
+		}
 		try {
 			appManager.updateApplicationStatus(appKey, status);
 			out.println("Application status is changed.");

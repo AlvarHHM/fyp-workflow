@@ -364,4 +364,13 @@
 		<servlet-name>showAdminApplicationListServlet</servlet-name>
 		<url-pattern>/Admin/showAdminApplicationListServlet</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>showAdminApplicationServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowAdminApplication</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showAdminApplicationServlet</servlet-name>
+		<url-pattern>/Admin/showAdminApplicationServlet</url-pattern>
+	</servlet-mapping>
 </web-app>

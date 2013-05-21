@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="edu.fyp.bean.Form"%>
+<%@page import="edu.fyp.bean.Employee"%>
+<%@page import="edu.fyp.bean.ApplicationPath"%>
 <%@page import="edu.fyp.bean.Application"%>
+<%@page import="edu.fyp.bean.Form"%>
+<%@page import="edu.fyp.bean.Department"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	Form form = (Form) request.getSession().getAttribute("form");
+	ApplicationPath appPath = (ApplicationPath) request.getSession()
+			.getAttribute("appPath");
+	Employee emp = (Employee) request.getSession().getAttribute("emp");
+	Department dept = (Department) request.getSession().getAttribute(
+			"dept");
 	Application app = (Application) request.getSession().getAttribute(
 			"app");
 	SimpleDateFormat dateformat = new SimpleDateFormat(
@@ -14,7 +23,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Application Display - <%=form.getTitle()%></title>
+<title>Application Approve - <%=form.getTitle()%></title>
 <link rel="stylesheet" type="text/css" href="css/showForm.css">
 <link rel="stylesheet" type="text/css"
 	href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
@@ -24,15 +33,16 @@
 	src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
 <script type="text/javascript">
 	<%if (form != null && app != null) {%>
-$(function() {
-	var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
+		 $(function() {
+			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>
+	');
 		if (appData.length !== 0) {
 			for ( var i = 0; i < appData.length; i++) {
 				var item = $("#" + appData[i].Id);
 				var itemType = appData[i].Id.split('-')[0];
 
 				switch (true) {
-				case (/TEXTFIELD/).test(itemType):s
+				case (/TEXTFIELD/).test(itemType):
 				case (/DATE/).test(itemType):
 					item.find("input[type=text]").val(appData[i].Value);
 					break;
@@ -58,30 +68,6 @@ $(function() {
 					break;
 				case (/TEXTAREA/).test(itemType):
 					item.find("textarea").val(appData[i].Value);
-					break;
-				case (/UPLOAD/).test(itemType):
-					if(appData[i].Value!=""){
-						item.find("input.uploaded-file").val(appData[i].Value);
-						item.find("input[type=file]").prop('type', "text").prop('disabled', true)
-							.val(appData[i].FileName);
-						
-						item.find("button").html("Download");
-						item.find("button").unbind("click")
-							.bind(
-								"click",
-								{v:appData[i].Value},
-								function(e){
-								
-									window.open("/uploadDoc?id="+e.data.v);
-									return false;
-								});
-						item.find("progress").hide();
-					}else{
-					
-						item.find("input[type=file]").prop('type', "text").prop('disabled', true)
-							.val("No file uploaded.");
-						item.find("button").prop('disabled', true);
-					}
 					break;
 				default:
 					break;
@@ -136,6 +122,51 @@ $(function() {
 						<td class="app_detail_left">Description:</td>
 						<td><%=form.getDescription()%></td>
 					</tr>
+					<tr>
+						<td><br></td>
+						<td><br></td>
+					</tr>
+					<tr>
+						<td>Applier:</td>
+						<td><%=emp.getEngOtherName() + " " + emp.getEngSurname()%></td>
+					</tr>
+					<tr>
+						<td>Department:</td>
+						<td><%=dept.getDeptName()%></td>
+					</tr>
+					<tr>
+						<td>Apply Date:</td>
+						<td><%=dateformat.format(app.getApplyDate())%></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a
+							href="/Client/approveAppNode?appKey=<%=KeyFactory.keyToString(app.getKey())%>&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>&approve=true">Approve</a>
+							<br> <a
+							href="/Client/approveAppNode?appKey=<%=KeyFactory.keyToString(app.getKey())%>&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>&approve=false">Reject</a></td>
+					</tr>
+					<tr>
+						<td>Reasign:</td>
+						<td rowspan="2">
+							<form method="get" action="/Client/reassignApprover">
+								<input type="hidden" name="appKey"
+									value="<%=KeyFactory.keyToString(app.getKey())%>" /> <input
+									type="hidden" name="nodeKey"
+									value="<%=KeyFactory.keyToString(appPath.getCurrentNode())%>" />
+								<div class="input-append">
+									<input type="text" name="empID" id="empID" class="property-value"
+										disabled><a class="btn"
+										onClick='userId = this.parentNode.children[0]; dataitem = window.open("/searchUserPanel","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
+									<br> <input type="submit" class="search-btn"
+										value="submit">
+								</div>
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -146,8 +177,11 @@ $(function() {
 
 </body>
 </html>
-
 <%
-	request.getSession().removeAttribute("app");
+	request.getSession().removeAttribute("emp");
+	request.getSession().removeAttribute("dept");
 	request.getSession().removeAttribute("form");
+	request.getSession().removeAttribute("app");
+	request.getSession().removeAttribute("appPath");
 %>
+

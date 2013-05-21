@@ -82,7 +82,7 @@
 							%>
 							<tr>
 								<td><a
-									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
+									href="/Admin/showAdminApplicationServlet?appKey=<%=appKeyStr%>"
 									target="_blank"><%=app.getAppID() %></a></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=app.getFormID()%></td>
@@ -97,20 +97,16 @@
 									<option value="Processing">Processing</option>
 									<option value="Approved">Approved</option>
 									<option value="Rejected">Rejected</option>
-									<option value="Rejected">Cancelled</option>
+									<option value="Cancelled">Cancelled</option>
 								</select>
 								<input type="hidden" name="currentStatus" value="<%= app.getStatus() %>"/>
 								<input type="hidden" name="appKey" value="<%= KeyFactory.keyToString(app.getKey()) %>"/>
 								<input type="submit"/>
 								</form>
 								<td><a
-									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
+									href="/Admin/showAdminApplicationServlet?appKey=<%=appKeyStr%>"
 									target="_blank"> <img src="/Client/img/dc.png" width="30px"
-										height="30px" /></a>
-										<%if(app.getStatus().equalsIgnoreCase("Processing")){ %>
-										<a href="/Client/cancelApplicationServlet?appKey=<%=appKeyStr%>" target="_blank" > <img src="/Client/img/cancelIcon.png" width="30px"
-										height="30px" /></a>
-										<%} %>
+										height="30px" /></a></td>
 										
 							</tr>
 							<%

@@ -91,6 +91,7 @@
 										<a href="/updateApplicationStatus?appKey=<%=appKeyStr%>&status=Cancelled" target="_blank" > <img src="/Client/img/cancelIcon.png" width="30px"
 										height="30px" /></a>
 										<%} %>
+										</td>
 										
 							</tr>
 							<%
