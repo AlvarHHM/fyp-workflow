@@ -11,6 +11,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
     <link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
+<link href="path/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
 	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
 	<title>Form</title>

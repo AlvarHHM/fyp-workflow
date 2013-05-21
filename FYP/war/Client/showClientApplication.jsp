@@ -15,7 +15,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Application Display - <%=form.getTitle()%></title>
-<link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/showForm.css">
 <link rel="stylesheet" type="text/css"
 	href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
@@ -25,15 +24,15 @@
 	src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
 <script type="text/javascript">
 	<%if (form != null && app != null) {%>
-		 $(function() {
-			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
+$(function() {
+	var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
 		if (appData.length !== 0) {
 			for ( var i = 0; i < appData.length; i++) {
 				var item = $("#" + appData[i].Id);
 				var itemType = appData[i].Id.split('-')[0];
 
 				switch (true) {
-				case (/TEXTFIELD/).test(itemType):
+				case (/TEXTFIELD/).test(itemType):s
 				case (/DATE/).test(itemType):
 					item.find("input[type=text]").val(appData[i].Value);
 					break;

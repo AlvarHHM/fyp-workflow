@@ -31,9 +31,9 @@
 }
 
 .control_panel{
-float: left;
-border: 1px solid #2C5463;
-background-color: #fbfbf8;
+	float: left;
+	border: 1px solid #2C5463;
+	background-color: #fbfbf8;
 	margin-left:20px;
 	box-shadow: 5px 5px 10px 1px #2C5463;
 }
@@ -52,11 +52,11 @@ background-color: #fbfbf8;
 	text-align:right;
 }
 .form_detail_table{
-border-collapse: collapse;
-margin-top: 10px;
-margin-left: 10px;
-margin-bottom: 10px;
-margin-right: 10px;
+	border-collapse: collapse;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 .form_detail_table tr{
 	border: 1px solid #2C5463;
@@ -76,4 +76,7 @@ progress{
 	margin-top:5px;
 	display:block;
 	width:100%;
+}
+.form-item .item-text{
+	display:inline;
 }
