@@ -1,92 +1,49 @@
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	if(window.location.search.substring(1)!= ""){
+		$(".alert.alert-error").show();
+		
+	}
+});
+
+</script>
 <style>
-#loginPanelContainer {
-	margin: 0px auto 0px auto;
-	height: 300px;
-	width: 250px;
-}
-
-#loginPanel {
-	background: white;
-	border: 1px solid #2C5463;
-	box-shadow: 5px 5px 3px #2C5463;
-	height: 120px;
-	width: 100%;
-}
-
-#icon {
-	margin: 200px auto 0px auto;
-}
-
-#panelTitle {
-	background-color: #2C5463;
-	color: white;
-	height: 30px;
-	font-weight: bold;
-}
-
-#panelTitleContainer {
-	background-color: #2C5463;
-	height: 75px;
-}
-
-#loginPanel label {
-	float: left;
-}
-
-#loginPanel input {
-	float: right;
-}
-
-#userPasswordField,#userNameField,#userSubmit {
-	height: 30px;
-}
-
-#submitBtn {
-	border: 1px solid #2C5463;
-	display: initial;
-	padding: 3px 3px 3px 3px;
-	float: right;
-	margin-right: 10px;
-	text-decoration: none;
-	color: #2C5463;
-}
-
-a {
-	text-decoration: none;
-}
-
 body {
 	background-image: url("css/bg.gif");
 }
+
+.container {
+	margin-top: 100px;
+}
 </style>
+
 </head>
 <body>
-	<div id="loginPanelContainer">
-		<div id="icon">
-			<img src="/Client/img/logo40.png" />
-		</div>
-		<div id="loginPanel">
-			<div id="panelTitle">
-				<span>Login</span>
-			</div>
-			<form action="/formbuilder/login.do" method="POST">
-			<div id="userNameField">
-				<label>User name:</label> <input type="text" name="userName"/>
-			</div>
-			<div id="userPasswordField">
-				<label>Password:</label> <input type="password" name="password"/>
-			</div>
-			</form>
-			<div id="userSubmit">
-				<div id="submitBtn">
-					<a href="maintainForm.html">Login</a>
+	<div class="container">
+		<div class="row">
+			<div class="span4 offset4 well">
+				<legend>Please Sign In</legend>
+				<div class="alert alert-error" style="display:none">
+					<a class="close" data-dismiss="alert" href="#" >กั</a>Incorrect
+					Username or Password!
 				</div>
+				<form method="POST" action="/formbuilder/login.do" accept-charset="UTF-8">
+					<input type="text" id="username" class="span4" name="userName"
+						placeholder="Username"> <input type="password"
+						id="password" class="span4" name="password" placeholder="Password">
+					<label class="checkbox"> <input type="checkbox"
+						name="remember" value="1"> Remember Me
+					</label>
+					<button type="submit" name="submit" class="btn btn-info btn-block">Sign
+						in</button>
+				</form>
 			</div>
 		</div>
 	</div>
 
-	</div>
 </body>
 </html>

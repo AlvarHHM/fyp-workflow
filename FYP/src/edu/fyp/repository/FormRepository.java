@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -155,7 +156,7 @@ public class FormRepository {
 		StringBuffer queryBuffer = new StringBuffer();
 
 		queryBuffer.append("SELECT FROM " + Form.class.getName()
-				+ " WHERE status == Release && ");
+				+ " WHERE status == 'Release' && ");
 
 		StringBuffer declareParametersBuffer = new StringBuffer();
 
@@ -195,7 +196,7 @@ public class FormRepository {
 		List<Form> formList = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query q = pm.newQuery(Form.class);
-		q.setFilter(" status == Release");
+		q.setFilter("status == 'Release'");
 		q.setOrdering("createdDate desc");
 		formList = (List<Form>) q.execute();
 		pm.close();
