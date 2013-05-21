@@ -1,7 +1,9 @@
 package edu.fyp.repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -12,7 +14,9 @@ import com.google.appengine.api.datastore.Key;
 
 import edu.fyp.bean.Application;
 import edu.fyp.bean.ApplicationPath;
+import edu.fyp.bean.Employee;
 import edu.fyp.bean.Form;
+import edu.fyp.search.SearchUtil;
 
 @Repository
 public class ApplicationRepository {
@@ -44,6 +48,7 @@ public class ApplicationRepository {
 		try {
 			app = pm.getObjectById(Application.class, key);
 			app.setStatus(status);
+			SearchUtil.updateApplicationIndex(app);
 		} finally {
 			pm.close();
 		}
@@ -108,14 +113,58 @@ public class ApplicationRepository {
 		return listToArrayList(results);
 	}
 	
-	public List<Application> searchEmpApplication(String search, String keyword, String empID) {
+	public List<Application> searchEmpApplication(String keyword, String empID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query q = pm.newQuery(Application.class);
-		q.setOrdering("applyDate desc");
-		q.setFilter(search +" == keyword && empID == empIDStr");
-		q.declareParameters("String keyword, String empIDStr");
-		List<Application> results = (List<Application>) q.execute(keyword,empID);
-		pm.close();
+//		Query q = pm.newQuery(Application.class);
+//		q.setOrdering("applyDate desc");
+//		q.setFilter("empID == empIDStr");
+//		q.declareParameters("String keyword, String empIDStr");
+//		List<Application> results = (List<Application>) q.execute(keyword,empID);
+//		pm.close();
+		String queryString = keyword.toUpperCase();
+		StringBuffer queryBuffer = new StringBuffer();
+
+		queryBuffer.append("SELECT FROM " + Application.class.getName()
+				+ " WHERE empID == "+empID+" && ");
+
+		StringBuffer declareParametersBuffer = new StringBuffer();
+
+		Set<String> queryTokens = new HashSet<String>();
+		for (String token : queryString.split(" ")) {
+			queryTokens.add(token.trim().toUpperCase());
+		}
+		List<String> parametersForSearch = new ArrayList<String>(queryTokens);
+		int parameterCounter = 0;
+
+		while (parameterCounter < queryTokens.size()) {
+
+			queryBuffer.append("fts == param" + parameterCounter);
+			declareParametersBuffer.append("String param" + parameterCounter);
+
+			if (parameterCounter + 1 < queryTokens.size()) {
+				queryBuffer.append(" && ");
+				declareParametersBuffer.append(", ");
+
+			}
+
+			parameterCounter++;
+
+		}
+
+		Query query = pm.newQuery(queryBuffer.toString());
+
+		query.declareParameters(declareParametersBuffer.toString());
+		
+		
+		List<Application> results = (List<Application>) query
+				.executeWithArray(parametersForSearch.toArray());
+		
+		
+		
+		
+		
+		
+		
 		return listToArrayList(results);
 	}
 	

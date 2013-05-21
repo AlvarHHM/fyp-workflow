@@ -289,3 +289,7 @@ em {
 	border: 1px solid #2C5463;
 
 }
+
+#node-detail-panel tr:first-child{
+	text-align:right;
+}

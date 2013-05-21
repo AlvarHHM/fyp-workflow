@@ -42,11 +42,10 @@ public class ShowClientApplicationList extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		Employee emp = (Employee) req.getSession().getAttribute("EMP");
 		String empID = emp.getEmpId();
-		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;
-		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			appList = appRepo.searchEmpApplication(search, keyword, empID);
+		if(keyword!=null && !keyword.equalsIgnoreCase("")){
+			appList = appRepo.searchEmpApplication(keyword, empID);
 		}else{
 			appList = appRepo.getEmpApplication(empID);
 		}
