@@ -88,7 +88,9 @@
 												+ tempEmp.getEngSurname();
 							%>
 							<tr>
-								<td><%=app.getAppID()%></td>
+								<td><a
+									href="/Client/showApproveApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
+									target="_blank"><%=app.getAppID()%></a></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=app.getFormID()%></td>
 								<td><%=app.getVersion()%></td>

@@ -17,12 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.labs.repackaged.org.json.JSONArray;
 import com.google.appengine.labs.repackaged.org.json.JSONException;
 import com.google.appengine.labs.repackaged.org.json.JSONObject;
 import com.google.gson.Gson;
 
+import edu.fyp.bean.Application;
 import edu.fyp.bean.node.ApproveNode;
 import edu.fyp.bean.node.NoticeNode;
 import edu.fyp.bean.node.PathNode;
@@ -49,7 +51,6 @@ public class ApproveAppNode extends HttpServlet {
 		String nodeKey = req.getParameter("nodeKey");
 		String approveStr = req.getParameter("approve");
 		boolean approve;
-		
 		if(approveStr.equalsIgnoreCase("true")){
 			approve = true;
 		}else if(approveStr.equalsIgnoreCase("false")){
@@ -68,7 +69,10 @@ public class ApproveAppNode extends HttpServlet {
 			out.println("Application Key, Node Key, approve can not be empty.");
 			return ;
 		}
-		
+		Application app= appManager.getApplication(KeyFactory.stringToKey(appKey));
+		if(app.getStatus().equalsIgnoreCase("Cancelled")){
+			out.println("The application is cancelled.");
+		}
 		try {
 			appManager.approveApplicationNode(appKey,nodeKey,approve);
 			out.println("Application is processed.");

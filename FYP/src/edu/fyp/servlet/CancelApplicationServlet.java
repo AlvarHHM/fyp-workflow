@@ -30,10 +30,10 @@ public class CancelApplicationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String appKeyStr = req.getParameter("status");
+		String appKeyStr = req.getParameter("appKey");
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
 		if (appKeyStr.equalsIgnoreCase("")) {
-			out.println("Application can not be empty.");
+			out.println("Application ID can not be empty.");
 			return ;
 		}
 		try {

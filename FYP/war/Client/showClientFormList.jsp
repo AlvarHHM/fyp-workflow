@@ -52,7 +52,9 @@
 										Form tempForm = formList.get(i);
 							%>
 							<tr>
-								<td><%=tempForm.getFormID()%></td>
+								<td><a
+									href="/Client/showClientFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
+									target="_blank"><%=tempForm.getFormID()%></a></td>
 								<td><%=tempForm.getVersion()%></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=tempForm.getDescription()%></td>

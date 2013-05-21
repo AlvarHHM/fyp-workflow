@@ -5,27 +5,17 @@
 <%@page import="edu.fyp.bean.Employee"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 <%@page import="edu.fyp.bean.Form"%>
-<%@page import="java.util.logging.Logger"%>
-
 <%
-	ArrayList<Application> appList = (ArrayList<Application>) request
-			.getAttribute("appList");
-	ArrayList<Application> approveAppList = (ArrayList<Application>) request
-			.getAttribute("approveAppList");
-	ArrayList<Form> formList = (ArrayList<Form>) request
-			.getAttribute("formList");
+	ArrayList<Application> appList = (ArrayList<Application>) request.getSession().getAttribute("appList");
+	ArrayList<Application> approveAppList = (ArrayList<Application>) request.getSession().getAttribute("approveAppList");
+	ArrayList<Form> formList = (ArrayList<Form>) request.getSession().getAttribute("formList");
 	ArrayList<Form> approveFormList = (ArrayList<Form>) request.getSession().getAttribute("approveFormList" );
 	ArrayList<Form> appFormList = (ArrayList<Form>) request.getSession().getAttribute("appFormList" );
-	ArrayList<Employee> applierList = (ArrayList<Employee>) request
-			.getAttribute("applierList");
+	ArrayList<Employee> applierList = (ArrayList<Employee>) request.getSession().getAttribute("applierList");
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-	Logger.getAnonymousLogger().warning("form list:"+formList.size());
-	Logger.getAnonymousLogger().warning("app list:"+appList.size());
-	Logger.getAnonymousLogger().warning("approveApp list:"+approveAppList.size());
-	Logger.getAnonymousLogger().warning("applier list:"+applierList.size());
-	Logger.getAnonymousLogger().warning("approveForm list:"+approveFormList.size());
-	Logger.getAnonymousLogger().warning("appForm list:"+appFormList.size());
-%>
+	int max_record=4;
+	%>
+
 <html>
 <head>
 <%@ include file="header.jsp"%>
@@ -58,9 +48,10 @@
 						<tbody>
 							<%
 							if (approveAppList!=null &&approveAppList.size() > 0) {
+								int size = approveAppList.size()-max_record<=0?approveAppList.size():max_record;
 							%>
 							<%
-								for (int i = 0; i < approveAppList.size(); i++) {
+								for (int i = 0; i < size; i++) {
 										Application app = approveAppList.get(i);
 										Employee emp = applierList.get(i);
 										Form form = approveFormList.get(i);
@@ -107,9 +98,10 @@
 						<tbody>
 							<%
 							if (appList!=null &&appList.size() > 0) {
+								int size = appList.size()-max_record<=0?appList.size():max_record;
 							%>
 							<%
-								for (int i = 0; i < appList.size(); i++) {
+								for (int i = 0; i < size; i++) {
 										Application app = appList.get(i);
 										Form form = appFormList.get(i);
 								
@@ -154,7 +146,8 @@
 						<tbody>
 							<%
 								if (formList!=null&&formList.size() > 0) {
-									for (int i = 0; i < formList.size(); i++) {
+									int size = formList.size()-max_record<=0?formList.size():max_record;
+									for (int i = 0; i < size; i++) {
 										Form tempForm = formList.get(i);
 							%>
 							<tr>
@@ -185,10 +178,10 @@
 </body>
 </html>
 <%
-	request.removeAttribute("appList");
-	request.removeAttribute("approveAppList");
-	request.removeAttribute("formList");
+	request.getSession().removeAttribute("appList");
+	request.getSession().removeAttribute("approveAppList");
+	request.getSession().removeAttribute("formList");
 	request.getSession().removeAttribute("approveFormList" );
 	request.getSession().removeAttribute("appFormList" );
-	request.removeAttribute("applierList");
+	request.getSession().removeAttribute("applierList");
 %>

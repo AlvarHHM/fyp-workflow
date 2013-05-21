@@ -61,12 +61,6 @@ public class Home extends HttpServlet {
 			appFormList.add(formManager.getFormByIDVersion(appList.get(i).getFormID(),
 					appList.get(i).getVersion()));
 		}
-		Logger.getAnonymousLogger().warning("form list:"+formList.size());
-		Logger.getAnonymousLogger().warning("app list:"+appList.size());
-		Logger.getAnonymousLogger().warning("approveApp list:"+approveAppList.size());
-		Logger.getAnonymousLogger().warning("applier list:"+applierList.size());
-		Logger.getAnonymousLogger().warning("approveForm list:"+approveFormList.size());
-		Logger.getAnonymousLogger().warning("appForm list:"+appFormList.size());
 		req.getSession().setAttribute("formList", formList);
 		req.getSession().setAttribute("appList", appList);
 		req.getSession().setAttribute("approveAppList", approveAppList);

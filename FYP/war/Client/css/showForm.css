@@ -1,3 +1,6 @@
+body {
+	background: -webkit-linear-gradient(top, #009AB2, #FFF);
+}
 
 .form_detail_table{
 	width:300px;

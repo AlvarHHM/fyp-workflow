@@ -24,7 +24,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Application Approve - <%=form.getTitle()%></title>
-<link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/showForm.css">
 <link rel="stylesheet" type="text/css"
 	href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">

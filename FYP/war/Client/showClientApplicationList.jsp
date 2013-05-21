@@ -72,7 +72,9 @@
 										}
 							%>
 							<tr>
-								<td><%=app.getAppID() %></td>
+								<td><a
+									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
+									target="_blank"><%=app.getAppID() %></a></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=app.getFormID()%></td>
 								<td><%=app.getVersion()%></td>
@@ -85,6 +87,11 @@
 									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
 									target="_blank"> <img src="/Client/img/dc.png" width="30px"
 										height="30px" /></a>
+										<%if(app.getStatus().equalsIgnoreCase("Processing")){ %>
+										<a href="/Client/cancelApplicationServlet?appKey=<%=appKeyStr%>"> <img src="/Client/img/cancelIcon.png" width="30px"
+										height="30px" /></a>
+										<%} %>
+										
 							</tr>
 							<%
 								}
