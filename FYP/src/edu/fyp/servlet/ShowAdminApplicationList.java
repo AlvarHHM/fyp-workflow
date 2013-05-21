@@ -24,7 +24,7 @@ import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PMF;
 
-public class ShowAdminApplication extends HttpServlet {
+public class ShowAdminApplicationList extends HttpServlet {
 	
 	@Autowired
 	private ApplicationRepository appRepo;
