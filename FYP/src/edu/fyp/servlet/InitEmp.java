@@ -100,7 +100,7 @@ public class InitEmp extends HttpServlet {
 		
 		Employee emp1 =  new Employee();
 		emp1.setEmpId("H0000001");
-		emp1.setEngSurname("Lam");
+		emp1.setEngSurname("LAM");
 		emp1.setEngOtherName("CHONG CHI");
 		emp1.setChiSurname("ªL");
 		emp1.setChiOthername("²ø«º");
