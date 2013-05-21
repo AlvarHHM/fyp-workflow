@@ -70,7 +70,7 @@ $(function() {
 							"click",
 							{i:item},
 							function(e){
-								window.open("/uploadDoc?id="+appData[i].Value);
+								window.open("/uploadDoc?id="+i.find("input.uploaded-file").val());
 							});
 					item.find("progress").hide();
 					break;
