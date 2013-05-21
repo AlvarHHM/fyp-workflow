@@ -353,7 +353,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>updateAdminApplicationStatus</servlet-name>
-		<url-pattern>/Admin/updateAdminApplicationStatus</url-pattern>
+		<url-pattern>/Admin/updateAdminApplicationStatusServlet</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

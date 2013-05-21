@@ -1,5 +1,5 @@
 				<div id="menu">
                     <ul>
-                        <li><a href="/Admin/showAdminApplicationServlet">View Application</a></li>
+                        <li><a href="/Admin/showAdminApplicationListServlet">View Application</a></li>
                     </ul>
                 </div>
