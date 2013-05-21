@@ -37,7 +37,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 			$('.form-item .upload button').click(function() {
 					var item = $(this).parents(".form-item");
 					var formData = new FormData(item.find('form')[0]);
-					var fullPath = $(this).find("input[type=file]").val();
+					var fullPath = item.find("input[type=file]").val();
 						if (fullPath) {
 							var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
 							var filename = fullPath.substring(startIndex);
@@ -135,7 +135,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 								case (/UPLOAD/) .test(itemType):
 									temp.Value = "";
 										if(uploadedFileName==uploadedFileName){
-											var progress = item.find('progress');
+											var progress = $(this).find('progress');
 											if(progress.attr("value")!=0){
 												if(progress.attr("value")==progress.attr("max")){
 													temp.Value = $(this).find("input.uploaded-file").val();
