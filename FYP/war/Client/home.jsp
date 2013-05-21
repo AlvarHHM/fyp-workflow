@@ -1,4 +1,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="edu.fyp.bean.Application"%>
+<%@page import="edu.fyp.bean.Employee"%>
+<%@page import="com.google.appengine.api.datastore.KeyFactory"%>
+<%@page import="edu.fyp.bean.Form"%>
+<%
+	ArrayList<Application> appList = (ArrayList<Application>) request
+			.getAttribute("appList");
+	ArrayList<Application> approveAppList = (ArrayList<Application>) request
+			.getAttribute("approveAppList");
+	ArrayList<Form> formList = (ArrayList<Form>) request
+			.getAttribute("formList");
+	ArrayList<Employee> applierList = (ArrayList<Employee>) request
+			.getAttribute("applierList");
+%>
 <html>
 <head>
 <%@ include file="header.jsp"%>
@@ -9,16 +25,15 @@
 		<div id="mainContainer">
 			<%@ include file="menu.jsp"%>
 			<div id="mainBody">
-
-				<fieldset class="float_left">
+				<fieldset class="approve_app">
 					<legend align='center'>Latest Approve Applications</legend>
 					<table class="viewFormTable">
 						<thead>
 							<tr>
-								<th>Application</th>
+								<th>Application ID</th>
+								<th>Form Title</th>
+								<th>Applier</th>
 								<th>Apply Date</th>
-								<th>Status</th>
-								<th>Last approval</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -30,13 +45,31 @@
 							</tr>
 						</tfoot>
 						<tbody>
+							<%
+							if (approveAppList==null||approveAppList.size() > 0) {
+							%>
+							<%
+								for (int i = 0; i < approveAppList.size(); i++) {
+										Application app = approveAppList.get(i);
+										Employee emp = applierList.get(i);
+										Form form = formList.get(i);
+							%>
 							<tr>
-								<td><a href="approve-app.html" target="_blank">Day
-										leave</a></td>
-								<td>12-10-2012</td>
-								<td>Processing</td>
-								<td>---</td>
+								<td><%=app.getAppID()%></td>
+								<td><%=form.getTitle()%></td>
+								<td><%=emp.getEngOtherName() + " " + emp.getChiSurname()%></td>
+								<td><%=app.getApplyDate()%></td>
 							</tr>
+							<%
+								}
+							}else{
+								%>
+								<tr>
+								<td colspan="5">No Application needed to approve.</td>
+								</tr>
+								<%
+							}
+							%>
 							<tr>
 						</tbody>
 					</table>
@@ -103,3 +136,9 @@
 	</div>
 </body>
 </html>
+<%
+	request.removeAttribute("appList");
+	request.removeAttribute("approveAppList");
+	request.removeAttribute("formList");
+	request.removeAttribute("applierList");
+%>
