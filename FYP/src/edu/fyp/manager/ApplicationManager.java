@@ -110,4 +110,19 @@ public class ApplicationManager {
 	public List<Application> getEmpApplication(String empID) {
 		return appRepo.getEmpApplication(empID);
 	}
+
+	public void reassignApprover(String appKeyStr, String nodeKeyStr, String empID) {
+		Key appKey = KeyFactory.stringToKey(appKeyStr);
+		Key nodeKey = KeyFactory.stringToKey(nodeKeyStr);
+		Application app = appRepo.getApplication(appKey);
+		ApplicationPath appPath = appPathRepo.getApplicationPath(app.getAppPath());
+		ApproveNode pathNode = (ApproveNode) pathNodeRepo.getNode(nodeKey);
+		applicationContext.getAutowireCapableBeanFactory().autowireBean(pathNode);
+		System.out.println(pathNode.getNodeKey());
+		System.out.println(appPath.getCurrentNode());
+		if (pathNode.getNodeKey().equals(appPath.getCurrentNode())) {
+			pathNodeRepo.reassignApproveNode(pathNode, empID);
+			processApplication(appKey);
+		}
+	}
 }

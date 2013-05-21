@@ -71,6 +71,7 @@ public class ApproveAppNode extends HttpServlet {
 		
 		try {
 			appManager.approveApplicationNode(appKey,nodeKey,approve);
+			out.println("Application is processed.");
 		} catch (Exception e) {
 			Logger.getAnonymousLogger().warning(e.toString());
 			out.println("Error. Please contact IT support.");

@@ -314,4 +314,13 @@
 		<url-pattern>/Client/showApproveApplication</url-pattern>
 	</servlet-mapping>
 	<!-- end of show approve application -->
+	
+			<servlet>
+		<servlet-name>reassignApprover</servlet-name>
+		<servlet-class>edu.fyp.servlet.ReassignApprover</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reassignApprover</servlet-name>
+		<url-pattern>/Client/reassignApprover</url-pattern>
+	</servlet-mapping>
 </web-app>

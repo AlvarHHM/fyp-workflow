@@ -50,7 +50,7 @@ public class SuccessNode extends EndNode{
 			mb.setProperty("applier", applier.getEngOtherName()+" "+applier.getEngSurname());
 			mb.setProperty("department", dept.getDeptName());
 			mb.setProperty("formTitle", form.getTitle());
-			mb.setProperty("message", "Your application have been approved.");
+			mb.setProperty("message", "Your application is approved.");
 			mn.setTitle("Application Notice - " + form.getTitle()
 					+ " by " + applier.getEngOtherName()+" "+applier.getEngSurname());
 			mn.setTo(applier.getEmail());

@@ -126,4 +126,20 @@ public class PathNodeRepository {
 	        pm.close();
 	    }
 	}
+	public void reassignApproveNode(PathNode pathNode,String empID){
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+	    try {
+	    	String classKind = pathNode.getNodeKey().getKind();
+	    	ApproveNode an = (ApproveNode) pm.getObjectById(Class.forName("edu.fyp.bean.node."+classKind), pathNode.getNodeKey());
+	    	an.setEmpID(empID);
+	    	an.setDeptID(null);
+	    	an.setApproverID(null);
+	    	an.setSuperLevel(0);
+	    	an.setType("spec");
+	    }catch(Exception E){
+	    	Logger.getAnonymousLogger().warning(E.toString());
+	    }	    finally {
+	        pm.close();
+	    }
+	}
 }
