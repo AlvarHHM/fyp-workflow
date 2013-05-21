@@ -346,4 +346,13 @@
 		<servlet-name>cancelApplicationServlet</servlet-name>
 		<url-pattern>/Client/cancelApplicationServlet</url-pattern>
 	</servlet-mapping>
+	
+						<servlet>
+		<servlet-name>showAdminApplicationListServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowAdminApplicationListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showAdminApplicationListServlet</servlet-name>
+		<url-pattern>/Admin/showAdminApplicationListServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
