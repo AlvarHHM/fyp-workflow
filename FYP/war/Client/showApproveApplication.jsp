@@ -141,8 +141,17 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 					<td><a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=true">Approve</a>
 					<br>  
 					<a href="/Client/approveAppNode?appKey=<%= KeyFactory.keyToString(app.getKey()) %>&nodeKey=<%= KeyFactory.keyToString(appPath.getCurrentNode()) %>&approve=false">Reject</a></td>
-					</tr><tr>
-				</tr></tbody>
+					</tr>
+					<tr>
+					<td>Reasign:</td>
+					<td><div class="input-append">
+         <input type="text" id="notice-employeeId"
+          class="property-value" disabled> <input type="submit"
+          class="search-btn" value="submit"> <a class="btn"
+          onClick='userId = this.parentNode.children[0]; dataitem = window.open("searchUser.html","dataitem", "width=300,height=500,toolbar=no,menubar=no,scrollbars=yes"); dataitem.userId = userId'>Search</a>
+        </div></td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	</div>
