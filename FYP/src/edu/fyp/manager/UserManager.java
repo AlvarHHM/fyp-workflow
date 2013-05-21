@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
+import edu.fyp.bean.BuilderUser;
 import edu.fyp.bean.Employee;
 import edu.fyp.bean.User;
 import edu.fyp.repository.UserRepository;
@@ -27,6 +28,11 @@ public class UserManager {
 	
 	public User login(String userName,String password){
 		User result = userRepo.queryUserByUserName(userName);
+		return result!=null&&result.getPassword().equals(password)?result:null;
+	}
+	
+	public BuilderUser loginBuilder(String userName,String password){
+		BuilderUser result =userRepo.queryBuilderUserByUserName(userName);
 		return result!=null&&result.getPassword().equals(password)?result:null;
 	}
 	

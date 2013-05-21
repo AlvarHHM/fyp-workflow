@@ -9,7 +9,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script>
+<!-- 	<script type="text/javascript" src="js/libs/jquery-1.8.2/jquery.js"></script> -->
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
 	<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">

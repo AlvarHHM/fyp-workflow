@@ -16,8 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.sun.org.apache.xerces.internal.util.URI;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 
+import edu.fyp.bean.BuilderUser;
 import edu.fyp.bean.User;
 import edu.fyp.manager.UserManager;
 import edu.fyp.repository.PMF;
@@ -25,54 +34,77 @@ import edu.fyp.repository.PMF;
 @SessionAttributes({ "USER" })
 @Controller
 public class LoginController {
-	
+
 	private UserManager userManager;
-	
+
 	@Autowired
-	public LoginController(UserManager userManager){
+	public LoginController(UserManager userManager) {
 		this.userManager = userManager;
 	}
 
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST,params = {"userName","password","redirect"})
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {
+			"userName", "password", "redirect" })
 	public String loginWithRedirect(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password,
-			@RequestParam("redirect")String url,HttpSession session) throws UnsupportedEncodingException {
-		
+			@RequestParam("redirect") String url, HttpSession session)
+			throws UnsupportedEncodingException {
+
 		user = userManager.login(userName, password);
-		session.setAttribute("USER", user);
-		return "redirect:"+URLDecoder.decode(url, "UTF-8");
-	}
-	
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {"userName","password"})
-	public String login(@ModelAttribute("USER") User user,
-			@RequestParam("userName") String userName,
-			@RequestParam("password") String password,HttpSession session){
-		
-		user = userManager.login(userName, password);
-		
-		if (user != null){
+		if (user != null) {
 			session.setAttribute("USER", user);
 			session.setAttribute("EMP", user.getEmployee());
-			session.setAttribute("DEPT", user.getEmployee().getDepartment());
-			return "redirect:/Client/home.jsp";
-		}else
+			if (user.getEmployee() != null)
+				session.setAttribute("DEPT", user.getEmployee().getDepartment());
+			return "redirect:" + URLDecoder.decode(url, "UTF-8");
+		} else
 			return "redirect:/Client/login2.html?error=1";
 	}
-	
-	
-	
+
+	@RequestMapping(value = "/login.do", method = RequestMethod.POST, params = {
+			"userName", "password" })
+	public String login(@ModelAttribute("USER") User user,
+			@RequestParam("userName") String userName,
+			@RequestParam("password") String password, HttpSession session) {
+
+		user = userManager.login(userName, password);
+
+		if (user != null) {
+			session.setAttribute("USER", user);
+			session.setAttribute("EMP", user.getEmployee());
+			if (user.getEmployee() != null)
+				session.setAttribute("DEPT", user.getEmployee().getDepartment());
+			return "redirect:/Client/home.jsp";
+		} else
+			return "redirect:/Client/login2.html?error=1";
+	}
+
+	@RequestMapping(value = "/formbuilder/login.do", method = RequestMethod.POST, params = {
+			"userName", "password" })
+	public String loginBuilder(@RequestParam("userName") String userName,
+			@RequestParam("password") String password, HttpSession session) {
+		BuilderUser user = userManager.loginBuilder(userName, password);
+		if (user != null) {
+			session.setAttribute("BUILDER_USER", user);
+			session.setAttribute("BUILDER_EMP", user.getEmployee());
+			if (user.getEmployee() != null)
+				session.setAttribute("BUILDER_DEPT", user.getEmployee()
+						.getDepartment());
+			return "redirect:/formbuilder/showBuilderFormListServlet";
+		} else
+			return "redirect:/formbuilder/login.html?error=1";
+	}
+
 	@RequestMapping(value = "/testLogin.do", method = RequestMethod.GET)
-	public @ResponseBody String test() {
+	public @ResponseBody
+	String test() {
 		User test = new User();
 		test.setUserName("subject01");
 		test.setPassword("subject01");
 		PMF.get().getPersistenceManager().makePersistent(test);
-		
+
 		return userManager.test();
 	}
-	
-	
 
 	@ModelAttribute("USER")
 	public User populateUser() {

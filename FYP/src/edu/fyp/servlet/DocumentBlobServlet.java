@@ -59,11 +59,13 @@ public class DocumentBlobServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String skey = req.getParameter("id");
 		resp.setContentType("application/octet-stream");
+		
 		Key key = KeyFactory.stringToKey(skey);
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Blob document = pm.getObjectById(DocumentBlob.class, key)
-				.getDocuement();
-		resp.getOutputStream().write(document.getBytes());
+		PersistenceManager pm = PMF.get().getPersistenceManager();;
+		DocumentBlob document = pm.getObjectById(DocumentBlob.class, key);
+				
+		resp.setHeader("Content-Disposition", "attachment; filename=\"" + document.getName() + "\"");
+		resp.getOutputStream().write(document.getDocuement().getBytes());
 
 	}
 

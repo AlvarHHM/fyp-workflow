@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.google.appengine.api.datastore.Key;
 
+import edu.fyp.bean.BuilderUser;
 import edu.fyp.bean.Department;
 import edu.fyp.bean.Employee;
 import edu.fyp.bean.User;
@@ -26,6 +27,16 @@ public class UserRepository {
 		q.declareParameters("java.lang.String inputUserName");
 		List result = ((List) q.execute(userName));
 		return (User) (result.size() != 0 ? result.get(0) : null);
+
+	}
+	
+	public BuilderUser queryBuilderUserByUserName(String userName) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Query q = pm.newQuery(BuilderUser.class);
+		q.setFilter("userName == inputUserName");
+		q.declareParameters("java.lang.String inputUserName");
+		List result = ((List) q.execute(userName));
+		return (BuilderUser) (result.size() != 0 ? result.get(0) : null);
 
 	}
 	
