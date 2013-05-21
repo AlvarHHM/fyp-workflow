@@ -32,7 +32,7 @@
 				<fieldset>
 					<legend align='center'>Application</legend>
 					<div class="searchField">
-						<form method="get" action="/updateAdminApplicationStatus">
+						<form method="get" action="/Admin/showAdminApplicationListServlet">
 							 <input type="text" name="keyword" id="Search"
 								placeholder="input keyword here!" class="hint" /> <input
 								type="submit" class="buttom" value="Search" />
@@ -92,7 +92,7 @@
 										height="30px" /></a></td>
 								<td><%=dateformat.format(app.getApplyDate())%></td>
 <td>
-								<form method="get" action="/Admin/updateApplicationStatusServlet">
+								<form method="get" action="/Admin/updateAdminApplicationStatusServlet">
 								<select name="status">
 									<option value="Processing">Processing</option>
 									<option value="Approved">Approved</option>

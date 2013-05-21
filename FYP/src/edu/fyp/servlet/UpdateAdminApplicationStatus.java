@@ -43,6 +43,6 @@ public class UpdateAdminApplicationStatus extends HttpServlet {
 		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");
 		}
-		req.getRequestDispatcher("/Admin/ShowAdminApplicationListServlet").forward(req, resp);
+		req.getRequestDispatcher("/Admin/showAdminApplicationListServlet").forward(req, resp);
 	}
 }
