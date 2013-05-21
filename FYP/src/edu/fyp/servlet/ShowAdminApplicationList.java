@@ -40,8 +40,6 @@ public class ShowAdminApplicationList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		Employee emp = (Employee) req.getSession().getAttribute("EMP");
-		String empID = emp.getEmpId();
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;
 		if(keyword!=null && !keyword.equalsIgnoreCase("")){

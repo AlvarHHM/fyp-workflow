@@ -13,6 +13,7 @@
 <html>
 <head>
 <%@ include file="header.jsp"%>
+<script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
 	<script>
 	$(function(){
 		$.each($('select[name="status"]'),function(){
@@ -31,7 +32,7 @@
 				<fieldset>
 					<legend align='center'>Application</legend>
 					<div class="searchField">
-						<form method="get" action="/Client/showClientApplicationListServlet">
+						<form method="get" action="/updateAdminApplicationStatus">
 							 <input type="text" name="keyword" id="Search"
 								placeholder="input keyword here!" class="hint" /> <input
 								type="submit" class="buttom" value="Search" />

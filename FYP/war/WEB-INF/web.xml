@@ -339,17 +339,26 @@
 	</servlet-mapping>
 	
 					<servlet>
-		<servlet-name>cancelApplicationServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.CancelApplicationServlet</servlet-class>
+		<servlet-name>updateApplicationStatus</servlet-name>
+		<servlet-class>edu.fyp.servlet.UpdateApplicationStatus</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>cancelApplicationServlet</servlet-name>
-		<url-pattern>/Client/cancelApplicationServlet</url-pattern>
+		<servlet-name>updateApplicationStatus</servlet-name>
+		<url-pattern>/updateApplicationStatus</url-pattern>
 	</servlet-mapping>
 	
 						<servlet>
+		<servlet-name>updateAdminApplicationStatus</servlet-name>
+		<servlet-class>edu.fyp.servlet.UpdateAdminApplicationStatus</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateAdminApplicationStatus</servlet-name>
+		<url-pattern>/updateAdminApplicationStatus</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>showAdminApplicationListServlet</servlet-name>
-		<servlet-class>edu.fyp.servlet.ShowAdminApplicationListServlet</servlet-class>
+		<servlet-class>edu.fyp.servlet.ShowAdminApplicationList</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>showAdminApplicationListServlet</servlet-name>

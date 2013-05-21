@@ -17,7 +17,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import edu.fyp.manager.ApplicationManager;
 import edu.fyp.manager.FormManager;
 
-public class CancelApplicationServlet extends HttpServlet {
+public class UpdateAdminApplicationStatus extends HttpServlet {
 	
 	@Autowired
 	private ApplicationManager appManager;
@@ -31,16 +31,18 @@ public class CancelApplicationServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		String appKeyStr = req.getParameter("appKey");
+		String status = req.getParameter("status");
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
 		if (appKeyStr.equalsIgnoreCase("")) {
 			out.println("Application ID can not be empty.");
 			return ;
 		}
 		try {
-			appManager.cancelApplication(appKey);
-			out.println("Application is cancelled.");
+			appManager.updateApplicationStatus(appKey, status);
+			out.println("Application status is changed.");
 		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");
 		}
+		req.getRequestDispatcher("/Admin/ShowAdminApplicationListServlet").forward(req, resp);
 	}
 }
