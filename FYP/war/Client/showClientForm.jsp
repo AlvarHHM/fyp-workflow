@@ -19,7 +19,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
 		var formKey = "<%= KeyFactory.keyToString(form.getKey())%>";
-		var selectedUpload = "";
+		var uploadedFileName = "null";
+		var uploadingFileName = "";
 		
 		 $(function() {
 			$(".hasDatepicker").removeClass("hasDatepicker");
@@ -36,6 +37,15 @@ Form form = (Form)request.getSession().getAttribute("form");
 			$('.form-item .upload button').click(function() {
 					var item = $(this).parents(".form-item");
 					var formData = new FormData(item.find('form')[0]);
+					var fullPath = $(this).find("input[type=file]").val();
+						if (fullPath) {
+							var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+							var filename = fullPath.substring(startIndex);
+							if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+								filename = filename.substring(1);
+							}
+							uploadingFileName = filename;
+						}
 					
 					$.ajax({
 						url : '/uploadDoc',
@@ -66,6 +76,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 										var progress = item.find('progress');
 										progress.attr("value",progress.attr("max"));
 										
+										uploadedFileName = uploadingFileName;
 										item.find("input.uploaded-file").val(data);
 									},
 						data : formData,
@@ -118,17 +129,9 @@ Form form = (Form)request.getSession().getAttribute("form");
 									break;
 								case (/UPLOAD/) .test(itemType):
 									temp.Value = $(this).find("input.uploaded-file").val();
-									temp.FileName = "";
-									
-									var fullPath = $(this).find("input[type=file]").val();
-									if (fullPath) {
-										var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-										var filename = fullPath.substring(startIndex);
-										if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-											filename = filename.substring(1);
+										if(uploadedFileName==uploadedFileName){
+											temp.FileName = uploadedFileName;
 										}
-										temp.FileName = filename;
-									}
 									
 									break;
 								default:
