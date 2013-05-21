@@ -71,6 +71,7 @@ $(function() {
 							{i:item},
 							function(e){
 								window.open("/uploadDoc?id="+i.find("input.uploaded-file").val());
+								return false;
 							});
 					item.find("progress").hide();
 					break;
