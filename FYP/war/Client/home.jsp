@@ -16,6 +16,7 @@
 	ArrayList<Form> appFormList = (ArrayList<Form>) request.getSession().getAttribute("appFormList" );
 	ArrayList<Employee> applierList = (ArrayList<Employee>) request
 			.getAttribute("applierList");
+	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <html>
 <head>
@@ -102,32 +103,72 @@
 							<%
 								for (int i = 0; i < appList.size(); i++) {
 										Application app = appList.get(i);
-										Form form = appForm.get(i);
+										Form form = appFormList.get(i);
+								
 							%>
 							<tr>
 								<td><a
 									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=KeyFactory.keyToString(app.getKey())%>"
 									target="_blank"><%=app.getAppID()%></a></td>
-							<td></td>
-							<td></td>
-							<td></td>
+								<td><%=form.getTitle() %></td>
+								<td><%=app.getApplyDate() %></td>
+								<td><%=app.getStatus() %></td>
 							</tr>
+							<%
+								}
+							}else{
+							%>
+							<tr>
+								<td colspan="5">No Application found.</td>
+							</tr>
+							<%
+							}%>
 						</tbody>
 					</table>
 				</fieldset>
 
-				<fieldset class="app_table">
+				<fieldset class="form_table">
 					<legend>Recent Use</legend>
-					<table>
-						<tr>
-							<td><a href="form.html" target="_blank">Day leave</a></td>
-						</tr>
-						<tr>
-							<td><a href="#">Room booking</a></td>
-						</tr>
-						<tr>
-							<td><a href="#">CAPS Application</a></td>
-						</tr>
+					<table class="viewFormTable">
+						<thead>
+							<tr>
+								<th>Form ID</th>
+								<th>Version</th>
+								<th>Title</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td colspan="10"></td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<%
+								if (formList!=null&&formList.size() > 0) {
+									for (int i = 0; i < formList.size(); i++) {
+										Form tempForm = formList.get(i);
+							%>
+							<tr>
+								<td><a
+									href="/Client/showClientFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
+									target="_blank"><%=tempForm.getFormID()%></a></td>
+								<td><%=tempForm.getVersion()%></td>
+								<td><%=tempForm.getTitle()%></td>
+								<td><%=tempForm.getDescription()%></td>
+							</tr>
+							<%
+									}
+								} else {
+									
+							%>
+							<tr>
+								<td colspan="10">No form found.</td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
 					</table>
 				</fieldset>
 			</div>
@@ -139,5 +180,7 @@
 	request.removeAttribute("appList");
 	request.removeAttribute("approveAppList");
 	request.removeAttribute("formList");
+	request.getSession().removeAttribute("approveFormList" );
+	request.getSession().removeAttribute("appFormList" );
 	request.removeAttribute("applierList");
 %>

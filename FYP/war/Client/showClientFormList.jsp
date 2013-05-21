@@ -3,8 +3,7 @@
 <%@page import="edu.fyp.bean.Form"%>
 <%
 	//Get form list
-	ArrayList<Form> formList = (ArrayList) request.getSession()
-			.getAttribute("formList");
+	ArrayList<Form> formList = (ArrayList) request.getSession().getAttribute("formList");
 %>
 <html>
 <head>
@@ -58,7 +57,7 @@
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=tempForm.getDescription()%></td>
 								<td><a
-									href="showClientFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
+									href="/Client/showClientFormServlet?formID=<%=tempForm.getFormID()%>&version=<%=tempForm.getVersion()%>"
 									target="_blank"> <img src="img/dc.png" width="30px"
 										height="30px" /></a></td>
 							</tr>

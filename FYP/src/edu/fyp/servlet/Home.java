@@ -52,17 +52,21 @@ public class Home extends HttpServlet {
 		ArrayList<Employee> applierList = new ArrayList<Employee>();
 		ArrayList<Form> approveFormList = new ArrayList<Form>();
 		ArrayList<Form> appFormList = new ArrayList<Form>();
-		for(int i=0;i < applierList.size() ; i++){
-			applierList.add(userRepo.queryEmployeeByEmpID(approveAppList.get(i).getApprovingEmpID()));
-		}
 		for(int i=0;i < approveAppList.size() ; i++){
+			applierList.add(userRepo.queryEmployeeByEmpID(approveAppList.get(i).getApprovingEmpID()));
 			approveFormList.add(formManager.getFormByIDVersion(approveAppList.get(i).getFormID(),
 					approveAppList.get(i).getVersion()));
 		}
-		for(int i=0;i < appFormList.size() ; i++){
-			appFormList.add(formManager.getFormByIDVersion(appFormList.get(i).getFormID(),
-					appFormList.get(i).getVersion()));
+		for(int i=0;i < appList.size() ; i++){
+			appFormList.add(formManager.getFormByIDVersion(appList.get(i).getFormID(),
+					appList.get(i).getVersion()));
 		}
+		Logger.getAnonymousLogger().warning("form list:"+formList.size());
+		Logger.getAnonymousLogger().warning("app list:"+appList.size());
+		Logger.getAnonymousLogger().warning("approveApp list:"+approveAppList.size());
+		Logger.getAnonymousLogger().warning("applier list:"+applierList.size());
+		Logger.getAnonymousLogger().warning("approveForm list:"+approveFormList.size());
+		Logger.getAnonymousLogger().warning("appForm list:"+appFormList.size());
 		req.getSession().setAttribute("formList", formList);
 		req.getSession().setAttribute("appList", appList);
 		req.getSession().setAttribute("approveAppList", approveAppList);
