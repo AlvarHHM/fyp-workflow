@@ -20,7 +20,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
 		var formKey = "<%= KeyFactory.keyToString(form.getKey())%>";
-		var selectedUpload = "";
+		var uploadedFileName = "null";
+		var uploadingFileName = "";
 		
 		 $(function() {
 			$(".hasDatepicker").removeClass("hasDatepicker");
@@ -37,6 +38,15 @@ Form form = (Form)request.getSession().getAttribute("form");
 			$('.form-item .upload button').click(function() {
 					var item = $(this).parents(".form-item");
 					var formData = new FormData(item.find('form')[0]);
+					var fullPath = item.find("input[type=file]").val();
+						if (fullPath) {
+							var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+							var filename = fullPath.substring(startIndex);
+							if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+								filename = filename.substring(1);
+							}
+							uploadingFileName = filename;
+						}
 					
 					$.ajax({
 						url : '/uploadDoc',
@@ -67,7 +77,13 @@ Form form = (Form)request.getSession().getAttribute("form");
 										var progress = item.find('progress');
 										progress.attr("value",progress.attr("max"));
 										
+										uploadedFileName = uploadingFileName;
 										item.find("input.uploaded-file").val(data);
+										alert("File upload :"+uploadedFileName+" Succss.");
+									},
+						error: 		function(){
+										alert("File upload :"+uploadedFileName+" Fail.");
+										uploadedFileName = "null";
 									},
 						data : formData,
 						cache : false,
@@ -118,18 +134,16 @@ Form form = (Form)request.getSession().getAttribute("form");
 									temp.Value = $(this).find("textarea").val();
 									break;
 								case (/UPLOAD/) .test(itemType):
-									temp.Value = $(this).find("input.uploaded-file").val();
-									temp.FileName = "";
-									
-									var fullPath = $(this).find("input[type=file]").val();
-									if (fullPath) {
-										var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-										var filename = fullPath.substring(startIndex);
-										if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-											filename = filename.substring(1);
+									temp.Value = "";
+										if(uploadedFileName==uploadedFileName){
+											var progress = $(this).find('progress');
+											if(progress.attr("value")!=0){
+												if(progress.attr("value")==progress.attr("max")){
+													temp.Value = $(this).find("input.uploaded-file").val();
+													temp.FileName = uploadedFileName;
+												}
+											}
 										}
-										temp.FileName = filename;
-									}
 									
 									break;
 								default:

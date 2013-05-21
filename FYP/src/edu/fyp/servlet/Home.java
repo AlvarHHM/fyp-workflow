@@ -50,17 +50,25 @@ public class Home extends HttpServlet {
 		ArrayList<Application> appList = (ArrayList<Application>) appRepo.getEmpApplication(empID);
 		ArrayList<Application> approveAppList = (ArrayList<Application>) appRepo.getApproveApplication(empID);
 		ArrayList<Employee> applierList = new ArrayList<Employee>();
-		for(int i=0;i < approveAppList.size() ; i++){
+		ArrayList<Form> approveFormList = new ArrayList<Form>();
+		ArrayList<Form> appFormList = new ArrayList<Form>();
+		for(int i=0;i < applierList.size() ; i++){
 			applierList.add(userRepo.queryEmployeeByEmpID(approveAppList.get(i).getApprovingEmpID()));
 		}
-		Logger.getAnonymousLogger().warning(formList.size()+"");
-		Logger.getAnonymousLogger().warning(appList.size()+"");
-		Logger.getAnonymousLogger().warning(approveAppList.size()+"");
-		Logger.getAnonymousLogger().warning(applierList.size()+"");
+		for(int i=0;i < approveAppList.size() ; i++){
+			approveFormList.add(formManager.getFormByIDVersion(approveAppList.get(i).getFormID(),
+					approveAppList.get(i).getVersion()));
+		}
+		for(int i=0;i < appFormList.size() ; i++){
+			appFormList.add(formManager.getFormByIDVersion(appFormList.get(i).getFormID(),
+					appFormList.get(i).getVersion()));
+		}
 		req.getSession().setAttribute("formList", formList);
 		req.getSession().setAttribute("appList", appList);
 		req.getSession().setAttribute("approveAppList", approveAppList);
 		req.getSession().setAttribute("applierList", applierList);
+		req.getSession().setAttribute("approveFormList", approveFormList);
+		req.getSession().setAttribute("appFormList", appFormList);
 		req.getRequestDispatcher("/Client/home.jsp").forward(req, resp);
 	}
 }
