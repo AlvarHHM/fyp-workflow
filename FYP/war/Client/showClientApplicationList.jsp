@@ -88,7 +88,7 @@
 									target="_blank"> <img src="/Client/img/dc.png" width="30px"
 										height="30px" /></a>
 										<%if(app.getStatus().equalsIgnoreCase("Processing")){ %>
-										<a href="/Client/cancelApplicationServlet?appKey=<%=appKeyStr%>"> <img src="/Client/img/cancelIcon.png" width="30px"
+										<a href="/Client/cancelApplicationServlet?appKey=<%=appKeyStr%>" target="_blank" > <img src="/Client/img/cancelIcon.png" width="30px"
 										height="30px" /></a>
 										<%} %>
 										

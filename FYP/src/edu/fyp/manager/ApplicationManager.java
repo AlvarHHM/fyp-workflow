@@ -130,6 +130,7 @@ public class ApplicationManager {
 		Application app = appRepo.getApplication(appKey);
 		ApplicationPath appPath = appPathRepo.getApplicationPath(app.getAppPath());
 		appRepo.updateApplicationStatus(appKey, "Cancelled");
+		appRepo.updateApproveEmp(app.getKey(), null);
 		appPathRepo.updateCurrentNode(appPath.getKey(), null);
 	}
 }

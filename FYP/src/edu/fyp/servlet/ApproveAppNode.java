@@ -72,6 +72,7 @@ public class ApproveAppNode extends HttpServlet {
 		Application app= appManager.getApplication(KeyFactory.stringToKey(appKey));
 		if(app.getStatus().equalsIgnoreCase("Cancelled")){
 			out.println("The application is cancelled.");
+			return ;
 		}
 		try {
 			appManager.approveApplicationNode(appKey,nodeKey,approve);

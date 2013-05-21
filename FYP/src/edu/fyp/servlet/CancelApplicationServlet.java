@@ -42,6 +42,5 @@ public class CancelApplicationServlet extends HttpServlet {
 		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");
 		}
-		req.getRequestDispatcher("/formbuilder/showBuilderFormListServlet").forward(req, resp);
 	}
 }
