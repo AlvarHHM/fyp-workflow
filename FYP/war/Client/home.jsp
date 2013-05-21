@@ -5,6 +5,8 @@
 <%@page import="edu.fyp.bean.Employee"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
 <%@page import="edu.fyp.bean.Form"%>
+<%@page import="java.util.logging.Logger"%>
+
 <%
 	ArrayList<Application> appList = (ArrayList<Application>) request
 			.getAttribute("appList");
@@ -17,6 +19,12 @@
 	ArrayList<Employee> applierList = (ArrayList<Employee>) request
 			.getAttribute("applierList");
 	SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+	Logger.getAnonymousLogger().warning("form list:"+formList.size());
+	Logger.getAnonymousLogger().warning("app list:"+appList.size());
+	Logger.getAnonymousLogger().warning("approveApp list:"+approveAppList.size());
+	Logger.getAnonymousLogger().warning("applier list:"+applierList.size());
+	Logger.getAnonymousLogger().warning("approveForm list:"+approveFormList.size());
+	Logger.getAnonymousLogger().warning("appForm list:"+appFormList.size());
 %>
 <html>
 <head>

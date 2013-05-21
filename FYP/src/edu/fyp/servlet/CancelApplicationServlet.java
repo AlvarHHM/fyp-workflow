@@ -32,12 +32,13 @@ public class CancelApplicationServlet extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		String appKeyStr = req.getParameter("status");
 		Key appKey = KeyFactory.stringToKey(appKeyStr);
-		if (appKey.equalsIgnoreCase("")) {
+		if (appKeyStr.equalsIgnoreCase("")) {
 			out.println("Application can not be empty.");
 			return ;
 		}
 		try {
 			appManager.cancelApplication(appKey);
+			out.println("Application is cancelled.");
 		} catch (Exception e) {
 			out.println("Error. Please contact IT support.");
 		}

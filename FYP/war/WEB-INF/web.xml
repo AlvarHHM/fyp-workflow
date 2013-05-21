@@ -337,4 +337,13 @@
 		<servlet-name>home</servlet-name>
 		<url-pattern>/Client/home</url-pattern>
 	</servlet-mapping>
+	
+					<servlet>
+		<servlet-name>cancelApplicationServlet</servlet-name>
+		<servlet-class>edu.fyp.servlet.CancelApplicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cancelApplicationServlet</servlet-name>
+		<url-pattern>/Client/cancelApplicationServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
