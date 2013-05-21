@@ -68,15 +68,11 @@ $(function() {
 					item.find("button").unbind("click")
 						.bind(
 							"click",
-							{i:item},
+							{v:appData[i].Value},
 							function(e){
-<<<<<<< HEAD
-								window.open("/uploadDoc?id="+appData[i].Value);
-								
-=======
-								window.open("/uploadDoc?id="+i.find("input.uploaded-file").val());
+							
+								window.open("/uploadDoc?id="+e.data.v);
 								return false;
->>>>>>> 5afb52514c019049cb08bd73a04e134763034041
 							});
 					item.find("progress").hide();
 					break;
