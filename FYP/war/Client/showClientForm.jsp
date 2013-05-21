@@ -72,7 +72,14 @@ Form form = (Form)request.getSession().getAttribute("form");
 							}
 							return myXhr;
 						},
-						
+						statusCode: {
+							404: function() {
+								alert("404: upload path fail!")
+							},
+							500: function() {
+								alert("500: server internal error!");
+							}
+						},
 						success : 	function(data) {
 										var progress = item.find('progress');
 										progress.attr("value",progress.attr("max"));
