@@ -2,6 +2,7 @@ package edu.fyp.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -36,6 +37,8 @@ public class Form implements Serializable{
 	private String createdBy;
 	@Persistent
 	private Date createdDate;
+	@Persistent
+	private Set<String> fts;
 
 	public Form(){
 		this.status="Editing";
@@ -125,5 +128,11 @@ public class Form implements Serializable{
 		
 	}public void setKey(Key key){
 		this.key=key;
+	}
+	public Set<String> getFts() {
+		return fts;
+	}
+	public void setFts(Set<String> fts) {
+		this.fts = fts;
 	}
 }

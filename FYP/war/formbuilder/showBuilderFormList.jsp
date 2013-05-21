@@ -37,10 +37,7 @@
 					<legend align='center'>You can Maintain these Form</legend>
 					<div class="searchField">
 						<form method="get" action="/formbuilder/showBuilderFormListServlet">
-							<select name="search">
-								<option value="formID">Form ID</option>
-								<option value="title">Title</option>
-							</select> <input type="text" name="keyword" id="Search"
+							<input type="text" name="keyword" id="Search"
 								placeholder="input keyword here!" class="hint" /> <input
 								type="submit" class="buttom" value="Search" />
 						</form>

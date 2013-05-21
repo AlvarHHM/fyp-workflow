@@ -34,11 +34,10 @@ public class ShowClientFormList extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		ArrayList<Form> formList = null;
-		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			formList = formManager.searchReleaseForm( search, keyword);
+		if(keyword!=null && !keyword.equalsIgnoreCase("")){
+			formList = formManager.searchReleaseForm(keyword);
 		}else{
 			formList = formManager.getAllReleaseForm();
 		}

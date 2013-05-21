@@ -66,5 +66,20 @@ public class SearchUtil {
 		}
 		
 	}
+	
+	public static void updateFormIndex(Form form){
+		StringBuffer sb = new StringBuffer();
+		sb.append(form.getDescription());
+		sb.append(" ");
+		sb.append(form.getFormID());
+		sb.append(" ");
+		sb.append(form.getTitle());
+		sb.append(" ");
+		for (String token : sb.toString().toUpperCase().split(" ")) {
+			form.getFts().add(token);
+		}
+		
+		
+	}
 
 }

@@ -46,16 +46,16 @@ public class FormManager {
 		formRepo.updateFormStatus(formID,version,status);
 	}
 	
-	public ArrayList<Form> searchForm(String search, String keyword) {
-		return formRepo.searchForm(search, keyword);
+	public ArrayList<Form> searchForm(String keyword) {
+		return formRepo.searchForm(keyword);
 	}
 
 	public void updateFormPath(String formKey, Text path) {
 		formRepo.updateFormPath(formKey,path);		
 	}
 
-	public ArrayList<Form> searchReleaseForm(String search, String keyword) {
-		return formRepo.searchReleaseForm(search, keyword);
+	public ArrayList<Form> searchReleaseForm(String keyword) {
+		return formRepo.searchReleaseForm(keyword);
 	}
 
 	public ArrayList<Form> getAllReleaseForm() {
