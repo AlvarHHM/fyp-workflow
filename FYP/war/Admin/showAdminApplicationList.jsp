@@ -13,6 +13,14 @@
 <html>
 <head>
 <%@ include file="header.jsp"%>
+	<script>
+	$(function(){
+		$.each($('select[name="status"]'),function(){
+			var currentStatus= $(this).parent().find("input[name='currentStatus']").val();
+			$(this).val(currentStatus);
+			});
+	});
+	</script>
 </head>
 <body>
 	<div id="bodyContainer">
@@ -82,7 +90,18 @@
 									href="/pathReadOnly?appKey=<%=KeyFactory.keyToString(app.getKey())%>"><img src="/Client/img/pathicon.png" width="30px"
 										height="30px" /></a></td>
 								<td><%=dateformat.format(app.getApplyDate())%></td>
-								<td><%=app.getStatus()%></td>
+<td>
+								<form method="get" action="/Admin/updateApplicationStatusServlet">
+								<select name="status">
+									<option value="Processing">Processing</option>
+									<option value="Approved">Approved</option>
+									<option value="Rejected">Rejected</option>
+									<option value="Rejected">Cancelled</option>
+								</select>
+								<input type="hidden" name="currentStatus" value="<%= app.getStatus() %>"/>
+								<input type="hidden" name="appKey" value="<%= KeyFactory.keyToString(app.getKey()) %>"/>
+								<input type="submit"/>
+								</form>
 								<td><a
 									href="/Client/showClientApplicationServlet?formID=<%=app.getFormID()%>&version=<%=app.getVersion()%>&appKey=<%=appKeyStr%>"
 									target="_blank"> <img src="/Client/img/dc.png" width="30px"
