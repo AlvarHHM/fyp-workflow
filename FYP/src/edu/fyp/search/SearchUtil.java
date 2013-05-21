@@ -4,13 +4,16 @@ import java.util.HashSet;
 
 import javax.jdo.PersistenceManager;
 
+import edu.fyp.bean.Application;
 import edu.fyp.bean.Department;
 import edu.fyp.bean.Employee;
 import edu.fyp.repository.PMF;
 
-public class SearchEmployeeUtil {
+public class SearchUtil {
+	
+	
 
-	public static void updateIndex(Employee emp) {
+	public static void updateEmployeeIndex(Employee emp) {
 		StringBuffer sb = new StringBuffer();
 		if (emp.getDepartment() != null) {
 			PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -36,6 +39,21 @@ public class SearchEmployeeUtil {
 		for (String token : sb.toString().toUpperCase().split(" ")) {
 			emp.getFts().add(token);
 		}
+	}
+	
+	public static void updateApplicationIndex(Application app){
+		StringBuffer sb = new StringBuffer();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		sb.append(app.getAppID());
+		sb.append(" ");
+		sb.append(app.getEmpID());
+		sb.append(" ");
+		sb.append(app.getStatus());
+		sb.append(" ");
+		sb.append(app.getStatus());
+		sb.append(" ");
+		
+		
 	}
 
 }

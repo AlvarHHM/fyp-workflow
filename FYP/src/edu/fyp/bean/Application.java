@@ -3,6 +3,7 @@ package edu.fyp.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -44,6 +45,9 @@ public class Application implements Serializable {
     
     @Persistent
     private Key appPath;
+    
+    @Persistent
+	private Set<String> fts;
     
     public Application() {
     	this.status="Processing";
@@ -126,6 +130,14 @@ public class Application implements Serializable {
 
 	public void setAppID(Long appID) {
 		this.appID = appID;
+	}
+
+	public Set<String> getFts() {
+		return fts;
+	}
+
+	public void setFts(Set<String> fts) {
+		this.fts = fts;
 	}
 	
 }

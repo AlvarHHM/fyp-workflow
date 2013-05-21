@@ -21,7 +21,7 @@ import edu.fyp.bean.Employee.Title;
 import edu.fyp.bean.User;
 import edu.fyp.manager.FormManager;
 import edu.fyp.repository.PMF;
-import edu.fyp.search.SearchEmployeeUtil;
+import edu.fyp.search.SearchUtil;
 
 public class InitEmp extends HttpServlet {
 	
@@ -181,12 +181,12 @@ public class InitEmp extends HttpServlet {
 		
 		//store emp	
 
-		SearchEmployeeUtil.updateIndex(emp1);
-		SearchEmployeeUtil.updateIndex(emp2);
-		SearchEmployeeUtil.updateIndex(emp3);
-		SearchEmployeeUtil.updateIndex(emp4);
-		SearchEmployeeUtil.updateIndex(emp5);
-		SearchEmployeeUtil.updateIndex(emp6);
+		SearchUtil.updateEmployeeIndex(emp1);
+		SearchUtil.updateEmployeeIndex(emp2);
+		SearchUtil.updateEmployeeIndex(emp3);
+		SearchUtil.updateEmployeeIndex(emp4);
+		SearchUtil.updateEmployeeIndex(emp5);
+		SearchUtil.updateEmployeeIndex(emp6);
 		
 		pm = PMF.get().getPersistenceManager();
 		try {
