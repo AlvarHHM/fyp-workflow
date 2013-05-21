@@ -281,7 +281,7 @@ em {
 	position: absolute;
 	left : 850px;
 	top :2px;
-	width :300px;
+	width :400px;
 	min-height : 150px;
 	background-color: white;
 	color: #333;
@@ -290,6 +290,6 @@ em {
 
 }
 
-#node-detail-panel tr:first-child{
+#node-detail-panel tr td:first-child{
 	text-align:right;
 }

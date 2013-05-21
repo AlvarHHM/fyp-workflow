@@ -135,11 +135,11 @@ $(document).ready(
 			
 			
 			
-			jsPlumb.bind("click", function(conn, originalEvent) {
-				if (confirm("Delete connection from " + conn.sourceId + " to "
-						+ conn.targetId + "?"))
-					jsPlumb.detach(conn);
-			});
+//			jsPlumb.bind("click", function(conn, originalEvent) {
+//				if (confirm("Delete connection from " + conn.sourceId + " to "
+//						+ conn.targetId + "?"))
+//					jsPlumb.detach(conn);
+//			});
 
 			jsPlumb.bind("jsPlumbConnection", function(connectionInfo) {
  console.log(connectionInfo);
