@@ -50,8 +50,8 @@ public class ShowApproveApplicationList extends HttpServlet {
 		String search = req.getParameter("search");
 		String keyword = req.getParameter("keyword");
 		List<Application> appList = null;
-		if(search !=null && keyword!=null & !keyword.equalsIgnoreCase("")){
-			appList = appRepo.searchApproveApplication(search, keyword, empID);
+		if(keyword!=null && !keyword.equalsIgnoreCase("")){
+			appList = appRepo.searchApproveApplication(keyword, empID);
 		}else{
 			appList = appRepo.getApproveApplication(empID);
 		}
