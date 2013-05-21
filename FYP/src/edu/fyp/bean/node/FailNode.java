@@ -15,6 +15,7 @@ import edu.fyp.manager.ApplicationManager;
 import edu.fyp.notify.email.MailBody;
 import edu.fyp.notify.email.MailNotice;
 import edu.fyp.notify.email.NoticeMailService;
+import edu.fyp.repository.ApplicationRepository;
 import edu.fyp.repository.FormRepository;
 import edu.fyp.repository.PathNodeRepository;
 import edu.fyp.repository.UserRepository;
@@ -33,6 +34,9 @@ public class FailNode extends EndNode{
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private ApplicationRepository appRepo;
 	
     public void process(){
     	Application app= appManager.getApplicationByCurrentNode(this.getNodeKey());
@@ -64,5 +68,6 @@ public class FailNode extends EndNode{
     	super.setState("finish");
 		pathNodeRepo.updateNodeDate(this);
     	pathNodeRepo.updateNodeState(this, super.getState());
+    	appRepo.updateApproveEmp(app.getKey(),null);
     }
 }
