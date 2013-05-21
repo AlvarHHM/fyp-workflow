@@ -78,6 +78,11 @@ Form form = (Form)request.getSession().getAttribute("form");
 										
 										uploadedFileName = uploadingFileName;
 										item.find("input.uploaded-file").val(data);
+										alert("File upload :"+uploadedFileName+" Succss.");
+									},
+						error: 		function(){
+										alert("File upload :"+uploadedFileName+" Fail.");
+										uploadedFileName = "null";
 									},
 						data : formData,
 						cache : false,
@@ -128,9 +133,15 @@ Form form = (Form)request.getSession().getAttribute("form");
 									temp.Value = $(this).find("textarea").val();
 									break;
 								case (/UPLOAD/) .test(itemType):
-									temp.Value = $(this).find("input.uploaded-file").val();
+									temp.Value = "";
 										if(uploadedFileName==uploadedFileName){
-											temp.FileName = uploadedFileName;
+											var progress = item.find('progress');
+											if(progress.attr("value")!=0){
+												if(progress.attr("value")==progress.attr("max")){
+													temp.Value = $(this).find("input.uploaded-file").val();
+													temp.FileName = uploadedFileName;
+												}
+											}
 										}
 									
 									break;
