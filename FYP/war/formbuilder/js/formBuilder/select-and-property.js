@@ -117,22 +117,22 @@ function setChoiceType() {
             $("#radio-list,#checkbox-list,#combobox-list").hide();
 
 			
-			if($(".selected input").hasClass("auto-name")){
-				$("#auto-fill-name>input[type=checkbox]").attr("checked", true);
+		if($(".selected input").hasClass("auto-name")){
+			$("#auto-fill-name>input[type=checkbox]").attr("checked", true);
+		}else{
+			$("#auto-fill-name>input[type=checkbox]").attr("checked", false);
+		}
+			
+		$("#auto-fill-name>input").bind("change",{i:$(".selected input")},function(e){
+			if($(this).is(":checked")){
+				e.data.i.addClass("auto-name");
 			}else{
-				$("#auto-fill-name>input[type=checkbox]").attr("checked", false);
+				e.data.i.removeClass("auto-name");
 			}
-				
-			$("#auto-fill-name>input").bind("change",{i:$(".selected input")},function(e){
-				if($(this).is(":checked")){
-					e.data.i.find("input").addClass("auto-name");
-				}else{
-					e.data.i.find("input").removeClass("auto-name");
-				}
-			
-			});
-			
-			$("#item-text-defaultValue input").val($(".selected input").val());
+		
+		});
+		
+		$("#item-text-defaultValue input").val($(".selected input").val());
             $("#item-text-defaultValue input")
                     .unbind("keyup input paste").bind("keyup input paste", function() {
                 $(".selected input").attr("value", $("#item-text-defaultValue input").val());
