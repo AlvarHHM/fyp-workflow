@@ -42,7 +42,7 @@
 				var itemType = appData[i].Id.split('-')[0];
 
 				switch (true) {
-				case (/TEXTFIELD/).test(itemType):
+				case (/TEXTFIELD/).test(itemType):s
 				case (/DATE/).test(itemType):
 					item.find("input[type=text]").val(appData[i].Value);
 					break;
@@ -68,6 +68,30 @@
 					break;
 				case (/TEXTAREA/).test(itemType):
 					item.find("textarea").val(appData[i].Value);
+					break;
+				case (/UPLOAD/).test(itemType):
+					if(appData[i].Value!=""){
+						item.find("input.uploaded-file").val(appData[i].Value);
+						item.find("input[type=file]").prop('type', "text").prop('disabled', true)
+							.val(appData[i].FileName);
+
+						item.find("button").html("Download");
+						item.find("button").unbind("click")
+							.bind(
+								"click",
+								{v:appData[i].Value},
+								function(e){
+
+									window.open("/uploadDoc?id="+e.data.v);
+									return false;
+								});
+						item.find("progress").hide();
+					}else{
+
+						item.find("input[type=file]").prop('type', "text").prop('disabled', true)
+							.val("No file uploaded.");
+						item.find("button").prop('disabled', true);
+					}
 					break;
 				default:
 					break;
