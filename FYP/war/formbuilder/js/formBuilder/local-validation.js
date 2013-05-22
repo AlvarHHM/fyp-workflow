@@ -19,6 +19,13 @@ function showValidation(){
 			validateMinLength(item,itemType);
 			validateMaxLength(item,itemType);
 			
+			if($("#validate-required>input").is(":checked")){
+				$("#validate-max-len").show();
+				$("#validate-min-len").show();
+			}else{
+				$("#validate-max-len").hide();
+				$("#validate-min-len").hide();
+			}
 			$("#validate-required>input").bind("change",function(){
 				if($(this).is(":checked")){
 					$("#validate-max-len").show();
