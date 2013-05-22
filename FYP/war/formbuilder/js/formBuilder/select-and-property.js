@@ -214,12 +214,12 @@ function addChoice(choice, index, type) {
     if (/RADIO/.test(type)) {
         var container = $("#radio-list #radio-choices");
         var c = "#radio-list #radio-choices";
-        var i = "<div class='choice'><input type='radio'/><label>Radio Button</label></div>";
+        var i = "<div class='choice'><input name='"+$(".selected").attr("id")+"[]' type='radio'/><label>Radio Button</label></div>";
         var target = choice.children("label");
     } else if (/CHECKBOX/.test(type)) {
         var container = $("#checkbox-list #checkbox-choices");
         var c = "#checkbox-list #checkbox-choices";
-        var i = "<div class='choice'><input type='checkbox'/><label>Checkbox</label></div>";
+        var i = "<div class='choice'><input name='"+$(".selected").attr("id")+"[]' type='checkbox'/><label>Checkbox</label></div>";
         var target = choice.children("label");
     } else if (/COMBOBOX/.test(type)) {
         var container = $("#combobox-list #combobox-choices");
