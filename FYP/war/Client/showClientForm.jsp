@@ -109,11 +109,13 @@ Form form = (Form)request.getSession().getAttribute("form");
 					return false;
 				});
 				//$("#filling-form").validate();
+				/*
 				$("#filling-form")
 					.unbind('submit')
 					.bind('submit',function(){
 					   return false;
 					});
+					*/
         });
 		function SubmitApplication(){
 			
@@ -196,7 +198,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 	</script>
 </head>
 <body>
-	<form id="filling-form">
+	<!--<form id="filling-form">-->
 		<div class="form_container">
 		<%
 		if(form==null){
@@ -210,7 +212,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 		}
 		%>
 		</div>
-	</form>
+	<!--</form>-->
 <%
 if(form!=null){
 	%>
