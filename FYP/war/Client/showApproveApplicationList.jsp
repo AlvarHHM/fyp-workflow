@@ -89,7 +89,7 @@
 							%>
 							<tr>
 								<td><a
-									href="/Admin/showAdminApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
+									href="/Client/showApproveApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
 									target="_blank"><%=app.getAppID()%></a></td>
 								<td><%=tempForm.getTitle()%></td>
 								<td><%=app.getFormID()%></td>
@@ -101,7 +101,7 @@
 								<td><%=dateformat.format(app.getApplyDate())%></td>
 								<td><%=app.getStatus()%></td>
 								<td><a
-									href="/Admin/showAdminApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
+									href="/Client/showApproveApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
 									target="_blank"> <img src="/Client/img/dc.png" width="30px"
 										height="30px" /></a>
 							</tr>
