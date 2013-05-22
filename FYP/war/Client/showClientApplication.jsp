@@ -34,7 +34,7 @@ $(function() {
 				var itemType = appData[i].Id.split('-')[0];
 
 				switch (true) {
-				case (/TEXTFIELD/).test(itemType):s
+				case (/TEXTFIELD/).test(itemType):
 				case (/DATE/).test(itemType):
 					item.find("input[type=text]").val(appData[i].Value);
 					break;

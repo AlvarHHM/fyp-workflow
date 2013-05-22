@@ -80,7 +80,7 @@ public class LoginController {
 			session.setAttribute("EMP", user.getEmployee());
 			if (user.getEmployee() != null)
 				session.setAttribute("DEPT", user.getEmployee().getDepartment());
-			return "redirect:/Client/home.jsp";
+			return "redirect:/Client/home";
 		} else
 			return "redirect:/Client/login2.html?error=1";
 	}

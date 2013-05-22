@@ -75,6 +75,16 @@
 			}
 		}
 		$(".form-item").append("<div class='overlay' ></div>");
+		$("#reassignform").submit(function(){
+			$("#empID").removeAttr("disable");
+			var url = "/Client/reassignApprover?";
+			url+="appKey=<%=KeyFactory.keyToString(app.getKey())%>";
+			url+="&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>";
+			url+="&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>";
+			url+="&empID="+$("#empID").val();
+			window.location = url;
+			return false;
+		});
 	});
 <%}%>
 	
@@ -146,9 +156,9 @@
 							href="/Client/approveAppNode?appKey=<%=KeyFactory.keyToString(app.getKey())%>&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>&approve=false">Reject</a></td>
 					</tr>
 					<tr>
-						<td>Reasign:</td>
+						<td>Reassign:</td>
 						<td rowspan="2">
-							<form method="get" action="/Client/reassignApprover">
+							<form id="reassignform" method="get" action="/Client/reassignApprover">
 								<input type="hidden" name="appKey"
 									value="<%=KeyFactory.keyToString(app.getKey())%>" /> <input
 									type="hidden" name="nodeKey"

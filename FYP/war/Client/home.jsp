@@ -61,7 +61,7 @@
 									href="/Client/showApproveApplicationServlet?appKey=<%=KeyFactory.keyToString(app.getKey())%>"
 									target="_blank"><%=app.getAppID()%></a></td>
 								<td><%=form.getTitle()%></td>
-								<td><%=emp.getEngOtherName() + " " + emp.getChiSurname()%></td>
+								<td><%=emp.getEngOtherName() + " " + emp.getEngSurname()%></td>
 								<td><%=app.getApplyDate()%></td>
 							</tr>
 							<%

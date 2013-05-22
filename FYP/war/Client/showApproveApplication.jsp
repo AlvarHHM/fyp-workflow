@@ -84,7 +84,7 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 			url+="&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>";
 			url+="&empID="+$("#empID").val();
 			window.location = url;
-			$(this).preventDefault();
+			return false;
 		});
 	});
 <%}%>
