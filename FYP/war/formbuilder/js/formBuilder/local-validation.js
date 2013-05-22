@@ -1,4 +1,3 @@
-
 $(function(){
 
 });
@@ -72,7 +71,7 @@ function showValidation(){
         case (/RADIOBUTTON/).test(itemType):
 			$("#validate-required").show();
 			
-			if(item.find("choice:first input[type=radio]").hasClass("required")){
+			if(item.find(".choice:first input[type=radio]").hasClass("required")){
 				$("#validate-required>input[type=checkbox]").attr("checked", true);
 			}else{
 				$("#validate-required>input[type=checkbox]").attr("checked", false);
@@ -80,9 +79,9 @@ function showValidation(){
 				
 			$("#validate-required>input").bind("change",{i:item},function(e){
 				if($(this).is(":checked")){
-					e.data.i.find("choice:first input[type=radio]").addClass("required");
+					e.data.i.find(".choice:first input[type=radio]").addClass("required");
 				}else{
-					e.data.i.find("choice:first input[type=radio]").removeClass("required");
+					e.data.i.find(".choice:first input[type=radio]").removeClass("required");
 				}
 			
 			});
