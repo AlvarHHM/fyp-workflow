@@ -18,6 +18,9 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<title>Form</title>
+	<style type="text/css">
+		.error{	color:red;}
+	</style>
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
 		var formId = "<%= form.getFormID() %>";
@@ -105,7 +108,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 					return false;
 				});
 				$("#filling-form")
-					.validate()
+					.validate();
+				$("#filling-form")
 					.unbind('submit')
 					.bind('submit',function(){
 					   return false;
