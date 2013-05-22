@@ -98,7 +98,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 										alert("File upload :"+uploadedFileName+" Succss.");
 									},
 						error: 		function(){
-										alert("File upload :"+uploadedFileName+" Fail.");
+										alert("File upload :"+uploadingFileName+" Fail.");
 										uploadedFileName = "null";
 									},
 						data : formData,
