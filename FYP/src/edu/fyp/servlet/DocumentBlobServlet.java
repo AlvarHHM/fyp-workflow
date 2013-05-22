@@ -2,7 +2,9 @@ package edu.fyp.servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -50,6 +52,9 @@ public class DocumentBlobServlet extends HttpServlet {
 					.write(KeyFactory.keyToString(docuementBlob.getId()));
 		} catch (Exception e) {
 			e.printStackTrace(res.getWriter());
+			Logger.getAnonymousLogger().warning(e.getMessage());
+			Logger.getAnonymousLogger(Arrays.toString(e.getStackTrace()));
+			throw new RuntimeException(e.getMessage());
 		}
 	}
 

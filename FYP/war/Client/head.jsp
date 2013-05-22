@@ -5,7 +5,7 @@
 	</div>
 	<div id="userMenu">
 			<div id="userAction">
-			<a href="#"><img src="/Client/img/logout.png" style="width: 20; height: 20;"/></a>
+			<a href="/Client/logout.do"><img src="/Client/img/logout.png" style="width: 20; height: 20;"/></a>
         </div>
 		<div id="userHi">
 		<labe>Welcome, ${sessionScope.EMP.nickName} ${sessionScope.EMP.engSurname}</label>

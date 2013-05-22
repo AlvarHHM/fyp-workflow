@@ -70,7 +70,7 @@ public class LoginController {
 			@RequestParam("password") String password, HttpSession session) {
 
 		if ("admin".equals(userName) && "admin".equals(password)) {
-			return "redirect:/Admin/showAdminApplicationServlet";
+			return "redirect:/Admin/showAdminApplicationListServlet";
 		}
 
 		user = userManager.login(userName, password);
@@ -83,6 +83,22 @@ public class LoginController {
 			return "redirect:/Client/home.jsp";
 		} else
 			return "redirect:/Client/login2.html?error=1";
+	}
+	
+	@RequestMapping("/formbuilder/logout.do")
+	public String builderLogout(HttpSession session){
+		session.removeAttribute("BUILDERUSER");
+		session.removeAttribute("BUILDEREMP");
+		session.removeAttribute("BUILDERDEPT");
+		return "redirect:/formbulder/login.html";
+	}
+	
+	@RequestMapping("/Client/logout.do")
+	public String clientLogout(HttpSession session){
+		session.removeAttribute("USER");
+		session.removeAttribute("EMP");
+		session.removeAttribute("EMP");
+		return "redirect:/Client/login2.html";
 	}
 
 //	@RequestMapping(value = "/formbuilder/login.do", method = RequestMethod.POST, params = {

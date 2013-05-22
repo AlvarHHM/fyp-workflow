@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="edu.fyp.bean.Employee"%>
 <%@page import="edu.fyp.bean.ApplicationPath"%>
 <%@page import="edu.fyp.bean.Application"%>
@@ -7,7 +7,6 @@
 <%@page import="edu.fyp.bean.Department"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	Form form = (Form) request.getSession().getAttribute("form");
 	ApplicationPath appPath = (ApplicationPath) request.getSession()
@@ -31,13 +30,13 @@
 <script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
 <script type="text/javascript"
 	src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 <script type="text/javascript">
 $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 	<%if (form != null && app != null) {%>
 		 $(function() {
-			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>
-	');
+			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>');
 		if (appData.length !== 0) {
 			for ( var i = 0; i < appData.length; i++) {
 				var item = $("#" + appData[i].Id);
@@ -77,6 +76,16 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 			}
 		}
 		$(".form-item").append("<div class='overlay' ></div>");
+		$("#reassignform").submit(function(){
+			$("#empID").removeAttr("disable");
+			var url = "/Client/reassignApprover?";
+			url+="appKey=<%=KeyFactory.keyToString(app.getKey())%>";
+			url+="&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>";
+			url+="&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>";
+			url+="&empID="+$("#empID").val();
+			window.location = url;
+			$(this).preventDefault();
+		});
 	});
 <%}%>
 	
@@ -148,9 +157,9 @@ $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 							href="/Client/approveAppNode?appKey=<%=KeyFactory.keyToString(app.getKey())%>&nodeKey=<%=KeyFactory.keyToString(appPath.getCurrentNode())%>&approve=false">Reject</a></td>
 					</tr>
 					<tr>
-						<td>Reasign:</td>
+						<td>Reassign:</td>
 						<td rowspan="2">
-							<form method="get" action="/Client/reassignApprover">
+							<form id="reassignform" method="get" action="/Client/reassignApprover">
 								<input type="hidden" name="appKey"
 									value="<%=KeyFactory.keyToString(app.getKey())%>" /> <input
 									type="hidden" name="nodeKey"

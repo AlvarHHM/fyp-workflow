@@ -43,7 +43,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 				type = file.type;
 			});
 			*/
-			$('.form-item .upload button').click(function() {
+			$('div[id^=UPLOAD] button').click(function() {
+					
 					var item = $(this).parents(".form-item");
 					var formData = new FormData(item.find('form')[0]);
 					var fullPath = item.find("input[type=file]").val();
