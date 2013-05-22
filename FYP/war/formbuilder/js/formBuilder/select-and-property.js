@@ -132,10 +132,10 @@ function setChoiceType() {
 			
 			});
 			
-			$("#textDefaultValue input").val($(".selected input").val());
-            $("#textDefaultValue input")
+			$("#item-text-defaultValue input").val($(".selected input").val());
+            $("#item-text-defaultValue input")
                     .unbind("keyup input paste").bind("keyup input paste", function() {
-                $(".selected input").attr("value", $("#textDefaultValue input").val());
+                $(".selected input").attr("value", $("#item-text-defaultValue input").val());
             });
 
             break;
