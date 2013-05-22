@@ -121,4 +121,5 @@
 <%
 	request.getSession().removeAttribute("formList");
 	request.getSession().removeAttribute("appList");
+	request.getSession().removeAttribute("empList");
 %>
