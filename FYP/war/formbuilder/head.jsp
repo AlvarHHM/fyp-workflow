@@ -8,7 +8,8 @@
 			<a href="#"><img src="/formbuilder/img/logout.png" style="width: 20; height: 20;"/></a>
         </div>
 		<div id="userHi">
-		<labe>Welcome, ${sessionScope.BUILDER_EMP.nickName} ${sessionScope.BUILDER_EMP.engSurname}</label>
+		<labe>Welcome, ${sessionScope.BUILDEREMP.nickName} ${sessionScope.BUILDEREMP.engSurname}</label>
+		<%=session.getAttribute("BUILDEREMP") %>
 		</div>
     </div>
  </div>

@@ -16,8 +16,10 @@
 <script type="text/javascript" src="js/formBuilder/element-validation.js"></script>
 <script type="text/javascript" src="js/formBuilder/local-validation.js"></script>
 <script type="text/javascript" src="js/formBuilder/save-and-load.js"></script>
+<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 <script type="text/javascript">
             $(function() {
+            	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 				$("#formDesc").val("");
 			
                 $("#formBuilder-leftPanel").tabs({

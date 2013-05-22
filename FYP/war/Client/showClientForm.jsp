@@ -13,6 +13,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/libs/jqueryui-1.9.2/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/libs/jquery.validate.js"></script>
+	<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/showForm.css">
 	<link rel="stylesheet" type="text/css" href="css/jqueryui/jquery-ui-1.9.2.custom.min.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -27,6 +28,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 		var userNickName = "${sessionScope.EMP.nickName}";
 		
 		 $(function() {
+			$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 			$(".hasDatepicker").removeClass("hasDatepicker");
 			$(".date-picker").datepicker();
 			$(".auto-name").val(userNickName+" "+userSurName);

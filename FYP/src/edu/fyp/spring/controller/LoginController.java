@@ -3,6 +3,7 @@ package edu.fyp.spring.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -89,10 +90,10 @@ public class LoginController {
 			@RequestParam("password") String password, HttpSession session) {
 		BuilderUser user = userManager.loginBuilder(userName, password);
 		if (user != null) {
-			session.setAttribute("BUILDER_USER", user);
-			session.setAttribute("BUILDER_EMP", user.getEmployee());
+			session.setAttribute("BUILDERUSER", user);
+			session.setAttribute("BUILDEREMP", user.getEmployee());
 			if (user.getEmployee() != null)
-				session.setAttribute("BUILDER_DEPT", user.getEmployee()
+				session.setAttribute("BUILDERDEPT", user.getEmployee()
 						.getDepartment());
 			return "redirect:/formbuilder/showBuilderFormListServlet";
 		} else

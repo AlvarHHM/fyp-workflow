@@ -57,7 +57,7 @@
 					<span class="node-title">Notice</span>
 					<div class="tcp"></div>
 				</div>
-				<div class="check-node node-prototype node">
+				<div class="check-node node-prototype node" style="display: none;">
 					<span class="node-title">Check</span>
 					<div class="tcp"></div>
 					<div class="fcp"></div>

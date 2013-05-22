@@ -31,7 +31,9 @@
 <script type="text/javascript" src="js/JQ/jquery-1.9.0.js"></script>
 <script type="text/javascript"
 	src="js/JQ/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 <script type="text/javascript">
+$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 	<%if (form != null && app != null) {%>
 		 $(function() {
 			var appData = jQuery.parseJSON('<%=app.getFormData().getValue()%>

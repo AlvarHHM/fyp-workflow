@@ -1,12 +1,14 @@
 package edu.fyp.bean;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 import com.google.appengine.api.datastore.Key;
 
 @PersistenceCapable
-public class BuilderUser {
+public class BuilderUser implements Serializable{
 	
 	@Persistent
 	private String userName;
