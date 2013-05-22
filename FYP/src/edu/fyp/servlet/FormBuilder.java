@@ -42,7 +42,7 @@ public class FormBuilder extends HttpServlet {
 			out.close();
 			return ;
 		}
-		Employee emp = (Employee) req.getSession().getAttribute("EMP");
+		Employee emp = (Employee) req.getSession().getAttribute("BUILDEREMP");
 		Form form = new Form();
 		form.setFormHtml(new Text(req.getParameter("FormHtml")));
 		form.setConstraint(req.getParameter("Constraint"));
@@ -50,6 +50,7 @@ public class FormBuilder extends HttpServlet {
 		form.setTitle(req.getParameter("Title"));
 		form.setCreatedDate(new Date());		
 		form.setCreatedBy(emp.getEmpId());
+//		form.setCreatedBy(req.getSession().getAttribute("EMPID").toString());
 		form.setFormID(req.getParameter("FormID"));
 		form.setVersion(req.getParameter("Version"));
 		form.setPath(new Text(""));

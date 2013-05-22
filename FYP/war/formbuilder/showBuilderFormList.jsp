@@ -27,7 +27,6 @@
 	<div id="bodyContainer">
 		<div id="topContainer">
 			<%@ include file="head.jsp"%>
-			${sessionScope.BUILDEREMP.nickName} ${sessionScope.BUILDEREMP.engSurname}${sessionScope.BUILDEREMP.nickName} ${sessionScope.BUILDEREMP.engSurname}
 		</div>
 		<div id="mainContainer">
 			<div id="menu">

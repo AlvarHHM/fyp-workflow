@@ -180,6 +180,8 @@ Form form = (Form)request.getSession().getAttribute("form");
 						Data : JSON.stringify(data)})
 					.always(function(data) {
 						alert(data);
+						window.close();
+						
 					});
 					
 				}

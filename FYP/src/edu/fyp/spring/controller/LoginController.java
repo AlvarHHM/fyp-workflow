@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,11 +68,11 @@ public class LoginController {
 	public String login(@ModelAttribute("USER") User user,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password, HttpSession session) {
-		
-		if("admin".equals(userName)&&"admin".equals(password)){
+
+		if ("admin".equals(userName) && "admin".equals(password)) {
 			return "redirect:/Admin/showAdminApplicationServlet";
 		}
-		
+
 		user = userManager.login(userName, password);
 
 		if (user != null) {
@@ -84,21 +85,23 @@ public class LoginController {
 			return "redirect:/Client/login2.html?error=1";
 	}
 
-	@RequestMapping(value = "/formbuilder/login.do", method = RequestMethod.POST, params = {
-			"userName", "password" })
-	public String loginBuilder(@RequestParam("userName") String userName,
-			@RequestParam("password") String password, HttpSession session) {
-		BuilderUser user = userManager.loginBuilder(userName, password);
-		if (user != null) {
-			session.setAttribute("BUILDERUSER", user);
-			session.setAttribute("BUILDEREMP", user.getEmployee());
-			if (user.getEmployee() != null)
-				session.setAttribute("BUILDERDEPT", user.getEmployee()
-						.getDepartment());
-			return "redirect:/formbuilder/showBuilderFormListServlet";
-		} else
-			return "redirect:/formbuilder/login.html?error=1";
-	}
+//	@RequestMapping(value = "/formbuilder/login.do", method = RequestMethod.POST, params = {
+//			"userName", "password" })
+//	public String loginBuilder(@ModelAttribute("BUILDERUSER") BuilderUser user,
+//			@RequestParam("userName") String userName,
+//			@RequestParam("password") String password, HttpSession session) {
+//		user = userManager.loginBuilder(userName, password);
+//		if (user != null) {
+//
+//			session.setAttribute("BUILDERUSER", user);
+//			session.setAttribute("BUILDEREMP", user.getEmployee());
+//			if (user.getEmployee() != null)
+//				session.setAttribute("BUILDERDEPT", user.getEmployee()
+//						.getDepartment());
+//			return "redirect:/formbuilder/showBuilderFormListServlet";
+//		} else
+//			return "redirect:/formbuilder/login.html?error=1";
+//	}
 
 	@RequestMapping(value = "/testLogin.do", method = RequestMethod.GET)
 	public @ResponseBody
@@ -115,4 +118,9 @@ public class LoginController {
 	public User populateUser() {
 		return new User();
 	}
+
+//	@ModelAttribute("BUILDERUSER")
+//	public BuilderUser populateBuilderUser() {
+//		return new BuilderUser();
+//	}
 }

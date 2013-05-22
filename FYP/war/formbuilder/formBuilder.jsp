@@ -19,7 +19,7 @@
 <script type="text/javascript" src="/js/jquery.blockUI.js"></script>
 <script type="text/javascript">
             $(function() {
-            	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+//             	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 				$("#formDesc").val("");
 			
                 $("#formBuilder-leftPanel").tabs({

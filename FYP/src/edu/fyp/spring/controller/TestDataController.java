@@ -25,7 +25,11 @@ public class TestDataController {
 		prh.setDeptName("IT Department - Head Branch");
 		pm.makePersistent(prh);
 		
-		BuilderUser u1 = new BuilderUser();
+		BuilderUser bu1 = new BuilderUser();
+		bu1.setUserName("autscr9999");
+		bu1.setPassword("123456");
+		
+		User u1 = new User();
 		u1.setUserName("autscr9999");
 		u1.setPassword("123456");
 		
@@ -41,8 +45,11 @@ public class TestDataController {
 		emp1.setSuperLevel(200);
 		emp1.setDepartment(prh.getDeptKey());
 		u1.setEmployee(emp1);
-		
+		emp1.setUser(u1);
 		pm.makePersistent(u1);
+		
+		bu1.setEmployee(emp1.getEmpKey());
+		pm.makePersistent(bu1);
 		return "hello";
 	}
 }

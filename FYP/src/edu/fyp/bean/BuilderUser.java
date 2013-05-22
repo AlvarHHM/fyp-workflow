@@ -15,7 +15,7 @@ public class BuilderUser implements Serializable{
 	@Persistent
 	private String password;
 	@Persistent
-	private Employee employee;
+	private Key employee;
 	public String getUserName() {
 		return userName;
 	}
@@ -28,12 +28,13 @@ public class BuilderUser implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Employee getEmployee() {
+	public Key getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(Key employee) {
 		this.employee = employee;
 	}
+	
 	
 	
 	

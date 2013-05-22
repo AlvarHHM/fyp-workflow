@@ -373,4 +373,13 @@
 		<servlet-name>showAdminApplicationServlet</servlet-name>
 		<url-pattern>/Admin/showAdminApplicationServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>builderLogin</servlet-name>
+		<servlet-class>edu.fyp.servlet.BuilderLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>builderLogin</servlet-name>
+		<url-pattern>/formbuilder/login.do</url-pattern>
+	</servlet-mapping>
 </web-app>

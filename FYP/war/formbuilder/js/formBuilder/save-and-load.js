@@ -35,11 +35,11 @@ $(document).ready(function(){
 				Description : $("#formDesc").val(),
 				FormHtml : form, 
 				Title : $("#form-title").html(),
-				Constraint : constraint})
+				Constraint : constraint}) 
 			.always(function(data) {
 				alert(data);
 				if((/Success./).test(data))
-					window.location("showBuilderFormListServlet")
+					window.location= "/formbuilder/showBuilderFormListServlet";
 			});
 	})
 });

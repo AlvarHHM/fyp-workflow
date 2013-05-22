@@ -9,7 +9,6 @@
         </div>
 		<div id="userHi">
 		<labe>Welcome, ${sessionScope.BUILDEREMP.nickName} ${sessionScope.BUILDEREMP.engSurname}</label>
-		<%=session.getAttribute("BUILDEREMP") %>
 		</div>
     </div>
  </div>
