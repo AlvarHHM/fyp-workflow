@@ -169,7 +169,7 @@ function setChoiceType() {
             break;
         case (/COMBOBOX/).test(itemType):
             //is a combobox
-            $("#item-text-size,#textDefaultValue,").hide();
+            $("#item-text-size,#textDefaultValue").hide();
             $("#combobox-list,#validation").show();
 			
             $("#radio-list,#checkbox-list").hide();
