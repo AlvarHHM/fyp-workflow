@@ -19,7 +19,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<title>Form</title>
 	<style type="text/css">
-		.error{	
+		label.error{	
 			color:red;
 			position:absolute;
 		}
