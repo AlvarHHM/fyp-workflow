@@ -46,7 +46,9 @@ Form form = (Form)request.getSession().getAttribute("form");
 			$('div[id^=UPLOAD] button').click(function() {
 					
 					var item = $(this).parents(".form-item");
-					var formData = new FormData(item.find('form')[0]);
+					var formData = new FormData();
+					formData.append("file",item.find("input[type=file]")[0].files[0]);
+					
 					var fullPath = item.find("input[type=file]").val();
 						if (fullPath) {
 							var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
@@ -108,14 +110,14 @@ Form form = (Form)request.getSession().getAttribute("form");
 					});
 					return false;
 				});
-				//$("#filling-form").validate();
-				/*
+				$("#filling-form").validate();
+				
 				$("#filling-form")
 					.unbind('submit')
 					.bind('submit',function(){
 					   return false;
 					});
-					*/
+				
         });
 		function SubmitApplication(){
 			
@@ -198,7 +200,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 	</script>
 </head>
 <body>
-	<!--<form id="filling-form">-->
+	<form id="filling-form">
 		<div class="form_container">
 		<%
 		if(form==null){
@@ -212,7 +214,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 		}
 		%>
 		</div>
-	<!--</form>-->
+	</form>
 <%
 if(form!=null){
 	%>

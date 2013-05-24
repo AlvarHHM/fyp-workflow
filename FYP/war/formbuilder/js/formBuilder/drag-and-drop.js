@@ -87,10 +87,10 @@ function getItemHtml(itemType,id) {
             break;
         case (/UPLOAD/) .test(itemType):
             html += "<label class='item-text'>File Upload</label>"+
-					"<form class='upload' enctype='multipart/form-data'>"+
+					"<div class='upload'>"+
 						"<input type='hidden' class='uploaded-file' value=''/>"+
 						"<input name='file' type='file' /><button>Upload</button>"+
-					"</form><progress></progress>";
+					"</div><progress></progress>";
             break;
         default:
             break;
