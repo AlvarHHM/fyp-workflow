@@ -59,34 +59,34 @@ function getItemHtml(itemType,id) {
     var itemType = itemType.toUpperCase();
     switch (true) {
         case (/HEADING/).test(itemType):
-            html += "<span class='item-text'>Heading</span>";
+            html += "<span style='font-size:50px;' class='item-text'>Heading</span>";
             break;
         case (/LABEL/).test(itemType):
-            html += "<label class='label item-text'>Label</label>";
+            html += "<label style='display:none;' class='label item-text'>Label</label>";
             break;
         case (/TEXTFIELD/) .test(itemType):
-            html += "<label class='item-text'>Text Field</label><input type='text'/>";
+            html += "<label style='display:none;' class='item-text'>Text Field</label><input type='text'/>";
             break;
         case (/RADIOBUTTON/) .test(itemType):
-            html += "<fieldset><legend class='item-text'>Radio Group</legend>"
+            html += "<fieldset><legend style='display:none;' class='item-text'>Radio Group</legend>"
                     + "<div class='choice'><input name='"+id+"[]'  type='radio'/><label>Radio Button</label></div></fieldset>";
             break;
         case (/CHECKBOX/) .test(itemType):
-            html += "<fieldset><legend class='item-text'>Checkbox Group</legend>"
+            html += "<fieldset><legend style='display:none;' class='item-text'>Checkbox Group</legend>"
                     + "<div class='choice'><input name='"+id+"[]' type='checkbox'/><label>Checkbox</label></div></fieldset>";
             break;
         case (/COMBOBOX/) .test(itemType):
-            html += "<label class='item-text'>Select</label><select>"
+            html += "<label style='display:none;' class='item-text'>Select</label><select>"
                     + "<option class='choice'>Combox Option</option></select>";
             break;
         case (/TEXTAREA/) .test(itemType):
-            html += "<label class='item-text'>Textarea</label><textarea></textarea>";
+            html += "<label style='display:none;' class='item-text'>Textarea</label><textarea></textarea>";
             break;
         case (/DATE/) .test(itemType):
-            html += "<label class='item-text'>Date Picker</label><input class='date-picker' type='text'/>";
+            html += "<label style='display:none;' class='item-text'>Date Picker</label><input class='date-picker' type='text'/>";
             break;
         case (/UPLOAD/) .test(itemType):
-            html += "<label class='item-text'>File Upload</label>"+
+            html += "<label style='display:none;' class='item-text'>File Upload</label>"+
 					"<div class='upload'>"+
 						"<input type='hidden' class='uploaded-file' value=''/>"+
 						"<input name='file' type='file' /><button>Upload</button>"+
