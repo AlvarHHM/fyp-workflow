@@ -101,7 +101,7 @@ if(form!=null){
 					<div id="content">
 						<div id="formBuilder-container">
 							<div id="form-header">
-								<span id="form-title-label">Title: </span><span id="form-title">New Form</span>
+								<span id="form-title-label">Title: </span><span id="form-title"><%=formTitle%></span>
 								<div id="form-save-container">
 									<input type="button" value="Back" onclick="goBack()">
 
@@ -401,7 +401,7 @@ if(form!=null){
 											</div></li>
 										<li><label>Form Name</label>
 											<div>
-												<input id="formName" type="text" value="<%=formTitle%>" />
+												<input id="formName" type="text"/>
 											</div></li>
 										<li><label>Description</label>
 											<div>
