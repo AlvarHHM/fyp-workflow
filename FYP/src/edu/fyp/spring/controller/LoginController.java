@@ -90,7 +90,7 @@ public class LoginController {
 		session.removeAttribute("BUILDERUSER");
 		session.removeAttribute("BUILDEREMP");
 		session.removeAttribute("BUILDERDEPT");
-		return "redirect:/formbulder/login.html";
+		return "redirect:/formbuilder/login.html";
 	}
 	
 	@RequestMapping("/Client/logout.do")
