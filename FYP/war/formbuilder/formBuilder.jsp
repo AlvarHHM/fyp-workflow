@@ -1,5 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="edu.fyp.bean.Form"%>
 <!DOCTYPE html>
+<%
+Form form = (Form)request.getSession().getAttribute("form");
+%>
 <html>
 <head>
 <title>Form Builder</title>

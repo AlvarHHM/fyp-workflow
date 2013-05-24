@@ -374,6 +374,15 @@
 		<url-pattern>/Admin/showAdminApplicationServlet</url-pattern>
 	</servlet-mapping>
 	
+			<servlet>
+		<servlet-name>showMaintainForm</servlet-name>
+		<servlet-class>edu.fyp.servlet.ShowMaintainForm</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showMaintainForm</servlet-name>
+		<url-pattern>/formbuilder/showMaintainForm</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>builderLogin</servlet-name>
 		<servlet-class>edu.fyp.servlet.BuilderLoginServlet</servlet-class>

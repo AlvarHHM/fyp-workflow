@@ -95,6 +95,7 @@
 								</a> <a target="_blank" onclick='window.open("/path?formKey=<%=KeyFactory.keyToString(tempForm.getKey())%>")'
 									style="cursor: pointer"><img src="/formbuilder/img/pathicon.png" width="30px"
 										height="30px" /></a>
+										<a href="/formbuilder/showMaintainForm?appKey=<%=KeyFactory.keyToString(tempForm.getKey())%>">Add new version</a>
 								</td>
 							</tr>
 							<%
