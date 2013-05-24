@@ -381,11 +381,14 @@ if(form!=null){
 										<hr/>
 										<span>Auto Fill</span>
 										<br/>
-										<div id="auto-fill-name">
-											<input style="display:inline" type="checkbox" />
+										<div>
 											<div style="display:inline">
-												<label style="display:inline">Name</label>
+												<label style="display:inline">with </label>
 											</div>
+											<select style="display:inline">
+												<option value="">None</option>
+												<option value="NAME">Name</option>
+											</select>
 										</div>
 									</div>
 								</div>

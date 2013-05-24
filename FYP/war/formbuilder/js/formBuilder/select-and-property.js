@@ -118,16 +118,20 @@ function setChoiceType() {
 
 			
 		if($(".selected input").hasClass("auto-name")){
-			$("#auto-fill-name>input[type=checkbox]").attr("checked", true);
+			$("#auto-fill select").val("NAME");
 		}else{
-			$("#auto-fill-name>input[type=checkbox]").attr("checked", false);
+			$("#auto-fill select").val("");
 		}
 			
-		$("#auto-fill-name>input").bind("change",{i:$(".selected input")},function(e){
-			if($(this).is(":checked")){
-				e.data.i.addClass("auto-name");
-			}else{
-				e.data.i.removeClass("auto-name");
+		$("#auto-fill select").bind("change",{i:$(".selected input")},function(e){
+			var auto = $(this).val();
+			e.data.i.removeClass("auto-name");
+			switch (true) {
+				case (/NAME/).test(auto):
+					e.data.i.addClass("auto-name");
+					break;
+				default:
+				break;
 			}
 		
 		});
