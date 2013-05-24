@@ -19,7 +19,10 @@ Form form = (Form)request.getSession().getAttribute("form");
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<title>Form</title>
 	<style type="text/css">
-		.error{	color:red;}
+		.error{	
+			color:red;
+			position:absolute;
+		}
 	</style>
 	<script type="text/javascript">
 		var version = "<%= form.getVersion() %>";
@@ -128,6 +131,17 @@ Form form = (Form)request.getSession().getAttribute("form");
 				<%
 			}else{
 				%>
+				$("label.error").each(function(){
+					var stage = $(".form_container");
+					var parent = $(this).parents(".form-item");
+
+					$(this).prepend("<-----")
+
+					var left = stage.position().left + stage.width() - $(this).width()-parent.position().left;
+					$(this).css("left",left+"px");
+				});
+				
+				
 				if($("#filling-form").valid()){
 					var data = new Array();
 					var i = 0;
