@@ -435,3 +435,6 @@ Form form = (Form)request.getSession().getAttribute("form");
 	</div>
 </body>
 </html>
+<%
+request.getSession().removeAttribute("form");
+%>
