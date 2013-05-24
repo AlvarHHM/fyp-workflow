@@ -3,6 +3,18 @@
 <!DOCTYPE html>
 <%
 Form form = (Form)request.getSession().getAttribute("form");
+String formID ="";
+String formTitle = "";
+String formDescription="";
+String formData="";
+String formVersion="";
+if(form!=null){
+	formID=form.getFormID();
+	formTitle=form.getTitle();
+	formVersion=form.getVersion()+"(1)";
+	formDescription=form.getDescription();
+	formData=form.getFormHtml().getValue();
+}
 %>
 <html>
 <head>
@@ -381,19 +393,19 @@ Form form = (Form)request.getSession().getAttribute("form");
 									<ul>
 										<li><label>Form ID</label>
 											<div>
-												<input id="formId" type="text" />
+												<input id="formId" type="text" value="<%=formID%>"/>
 											</div></li>
 										<li><label>Version</label>
 											<div>
-												<input id="formVersion" type="text" />
+												<input id="formVersion" type="text" value="<%=formVersion%>"/>
 											</div></li>
 										<li><label>Form Name</label>
 											<div>
-												<input id="formName" type="text" />
+												<input id="formName" type="text" value="<%=formTitle%>" />
 											</div></li>
 										<li><label>Description</label>
 											<div>
-												<textarea id="formDesc"></textarea>
+												<textarea id="formDesc"><%=formDescription %></textarea>
 											</div></li>
 										<!--
 										<li>
@@ -425,7 +437,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 									</ul>
 								</div>
 							</div>
-							<div id="formBuilder-stage"></div>
+							<div id="formBuilder-stage"><%=formData%></div>
 						</div>
 					</div>
 					<div id="footer"></div>
