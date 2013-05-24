@@ -123,7 +123,7 @@ function setChoiceType() {
 			$("#auto-fill select").val("");
 		}
 			
-		$("#auto-fill select").bind("change",{i:$(".selected input")},function(e){
+		$("#auto-fill select").unbind("change").bind("change",{i:$(".selected input")},function(e){
 			var auto = $(this).val();
 			e.data.i.removeClass("auto-name");
 			switch (true) {
