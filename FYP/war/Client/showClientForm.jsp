@@ -131,6 +131,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 				<%
 			}else{
 				%>
+				var valid = $("#filling-form").valid();
 				$("label.error").each(function(){
 					var stage = $(".form_container");
 					var parent = $(this).parents(".form-item");
@@ -142,7 +143,7 @@ Form form = (Form)request.getSession().getAttribute("form");
 				});
 				
 				
-				if($("#filling-form").valid()){
+				if(valid){
 					var data = new Array();
 					var i = 0;
 					$('.form-item').each(function() {
